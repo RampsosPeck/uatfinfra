@@ -1,0 +1,15 @@
+.user-name {
+    float: left;
+    margin-top: 8px;
+    margin-left: 5px;
+    height: 35px;
+    width: 45%;
+}
+
+.user-name p {
+    font-size: 14px;
+    color: #F44336;
+    line-height: 1em;
+    font-weight: 700;
+}
+
