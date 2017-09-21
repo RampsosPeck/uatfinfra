@@ -241,7 +241,7 @@ desired effect
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i>{{ Auth::user()->cargo }}</a>
+          <a href="#"><i class="fa fa-circle text-success"></i>{{ Auth::user()->cargo }} <br> <font color="#fed136"><center><strong>{{ Auth::user()->tipo }}</strong></center></font> </a>
         </div>
       </div>
 
@@ -259,7 +259,7 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li class="header">HEADER</li>
+        <li class="header text-center">MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>

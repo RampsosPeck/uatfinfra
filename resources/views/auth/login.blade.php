@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>Infraestructura | Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -26,15 +28,21 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a  href="/"><font color="#fed136"><b>"Universidad Autónoma Tomás Frías"</b><br>Departamento de Infraestructura</font>
+    </a>
   </div>
+<div class="login-box">
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg"><strong>INGRESE SUS DATOS PERSONALES</strong></p>
 
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
@@ -70,14 +78,14 @@
             <div class="col-xs-8">
               <div class="checkbox icheck">
                 <label>
-                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recuérdame
                 </label>
               </div>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
               <button type="submit" class="btn btn-primary">
-                    Login
+                    INGRESAR
                 </button>
                 
             </div>
@@ -88,15 +96,12 @@
 
     <div class="social-auth-links text-center">
       <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Ingresa con tu cuenta de facebook</a>
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Ingresa con tu cuenta de Google+</a>
     </div>
     <!-- /.social-auth-links -->
 
-    <a class="btn btn-link" href="{{ route('password.request') }}">Forgot Your Password?</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <center><a class="btn btn-link" href="{{ route('password.request') }}"><font color="#fed136"><b>Olvidaste tu contraseña?</b></font></a></center>
 
   </div>
   <!-- /.login-box-body -->
