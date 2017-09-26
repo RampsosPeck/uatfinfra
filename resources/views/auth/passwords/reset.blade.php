@@ -1,6 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.layoutLogin')
 
 @section('content')
+<body class="hold-transition login-page">
+  <div class="login-logo">
+    <a  href="/"><font color="#fed136"><b>"Universidad Autónoma Tomás Frías"</b><br>Departamento de Infraestructura</font>
+    </a>
+  </div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -67,4 +72,5 @@
         </div>
     </div>
 </div>
+</body>
 @endsection

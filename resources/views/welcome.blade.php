@@ -29,10 +29,10 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{{ route('login') }}"><strong>Ingresar</strong></a>
                     </li>
-                    <!--
+                    
                     <li class="nav-item">    
                         <a class="nav-link js-scroll-trigger" href="{{ route('register') }}"><strong>Register</strong></a>     
-                    </li> -->
+                    </li>
                     @endauth
             @endif
           </ul>
@@ -133,4 +133,5 @@
         </div>
       </div>
     </section>
+</body>
 @endsection

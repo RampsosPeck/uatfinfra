@@ -171,7 +171,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="/dashboard/img/user.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><strong>{{ Auth::user()->name }}  <font color="#F44336"> ({{ Auth::user()->cargo }})</font></strong></span> <br>
+              <span class="hidden-xs"><strong>{{ Auth::user()->name }}  <font color="#F44336"> ({{ Auth::user()->type }})</font></strong></span> <br>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -179,7 +179,7 @@ desired effect
                 <img src="/dashboard/img/user.png" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }} - {{ Auth::user()->cargo }}
+                  {{ Auth::user()->name }} - {{ Auth::user()->position }}
                   <small> Potosí 26 de Dic. 2017 </small>
                 </p>
               </li>
@@ -241,7 +241,7 @@ desired effect
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i>{{ Auth::user()->cargo }} <br> <font color="#fed136"><center><strong>{{ Auth::user()->tipo }}</strong></center></font> </a>
+          <a href="#"><i class="fa fa-circle text-success"></i>{{ Auth::user()->type }} <br> <font color="#fed136"><center><strong>{{ Auth::user()->position }}</strong></center></font> </a>
         </div>
       </div>
 
@@ -258,23 +258,7 @@ desired effect
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header text-center">MENU</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+      @yield('sidebar-menu')
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -284,14 +268,7 @@ desired effect
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
+      @yield('content-header')
     </section>
 
     <!-- Main content -->
@@ -312,80 +289,12 @@ desired effect
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">U.A.T.F.</a></strong> Todos los derechos reservados.
   </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">70%</span>
-                </span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
+      @yield('content-sidebar')
   </aside>
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
