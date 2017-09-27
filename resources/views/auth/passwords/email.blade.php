@@ -1,4 +1,5 @@
 @extends('layouts.layoutLogin')
+
 @section('content')
 <body class="hold-transition login-page">
   <div class="login-logo">
@@ -8,7 +9,7 @@
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg"><strong>INGRESE SUS DATOS PERSONALES</strong></p>
+    <p class="login-box-msg"><strong>INGRESE SU CORREO ELECTRÓNICO PARA ENVIARLE EL LINK</strong></p>
         <div class="panel-body">
             @if (session('status'))
                 <div class="alert alert-success">
@@ -24,7 +25,7 @@
 
                     <div class="col-md-7">
                         <div class="form-group has-feedback">  
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                        <input id="email" type="email" class="form-control" placeholder="Ejm. pedro@gmail.com" name="email" value="{{ old('email') }}" required>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         @if ($errors->has('email'))
                             <span class="help-block">
@@ -38,7 +39,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-info">
-                            Enviar el link para restablecer mi clave
+                            Enviarme el link para <br />restablecer mi clave
                         </button>
                     </div>
                 </div>

@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-6">
               <div class="checkbox icheck">
                 <label>
                     <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> <strong>Recuérdame</strong>
@@ -50,7 +50,7 @@
               </div>
             </div>
             <!-- /.col -->
-            <div class="col-xs-4">
+            <div class="col-xs-6">
               <button type="submit" class="btn btn-info">
                     INGRESAR
                 </button>
