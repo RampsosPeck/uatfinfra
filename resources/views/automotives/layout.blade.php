@@ -22,7 +22,7 @@
 <!-- Esto es para el CONDUCTOR -->
 @if (Auth::user()->type === "Conductor")
 
-        @include('automotives.automotive.dashboard')
+        @include('automotives.automotive.dashboard-conductor')
 
 @endif
 

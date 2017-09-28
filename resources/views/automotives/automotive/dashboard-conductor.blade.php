@@ -8,44 +8,12 @@
      <ul class="sidebar-menu">
         <li class="header text-center">MENU</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Usuarios</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Crear</a></li>
-            <li><a href="#">listar</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Vehículos</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Crear</a></li>
-            <li><a href="#">listar</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Viajes</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Reservas</a></li>
-            <li><a href="#">Crear</a></li>
-            <li><a href="#">Listar</a></li>
-            <li><a href="#">Destinos</a></li>
-            <li><a href="#">Mapas</a></li>
-          </ul>
-        </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Presupuestos</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Informes</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Rol de viajes</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Calendario de Viajes</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Informes de Viajes</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Destinos de Viajes</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Ubicaciones de Viajes</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Vehículos</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Solictud de trabajo</span>
             <span class="pull-right-container">
@@ -65,10 +33,9 @@
   <a class="" href="/home"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Inicio</a>
 </h1>
   <ol class="breadcrumb">
-    <li><a href="#" class="btn btn-xs btn-info"><i class="fa fa-bus"></i>&nbsp; Nuevo Viaje</a></li>
+    <li><a href="#" class="btn btn-xs btn-info"><i class="fa fa-group"></i>&nbsp; Rol de viajes</a></li>
     <li><a href="#" class="btn btn-xs btn-primary"><i class="fa fa-calendar"></i>&nbsp; Calendario</a></li>
-    <li><a href="#" class="btn btn-xs btn-success"><i class="fa fa-group"></i>&nbsp; Rol de viajes</a></li>
-    <li><a href="#" class="btn btn-xs btn-danger"><i class="fa fa-tachometer"></i>&nbsp; Combustibles</a></li>
+    <li><a href="#" class="btn btn-xs btn-success"><i class="fa fa-tachometer"></i>&nbsp; Informes</a></li>
     
     <li class="active">Here Conductor</li>
   </ol>
@@ -108,7 +75,7 @@
 <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Rol de Viajes</h3>
+        <h3 class="control-sidebar-heading">Ultimos Viajes Realizados</h3>
         <ul class="control-sidebar-menu">
           <li>
             <a href="javascript:;">
@@ -151,7 +118,7 @@
       <!-- Settings tab content -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
         <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+          <h3 class="control-sidebar-heading">Mis Viajes</h3>
 
           <div class="form-group">
             <label class="control-sidebar-subheading">

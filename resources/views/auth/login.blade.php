@@ -17,7 +17,7 @@
       <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="name" class="col-md-3 control-label">Cédula I.:</label>
             <div class="col-md-9">
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Cédula de Identidad">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                 @if ($errors->has('email'))
@@ -32,7 +32,7 @@
         <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
           <label for="name" class="col-md-3 control-label">Clave:</label>
             <div class="col-md-9">  
-                <input id="password" type="password" class="form-control" name="password" required placeholder="Password">
+                <input id="password" type="password" class="form-control" name="password" required placeholder="Clave / Contraseña">
                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 @if ($errors->has('password'))
                     <span class="help-block">

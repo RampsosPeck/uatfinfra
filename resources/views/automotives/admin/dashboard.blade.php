@@ -94,7 +94,7 @@
 @endsection
 
 @section('icon-sidebar')
-<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+<a href="#" data-toggle="control-sidebar" class="btn btn-lg btn-success"><i class="fa fa-gears fa-spin fa-1x fa-fw" aria-hidden="true"></i></a>
 @endsection
 
 @section('sidebar-menu')
@@ -102,7 +102,18 @@
         <li class="header text-center">MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Usuarios</span>
+          <a href="#"><i class="fa fa-users"></i> <span>Usuarios</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Crear </a></li>
+            <li><a href="{{ route('home.users.index') }}">listar</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-bus"></i> <span>Vehículos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -112,22 +123,22 @@
             <li><a href="#">listar</a></li>
           </ul>
         </li>
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Rol de viajes</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Vehículos</span>
+          <a href="#"><i class="fa fa-calendar"></i> <span>Calendario</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Crear</a></li>
-            <li><a href="#">listar</a></li>
+            <li><a href="#"><i class="fa fa-calendar"></i> <span>Calendario de Viajes</span></a></li>
+            <li class="active"><a href="#"><i class="fa fa-user-circle"></i> <span>Rol de viajes</span></a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> <span>Combustibles</span></a></li>
+            <li><a href="#"><i class="fa fa-usd"></i> <span>Presupuestos</span></a></li>
+            <li><a href="#"><i class="fa fa-file-pdf-o"></i> <span>Informes</span></a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Combustibles</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Calendario</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Viajes</span>
+          <a href="#"><i class="fa fa-plane"></i> <span>Viajes</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -140,10 +151,8 @@
             <li><a href="#">Mapas</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Presupuestos</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Informes</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Solictud de trabajo</span>
+          <a href="#"><i class="fa fa-sitemap"></i> <span>Solictud de trabajo</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -158,19 +167,24 @@
 
 @section('content-header')
 <h1>
-    Page Header
-    <small>Optional description</small>
-  </h1>
+  <a class="" href="/home"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Inicio</a>
+</h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
+    <li><a href="#" class="btn btn-sm btn-warning"><i class="fa fa-users"></i>&nbsp; <b>Personificar</b></a></li>
+    <li><a href="#" class="btn btn-sm btn-info"><i class="fa fa-bus"></i>&nbsp; <b>Nuevo Viaje</b></a></li>
+    <li><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-calendar"></i>&nbsp; <b>Calendario</b> </a></li>
+    <li><a href="#" class="btn btn-sm btn-success"><i class="fa fa-group"></i>&nbsp; <b>Rol de viajes</b></a></li>
+    <li><a href="#" class="btn btn-sm btn-danger"><i class="fa fa-tachometer"></i>&nbsp; <b>Combustibles</b></a></li>
+    
+    <li class="active">Here Conductor</li>
   </ol>
 
 @endsection
+
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
@@ -189,6 +203,7 @@
 </div>
 @endsection
 
+
 @section('content-sidebar')
 <!-- Create the tabs -->
 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -199,7 +214,7 @@
 <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Actividad reciente</h3>
+        <h3 class="control-sidebar-heading">Rol de Viajes</h3>
         <ul class="control-sidebar-menu">
           <li>
             <a href="javascript:;">
@@ -260,3 +275,6 @@
       <!-- /.tab-pane -->
 </div>
 @endsection
+
+
+
