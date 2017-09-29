@@ -55,4 +55,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Viaje::class);
     }
+
+
+    //Con esta funcion aseguramos que solo algunos usuarios pueden impersonar
+    public function canImpersonate($userId = null)
+    {
+        //si el usuario es administrador que retorne true o falce
+        
+        return $this->name === "Ing. Jorge Denys Peralta Mamani" && $this->id !== $userId;
+        
+    }
+
 }

@@ -1,5 +1,4 @@
-
-@extends('automotives.admin.dashboard')
+@extends('automotives.layout')
 
 @section('content')
 
@@ -40,6 +39,18 @@
 					<td>{{ $user->email }}</td>
 					<td>{{ $user->type }}</td>
 					<td>{{ $user->entidad }}</td>
+					<td>
+
+						@canImpersonate($user->id)			
+							<form action="{{ route('impersonations.store') }}" method="POST" accept-charset="utf-8">
+								{{ csrf_field() }}
+								<input type="hidden" name="user_id" value="{{ $user->id }}" >
+
+								<button class="btn btn-info btn-xs ">Personificar</button>
+							</form>
+						@endcanImpersonate
+
+					</td>
 				</tr>
 				@endforeach
 			</tbody>

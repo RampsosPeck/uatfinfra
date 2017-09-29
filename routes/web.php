@@ -43,4 +43,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('home/users', 'UsersController@index')->name('home.users.index');
 
+Route::post('impersonations', 'ImpersonationsController@store')->name('impersonations.store');
+Route::delete('impersonations', 'ImpersonationsController@destroy')->name('impersonations.destroy');
+
+
+
+
 

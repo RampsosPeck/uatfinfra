@@ -105,13 +105,18 @@ desired effect
               <!-- Menu Body -->
               <li class="user-body">
                 <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
+                  <div class="col-xs-6 text-center">
+                    @if (session()->has('impersonator_id'))
+                        <center>
+                          <form class="navbar-form " action="{{ route('impersonations.destroy') }}" method="POST" accept-charset="utf-8">{{ csrf_field() }} {{ method_field('DELETE') }}
+                              <button type="submit" class="btn btn-xs btn-danger">Dejar de personificar</button>
+                          </form>
+                        </center>
+                    @else
+                      <a href="#">Friends</a>
+                    @endif
                   </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
+                  <div class="col-xs-6 text-center">
                     <a href="#">Friends</a>
                   </div>
                 </div>
@@ -162,6 +167,7 @@ desired effect
           <center><i class="fa fa-circle text-success"></i>{{ Auth::user()->type }} <br> <font color="#fed136"><strong>{{ Auth::user()->position }}</strong></font></center>
         </div>
       </div>
+
 
       <!-- search form (Optional) -->
       <form action="#" method="get" class="sidebar-form">

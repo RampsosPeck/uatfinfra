@@ -1,48 +1,114 @@
-<!-- Esto es para el ADMINISTRADOR -->
-@if (Auth::user()->type === "Administrator")
+@extends('home')
 
-        @include('automotives.admin.dashboard')
+@section('menu-messages')
 
-@endif
+	<!-- Esto es mensajes para el ADMINISTRADOR -->
+	@if (Auth::user()->type === "Administrator")
 
-<!-- Esto es para el JEFE -->
-@if (Auth::user()->type === "Jefatura")
+	        @include('automotives.admin.messages')
 
-        @include('automotives.automotive.dashboard')
+	@endif
 
-@endif
+@endsection
 
-<!-- Esto es para el ENCARGADO -->
-@if (Auth::user()->type === "Supervisor")  
+@section('menu-notification')
 
-        @include('automotives.automotive.dashboard')
+	<!-- Esto es notificaciones para el ADMINISTRATOR -->
+	@if (Auth::user()->type === "Administrator")
 
-@endif
+	        @include('automotives.admin.notification')
 
-<!-- Esto es para el CONDUCTOR -->
-@if (Auth::user()->type === "Conductor")
+	@endif
 
-        @include('automotives.automotive.dashboard-conductor')
+@endsection
 
-@endif
+@section('menu-task')
+	
+	<!-- Esto es tareas para el ADMINISTRATOR -->
+	@if (Auth::user()->type === "Administrator")
 
-<!-- Esto es para el MECANICO -->
-@if (Auth::user()->type === "Mecánico")
+	        @include('automotives.admin.task')
 
-        @include('automotives.automotive.dashboard')
+	@endif
 
-@endif
+@endsection
 
-<!-- Esto es para el MENSAJERO -->
-@if (Auth::user()->type === "Mensajero")
+@section('icon-sidebar')
+	
+	<!-- Esto es el icono del sidebar derecho para el ADMINISTRATOR -->
+	@if (Auth::user()->type === "Administrator")
 
-        @include('automotives.automotive.dashboard')
+	        @include('automotives.admin.iconsidebar')
 
-@endif
+	@endif
 
-<!-- Esto es para el DEFAULT -->
-@if (Auth::user()->type === "Encargado")
 
-        @include('automotives.automotive.dashboard')
+@endsection
 
-@endif
+@section('sidebar-menu')
+
+	<!-- Esto es el sidebar izquierdo para el ADMINISTRATOR -->
+	@if (Auth::user()->type === "Administrator")
+
+	        @include('automotives.admin.sidebar')
+
+	@endif
+    
+@endsection
+
+@section('content-header')
+
+	<!-- Esto es el contenido cabeza para el ADMINISTRATOR -->
+	@if (Auth::user()->type === "Administrator")
+
+	        @include('automotives.admin.contentheader')
+
+	@endif
+
+@endsection
+
+@section('content')
+	
+	@if (session()->has('flash'))
+	   <div class="alert alert-success">{{ session('flash') }} </div>
+	@endif
+	
+	<!-- Esto es el contenido para el ADMINISTRATOR -->
+	@if (Auth::user()->type === "Administrator")
+
+	        @include('automotives.admin.content')
+
+	@endif
+
+@endsection
+
+
+@section('content-sidebar')
+
+	<!-- Esto es el sidebar derecho para el ADMINISTRATOR -->
+	@if (Auth::user()->type === "Administrator")
+
+	        @include('automotives.admin.contentsidebar')
+
+	@endif
+
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
