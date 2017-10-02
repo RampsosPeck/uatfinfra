@@ -104,21 +104,24 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
+                    <label><font color="#fed136">Nombre Completo</font></label>
                     <input class="form-control" id="name" type="text" placeholder="Su nombre completo *" required data-validation-required-message="Porfavor introdusca su nombre.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
+                    <label><font color="#fed136">Correo Electrónico</font></label>
                     <input class="form-control" id="email" type="email" placeholder="Su correo electrónico *" required data-validation-required-message="Porfavor introdusca su dirección de correo electrónico.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
+                    <label><font color="#fed136">Número de teléfono</font></label>
                     <input class="form-control" id="phone" type="tel" placeholder="Su número de teléfono *" required data-validation-required-message="Porfavor introdusca su número de teléfono.">
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
                 <div class="col-md-8">
                     <div class="form-group">
-                        <textarea rows="5" id="men" name="body" type="text" class="form-control" placeholder="Ingresa aqui el contenido de tu mensaje" required data-validation-required-message="Porfavor introdusca su mensaje."></textarea>
+                        <textarea rows="6" id="men" name="body" type="text" class="form-control" placeholder="Ingresa aqui el contenido de tu mensaje" required data-validation-required-message="Porfavor introdusca su mensaje."></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>

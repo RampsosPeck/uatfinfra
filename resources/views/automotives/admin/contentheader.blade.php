@@ -3,7 +3,7 @@
 </h1>
 
   <ol class="breadcrumb">
-    <li><a href="#" class="btn btn-sm btn-warning"><i class="fa fa-users"></i>&nbsp; <b>Personificar</b></a></li>
+    <li><a href="{{ route('home.users.index') }}" class="btn btn-sm btn-warning"><i class="fa fa-users"></i>&nbsp; <b>Personificar</b></a></li>
     <li><a href="#" class="btn btn-sm btn-info"><i class="fa fa-bus"></i>&nbsp; <b>Nuevo Viaje</b></a></li>
     <li><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-calendar"></i>&nbsp; <b>Calendario</b> </a></li>
     <li><a href="#" class="btn btn-sm btn-success"><i class="fa fa-group"></i>&nbsp; <b>Rol de viajes</b></a></li>

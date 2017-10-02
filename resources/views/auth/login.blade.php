@@ -6,6 +6,13 @@
     <a  href="/"><font color="#fed136"><b>"Universidad Autónoma Tomás Frías"</b><br>Departamento de Infraestructura</font>
     </a>
   </div>
+@if(session()->has('info'))
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>{{ session('info') }}</strong>
+    </div>
+  </div>
+@endif
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="login-box-body">

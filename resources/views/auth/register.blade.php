@@ -16,7 +16,7 @@
                     <label for="name" class="col-md-3 control-label">Nombre:</label>
                     <div class="col-md-9">
                         <div class="form-group has-feedback">
-                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Ingrese su nombre completo">
                             <span class="glyphicon glyphicon-user form-control-feedback"></span>
                             @if ($errors->has('name'))
                                 <span class="help-block">
@@ -30,7 +30,7 @@
                     <label for="email" class="col-md-3 control-label">E-Mail:</label>
                     <div class="col-md-9">
                         <div class="form-group has-feedback">  
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Ingrese su correo Ejm. jorge@gmail.com" required>
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                             @if ($errors->has('email'))
                                 <span class="help-block">
@@ -44,7 +44,7 @@
                     <label for="password" class="col-md-3 control-label">Clave:</label>
                         <div class="col-md-9">
                         <div class="form-group has-feedback">
-                            <input id="password" type="password" class="form-control" name="password" required>
+                            <input id="password" type="password" class="form-control" placeholder="Ingrese su contraseña 6 digitos a-z 0-9" name="password" required>
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       
                                 @if ($errors->has('password'))
@@ -59,7 +59,7 @@
                     <label for="password-confirm" class="col-md-3 control-label">Confirma clave:</label>
                     <div class="col-md-9">
                         <div class="form-group has-feedback">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <input id="password-confirm" type="password" class="form-control" placeholder="Vuelva a escribir su contraseña" name="password_confirmation" required>
                             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                         </div>
                     </div>

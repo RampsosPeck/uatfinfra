@@ -47,6 +47,6 @@ Route::post('impersonations', 'ImpersonationsController@store')->name('impersona
 Route::delete('impersonations', 'ImpersonationsController@destroy')->name('impersonations.destroy');
 
 
-
+Route::get('activate/{token}','ActivationTokenController@activate')->name('activation');
 
 

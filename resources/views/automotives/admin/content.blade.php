@@ -10,7 +10,22 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
+                    @if(session()->has('success'))
+                        <div class="container">
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        </div>
+                    @endif
 
+                    @if(session()->has('danger'))
+                        <div class="container">
+                            <div class="alert alert-danger">
+                                {{ session('danger') }}
+                            </div>
+                        </div>
+                    @endif
                     You are logged in!
                 </div>
             </div>

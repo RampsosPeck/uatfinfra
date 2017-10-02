@@ -2,6 +2,8 @@
 
 namespace Uatfinfra;
 
+use Auth;
+use Uatfinfra\ActivationToken;
 use Uatfinfra\ModelAutomotores\Reservation;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\ModelAutomotores\Viaje;
@@ -65,5 +67,38 @@ class User extends Authenticatable
         return $this->name === "Ing. Jorge Denys Peralta Mamani" && $this->id !== $userId;
         
     }
+
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+
+        $credentials['active'] = true;
+
+        return $credentials;
+    }
+
+    public function generateToken()
+    {
+        $this->token()->create([
+            'token'   => str_random(60)
+        ]);
+
+        return $this;
+    }
+
+    public function activate()
+    {
+        $this->update(['active' => true]);
+
+        Auth::login($this);
+
+        $this->token->delete();
+    }
+
+    public function token()
+    {
+        return $this->hasOne(ActivationToken::class);
+    }
+
 
 }

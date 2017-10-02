@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Uatfinfra\Events\Event' => [
-            'Uatfinfra\Listeners\EventListener',
+        'Illuminate\Auth\Events\Registered' => [
+            'Uatfinfra\Listeners\SendActivationLink',
         ],
     ];
 

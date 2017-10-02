@@ -35,6 +35,7 @@
 </head>
 
 
+
 @yield('content')
 
 
