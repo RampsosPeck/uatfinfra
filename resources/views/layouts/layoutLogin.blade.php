@@ -9,16 +9,16 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/dashboard/bootstrap/css/bootstrap.min.css">
+  {!! Html::style('/dashboard/bootstrap/css/bootstrap.min.css') !!}
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/dashboard/css/font-awesome.min.css">
+  {!! Html::style('/dashboard/css/font-awesome.min.css') !!}
   <!-- Ionicons -->
-  <link rel="stylesheet" href="/dashboard/css/ionicons.min.css">
+  {!! Html::style('/dashboard/css/ionicons.min.css') !!}
   <!-- Theme style -->
-  <link rel="stylesheet" href="/dashboard/css/AdminLTE.min.css">
+  {!! Html::style('/dashboard/css/AdminLTE.min.css') !!}
   <!-- iCheck -->
-  <link rel="stylesheet" href="/entrar/iCheck/square/blue.css">
-
+  {!! Html::style('/entrar/iCheck/square/blue.css') !!}
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -42,11 +42,11 @@
 
 
 <!-- jQuery 3 -->
-<script src="/entrar/jquery.min.js"></script>
+{!! Html::script('/entrar/jquery.min.js') !!}
 <!-- Bootstrap 3.3.7 -->
-<script src="/dashboard/bootstrap/js/bootstrap.min.js"></script>
+{!! Html::script('/dashboard/bootstrap/js/bootstrap.min.js') !!}
 <!-- iCheck -->
-<script src="/entrar/icheck.min.js"></script>
+{!! Html::script('/entrar/icheck.min.js') !!}
 <script>
   $(function () {
     $('input').iCheck({

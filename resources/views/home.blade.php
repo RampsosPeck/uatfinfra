@@ -12,16 +12,15 @@
       <!-- Tell the browser to be responsive to screen width -->
       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
       <!-- Bootstrap 3.3.6 -->
-      <link rel="stylesheet" href="/dashboard/bootstrap/css/bootstrap.min.css">
-      <!-- Font Awesome 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
-      <link rel="stylesheet" href="/dashboard/css/font-awesome.min.css">
+      {!! Html::style('/dashboard/bootstrap/css/bootstrap.min.css') !!}
+      <!-- Font Awesome -->
+      {!! Html::style('/dashboard/css/font-awesome.min.css') !!}
       <!-- Ionicons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+      {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') !!}
       <!-- Theme style -->
-      <link rel="stylesheet" href="/dashboard/css/AdminLTE.min.css">
-    
-      <link rel="stylesheet" href="/dashboard/css/skins/skin-blue.min.css">
+      {!! Html::style('/dashboard/css/AdminLTE.min.css') !!}
+      {!! Html::style('/adminlte/plugins/datatables/dataTables.bootstrap.css') !!}
+      {!! Html::style('/dashboard/css/skins/skin-blue.min.css') !!}
 
       <link rel="shortcut icon" href="{!! URL::to('/img/favicon.png') !!}" />
 
@@ -230,12 +229,46 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.2.3 -->
-<script src="/dashboard/jQuery/jquery-2.2.3.min.js"></script>
+{!! Html::script('/dashboard/jQuery/jquery-2.2.3.min.js') !!}
 <!-- Bootstrap 3.3.6 -->
-<script src="/dashboard/bootstrap/js/bootstrap.min.js"></script>
+{!! Html::script('/dashboard/bootstrap/js/bootstrap.min.js') !!}
 <!-- AdminLTE App -->
-<script src="/dashboard/js/app.min.js"></script>
+{!! Html::script('/dashboard/js/app.min.js') !!}
+{!! Html::script('/adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+{!! Html::script('/adminlte/plugins/datatables/dataTables.bootstrap.min.js') !!}
 
+  <script>
+  $(function () {
+    $('#users-table').DataTable( {
+        "language": {
+          
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "NingÃºn dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Ãšltimo",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+            },
+            "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
+  });
+  
+  </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

@@ -12,7 +12,7 @@
         <title>U.A.T.F. | Infraestructura</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="/welcome/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        {!! Html::style('/welcome/bootstrap/css/bootstrap.min.css') !!}
 
         <!-- Custom fonts for this template -->
         <link href="/welcome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
         <!-- Custom styles for this template -->
-        <link href="/welcome/agency/css/agency.min.css" rel="stylesheet">
+        {!! Html::style('/welcome/agency/css/agency.min.css') !!}
 
 
         <link rel="shortcut icon" href="{!! URL::to('/img/favicon.png') !!}" />
@@ -71,20 +71,21 @@
 
     
     <!-- Bootstrap core JavaScript -->
-    <script src="/welcome/jquery/jquery.min.js"></script>
-    <script src="/welcome/popper/popper.min.js"></script>
-    <script src="/welcome/bootstrap/js/bootstrap.min.js"></script>
+{!! Html::script('/welcome/jquery/jquery.min.js') !!}
+{!! Html::script('/welcome/popper/popper.min.js') !!}
+{!! Html::script('/welcome/bootstrap/js/bootstrap.min.js') !!}
 
     <!-- Plugin JavaScript -->
-    <script src="/welcome/jquery-easing/jquery.easing.min.js"></script>
+{!! Html::script('/welcome/jquery-easing/jquery.easing.min.js') !!}
 
     <!-- Contact form JavaScript -->
-    <script src="/welcome/agency/js/jqBootstrapValidation.js"></script>
-    <script src="/welcome/agency/js/contact_me.js"></script>
+{!! Html::script('/welcome/agency/js/jqBootstrapValidation.js') !!}
+{!! Html::script('/welcome/agency/js/contact_me.js') !!}
+
 
     <!-- Custom scripts for this template -->
-    <script src="/welcome/agency/js/agency.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+{!! Html::script('/welcome/agency/js/agency.min.js') !!}
+{!! Html::script('https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js') !!}
 
     <script>    
     CKEDITOR.replace( 'men',

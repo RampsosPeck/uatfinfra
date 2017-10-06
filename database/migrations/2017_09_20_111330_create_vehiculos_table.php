@@ -26,7 +26,7 @@ class CreateVehiculosTable extends Migration
             $table->string('chassis');
             $table->string('motor');
             $table->string('cilindrada');
-            $table->string('combu');
+            $table->string('oil');
             $table->enum('estado',['optimo','mantenimiento','desuso']);
             $table->unsignedInteger('user_id');
             $table->timestamps();

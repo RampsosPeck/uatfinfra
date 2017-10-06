@@ -41,7 +41,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('home/users', 'UsersController@index')->name('home.users.index');
+//Route::get('home/users', 'UsersController@index')->name('home.users.index');
 
 Route::post('impersonations', 'ImpersonationsController@store')->name('impersonations.store');
 Route::delete('impersonations', 'ImpersonationsController@destroy')->name('impersonations.destroy');
@@ -50,3 +50,10 @@ Route::delete('impersonations', 'ImpersonationsController@destroy')->name('imper
 Route::get('activate/{token}','ActivationTokenController@activate')->name('activation');
 
 
+//Route::group(['prefix' => 'automotives', 'namespace' => 'Automotive'], function(){
+	//Route::get('posts', 'Admin\PostsController@index');
+//});
+
+Route::resource('users','UsersController');
+Route::resource('reservas','Automotive\ReservationController');
+Route::resource('vehiculos','Automotive\VehiculoController');

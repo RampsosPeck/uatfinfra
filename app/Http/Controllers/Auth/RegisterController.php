@@ -50,9 +50,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required|string|min:4|max:100',
+            'entidad'=>'required|string|min:4|max:100',
+            'email' => 'required|string|email|max:100|unique:users',
+            'cedula'=> 'required|string|min:6|max:12|unique:users',
+            'celular'=> 'required|digits:8|unique:users',
+            'password' => 'required|string|min:5|confirmed',
         ]);
     }
 
@@ -66,8 +69,12 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'entidad' => $data['entidad'],
             'email' => $data['email'],
+            'cedula' => $data['cedula'],
+            'celular' => $data['celular'],
             'password' => bcrypt($data['password']),
+            'type' => 'Default',
         ])->generateToken();
 
         //ActivationToken::create([
@@ -83,8 +90,6 @@ class RegisterController extends Controller
     {
         $this->guard()->logout();
 
-        
-
-        return redirect('login')->withInfo('Te hemos enviado un link de activación a tu correo. Ingresa a tu correo electrónico y revice un email donde estará el link de activación...');
+        return redirect('login')->withInfo('Te hemos enviado un link de activación a tu correo. Ingresa a tu correo electrónico y revice el email donde estará el link de activación!!!');
     }
 }

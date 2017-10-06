@@ -21,9 +21,9 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="col-md-5 control-label">Correo Electrónico</label>
+                    <label for="email" class="col-md-5 control-label">Correo Electrónico:</label>
 
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <div class="form-group has-feedback">  
                         <input id="email" type="email" class="form-control" placeholder="Ejm. pedro@gmail.com" name="email" value="{{ old('email') }}" required>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -37,9 +37,9 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
+                    <div class="col-md-6 col-md-offset-5">
                         <button type="submit" class="btn btn-info">
-                            Enviarme el link para <br />restablecer mi clave
+                            Envíame el link para <br />restablecer mi clave
                         </button>
                     </div>
                 </div>
