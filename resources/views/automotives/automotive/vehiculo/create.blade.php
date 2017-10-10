@@ -105,7 +105,7 @@
               	<!-- /.box-body -->
               	<div class="box-footer">
               		<center>
-                	<button type="submit" class="btn btn-success">Guardar lo datos</button>
+                	<button type="submit" class="btn btn-success">Guardar los datos</button>
               		</center>
               	</div>
               	<!-- /.box-footer -->

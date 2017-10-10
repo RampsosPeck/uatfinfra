@@ -3,6 +3,9 @@
 namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Illuminate\Http\Request;
+use Uatfinfra\User;
+use Uatfinfra\Reservation;
+use Uatfinfra\Http\Controllers\Controller;
 
 class ReservationController extends Controller
 {
@@ -13,7 +16,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-
+        $reservations = Reservation::all();
+        //dd($reservations);
+        return view('automotives.automotive.reservation.index',compact('reservations'));
     }
 
     /**
@@ -23,7 +28,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('automotives.automotive.reservation.create', compact('users'));
     }
 
     /**
@@ -34,7 +40,21 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request;
+        //Reservation::create($request->all());
+        
+        $reserva = new Reservation;
+        $reserva->entity = $request->get('entity');
+        $reserva->objective = $request->get('objective');
+        $reserva->passengers = $request->get('passengers');
+        $reserva->days = 5;
+        $reserva->startdate = $request->get('startdate');
+        $reserva->enddate = $request->get('enddate');
+        $reserva->user_id = $request->get('user_id');
+        $reserva->save();
+
+        return redirect('reservas')->with('flash', 'Tu reserva fue creada correctamente!!!');
+        
     }
 
     /**

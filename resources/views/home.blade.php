@@ -17,6 +17,10 @@
       {!! Html::style('/dashboard/css/font-awesome.min.css') !!}
       <!-- Ionicons -->
       {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') !!}
+      
+
+      @stack('styles')
+
       <!-- Theme style -->
       {!! Html::style('/dashboard/css/AdminLTE.min.css') !!}
       {!! Html::style('/adminlte/plugins/datatables/dataTables.bootstrap.css') !!}
@@ -197,6 +201,13 @@ desired effect
     <!-- Main content -->
     <section class="content">
 
+      @if(session()->has('flash'))
+     
+            <div class="alert alert-success">
+              {{ session('flash') }}
+            </div>
+          
+      @endif
       <!-- Your Page Content Here -->
       @yield('content')
 
@@ -234,6 +245,9 @@ desired effect
 {!! Html::script('/dashboard/bootstrap/js/bootstrap.min.js') !!}
 <!-- AdminLTE App -->
 {!! Html::script('/dashboard/js/app.min.js') !!}
+
+@stack('scripts')
+
 {!! Html::script('/adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
 {!! Html::script('/adminlte/plugins/datatables/dataTables.bootstrap.min.js') !!}
 

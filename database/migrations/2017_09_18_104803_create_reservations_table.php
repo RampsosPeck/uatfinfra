@@ -21,7 +21,7 @@ class CreateReservationsTable extends Migration
             $table->integer('days');
             $table->timestamp('startdate')->nullable();
             $table->timestamp('enddate')->nullable();
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
