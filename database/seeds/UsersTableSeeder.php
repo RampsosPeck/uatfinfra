@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
         $user->password= bcrypt('123456');
         $user->active = true;
         $user->type = "Jefatura";
-        $user->position = "DEP. DE INFRAESTRUCTURA";
+        $user->position = "DEPTO. DE INFRAESTRUCTURA";
         $user->entidad = "U. A. T. F.";
         $user->save();
 
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
         $user->active = true;
         $user->type = "Supervisor";
         $user->position = "AUTOMOTORES";
-        $user->entidad = "Dep. de Infraestructura";
+        $user->entidad = "Depto. de Infraestructura";
         $user->save();
 
         $user = new User;
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
         $user->active = true;
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
-        $user->entidad = "Dep. de Infraestructura";
+        $user->entidad = "Depto. de Infraestructura";
         $user->save();
 
         $user = new User;
@@ -69,8 +69,8 @@ class UsersTableSeeder extends Seeder
         $user->password= bcrypt('123456');
         $user->active = true;
         $user->type = "Mecánico";
-        $user->position = "WEB SITE";
-        $user->entidad = "Dep. de Infraestructura";
+        $user->position = "DEPTO. DE INFRAESTRUCTURA";
+        $user->entidad = "Depto. de Infraestructura";
         $user->save();
 
         $user = new User;
@@ -81,8 +81,8 @@ class UsersTableSeeder extends Seeder
         $user->password= bcrypt('123456');
         $user->active = true;
         $user->type = "Mensajero";
-        $user->position = "DEP. DE INFRAESTRUCTURA";
-        $user->entidad = "Dep. de Infraestructura";
+        $user->position = "DEPTO. DE INFRAESTRUCTURA";
+        $user->entidad = "Depto. de Infraestructura";
         $user->save();
 
         $user = new User;
@@ -92,8 +92,8 @@ class UsersTableSeeder extends Seeder
         $user->email= "encargado@uatf.com";
         $user->password= bcrypt('123456');
         $user->active = true;
-        $user->type = "Encargado";
-        $user->position = "Encargado de Viaje";
+        $user->type = "Enc. de Viaje";
+        $user->position = "U.A.T.F.";
         $user->entidad = "Ing. de Sistemas";
         $user->save();
 

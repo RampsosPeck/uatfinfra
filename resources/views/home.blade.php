@@ -23,7 +23,7 @@
 
       <!-- Theme style -->
       {!! Html::style('/dashboard/css/AdminLTE.min.css') !!}
-      {!! Html::style('/adminlte/plugins/datatables/dataTables.bootstrap.css') !!}
+      
       {!! Html::style('/dashboard/css/skins/skin-blue.min.css') !!}
 
       <link rel="shortcut icon" href="{!! URL::to('/img/favicon.png') !!}" />
@@ -248,41 +248,9 @@ desired effect
 
 @stack('scripts')
 
-{!! Html::script('/adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
-{!! Html::script('/adminlte/plugins/datatables/dataTables.bootstrap.min.js') !!}
 
-  <script>
-  $(function () {
-    $('#users-table').DataTable( {
-        "language": {
-          
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "NingÃºn dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Ãšltimo",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-            },
-            "oAria": {
-            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
-        }
-    });
-  });
+
   
-  </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

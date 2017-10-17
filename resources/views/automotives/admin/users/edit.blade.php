@@ -10,7 +10,7 @@
             <div class="box-header with-border">
               	<center>
               		<h3 class="box-title">
-              			<font color="#00c0ef"><b>NUEVO USUARIO</b></font>
+              			<font color="#00c0ef"><b>EDITAR AL USUARIO </b></font>{{ $user->name }}
           			</h3>
           		</center>
             </div>
@@ -22,7 +22,7 @@
 			    son obligatorios.
 			</span>           
             <!-- form start -->
-            {!! Form::open(['route'=>'users.store','method'=>'POST','class'=>'form-horizontal']) !!}
+            {!! Form::model($user,['route'=>['users.update',$user->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
                 <div class="box-body alert-info">
                     <div class="row">
@@ -35,12 +35,13 @@
 			                   		<input type="text" 
 			                    		class="form-control" 
 			                    		id="entidad" 
-			                    		value="{{ old('entidad') }}"
+			                    		value="{{ old('entidad', $user->entidad) }}"
 			                    		name="entidad" 
 			                    		placeholder="Entidad correspondiente. Ejm. Ing. de Sistemas"
 			                    		required>
 			                    		<span class="input-group-addon" id="basic-addon1"><font color="red">
-			                    			<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></font></span>
+			                    			<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></font>
+			                    		</span>
 
 			                    </div>
 			                    {!! $errors->first('entidad', '<span class="help-block">:message</span>') !!}
@@ -53,7 +54,7 @@
 		                       		<input type="text" 
 		                        		class="form-control" 
 		                        		id="name"
-		                        		value="{{ old('name') }}" 
+		                        		value="{{ old('name',$user->name) }}" 
 		                        		name="name" 
 		                        		placeholder="Nombre completo. Ejm. Ing. Jorge Peralta"
 		                        		required>
@@ -69,7 +70,7 @@
 			                    <input type="email" 
 			                    		class="form-control" 
 			                    		id="email"
-			                    		value="{{ old('email') }}" 
+			                    		value="{{ old('email',$user->email) }}" 
 			                    		name="email" 
 			                    		placeholder="Su correo electrónico. Ejm. jorge@gmail.com">
 			                    {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
@@ -80,18 +81,13 @@
                     	<div class="form-group {{ $errors->has('cedula') ? 'has-error' : '' }}">
 		                    <label for="cedula" class="col-sm-3 control-label">Cédula:</label>
 		                    <div class="col-sm-9">
-		                    	<div class="input-group">
 		                        <input type="text" 
 		                        		class="form-control" 
 		                        		id="cedula"
-		                        		value="{{ old('cedula') }}" 
+		                        		value="{{ old('cedula',$user->cedula) }}" 
 		                        		name="cedula" 
-		                        		placeholder="Cédula de Identidad"
-		                        		required>
-		                        		<span class="input-group-addon" id="basic-addon1"><font color="red">
-			                    			<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></font></span>
-		                    	</div>
-		                      	{!! $errors->first('cedula', '<span class="help-block">:message</span>') !!}
+		                        		placeholder="Cédula de Identidad">
+		                        	{!! $errors->first('cedula', '<span class="help-block">:message</span>') !!}				                      	
 		                    </div>
 	                    </div>
 		                <div class="form-group {{ $errors->has('celular') ? 'has-error' : '' }}">
@@ -100,7 +96,7 @@
 			                    <input type="number" 
 			                    		class="form-control" 
 			                    		id="celular" 
-			                    		value="{{ old('celular') }}"
+			                    		value="{{ old('celular',$user->celular) }}"
 			                    		name="celular" 
 			                    		placeholder="Su número de celular">
 			                    {!! $errors->first('celular', '<span class="help-block">:message</span>') !!}
@@ -121,28 +117,38 @@
 
               	@if (Auth::user()->type == "Administrator" && Auth::user()->position == "WEB SITE")
               		<div class="col-sm-3">
-	                	{!! Form::select('type', config('tipo.type'), null, ['class' => 'form-control  select2','placeholder'=>'Types Users','required','style'=>'width: 100%;']) !!}
+	                	{!! Form::select('type', config('tipo.type'), $user->type, ['class' => 'form-control  select2','placeholder'=>'Types Users','required','style'=>'width: 100%;']) !!}
 	                </div>
 	                <div class="col-sm-3">
-	                	{!! Form::select('position', config('tipo.position'), null, ['class' => 'form-control  select2','placeholder'=>'Positions Users','required','style'=>'width: 100%;']) !!}
+	                	{!! Form::select('position', config('tipo.position'),$user->position, ['class' => 'form-control  select2','placeholder'=>'Positions Users','required','style'=>'width: 100%;']) !!}
 	                </div>
 	            @else
-		            <div class="col-sm-3">
-						<input type="hidden" name="type" value="Enc. de Viaje">
-					</div>
-		                <div class="col-sm-3">
-						<input type="hidden" name="position" value="U.A.T.F.">	
-					</div>
+	            <div class="col-sm-3">
+					<input type="hidden" name="type" value="Enc. de Viaje">
+				</div>
+	                <div class="col-sm-3">
+					<input type="hidden" name="position" value="U.A.T.F.">	
+				</div>
 	            @endif
-		            <div class="col-sm-3">
-	                	{!! Form::select('active', config('tipo.active'), null, ['class' => 'form-control  select2','placeholder'=>'Permisos','required','style'=>'width: 100%;']) !!}
-	                </div>
+                <div class="col-sm-3">
+					{!! Form::select('active', config('tipo.active'), $user->active, ['class' => 'form-control  select2','placeholder'=>'Permisos','required','style'=>'width: 100%;']) !!}
+                </div>
 	                <div class="col-sm-3">
                 		<button type="submit" class="btn btn-primary pull-left btn-block" data-toggle="tooltip" data-placement="left" title="Insertar al usuario al sistema">Guardar los datos</button>
                 	</div>
               	</div>
               	<!-- /.box-footer -->
             {!! Form::close() !!}
+
+            {!! Form::open(['route'=>['users.destroy',$user->id],'method'=>'DELETE']) !!}
+                
+                <center>
+	                <button type="submit" class="btn btn-danger btn-sm">
+	                    <span class="glyphicon glyphicon-trash">   Eliminar</span> 
+	                </button>
+                </center>
+                
+       		{!! Form::close() !!}
 		</div>
 	</div>
 </div>

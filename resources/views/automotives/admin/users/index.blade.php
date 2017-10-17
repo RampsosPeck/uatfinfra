@@ -1,13 +1,8 @@
 @extends('automotives.layout')
 
 @section('content')
-
+@include('alertas.success')
 <div class="container">
-	@if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
     <div class="box box-info" >
     	<font color="#17a2b8"><span class="fa fa-users fa-2x form-control-feedback"></span></font>
         <div class="box-header">
@@ -27,10 +22,11 @@
 						<th>Email</th>
 						<th>Tipo</th>
 						<th>Entidad</th>
+						<th>Activo</th>
 						<th>Acciones</th>
 					</tr>
  				</thead>
- 				<tbody>
+ 				<tbody bgcolor="#d9edf7">
  					@foreach ($users as $user)
 					<tr>
 						<td>{{ $user->id }}</td>
@@ -40,6 +36,11 @@
 						<td>{{ $user->email }}</td>
 						<td>{{ $user->type }}</td>
 						<td>{{ $user->entidad }}</td>
+						@if($user->active === 1)
+							<td class="text-center"><font color="green"><b>{{ "SI" }}</b></font></td>
+						@else
+							<td class="text-center"><font color="red"><b>{{ "NO" }}</b></font></td>
+						@endif
 						<td>
 
 							@canImpersonate($user->id)			
@@ -47,12 +48,12 @@
 									{{ csrf_field() }}
 									<input type="hidden" name="user_id" value="{{ $user->id }}" >
 
-									<button class="btn btn-info btn-xs"><i class="fa fa-user"></i> Personificar</button>
+									<button class="btn btn-success btn-xs btn-block"><i class="fa fa-user"></i> Personificar</button>
 
 								</form>
 							@endcanImpersonate
 							
-							{!!link_to_route('users.edit', $title = 'Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary btn-xs fa fa-pencil-square-o'])!!}
+							{!!link_to_route('users.edit', $title = 'Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
 
 						</td>
 					</tr>
@@ -65,4 +66,43 @@
 </div>
 @endsection
 
+@push('styles')
+  {!! Html::style('/adminlte/plugins/datatables/dataTables.bootstrap.css') !!}
+@endpush
 
+@push('scripts') 
+   {!! Html::script('/adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+   {!! Html::script('/adminlte/plugins/datatables/dataTables.bootstrap.min.js') !!}
+<script>
+  $(function () {
+    $('#users-table').DataTable( {
+        "language": {
+          
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "NingÃºn dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Ãšltimo",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+            },
+            "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
+  });
+  
+  </script>
+@endpush

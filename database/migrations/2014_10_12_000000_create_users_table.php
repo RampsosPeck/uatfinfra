@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('cedula')->nullable();
             $table->integer('celular')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->boolean('active')->default(false)->nullable();
             $table->string('type')->nullable();

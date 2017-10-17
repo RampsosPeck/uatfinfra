@@ -15,19 +15,18 @@ class CreateVehiculosTable extends Migration
     {
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
-            $table->string('placa');
-            $table->string('color');
-            $table->string('passengers');
-            $table->string('model');
-            $table->string('especification');
-            $table->float('mileage');
-            $table->string('brand');
-            $table->string('chassis');
-            $table->string('motor');
-            $table->string('cilindrada');
-            $table->string('oil');
-            $table->enum('estado',['optimo','mantenimiento','desuso']);
+            $table->string('tipo');
+            $table->string('placa')->unique();
+            $table->string('color')->nullable();
+            $table->string('pasajeros')->nullable();
+            $table->string('modelo')->nullable();
+            $table->string('especificacion')->nullable();
+            $table->float('kilometraje')->nullable();
+            $table->string('marca')->nullable();
+            $table->string('chasis')->unique()->nullable();
+            $table->string('motor')->unique()->nullable();
+            $table->string('cilindrada')->nullable();
+            $table->enum('estado',['ÓPTIMO','MANTENIMIENTO','DESUSO']);
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });

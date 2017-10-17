@@ -4,6 +4,7 @@ namespace Uatfinfra\Http\Controllers;
 
 use Uatfinfra\User;
 use Illuminate\Http\Request;
+use Session;
 use Auth;
 
 class UsersController extends Controller
@@ -41,27 +42,36 @@ class UsersController extends Controller
         $this->validate($request, [
             'name'   => 'required|string|min:4|max:100',
             'entidad'=> 'required|string|min:4|max:100',
-            'password'=> 'required|string|min:5'
+            'cedula' => 'required|string|min:6|max:12|unique:users'
         ]);
 
-
+        if($request->get('password') === null ){
+            $pass =  bcrypt($request->get('cedula'));  
+        }else{
+            $pass =  bcrypt($request->get('password'));
+        }
+         
         $user = new User;
-        $user->name = $request->get('name');
-        $user->cedula = $request->get('cedula');
-        $user->celular = $request->get('celular');
-        $user->email = $request->get('email');
-        $user->password = $request->get('password');
-        $user->active = true;
-        $user->type = 
-        $user->position = 
-        $user->entidad = $request->get('entidad');
-        $user->insertador = Auth::user()->id;
+        $user->name         = $request->get('name');
+        $user->cedula       = $request->get('cedula');
+        $user->celular      = $request->get('celular');
+        $user->email        = $request->get('email');
+        $user->password     = $pass;
+        $user->active       = $request->get('active');
+        $user->type         = $request->get('type');
+        $user->position     = $request->get('position');
+        $user->entidad      = $request->get('entidad');
+        $user->insertador   = Auth::user()->id;
         $user->save();
 
-        return redirect('users')->with('flash', 'Añadiste al usuario correctamente!!!');
+        Session::flash('message','Usuario creado correctamente');
+        return redirect('users');
+        
+        //return redirect('users')->with('flash', 'Añadiste al usuario correctamente!!!');
 
         /* Session::flash('message','Usuario creado correctamente');
         return redirect('users'); */
+        
 
     }
 
@@ -84,7 +94,11 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+        //dd($id);
+        $user = User::find($id);
+        //dd($user);
+        return view('automotives.admin.users.edit',compact('user'));
+
     }
 
     /**
@@ -96,7 +110,40 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //Verificamos si el usuario esta modificando el passwod 
+        if($request->get('password') === null )
+        {
+            //En el caso de que no mande ningun password se mantiene 
+            $user = User::find($id);
+            $user->name         = $request->get('name');
+            $user->cedula       = $request->get('cedula');
+            $user->celular      = $request->get('celular');
+            $user->email        = $request->get('email');
+            $user->type         = $request->get('type');
+            $user->position     = $request->get('position');
+            $user->entidad      = $request->get('entidad');
+            $user->active       = $request->get('active');
+            $user->insertador   = Auth::user()->id;
+            $user->save();
+        }else{
+            //En el caso de que mande el password
+            $user = User::find($id);
+            $user->name         = $request->get('name');
+            $user->cedula       = $request->get('cedula');
+            $user->celular      = $request->get('celular');
+            $user->email        = $request->get('email');
+            $user->password     = bcrypt($request->get('password'));
+            $user->type         = $request->get('type');
+            $user->position     = $request->get('position');
+            $user->entidad      = $request->get('entidad');
+            $user->active       = $request->get('active');
+            $user->insertador   = Auth::user()->id;
+            $user->save();
+        }
+
+        Session::flash('message','Usuario editado correctamente...');
+        return redirect('users');
     }
 
     /**
@@ -107,6 +154,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        Session::flash('message','Usuario eliminado correctamente...');
+        return redirect('users');
     }
 }

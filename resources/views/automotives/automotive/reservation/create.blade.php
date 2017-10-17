@@ -22,7 +22,7 @@
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="{{ route('reservas.store') }}" >
             	{{ csrf_field() }}
-                <div class="box-body">
+                <div class="box-body alert-info">
                 	<div class="col-md-6">
 		                <div class="form-group">
 		                    <label for="startdate" class="col-sm-4 control-label">Fecha Inicial:</label>

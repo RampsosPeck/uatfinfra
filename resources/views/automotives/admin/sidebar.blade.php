@@ -12,6 +12,21 @@
           <li {{ request()->is('users/create') ? 'class=active' : '' }}><a href="{!! URL::to('/users/create') !!}"><i class="fa fa-user-circle-o"></i> <b>Crear</b></a></li>
         </ul>
     </li>
+
+    <li class="treeview {{ request()->is('vehiculos*') ? 'active' : '' }}">
+        <a href="#"><i class="fa fa-bus"></i> <span>Vehículos</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ request()->is('vehiculos') ? 'class=active' : '' }}><a href="{!! URL::to('/vehiculos') !!}"><i class="fa fa-car"></i> <b>Listar</b></a></li>
+          <li {{ request()->is('vehiculos/create') ? 'class=active' : '' }}><a href="{!! URL::to('/vehiculos/create') !!}"><i class="fa fa-dashboard"></i> <b>Insertar</b></a></li>
+          
+        </ul>
+    </li>
+
+
     <li class="treeview">
         <a href="#"><i class="fa fa-plane"></i> <span>Viajes</span>
           <span class="pull-right-container">
@@ -51,17 +66,7 @@
           <li {{ request()->is('reservas') ? 'class=active' : '' }}><a href="{!! URL::to('/reservas') !!}"><i class="fa fa-ellipsis-v"></i> <b>Listar</b></a></li>
         </ul>
     </li>    
-        <li class="treeview {{ request()->is('vehiculos*') ? 'active' : '' }}">
-            <a href="#"><i class="fa fa-bus"></i> <span>Vehículos</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li {{ request()->is('vehiculos/create') ? 'class=active' : '' }}><a href="{!! URL::to('/vehiculos/create') !!}"><i class="fa fa-dashboard"></i> <b>Insertar</b></a></li>
-              <li {{ request()->is('vehiculos') ? 'class=active' : '' }}><a href="{!! URL::to('/vehiculos') !!}"><i class="fa fa-eye"></i> <b>Listar</b></a></li>
-            </ul>
-        </li>
+        
         <li class="treeview">
           <a href="#"><i class="fa fa-sitemap"></i> <span>Solictud de trabajo</span>
             <span class="pull-right-container">
