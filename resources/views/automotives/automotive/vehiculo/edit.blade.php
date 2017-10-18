@@ -3,11 +3,6 @@
 @section('content')
 
 <div class="container">
-	@if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
 	<div class="col-md-11">
     <!-- Horizontal Form -->
         <div class="box box-primary">
@@ -159,7 +154,14 @@
 			                </div>
 			                <label for="pasajeros" class="col-sm-2 control-label">Pasajeros:</label>
 			                <div class="col-sm-4">
-			                    <input type="number" class="form-control" name="pasajeros" id="pasajeros" value="{{ old('pasajeros', $vehiculo->pasajeros) }}" placeholder="Ejm. 45">
+			                    <div class="input-group"> 	
+			                    	<input type="number" class="form-control" name="pasajeros" id="pasajeros" value="{{ old('pasajeros', $vehiculo->pasajeros) }}" placeholder="Ejm. 45">
+			                    	<span class="input-group-addon" id="basic-addon1">
+				                    		<font color="red">
+				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+				      						</font>
+			      					</span>
+			                	</div>
 			                    {!! $errors->first('pasajeros', '<span class="help-block">:message</span>') !!}
 			                </div>
 		                </div>
@@ -185,6 +187,16 @@
               	</div>
               	<!-- /.box-footer -->
             {!! Form::close() !!}
+
+            {!! Form::open(['route'=>['vehiculos.destroy',$vehiculo->id],'method'=>'DELETE']) !!}
+                
+                <center>
+	                <button type="submit" class="btn btn-danger btn-block btn-sm">
+	                    <span class="glyphicon glyphicon-trash">   Eliminar</span> 
+	                </button>
+                </center>
+                
+       		{!! Form::close() !!}
 		</div>
 	</div>
 </div>

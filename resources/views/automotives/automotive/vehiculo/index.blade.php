@@ -3,11 +3,6 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
-	@if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Lista de vehículos</h3>
@@ -31,7 +26,8 @@
                         <th>Chasis</th>                     
                         <th>Motor</th>                     
                         <th>Cilindrada</th>                     
-						<th>Estado</th>						
+						<th>Estado</th>
+                        <th>Opciones</th>						
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7">
@@ -59,6 +55,7 @@
                         <td>{{ $vehiculo->chasis }}</td>
                         <td>{{ $vehiculo->motor }}</td>
                         <td>{{ $vehiculo->cilindrada }}</td>
+                        <td>{{ $vehiculo->estado }}</td>
                         <td>
                             {!!link_to_route('vehiculos.edit', $title = 'Editar', $parameters = $vehiculo->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
                         </td>

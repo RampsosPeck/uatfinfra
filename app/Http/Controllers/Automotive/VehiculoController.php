@@ -19,7 +19,7 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        $vehiculos = Vehiculo::where('estado','ÓPTIMO')->get();
+        $vehiculos = Vehiculo::all();
     	return view('automotives.automotive.vehiculo.index',compact('vehiculos'));
     }
 
@@ -117,10 +117,40 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request;
-        
-        Session::flash('message','La devolución fue editada corréctamente!!!');
-        return redirect('devoluciones');
+        $this->validate($request, [
+            'estado' => 'required|in:ÓPTIMO,MANTENIMIENTO,DESUSO',
+            'placa'  => 'required|string|min:4|max:12',
+            'tipo'   => 'required',
+            'pasajeros' => 'required' 
+                    ]);
+        //return $request;
+
+        if($request->get('user_id') === null ){
+            $user =  0;  
+        }else{
+            $user =  $request->get('user_id');
+        }
+
+        $vehiculo  = Vehiculo::find($id);
+        $vehiculo->user_id     = $user;
+        $vehiculo->kilometraje = $request->get('kilometraje');
+        $vehiculo->estado       = $request->get('estado');
+        $vehiculo->placa        = $request->get('placa');
+        $vehiculo->tipo         = $request->get('tipo');
+        $vehiculo->especificacion = $request->get('especificacion');
+        $vehiculo->cilindrada   = $request->get('cilindrada');
+        $vehiculo->modelo       = $request->get('modelo');
+        $vehiculo->color        = $request->get('color');
+        $vehiculo->pasajeros    = $request->get('pasajeros');
+        $vehiculo->chasis       = $request->get('chasis');
+        $vehiculo->marca        = $request->get('marca');
+        $vehiculo->motor        = $request->get('motor');
+        $vehiculo->save();
+
+        $vehiculo->combustibles()->sync($request->get('oil_id'));
+
+        Session::flash('message','El vehículo fue editado corréctamente!!!');
+        return redirect('vehiculos');
     }
 
     /**
@@ -131,6 +161,8 @@ class VehiculoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Vehiculo::destroy($id);
+        Session::flash('message','Vehículo eliminado correctamente...');
+        return redirect('vehiculos');
     }
 }

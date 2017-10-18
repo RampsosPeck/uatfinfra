@@ -26,6 +26,17 @@ return array(
         'ÓPTIMO'       => 'Óptimo',
         'MANTENIMIENTO'=> 'Mantenimiento',
         'DESUSO'       => 'Desuso'
+    ],
+    'depinicio' => [
+        'POTOSÍ'       => 'Potosí',
+        'ORURO'        => 'Oruro',
+        'LA PAZ'       => 'La Paz',
+        'BENI'         => 'Beni',
+        'PANDO'        => 'Pando',
+        'SANTA CRUZ'   => 'Santa Cruz',
+        'SUCRE'        => 'Sucre',
+        'TARIJA'       => 'Tarija',
+        'COCHABAMBA'   => 'Cochabamba'
     ]
 )
 ?> 

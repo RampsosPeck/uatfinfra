@@ -57,3 +57,10 @@ Route::get('activate/{token}','ActivationTokenController@activate')->name('activ
 Route::resource('users','UsersController');
 Route::resource('reservas','Automotive\ReservationController');
 Route::resource('vehiculos','Automotive\VehiculoController');
+Route::resource('destinos','Automotive\DestinoController');
+
+
+
+
+
+
