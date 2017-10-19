@@ -37,6 +37,18 @@
           <li {{ request()->is('destinos/create') ? 'class=active' : '' }}><a href="{!! URL::to('/destinos/create') !!}"><i class="fa fa-location-arrow"></i> <b> Insertar</b></a></li>
         </ul>
     </li>
+    
+    <li class="treeview {{ request()->is('viajes*') ? 'active' : '' }}">
+        <a href="#"><i class="fa fa-calendar"></i> <span>Viajes</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ request()->is('viajes') ? 'class=active' : '' }}><a href="{!! URL::to('/viajes') !!}"><i class="fa fa-list-ol"></i> <b> Listar</b></a></li>
+          <li {{ request()->is('viajes/create') ? 'class=active' : '' }}><a href="{!! URL::to('/viajes/create') !!}"><i class="fa fa-plane"></i> <b> Insertar</b></a></li>
+        </ul>
+    </li>
 
     <li class="treeview">
         <a href="#"><i class="fa fa-plane"></i> <span>Viajes</span>

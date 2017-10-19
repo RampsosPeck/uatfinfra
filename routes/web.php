@@ -58,6 +58,7 @@ Route::resource('users','UsersController');
 Route::resource('reservas','Automotive\ReservationController');
 Route::resource('vehiculos','Automotive\VehiculoController');
 Route::resource('destinos','Automotive\DestinoController');
+Route::resource('viajes','Automotive\ViajeController');
 
 
 

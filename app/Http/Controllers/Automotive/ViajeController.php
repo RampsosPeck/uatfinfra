@@ -2,18 +2,25 @@
 
 namespace Uatfinfra\Http\Controllers\Automotive;
 
+use Uatfinfra\ModelAutomotores\Viaje;
+use Uatfinfra\ModelAutomotores\Destino;
+use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
+use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\User;
+use Session;
+use Auth;
 
 class ViajeController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -23,7 +30,13 @@ class ViajeController extends Controller
      */
     public function create()
     {
-        //
+        $vehiculos  = Vehiculo::all();
+        $destinos   = Destino::all();
+        $encargados = User::where('type','Enc. de Viaje')->where('active',true)->get();
+        $conductores= User::where('type','Conductor')->where('active',true)->get();
+
+        return view('automotives.automotive.viaje.create', compact('vehiculos','destinos','encargados','conductores'));
+
     }
 
     /**
@@ -34,16 +47,16 @@ class ViajeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Uatfinfra\Viaje  $viaje
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Viaje $viaje)
     {
         //
     }
@@ -51,10 +64,10 @@ class ViajeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \Uatfinfra\Viaje  $viaje
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Viaje $viaje)
     {
         //
     }
@@ -63,10 +76,10 @@ class ViajeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Uatfinfra\Viaje  $viaje
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Viaje $viaje)
     {
         //
     }
@@ -74,10 +87,10 @@ class ViajeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \Uatfinfra\Viaje  $viaje
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Viaje $viaje)
     {
         //
     }
