@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-	<div class="col-md-11">
+	<div class="col-md-12">
     <!-- Horizontal Form -->
         <div class="box box-primary">
         	<font color="#007bff"><span class="fa fa-bus fa-2x form-control-feedback"></span></font>
@@ -368,6 +368,16 @@
 				            </div>
 		                </div>
 	                </div>
+				<div class="form-group text-center">
+	                <label>
+	                	Viaje con recursos de la U.A.T.F.
+	                  <input type="radio" name="r3" value="viajeuatf" class="flat-red">
+	                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                <label>
+	                	Viaje con recursos de los estudiantes y/o encargados:
+	                  <input type="radio" name="r3" value="viajepropio" class="flat-red" checked>
+	                </label>
+	  			</div>
               	<div class="box-header with-border">
 	              	<center>
 	              		<h3 class="box-title">
@@ -568,6 +578,7 @@
 		                    </div>
 		                </div>
 		            </div>
+		                
               	</div>
               	<!-- /.box-body -->
               	<div class="box-footer">
@@ -586,6 +597,7 @@
   <link rel="stylesheet" href="/adminlte/plugins/select2/select2.min.css">
   <link rel="stylesheet" href="/adminlte/plugins/datepicker/datepicker3.css"> 
   <link rel="stylesheet" href="/adminlte/plugins/timepicker/bootstrap-timepicker.min.css">
+  <link rel="stylesheet" href="/adminlte/plugins/iCheck/all.css">
 @endpush
 
 @push('scripts') 
@@ -593,7 +605,7 @@
    <script src="/adminlte/plugins/select2/es.js"></script>
    <script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
    <script src="/adminlte/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-
+   <script src="/adminlte/plugins/iCheck/icheck.min.js"></script>
 <script>
 //Date picker
 	$('.timepicker').timepicker({
@@ -663,6 +675,11 @@
     	language: "es",
 		maximumSelectionLength: 2
     });
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
 </script>
 @endpush
 
