@@ -8,7 +8,17 @@ class Viaje extends Model
 {
     protected $table = 'viajes';
 	
-	protected $fillable = ['tipo','entidad','objectivo','dias','pasajeros','fecha_inicio','fecha_final','estado','reserva_id'];
+	protected $fillable = ['tipo',
+                            'entidad',
+                            'dias',
+                            'pasajeros',
+                            'fecha_inicial',
+                            'fecha_final',
+                            'horainicial',
+                            'horafinal',
+                            'categoria',
+                            'nota',
+                            'recurso'];
 
 	public function roles()
     {

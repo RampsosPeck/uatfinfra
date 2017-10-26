@@ -30,15 +30,14 @@
             		<div class="col-md-7">
             			<div class="form-group {{ $errors->has('destino1') ? 'has-error' : '' }}">
 		                    <div class="col-sm-9">
-			                	<center><label for="kilometraje">DESTINOS</label></center>
+			                	<center><label for="destinos">DESTINOS</label></center>
 		                    	<select name="destino1" 
 		                    		class="form-control select2" 
 		                    		id="destino1">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
-												>
-												{{ $destino->origen }} HASTA {{ $destino->destino }}</option>
+												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
@@ -63,8 +62,7 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
-												>
-												{{ $destino->origen }} HASTA {{ $destino->destino }}</option>
+												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
@@ -88,8 +86,7 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
-												>
-												{{ $destino->origen }} HASTA {{ $destino->destino }}</option>
+												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
@@ -106,8 +103,7 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
-												>
-												{{ $destino->origen }} HASTA {{ $destino->destino }}</option>
+												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
@@ -124,8 +120,7 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
-												>
-												{{ $destino->origen }} HASTA {{ $destino->destino }}</option>
+												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
@@ -142,8 +137,7 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
-												>
-												{{ $destino->origen }} HASTA {{ $destino->destino }}</option>
+												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
@@ -153,7 +147,7 @@
 							{!! $errors->first('destino6', '<span class="help-block">:message</span>') !!}
 	                    </div>
 		                <div class="form-group ">
-		                    <label for="tipo" class="col-sm-2 control-label">Adicional:</label>
+		                    <label for="adicional" class="col-sm-2 control-label">Adicional:</label>
 		                    <div class="col-sm-4">
 			                	<div class="input-group {{ $errors->has('adicional') ? 'has-error' : '' }}">
 		                        	<input type="number" class="form-control" name="adicional" placeholder="Ejm. 40" value="{{ old('adicional') }}">
@@ -165,7 +159,7 @@
 			                	</div>
 		                        {!! $errors->first('adicional', '<span class="help-block">:message</span>') !!}
 		                    </div>
-		                    <label for="tipo" class="col-sm-3 control-label">Total Km.:</label>
+		                    <label for="totalkm" class="col-sm-3 control-label">Total Km.:</label>
 		                    <div class="col-md-3">
 								<div class="input-group {{ $errors->has('totalkm') ? 'has-error' : '' }}">
 		                        	<input type="text" class="form-control" name="totalkm" placeholder="total" value="{{ old('totalkm') }}">
@@ -180,7 +174,7 @@
 	                    </div>
                     </div>
                     <div class="col-md-5">
-	                	<center><label for="kilometraje">DATOS OBLIGATORIOS</label></center>
+	                	<center><label>DATOS OBLIGATORIOS</label></center>
 		                <div class="form-group {{ $errors->has('tipo') ? 'has-error' : '' }}">
 		                    <label for="tipo" class="col-sm-4 control-label">Tipo de Viaje:</label>
 		                    <div class="col-sm-8">
@@ -199,16 +193,17 @@
 		                    <label for="encargado" class="col-sm-4 control-label">Encargado:</label>
 			                <div class="col-sm-8">
 			                    <div class="input-group">
-			                    	<select name="encargado" class="form-control select2" id="encargado" required>
-			                    		<option >Seleccione un encargado</option>
+			                    	<select  class="form-control select2"
+			                    			name="encargado[]" 
+			                    			style="width: 100%;" multiple>
 											@foreach ($encargados as $encargado)
-												 <option >{{ $encargado->name }}</option>
+												 <option value="{{ $encargado->id }}">{{ $encargado->name }}</option>
 											@endforeach
 									</select>
 									<span class="input-group-addon" id="basic-addon1">
-				                    		<font color="red">
-				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-				      						</font>
+			                    		<font color="red">
+			      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+			      						</font>
 			      					</span>
 			                	</div>
 			                    {!! $errors->first('encargado', '<span class="help-block">:message</span>') !!}
@@ -218,10 +213,12 @@
 		                    <label for="conductor" class="col-sm-4 control-label">Conductor:</label>
 		                    <div class="col-sm-8">
 		                        <div class="input-group">
-			                    	<select name="conductor" class="form-control select2" id="conductor" required>
-			                    		<option >Seleccione un conductor</option>
+			                    	<select  class="form-control select2"
+			                    			name="conductor[]"
+			                    			style="width: 100%;"
+			                    			multiple>
 											@foreach ($conductores as $conductor)
-												 <option >{{ $conductor->name }}</option>
+												 <option value="{{ $conductor->id }}">{{ $conductor->name }}</option>
 											@endforeach
 									</select>
 									<span class="input-group-addon" id="basic-addon1">
@@ -237,10 +234,12 @@
 		                    <label for="vehiculo" class="col-sm-4 control-label">Vehículo:</label>
 			                <div class="col-sm-8">
 			                    <div class="input-group">
-			                    	<select name="vehiculo" class="form-control select2" id="vehiculo" required>
-			                    		<option >Seleccione un vehiculo</option>
+			                    	<select name="vehiculo" 
+			                    		class="form-control select2" 
+			                    		id="vehiculo">
+										<option value="">Seleccione un Vehículo</option>
 											@foreach ($vehiculos as $vehiculo)
-												 <option >{{ $vehiculo->name }}</option>
+												<option value="{{ $vehiculo->id }}">{{ $vehiculo->tipo }} {{ $vehiculo->placa }} </option>
 											@endforeach
 									</select>
 									<span class="input-group-addon" id="basic-addon1">
@@ -296,8 +295,9 @@
 		                </div>
 		                
                     </div>
-              	</div><br>
-              	<div class="col-md-12">
+              	</div>
+              	<li class="list-group-item list-group-item-info col-md-12">
+              		<div class="col-md-12">
 	                    <div class="form-group">
 		                    <label for="fecha_inicial" class="col-sm-1 control-label">Inicio:</label>
 			                <div class="col-sm-3  {{ $errors->has('fecha_inicial') ? 'has-error' : '' }}">
@@ -322,7 +322,7 @@
 				                <div class="bootstrap-timepicker">
 					                <div class="form-group">
 					                  <div class="input-group">
-					                    <input type="text" class="form-control timepicker" name="horainicio">
+					                    <input type="text" class="form-control timepicker" name="horainicial">
 					                    <div class="input-group-addon">
 					                      <i class="fa fa-clock-o"></i>
 					                    </div>
@@ -368,41 +368,55 @@
 				            </div>
 		                </div>
 	                </div>
-				<div class="form-group text-center">
-	                <label>
-	                	Viaje con recursos de la U.A.T.F.
-	                  <input type="radio" name="r3" value="viajeuatf" class="flat-red">
-	                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                <label>
-	                	Viaje con recursos de los estudiantes y/o encargados:
-	                  <input type="radio" name="r3" value="viajepropio" class="flat-red" checked>
-	                </label>
-	  			</div>
+				</li>
               	<div class="box-header with-border">
 	              	<center>
 	              		<h3 class="box-title">
-	              			<font color="#007bff"><b>PRESUPUESTO DE VIAJE</b></font>
+	              			<font color="#f39c12"><b>PRESUPUESTO DE VIAJE</b></font>
 	          			</h3>
 	          		</center>
 	            </div>
+	            <li class="list-group-item list-group-item-info col-md-12">
+		            <div class="form-group {{ $errors->has('categoria') ? 'has-error' : '' }} text-center">
+		                <label>VIAJE CONCIDERADO COMO:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <label>
+		                	Ciudad:
+		                  <input type="radio" name="categoria" value="ciudad" class="flat-red">
+		                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <label>
+		                	Provincia:
+		                  <input type="radio" name="categoria" value="provincia" class="flat-red">
+		                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <label>
+		                	Frontera:
+		                  <input type="radio" name="categoria" value="frontera" class="flat-red">
+		                </label>
+		                {!! $errors->first('categoria', '<span class="help-block">:message</span>') !!}
+		  			</div>
+	  			</li>
               	<div class="box-body alert-warning">
+              		<li class="list-group-item list-group-item-info col-md-12">
               		<center>
               		<label class="control-label">COMBUSTIBLE:</label></center>
               		<div class="form-group">
-	                    <div class="{{ $errors->has('combustible') ? 'has-error' : '' }}">
-		                    <label for="tipo" class="col-sm-2 control-label">Diesel/Gasolina:</label>
-		                    <div class="col-sm-2">
-		                    	<div class="input-group">
-		                        	<input type="text" class="form-control" name="combustible" placeholder="4 o 6 o 3.5" value="{{ old('combustible') }}">
-		                        	<span class="input-group-addon" id="basic-addon1">
-				                    		<font color="red">
-				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-				      						</font>
-			      					</span>
-			                	</div>
-		                    	{!! $errors->first('adicional', '<span class="help-block">:message</span>') !!}
-		                    </div>
-		                </div>
+              			<div class="col-md-5 {{ $errors->has('combustible') ? 'has-error' : '' }}">
+              				<label>
+			                	Tipo de combustible:
+			                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						    <label>
+			                	Diesel
+			                  <input type="radio" name="combustible" value="4" class="flat-red" >
+			                </label>
+			                <label>
+			                	Gasolina
+			                  <input type="radio" name="combustible" value="6" class="flat-red" >
+			                </label>
+			                <label>
+			                	3.5
+			                  <input type="radio" name="combustible" value="3.5" class="flat-red" >
+			                </label>
+			                 {!! $errors->first('combustible', '<span class="help-block">:message</span>') !!}
+			            </div>
 		                <div class="{{ $errors->has('totalcombu') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
 		                       		<input type="text" class="form-control" name="totalcombu" placeholder="Total litros" value="{{ old('totalcombu') }}">
@@ -410,7 +424,7 @@
 							</div>
 						</div>
 						<div class="{{ $errors->has('precio') ? 'has-error' : '' }}">
-		                    <label for="precio" class="col-sm-2 control-label">Precio:</label>
+		                    <label for="precio" class="col-sm-1 control-label">Precio:</label>
 		                    <div class="col-sm-2">
 		                    	<div class="input-group">
 		                        	<input type="text" class="form-control" name="precio" placeholder="Ejm. 3.72" value="{{ old('precio') }}">
@@ -431,6 +445,7 @@
 						</div>
                     </div>
 					<center><label for="viaticos">GASTOS</label></center>
+					
                     <div class="form-group">
 	                    <div class="{{ $errors->has('canpeaje') ? 'has-error' : '' }}">
 		                    <label for="canpeaje" class="col-sm-1 control-label">Peaje:</label>
@@ -500,6 +515,7 @@
 							</div>
 						</div>
 					</div>
+				</li>
 					<center><label for="viaticos">VIATICOS</label></center>
 					<div class="form-group">
 						<div class="{{ $errors->has('canviaciu') ? 'has-error' : '' }}">
@@ -568,7 +584,7 @@
 		                       	{!! $errors->first('totprebol', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
-                    </div>
+                    </div><li class="list-group-item list-group-item-info col-md-12">
                     <center><label for="nota">OBJETIVO / NOTA</label></center>
                     <div class="form-group">
 	                    <div class="{{ $errors->has('nota') ? 'has-error' : '' }}">
@@ -578,8 +594,107 @@
 		                    </div>
 		                </div>
 		            </div>
-		                
+		            
+			            <div class="form-group {{ $errors->has('recurso') ? 'has-error' : '' }} text-center">
+						    <label>
+			                	Viaje con recursos de la U.A.T.F.
+			                  <input type="radio" name="recurso" value="viajeuatf" class="flat-red" >
+			                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                <label>
+			                	Viaje con recursos de los estudiantes y/o encargados:
+			                  <input type="radio" name="recurso" value="viajepropio" class="flat-red" >
+			                </label>
+			                {!! $errors->first('recurso', '<span class="help-block">:message</span>') !!}
+			            </div>
+		            </li>
+		
+		            <center><label for="publico">TRANSPORTE PÚBLICO</label></center>
+		            <div class="form-group">
+	                    <div class="{{ $errors->has('ruta1') ? 'has-error' : '' }}">
+		                    <label for="ruta1" class="col-sm-1 control-label">Ruta:</label>
+		                    <div class="col-sm-4">
+		                        <input type="text" class="form-control" name="ruta1" placeholder="Ejm. Desde Potosí hasta Cochabamba" value="{{ old('ruta1') }}">
+		                    	{!! $errors->first('ruta1', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('cantidad1') ? 'has-error' : '' }}">
+		                    <label for="cantidad1" class="col-sm-1 control-label">Cantidad:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="cantidad1" placeholder="Ejm. 37" value="{{ old('cantidad1') }}">
+		                    	{!! $errors->first('cantidad1', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('precio1') ? 'has-error' : '' }}">
+		                    <label for="precio1" class="col-sm-1 control-label">Precio:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="precio1" placeholder="Ejm. 80" value="{{ old('precio1') }}">
+		                    	{!! $errors->first('precio1', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('total1') ? 'has-error' : '' }}">
+		                    <div class="col-sm-1">
+		                        <input type="text" class="form-control" name="total1" placeholder="Bs." value="{{ old('total1') }}">
+		                    	{!! $errors->first('total1', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="form-group">
+	                    <div class="{{ $errors->has('ruta2') ? 'has-error' : '' }}">
+		                    <label for="ruta2" class="col-sm-1 control-label">Ruta:</label>
+		                    <div class="col-sm-4">
+		                        <input type="text" class="form-control" name="ruta2" placeholder="Ejm. Desde Potosí hasta Cochabamba" value="{{ old('ruta2') }}">
+		                    	{!! $errors->first('ruta2', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('cantidad2') ? 'has-error' : '' }}">
+		                    <label for="cantidad2" class="col-sm-1 control-label">Cantidad:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="cantidad2" placeholder="Ejm. 37" value="{{ old('cantidad2') }}">
+		                    	{!! $errors->first('cantidad2', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('precio2') ? 'has-error' : '' }}">
+		                    <label for="precio2" class="col-sm-1 control-label">Precio:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="precio2" placeholder="Ejm. 50" value="{{ old('precio2') }}">
+		                    	{!! $errors->first('precio2', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('total2') ? 'has-error' : '' }}">
+		                    <div class="col-sm-1">
+		                        <input type="text" class="form-control" name="total2" placeholder="Bs." value="{{ old('total2') }}">
+		                    	{!! $errors->first('total2', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="form-group">
+	                    <div class="{{ $errors->has('ruta') ? 'has-error' : '' }}">
+		                    <label for="ruta" class="col-sm-5 control-label">Flete del Camión General:</label>
+		                   
+		                </div>
+		                <div class="{{ $errors->has('vueltas') ? 'has-error' : '' }}">
+		                    <label for="vueltas" class="col-sm-1 control-label">Vueltas:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="vueltas" placeholder="Ejm. 5" value="{{ old('vueltas') }}">
+		                    	{!! $errors->first('vueltas', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('preciovuelta') ? 'has-error' : '' }}">
+		                    <label for="preciovuelta" class="col-sm-1 control-label">Precio:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="preciovuelta" placeholder="Ejm. 300" value="{{ old('preciovuelta') }}">
+		                    	{!! $errors->first('preciovuelta', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('totalvuelta') ? 'has-error' : '' }}">
+		                    <div class="col-sm-1">
+		                        <input type="text" class="form-control" name="totalvuelta" placeholder="Bs." value="{{ old('totalvuelta') }}">
+		                    	{!! $errors->first('totalvuelta', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		            </div>
               	</div>
+              	
               	<!-- /.box-body -->
               	<div class="box-footer">
               		<center>
@@ -618,68 +733,55 @@
 	$('#datepickere').datepicker({
 	      autoclose: true
 	    });
-    $("#destino1").select2({
-    	placeholder: "Seleccione un destino",
+
+    $(".select2").select2({
     	language: "es",
-    	maximumSelectionLength: 2
-    });
-    $("#destino2").select2({
-    	placeholder: "Seleccione un destino",
-    	language: "es",
-    	maximumSelectionLength: 2
-    });
-    $("#destino3").select2({
-    	placeholder: "Seleccione un destino",
-    	language: "es",
-    	maximumSelectionLength: 2
-    });
-    $("#destino4").select2({
-    	placeholder: "Seleccione un destino",
-    	language: "es",
-    	maximumSelectionLength: 2
-    });
-    $("#destino5").select2({
-    	placeholder: "Seleccione un destino",
-    	language: "es",
-    	maximumSelectionLength: 2
-    });
-    $("#destino6").select2({
-    	placeholder: "Seleccione un destino",
-    	language: "es",
-    	maximumSelectionLength: 2
+    	maximumSelectionLength: 2,
+    	allowClear: true
     });
 
-    $("#user_id").select2({
-    	placeholder: "Seleccione un conductor",
+    $("#destino1").select2({
+    	placeholder: "Selecione un destino de ida",
     	language: "es",
-    	maximumSelectionLength: 1,
-		allowClear: true
+    	maximumSelectionLength: 2,
+    	allowClear: true
     });
-    $("#estado").select2({
-    	placeholder: "Seleccione una opción",
+    $("#destino2").select2({
+    	placeholder: "Selecione un destino de vuelta",
     	language: "es",
-		allowClear: true
+    	maximumSelectionLength: 2,
+    	allowClear: true
     });
-    $("#encargado").select2({
-    	placeholder: "Seleccione un encargado",
+    $("#destino3").select2({
+    	placeholder: "Selecione un destino",
     	language: "es",
-		maximumSelectionLength: 2
+    	maximumSelectionLength: 2,
+    	allowClear: true
     });
-    $("#conductor").select2({
-    	placeholder: "Seleccione un conductor",
+    $("#destino4").select2({
+    	placeholder: "Selecione un destino",
     	language: "es",
-		maximumSelectionLength: 2
+    	maximumSelectionLength: 2,
+    	allowClear: true
+    });
+    $("#destino5").select2({
+    	placeholder: "Selecione un destino",
+    	language: "es",
+    	maximumSelectionLength: 2,
+    	allowClear: true
+    });
+    $("#destino6").select2({
+    	placeholder: "Selecione un destino",
+    	language: "es",
+    	maximumSelectionLength: 2,
+    	allowClear: true
     });
     $("#vehiculo").select2({
-    	placeholder: "Seleccione un conductor",
+    	placeholder: "Selecione un vehículo",
     	language: "es",
-		maximumSelectionLength: 2
+    	maximumSelectionLength: 2,
+    	allowClear: true
     });
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    })
 </script>
 @endpush
 
