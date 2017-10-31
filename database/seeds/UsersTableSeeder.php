@@ -97,5 +97,28 @@ class UsersTableSeeder extends Seeder
         $user->entidad = "Ing. de Sistemas";
         $user->save();
 
+        $user = new User;
+        $user->name = "Lic. Encargadi de Viaje";
+        $user->cedula = "11066255";
+        $user->celular= "9977322";
+        $user->email= "encargado1@uatf.com";
+        $user->password= bcrypt('123456');
+        $user->active = true;
+        $user->type = "Enc. de Viaje";
+        $user->position = "U.A.T.F.";
+        $user->entidad = "Ing. de Sistemas";
+        $user->save();
+
+        $user = new User;
+        $user->name = "Juan Carlos Luna";
+        $user->cedula = "5551116";
+        $user->celular= "7110321";
+        $user->email= "conductor1@uatf.com";
+        $user->password= bcrypt('123456');
+        $user->active = true;
+        $user->type = "Conductor";
+        $user->position = "AUTOMOTORES";
+        $user->entidad = "Depto. de Infraestructura";
+        $user->save();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Uatfinfra;
+namespace Uatfinfra\ModelAutomotores;
 use Uatfinfra\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +18,9 @@ class Viaje extends Model
                             'horafinal',
                             'categoria',
                             'nota',
-                            'recurso'];
+                            'recurso',
+                            'vehiculo_id',
+                            'reserva_id'];
 
 	public function roles()
     {
@@ -34,4 +36,16 @@ class Viaje extends Model
     {
     	return $this->belongsToMany(User::class);
     }
+    public function vehiculo()//$viaje->vehiculo->placa
+    {
+        return $this->belongsTo(Vehiculo::class);
+    }
+    public function conductores()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
+
+
+
+

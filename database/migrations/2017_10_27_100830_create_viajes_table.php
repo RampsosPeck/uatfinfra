@@ -19,13 +19,15 @@ class CreateViajesTable extends Migration
             $table->string('entidad');
             $table->string('dias');
             $table->integer('pasajeros');
-            $table->timestamp('fecha_inicial');
-            $table->timestamp('fecha_final');
+            $table->timestamp('fecha_inicial')->nullable();
+            $table->timestamp('fecha_final')->nullable();
             $table->string('horainicial');
             $table->string('horafinal');
             $table->string('categoria');
             $table->mediumText('nota');
             $table->string('recurso');
+            $table->unsignedInteger('vehiculo_id');
+            $table->unsignedInteger('reserva_id')->nullable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCombustibleVehiculoTable extends Migration
+class CreateUserViajeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCombustibleVehiculoTable extends Migration
      */
     public function up()
     {
-        Schema::create('combustible_vehiculo', function (Blueprint $table) {
+        Schema::create('user_viaje', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('vehiculo_id');
-            $table->unsignedInteger('combustible_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('viaje_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCombustibleVehiculoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('combustible_vehiculo');
+        Schema::dropIfExists('user_viaje');
     }
 }

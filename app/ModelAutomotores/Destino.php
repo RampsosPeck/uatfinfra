@@ -6,7 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Destino extends Model
 {
+
     protected $table = 'destinos';
 
     protected $fillable = ['origen','dep_inicio','dep_final','destino','kilometraje','tiempo','ruta'];
+
+    public function viajedestinos()
+    {				
+    	$this->belongsToMany(Viaje::class);
+    }
+
 }
+
+
+

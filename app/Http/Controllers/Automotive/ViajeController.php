@@ -8,6 +8,7 @@ use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\User;
+use Carbon\Carbon;
 use Session;
 use Auth;
 
@@ -47,7 +48,48 @@ class ViajeController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        
+        $id = \DB::table('viajes')->insertGetId([
+            'tipo'     => $request['tipo'], 
+            'entidad'  => $request['entidad'],
+            'dias'     => $request['dias'],
+            'pasajeros'=> $request['pasajeros'], 
+            'fecha_inicial'  => $request['fecha_inicial'],
+            'fecha_final'    => $request['fecha_final'],
+            'horainicial'=> $request['horainicial'], 
+            'horafinal'  => $request['horafinal'],
+            'categoria'  => $request['categoria'],
+            'nota'       => $request['nota'],
+            'recurso'    => $request['recurso'],  
+            'reserva_id' => null,
+            'vehiculo_id'=> $request['vehiculo_id']
+        ]);
+
+        //return $request;
+        /*
+        $viaje = new Viaje;
+        $viaje->tipo = ;
+        $viaje->entidad = ;
+        $viaje->dias = ;
+        $viaje->pasajeros = $request->get('pasajeros');
+        $viaje->fecha_inicial = Carbon::parse($request->get('fecha_inicial'));
+        $viaje->fecha_final = Carbon::parse($request->get('fecha_final'));
+        $viaje->horainicial = $request->get('horainicial');
+        $viaje->horafinal = $request->get('horafinal');
+        $viaje->categoria = $request->get('categoria');
+        $viaje->nota = $request->get('nota');
+        $viaje->recurso = $request->get('recurso');
+        $viaje->reserva_id = null;
+        $viaje->vehiculo_id = $request->get('vehiculo_id');
+        $viaje->save();
+        */
+       
+        //$viaje->viajedestinos()->attach($request->get('viajedestinos'));
+        $viaje->conductores()->attach($request->get('conductor'));
+
+                
+        return back()->with('flash','Tu publicación a sido guardada');
+        
     }
 
     /**

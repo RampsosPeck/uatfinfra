@@ -193,11 +193,12 @@
 		                    <label for="encargado" class="col-sm-4 control-label">Encargado:</label>
 			                <div class="col-sm-8">
 			                    <div class="input-group">
-			                    	<select  class="form-control select2"
-			                    			name="encargado[]" 
-			                    			style="width: 100%;" multiple>
+									<select name="encargado" 
+			                    		class="form-control select2" 
+			                    		id="encargado">
+										<option value="">Seleccione un Encargado</option>
 											@foreach ($encargados as $encargado)
-												 <option value="{{ $encargado->id }}">{{ $encargado->name }}</option>
+												<option value="{{ $encargado->id }}">{{ $encargado->name }} </option>
 											@endforeach
 									</select>
 									<span class="input-group-addon" id="basic-addon1">
@@ -214,9 +215,11 @@
 		                    <div class="col-sm-8">
 		                        <div class="input-group">
 			                    	<select  class="form-control select2"
+			                    			multiple="multiple"
 			                    			name="conductor[]"
+			                    			data-placeholder="Uno o dos encargados"
 			                    			style="width: 100%;"
-			                    			multiple>
+			                    			>
 											@foreach ($conductores as $conductor)
 												 <option value="{{ $conductor->id }}">{{ $conductor->name }}</option>
 											@endforeach
@@ -234,7 +237,7 @@
 		                    <label for="vehiculo" class="col-sm-4 control-label">Vehículo:</label>
 			                <div class="col-sm-8">
 			                    <div class="input-group">
-			                    	<select name="vehiculo" 
+			                    	<select name="vehiculo_id" 
 			                    		class="form-control select2" 
 			                    		id="vehiculo">
 										<option value="">Seleccione un Vehículo</option>
@@ -777,6 +780,12 @@
     	allowClear: true
     });
     $("#vehiculo").select2({
+    	placeholder: "Selecione un vehículo",
+    	language: "es",
+    	maximumSelectionLength: 2,
+    	allowClear: true
+    });
+    $("#encargado").select2({
     	placeholder: "Selecione un vehículo",
     	language: "es",
     	maximumSelectionLength: 2,

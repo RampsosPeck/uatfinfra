@@ -53,10 +53,7 @@ class User extends Authenticatable
         return $this->hasMany(Role::class);
     }
 
-    public function viajes()
-    {
-        return $this->belongsToMany(Viaje::class);
-    }
+    
 
 
     //Con esta funcion aseguramos que solo algunos usuarios pueden impersonar
@@ -99,6 +96,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(ActivationToken::class);
     }
-
 
 }
