@@ -10,7 +10,7 @@
             <div class="box-header with-border">
               	<center>
               		<h3 class="box-title">
-              			<font color="#007bff"><b>INSERTAR A UN NUEVO DESTINO</b></font>
+              			<font color="#007bff"><b>EDITAR EL DESTINO</b></font>
           			</h3>
           		</center>
             </div>

@@ -3,6 +3,7 @@
 namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Uatfinfra\ModelAutomotores\Viaje;
+use Uatfinfra\ModelAutomotores\Presupuesto;
 use Uatfinfra\ModelAutomotores\Destino;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class ViajeController extends Controller
      */
     public function index()
     {
-        //
+        $viajes =  Viaje::all();
+        return view('automotives.automotive.viaje.index',compact('viajes'));
     }
 
     /**
@@ -48,48 +50,74 @@ class ViajeController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $id = \DB::table('viajes')->insertGetId([
-            'tipo'     => $request['tipo'], 
-            'entidad'  => $request['entidad'],
-            'dias'     => $request['dias'],
-            'pasajeros'=> $request['pasajeros'], 
-            'fecha_inicial'  => $request['fecha_inicial'],
-            'fecha_final'    => $request['fecha_final'],
-            'horainicial'=> $request['horainicial'], 
-            'horafinal'  => $request['horafinal'],
-            'categoria'  => $request['categoria'],
-            'nota'       => $request['nota'],
-            'recurso'    => $request['recurso'],  
-            'reserva_id' => null,
-            'vehiculo_id'=> $request['vehiculo_id']
-        ]);
-
         //return $request;
-        /*
+        
         $viaje = new Viaje;
-        $viaje->tipo = ;
-        $viaje->entidad = ;
-        $viaje->dias = ;
-        $viaje->pasajeros = $request->get('pasajeros');
+        $viaje->tipo          = $request->get('tipo');
+        $viaje->encargado_id  = $request->get('encargado');
+        $viaje->entidad       = $request->get('entidad');
+        $viaje->dias          = $request->get('dias');
+        $viaje->pasajeros     = $request->get('pasajeros');
         $viaje->fecha_inicial = Carbon::parse($request->get('fecha_inicial'));
-        $viaje->fecha_final = Carbon::parse($request->get('fecha_final'));
+        $viaje->fecha_final   = Carbon::parse($request->get('fecha_final'));
         $viaje->horainicial = $request->get('horainicial');
-        $viaje->horafinal = $request->get('horafinal');
-        $viaje->categoria = $request->get('categoria');
-        $viaje->nota = $request->get('nota');
-        $viaje->recurso = $request->get('recurso');
-        $viaje->reserva_id = null;
+        $viaje->horafinal   = $request->get('horafinal');
+        $viaje->categoria   = $request->get('categoria');
+        $viaje->nota        = $request->get('nota');
+        $viaje->recurso     = $request->get('recurso');
+        $viaje->estado      = "activo";
+        $viaje->reserva_id  = null;
         $viaje->vehiculo_id = $request->get('vehiculo_id');
         $viaje->save();
-        */
-       
-        //$viaje->viajedestinos()->attach($request->get('viajedestinos'));
-        $viaje->conductores()->attach($request->get('conductor'));
-
-                
-        return back()->with('flash','Tu publicación a sido guardada');
         
+        $viaje->conductores()->attach($request->get('conductor'));
+        
+        //return $viaje->id;
+        
+        $presupuesto = new Presupuesto;
+        $presupuesto->viaje_id= $viaje->id;
+        $presupuesto->combustible= $request->get('combustible');
+        $presupuesto->totalcombu = $request->get('totalcombu');
+        $presupuesto->precio     = $request->get('precio');
+        $presupuesto->totalprecio= $request->get('totalprecio');
+        $presupuesto->canpeaje   = $request->get('canpeaje');
+        $presupuesto->prepeaje   = $request->get('prepeaje');
+        $presupuesto->totpeaje   = $request->get('totpeaje');
+        $presupuesto->cangaraje  = $request->get('cangaraje');
+        $presupuesto->pregaraje  = $request->get('pregaraje');
+        $presupuesto->totgaraje  = $request->get('totgaraje');
+        $presupuesto->nommante   = $request->get('nommante');
+        $presupuesto->canmante   = $request->get('canmante');
+        $presupuesto->premante   = $request->get('premante');
+        $presupuesto->totmante   = $request->get('totmante');
+        $presupuesto->canviaciu  = $request->get('canviaciu');
+        $presupuesto->previaciu  = $request->get('previaciu');
+        $presupuesto->totviaciu  = $request->get('totviaciu');
+        $presupuesto->canviapro  = $request->get('canviapro');
+        $presupuesto->previapro  = $request->get('previapro');
+        $presupuesto->totviapro  = $request->get('totviapro');
+        $presupuesto->canviafro  = $request->get('canviafro');
+        $presupuesto->previafro  = $request->get('previafro');
+        $presupuesto->totviafro  = $request->get('totviafro');
+        $presupuesto->totprebol  = $request->get('totprebol');
+        $presupuesto->ruta1      = $request->get('ruta1');
+        $presupuesto->cantidad1  = $request->get('cantidad1');
+        $presupuesto->precio1    = $request->get('precio1');
+        $presupuesto->total1     = $request->get('total1');
+        $presupuesto->ruta2      = $request->get('ruta2');
+        $presupuesto->cantidad2  = $request->get('cantidad2');
+        $presupuesto->precio2    = $request->get('precio2');
+        $presupuesto->total2      = $request->get('total2');
+        $presupuesto->vueltas     = $request->get('vueltas');
+        $presupuesto->preciovuelta= $request->get('preciovuelta');
+        $presupuesto->totalvuelta = $request->get('totalvuelta');
+        $presupuesto->totalpublico= $request->get('totalpublico');
+        $presupuesto->totaldiferencia= $request->get('totaldiferencia');
+        $presupuesto->save();
+        
+        //return back()->with('flash','Viaje creado completado correctamente...');
+        Session::flash('message','El viaje fue creado correctamente...');
+        return redirect('viajes');
     }
 
     /**
@@ -109,9 +137,18 @@ class ViajeController extends Controller
      * @param  \Uatfinfra\Viaje  $viaje
      * @return \Illuminate\Http\Response
      */
-    public function edit(Viaje $viaje)
+    public function edit($id)
     {
-        //
+        $vehiculos  = Vehiculo::all();
+        $destinos   = Destino::all();
+        $encargados = User::where('type','Enc. de Viaje')->where('active',true)->get();
+        //dd($encargados);
+        $conductores= User::where('type','Conductor')->where('active',true)->get();
+        $viaje = Viaje::find($id);
+        //dd($viaje);
+        $presupuesto = Presupuesto::where('viaje_id',$id)->first();
+        //dd($presupuesto);
+        return view('automotives.automotive.viaje.edit',compact('viaje','presupuesto','vehiculos','destinos','encargados','conductores'));
     }
 
     /**

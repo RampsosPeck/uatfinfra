@@ -220,10 +220,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
+        Todos los derechos reservados.
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#">U.A.T.F.</a></strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2017 <a href="#">U.A.T.F.</a><font color="#f39c12"><i class="fa fa-android fa-spin fa-1x fa-fw"></i> Ing. Jorge Peralta</font></strong> 
   </footer>
 
   <!-- Control Sidebar -->

@@ -15,17 +15,19 @@ class CreateViajesTable extends Migration
     {
         Schema::create('viajes', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('encargado_id');
             $table->string('tipo');
             $table->string('entidad');
             $table->string('dias');
             $table->integer('pasajeros');
             $table->timestamp('fecha_inicial')->nullable();
             $table->timestamp('fecha_final')->nullable();
-            $table->string('horainicial');
-            $table->string('horafinal');
+            $table->time('horainicial');
+            $table->time('horafinal');
             $table->string('categoria');
             $table->mediumText('nota');
             $table->string('recurso');
+            $table->string('estado');
             $table->unsignedInteger('vehiculo_id');
             $table->unsignedInteger('reserva_id')->nullable();
             $table->timestamps();

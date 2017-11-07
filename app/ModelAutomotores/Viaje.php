@@ -19,6 +19,7 @@ class Viaje extends Model
                             'categoria',
                             'nota',
                             'recurso',
+                            'estado',
                             'vehiculo_id',
                             'reserva_id'];
 
@@ -43,6 +44,10 @@ class Viaje extends Model
     public function conductores()
     {
         return $this->belongsToMany(User::class);
+    }
+    public function encargado()//$viaje->encargado->name
+    {
+        return $this->belongsTo(User::class);
     }
 }
 

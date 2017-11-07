@@ -491,30 +491,30 @@
 					</div>
 					<div class="form-group">
 						<div class="{{ $errors->has('nommante') ? 'has-error' : '' }}">
-		                    <label for="cangaraje" class="col-sm-2 control-label">Mantenimiento/Nombre:</label>
+		                    <label for="nommante" class="col-sm-2 control-label">Mantenimiento/Nombre:</label>
 		                    <div class="col-sm-4">
-		                        <input type="text" class="form-control" name="cangaraje" placeholder="Parchado de llantas o mantenimiento" value="{{ old('cangaraje') }}">
-		                    	{!! $errors->first('cangaraje', '<span class="help-block">:message</span>') !!}
+		                        <input type="text" class="form-control" name="nommante" placeholder="Parchado de llantas o mantenimiento" value="{{ old('nommante') }}">
+		                    	{!! $errors->first('nommante', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
-		                <div class="{{ $errors->has('pregaraje') ? 'has-error' : '' }}">
+		                <div class="{{ $errors->has('canmante') ? 'has-error' : '' }}">
 		                	<label for="cangaraje" class="col-sm-1 control-label">Cant.:</label>
 		                    <div class="col-md-1">
-		                       	<input type="text" class="form-control" name="pregaraje" placeholder="1" value="{{ old('pregaraje') }}">
-		                       	{!! $errors->first('pregaraje', '<span class="help-block">:message</span>') !!}
+		                       	<input type="text" class="form-control" name="canmante" placeholder="1" value="{{ old('canmante') }}">
+		                       	{!! $errors->first('canmante', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
-						<div class="{{ $errors->has('totgaraje') ? 'has-error' : '' }}">
+						<div class="{{ $errors->has('premante') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" class="form-control" name="totgaraje" placeholder="Ejm. 50" value="{{ old('totgaraje') }}">
-		                       	{!! $errors->first('totgaraje', '<span class="help-block">:message</span>') !!}
+		                       	<input type="text" class="form-control" name="premante" placeholder="Ejm. 50" value="{{ old('premante') }}">
+		                       	{!! $errors->first('premante', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 
-						<div class="{{ $errors->has('totgaraje') ? 'has-error' : '' }}">
+						<div class="{{ $errors->has('totmante') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" class="form-control" name="totgaraje" placeholder="Total Bs." value="{{ old('totgaraje') }}">
-		                       	{!! $errors->first('totgaraje', '<span class="help-block">:message</span>') !!}
+		                       	<input type="text" class="form-control" name="totmante" placeholder="Total Bs." value="{{ old('totmante') }}">
+		                       	{!! $errors->first('totmante', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 					</div>
@@ -693,6 +693,22 @@
 		                    <div class="col-sm-1">
 		                        <input type="text" class="form-control" name="totalvuelta" placeholder="Bs." value="{{ old('totalvuelta') }}">
 		                    	{!! $errors->first('totalvuelta', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <div class="{{ $errors->has('totalpublico') ? 'has-error' : '' }}">
+		                    <label for="totalpublico" class="col-sm-3 control-label">Total transporte público:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="totalpublico" placeholder="Ejm. 37" value="{{ old('totalpublico') }}">
+		                    	{!! $errors->first('totalpublico', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
+		                <div class="{{ $errors->has('totaldiferencia') ? 'has-error' : '' }}">
+		                    <label for="totaldiferencia" class="col-sm-3 control-label">Total diferencia:</label>
+		                    <div class="col-sm-2">
+		                        <input type="text" class="form-control" name="totaldiferencia" placeholder="Ejm. 80" value="{{ old('totaldiferencia') }}">
+		                    	{!! $errors->first('totaldiferencia', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		            </div>

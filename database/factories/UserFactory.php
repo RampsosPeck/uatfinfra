@@ -48,7 +48,7 @@ $factory->define(Uatfinfra\ModelAutomotores\Vehiculo::class, function (Faker $fa
     	'kilometraje' => $faker->numberBetween($min = 5, $max = 36),
 
         'especificacion'       => $faker->randomElement(['Camión','Camioneta','Civilian','Jeep','Omnibus','Taxi','Vagoneta']),
-        'estado'     => $faker->randomElement(['optimo','mantenimiento','desuso']),
+        'estado'     => $faker->randomElement(['ÓPTIMO','MANTENIMIENTO','DESUSO']),
     	'chasis'       => $faker->userName,
     	'motor'       => $faker->userName,
     	'cilindrada'       => $faker->userName,
