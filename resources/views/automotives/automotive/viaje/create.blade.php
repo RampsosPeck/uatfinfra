@@ -440,10 +440,10 @@
 		                    	{!! $errors->first('precio', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
-		                <div class="{{ $errors->has('totalpre') ? 'has-error' : '' }}">
+		                <div class="{{ $errors->has('totalprecio') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" class="form-control" name="totalpre" placeholder="Total Bs." value="{{ old('totalpre') }}">
-		                       	{!! $errors->first('totalpre', '<span class="help-block">:message</span>') !!}
+		                       	<input type="text" class="form-control" name="totalprecio" placeholder="Total Bs." value="{{ old('totalprecio') }}">
+		                       	{!! $errors->first('totalprecio', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
                     </div>
@@ -802,7 +802,7 @@
     	allowClear: true
     });
     $("#encargado").select2({
-    	placeholder: "Selecione un vehículo",
+    	placeholder: "Selecione un encargado",
     	language: "es",
     	maximumSelectionLength: 2,
     	allowClear: true

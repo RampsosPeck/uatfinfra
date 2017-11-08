@@ -49,6 +49,13 @@ class Viaje extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function ruta()
+    {
+        return $this->hasOne(Ruta::class);
+    }
+
+
 }
 
 

@@ -50,7 +50,7 @@ class ViajeController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request;
+        return $request;
         
         $viaje = new Viaje;
         $viaje->tipo          = $request->get('tipo');
@@ -114,6 +114,24 @@ class ViajeController extends Controller
         $presupuesto->totalpublico= $request->get('totalpublico');
         $presupuesto->totaldiferencia= $request->get('totaldiferencia');
         $presupuesto->save();
+
+        $ruta = new Ruta;
+        $ruta->destino1  = $request->get('destino1');
+        $ruta->kilo1     = $request->get('kilo1');
+        $ruta->destino2  = $request->get('destino2');
+        $ruta->kilo2     = $request->get('kilo2');
+        $ruta->destino3  = $request->get('destino3');
+        $ruta->kilo3     = $request->get('kilo3');
+        $ruta->destino4  = $request->get('destino4');
+        $ruta->kilo4     = $request->get('kilo4');
+        $ruta->destino5  = $request->get('destino5');
+        $ruta->kilo5     = $request->get('kilo5');
+        $ruta->destino6  = $request->get('destino6');
+        $ruta->kilo6     = $request->get('kilo6');
+        $ruta->adicional = $request->get('adicional');
+        $ruta->totalkm   = $request->get('totalkm');
+        $ruta->viaje_id  = $viaje->id;
+        $ruta->save();
         
         //return back()->with('flash','Viaje creado completado correctamente...');
         Session::flash('message','El viaje fue creado correctamente...');
