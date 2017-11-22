@@ -2,10 +2,11 @@
 
 @section('content')
 @include('alertas.success')
+<?php use Carbon\Carbon; ?>
 <div class="container">
     <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Lista de viajes</h3>
+        <div class="box-header text-center">
+            <h3 class="box-title"><b>Lista de viajes</b></h3>
 		</div>
         <div class="box-body">
         <div class="table-responsive">
@@ -13,26 +14,23 @@
  				<thead>
  					<tr>
 						<th>ID</th>
+                        <th>Categoria</th>
                         <th>Conductor</th>
 						<th>Tipo</th>
                         <th>Encargado</th>
 						<th>Entidad</th>
-                        <th>Dias</th>
-                        <th>Pasajeros</th>
+                        <th>Dias/Pax</th>
                         <th>Desde</th>
-                        <th>Hora</th>
                         <th>Hasta</th>
-                        <th>Hora</th>
-                        <th>Categoria</th>
-                        <th>Nota</th>
                         <th>Vehiculo</th>
                         <th>Opciones</th>						
 					</tr>
  				</thead>
- 				<tbody bgcolor="#d9edf7">
+ 				<tbody bgcolor="#d9edf7" >
                     @foreach($viajes as $viaje)
                     <tr>
-                    	<td>{{ $viaje->id }}</td>
+                    	<td class="text-center">{{ $viaje->id }}</td>
+                        <td>{{ $viaje->categoria }}</td>
                         <td>
                             @foreach ($viaje->conductores as $conductor)
                                 {{ $conductor->name }}.
@@ -41,17 +39,18 @@
                         <td>{{ $viaje->tipo }}</td>
                         <td>{{ $viaje->encargado->name }}</td>
                         <td>{{ $viaje->entidad }}</td>
-                        <td>{{ $viaje->dias }}</td>
-                        <td>{{ $viaje->pasajeros }}</td>
-                        <td>{{ $viaje->fecha_inicial }}</td>
-                        <td>{{ $viaje->horainicial }}</td>
-                        <td>{{ $viaje->fecha_final }}</td>
-                        <td>{{ $viaje->horafinal }}</td>
-                        <td>{{ $viaje->categoria }}</td>
-                        <td>{{ $viaje->nota }}</td>
+                        <td>{{ $viaje->dias }} <b>Pasajeros:</b>{{ $viaje->pasajeros }}</td>
+                        <td>{{ Carbon::parse($viaje->fecha_inicial)->format('Y-m-d')}} {{ $viaje->horainicial }}</td>
+                        <td>{{ Carbon::parse($viaje->fecha_final)->format('Y-m-d')}} {{ $viaje->horafinal }}</td>
                         <td>{{ $viaje->vehiculo->placa }}</td>
                         <td>
                             {!!link_to_route('viajes.edit', $title = 'Editar', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
+
+                            {!! Form::open(['route'=>['viajes.destroy',$viaje->id],'method'=>'DELETE']) !!}
+                                <button type="submit" class="btn btn-warning btn-xs btn-block fa fa-ban" onClick="javascript: return confirm('¿Estas seguro de cancelar el viaje?');">
+                                    Cancelar
+                                </button>   
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                     @endforeach
@@ -65,12 +64,12 @@
 
 
 @push('styles')
-   {!! Html::style('/adminlte/plugins/datatables/dataTables.bootstrap.css') !!}
+   {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
 @endpush
 
 @push('scripts') 
-   {!! Html::script('/adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
-   {!! Html::script('/adminlte/plugins/datatables/dataTables.bootstrap.min.js') !!}
+   {!! Html::script('/dashboard/plugins/datatables/jquery.dataTables.min.js') !!}
+   {!! Html::script('/dashboard/plugins/datatables/dataTables.bootstrap.min.js') !!}
 <script>
   $(function () {
     $('#vehiculo-table').DataTable( {
@@ -102,5 +101,8 @@
     });
   });
   
+
+
   </script>
+    
 @endpush

@@ -1,5 +1,5 @@
 <?php
-
+use Uatfinfra\ModelAutomotores\Destino;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +60,31 @@ Route::resource('vehiculos','Automotive\VehiculoController');
 Route::resource('destinos','Automotive\DestinoController');
 Route::resource('viajes','Automotive\ViajeController');
 
+
+/*Rutas para obtener los kilometrajes*/
+    Route::get('/distancia', function () {
+
+        $cant_id = Input::get('cant_id');
+        $id = (int)$cant_id;
+        $kilo = Destino::where('id',$id)
+                    ->get(['id','kilometraje']);
+
+        return Response::json($kilo);
+    });
+
+    Route::get('/kilometraje', function () {
+
+        $dest_id = Input::get('dest_id');
+        $id = (int)$dest_id;
+        $kilo = Destino::where('id',$id)
+                    ->get(['id','kilometraje']);
+            
+        return Response::json($kilo);
+    });
+
+
+Route::resource('calendario','Automotive\CalendarioController');
+//Route::get('events','Automotive\CalendarioController@create');
 
 
 

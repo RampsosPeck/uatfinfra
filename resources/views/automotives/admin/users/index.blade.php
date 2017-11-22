@@ -67,12 +67,12 @@
 @endsection
 
 @push('styles')
-  {!! Html::style('/adminlte/plugins/datatables/dataTables.bootstrap.css') !!}
+  {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
 @endpush
 
 @push('scripts') 
-   {!! Html::script('/adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
-   {!! Html::script('/adminlte/plugins/datatables/dataTables.bootstrap.min.js') !!}
+   {!! Html::script('/dashboard/plugins/datatables/jquery.dataTables.min.js') !!}
+   {!! Html::script('/dashboard/plugins/datatables/dataTables.bootstrap.min.js') !!}
 <script>
   $(function () {
     $('#users-table').DataTable( {

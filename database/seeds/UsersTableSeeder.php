@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
         $user->password= bcrypt('123456');
         $user->active = true;
         $user->type = "Jefatura";
-        $user->position = "DEPTO. DE INFRAESTRUCTURA";
+        $user->position = "INFRAESTRUCTURA";
         $user->entidad = "U. A. T. F.";
         $user->save();
 
@@ -69,7 +69,7 @@ class UsersTableSeeder extends Seeder
         $user->password= bcrypt('123456');
         $user->active = true;
         $user->type = "Mecánico";
-        $user->position = "DEPTO. DE INFRAESTRUCTURA";
+        $user->position = "INFRAESTRUCTURA";
         $user->entidad = "Depto. de Infraestructura";
         $user->save();
 
@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
         $user->password= bcrypt('123456');
         $user->active = true;
         $user->type = "Mensajero";
-        $user->position = "DEPTO. DE INFRAESTRUCTURA";
+        $user->position = "INFRAESTRUCTURA";
         $user->entidad = "Depto. de Infraestructura";
         $user->save();
 
@@ -98,7 +98,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User;
-        $user->name = "Lic. Encargadi de Viaje";
+        $user->name = "Lic. Encargado de Viaje";
         $user->cedula = "11066255";
         $user->celular= "9977322";
         $user->email= "encargado1@uatf.com";

@@ -100,17 +100,23 @@
 			                    {!! $errors->first('kilometraje', '<span class="help-block">:message</span>') !!}
 			                </div>
 			            </div>
-		                <div class="form-group {{ $errors->has('tiempo') ? 'has-error' : '' }} bootstrap-timepicker timepicker">
+		                <div class="form-group {{ $errors->has('tiempo') ? 'has-error' : '' }} ">
 		                    <label for="tiempo" class="col-sm-4 control-label">Tiempo:</label>
-			                <div class="col-sm-8">
-			                	<div class="input-group">
-			                     <input id="timepicker2" type="text" class="form-control input-small" name="tiempo" placeholder="Ejm. 10:00" value="{{ old('tiempo') }}">
-			                    <span class="input-group-addon">
-					                <i class="glyphicon glyphicon-time"></i>
-					            </span>
-					            </div>
+			                <div class="col-sm-8" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="tiempo" value="{{ old('tiempo') }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
 			                    {!! $errors->first('tiempo', '<span class="help-block">:message</span>') !!}
-			                </div>
+				            </div>
 		                </div>
 	                	<div class="form-group {{ $errors->has('ruta') ? 'has-error' : '' }} ">
 		                    <label for="ruta" class="col-sm-4 control-label">Ruta:</label>
@@ -138,15 +144,17 @@
 @endsection
 
 @push('styles')
-  <link rel="stylesheet" href="/adminlte/plugins/select2/select2.min.css">
-  <link rel="stylesheet" href="/adminlte/plugins/timepicker/bootstrap-timepicker.css">
+  <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
+  <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.min.css">
+  <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.css">
 
 @endpush
 
 @push('scripts') 
-   <script src="/adminlte/plugins/select2/select2.full.min.js"></script>
-   <script src="/adminlte/plugins/select2/es.js"></script>
-   <script src="/adminlte/plugins/timepicker/bootstrap-timepicker.js"></script>
+   <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
+   <script src="/dashboard/plugins/select2/es.js"></script>
+   <script src="/dashboard/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+   <script src="/dashboard/plugins/timepicker/bootstrap-timepicker.js"></script>
 
 <script>
 //Date picker
@@ -160,14 +168,10 @@
     	language: "es",
     	maximumSelectionLength: 2
     });
-    $('#timepicker2').timepicker({
-                minuteStep: 1,
-                template: 'modal',
-                appendWidgetTo: 'body',
-                showSeconds: true,
-                showMeridian: false,
-                defaultTime: false
-            });
+    $('.timepicker').timepicker({
+      showInputs: false
+    });
+   
 </script> 
 @endpush
 

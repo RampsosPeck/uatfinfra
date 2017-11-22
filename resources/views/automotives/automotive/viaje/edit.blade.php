@@ -22,7 +22,7 @@
 			    son obligatorios.
 			</span>  
             <!-- form start -->
-             {!! Form::open(['route'=>'viajes.store','method'=>'POST','class'=>'form-horizontal']) !!}
+            {!! Form::model($viaje,['route'=>['viajes.update',$viaje->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
            
                 <div class="box-body alert-info">
@@ -36,7 +36,8 @@
 		                    		id="destino1">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
+												{{ old('destino1', $ruta->destino1) == $destino->id ? 'selected' : ''}} 
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
@@ -44,7 +45,7 @@
 		                    <div class="col-md-3">
 		                    	<center><label for="kilometraje">KM.</label></center>
 								<div class="input-group">
-	                				<input class="form-control" id="kilo1" value="{{ $destino->kilometraje }}" type="text" name="kilo1">
+	                				{!! Form::text('kilo1',$ruta->kilo1,['class'=>'form-control','id'=>'kilo1','value'=>'0','required']) !!}
 									<span class="input-group-addon" id="basic-addon1">
 			                    		<font color="red">
 			      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -62,13 +63,14 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
+												{{ old('destino2', $ruta->destino2) == $destino->id ? 'selected' : ''}}
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
 		                    <div class="col-md-3">
 								<div class="input-group">
-	                				<input class="form-control" id="kilo2" type="text" name="kilo2">
+	                				{!! Form::text('kilo2',$ruta->kilo2,['class'=>'form-control','id'=>'kilo2','value'=>'0','required']) !!}
 									<span class="input-group-addon" id="basic-addon1">
 			                    		<font color="red">
 			      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -86,12 +88,13 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
+												{{ old('destino3', $ruta->destino3) == $destino->id ? 'selected' : ''}}
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
 		                    <div class="col-md-3">
-								<input class="form-control" id="kilo3" type="text" name="kilo3">
+								{!! Form::text('kilo3',$ruta->kilo3,['class'=>'form-control','id'=>'kilo3','value'=>'0']) !!}
 							</div>
 							{!! $errors->first('destino3', '<span class="help-block">:message</span>') !!}
 	                    </div>
@@ -103,12 +106,13 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
+												{{ old('destino4', $ruta->destino4) == $destino->id ? 'selected' : ''}}
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
 		                    <div class="col-md-3">
-								<input class="form-control" id="kilo4" type="text" name="kilo4">
+		                    	{!! Form::text('kilo4',$ruta->kilo4,['class'=>'form-control','id'=>'kilo4','value'=>'0']) !!}
 							</div>
 							{!! $errors->first('destino4', '<span class="help-block">:message</span>') !!}
 	                    </div>
@@ -119,13 +123,14 @@
 		                    		id="destino5">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
+											{{ old('destino5', $ruta->destino5) == $destino->id ? 'selected' : ''}} 
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
 		                    <div class="col-md-3">
-								<input class="form-control" id="kilo5" type="text" name="kilo5">
+								{!! Form::text('kilo5',$ruta->kilo5,['class'=>'form-control','id'=>'kilo5','value'=>'0']) !!}
 							</div>
 							{!! $errors->first('destino5', '<span class="help-block">:message</span>') !!}
 	                    </div>
@@ -137,12 +142,13 @@
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
 											<option value="{{ $destino->id }}" 
+												{{ old('destino6', $ruta->destino6) == $destino->id ? 'selected' : ''}}
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
 		                    </div>
 		                    <div class="col-md-3">
-								<input class="form-control" id="kilo6" type="text" name="kilo6">
+								{!! Form::text('kilo6',$ruta->kilo6,['class'=>'form-control','id'=>'kilo6','value'=>'0']) !!}
 							</div>
 							{!! $errors->first('destino6', '<span class="help-block">:message</span>') !!}
 	                    </div>
@@ -150,8 +156,9 @@
 		                    <label for="adicional" class="col-sm-2 control-label">Adicional:</label>
 		                    <div class="col-sm-4">
 			                	<div class="input-group {{ $errors->has('adicional') ? 'has-error' : '' }}">
-		                        	<input type="number" class="form-control" name="adicional" placeholder="Ejm. 40" value="{{ old('adicional') }}">
-		                       		 <span class="input-group-addon" id="basic-addon1">
+		                        	
+		                       		{!! Form::text('adicional',old('adicional',$ruta->adicional),['class'=>'form-control','id'=>'adicional','required','value'=>'0','onkeyup'=>'sumar();']) !!}
+		                       		<span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
 				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
 				      						</font>
@@ -162,7 +169,7 @@
 		                    <label for="totalkm" class="col-sm-3 control-label">Total Km.:</label>
 		                    <div class="col-md-3">
 								<div class="input-group {{ $errors->has('totalkm') ? 'has-error' : '' }}">
-		                        	<input type="text" class="form-control" name="totalkm" placeholder="total" value="{{ old('totalkm') }}">
+		                        	{!! Form::text('totalkm',old('totalkm',$ruta->totalkm),['class'=>'form-control','id'=>'totalkm','readonly']) !!}
 		                       		 <span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
 				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -336,7 +343,7 @@
 				                  <input name="fecha_inicial" 
 				                  		class="form-control" 
 				                  		type="date" 
-										value="{{ old('fecha_inicial',Carbon::parse($viaje->fecha_inicial)->format('m/d/Y')) }}" 
+										value="{{ old('fecha_inicial',Carbon::parse($viaje->fecha_inicial)->format('Y/m/d')) }}" 
 				                  		id="datepicker">
 				                  		<span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
@@ -372,7 +379,7 @@
 				                  <input name="fecha_final" 
 				                  		class="form-control" 
 				                  		type="date" 
-										value="{{ old('fecha_final',Carbon::parse($viaje->fecha_final)->format('m/d/Y')) }}" 
+										value="{{ old('fecha_final',Carbon::parse($viaje->fecha_final)->format('Y/m/d')) }}" 
 				                  		id="datepickere">
 				                  		<span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
@@ -433,31 +440,26 @@
               		<center>
               		<label class="control-label">COMBUSTIBLE:</label></center>
               		<div class="form-group">
-              			<div class="col-md-5 {{ $errors->has('combustible') ? 'has-error' : '' }}">
-              				<label>
-			                	Tipo de combustible:
-			                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						    <label>
-			                	Diesel
-			                  <input type="radio" name="combustible" value="4" {{ old('combustible', $presupuesto->combustible ) == '4' ? 'checked' : '' }} class="flat-red" >
-			                </label>
-			                <label>
-			                	Gasolina
-			                  <input type="radio" name="combustible" value="6" {{ old('combustible', $presupuesto->combustible ) == '6' ? 'checked' : '' }} class="flat-red" >
-			                </label>
-			                <label>
-			                	3.5
-			                  <input type="radio" name="combustible" value="3.5" {{ old('combustible', $presupuesto->combustible ) == '3.5' ? 'checked' : '' }} class="flat-red" >
-			                </label>
-			                 {!! $errors->first('combustible', '<span class="help-block">:message</span>') !!}
-			            </div>
+              			<div class="{{ $errors->has('combustible') ? 'has-error' : '' }}">
+		                    <label for="combustible" class="col-sm-2 control-label">Diesel/Gasolina:</label>
+		                    <div class="col-sm-2">
+		                    	<div class="input-group">
+		                        	{!! Form::text('combustible',old('combustible',$presupuesto->combustible),['class'=>'form-control','id'=>'combustible','required','onkeyup'=>'sumar();','placeholder'=>'4/6/3.5']) !!}
+		                        	<span class="input-group-addon" id="basic-addon1">
+				                    		<font color="red">
+				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+				      						</font>
+			      					</span>
+			                	</div>
+		                    	{!! $errors->first('combustible', '<span class="help-block">:message</span>') !!}
+		                    </div>
+		                </div>
 		                <div class="{{ $errors->has('totalcombu') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       		<input type="text" 
-		                       			class="form-control" 
-		                       			name="totalcombu" 
-		                       			placeholder="Total litros" 
-		                       			value="{{ old('totalcombu',$presupuesto->totalcombu) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('totalcombu',old('totalcombu',$presupuesto->totalcombu),['class'=>'form-control','id'=>'totalcombu','value'=>'0','required','readonly']) !!}
+		                       		<span class="input-group-addon">Litros</span>
+                    			</div>
 								{!! $errors->first('totalcombu', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
@@ -465,11 +467,7 @@
 		                    <label for="precio" class="col-sm-1 control-label">Precio:</label>
 		                    <div class="col-sm-2">
 		                    	<div class="input-group">
-		                        	<input type="text" 
-		                        		class="form-control" 
-		                        		name="precio" 
-		                        		placeholder="Ejm. 3.72" 
-		                        		value="{{ old('precio',$presupuesto->precio) }}">
+		                        	{!! Form::text('precio',old('precio',$presupuesto->precio),['class'=>'form-control','id'=>'precio','required','value'=>'0','onkeyup'=>'sumar();','placeholder'=>'3.72']) !!}
 		                        	<span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
 				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -481,11 +479,10 @@
 		                </div>
 		                <div class="{{ $errors->has('totalprecio') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totalprecio" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totalprecio',$presupuesto->totalprecio) }}">
+		                    	<div class='input-group date'>
+		                    		{!! Form::text('totalprecio',old('totalprecio',$presupuesto->totalprecio),['class'=>'form-control','id'=>'totalprecio','value'=>'0','required','placeholder'=>'Total Bs.','readonly']) !!}
+		                    		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('totalprecio', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
@@ -496,62 +493,50 @@
 	                    <div class="{{ $errors->has('canpeaje') ? 'has-error' : '' }}">
 		                    <label for="canpeaje" class="col-sm-1 control-label">Peaje:</label>
 		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="canpeaje" 
-		                        	placeholder="1" 
-		                        	value="{{ old('canpeaje',$presupuesto->canpeaje) }}">
+		                        {!! Form::text('canpeaje',old('canpeaje',$presupuesto->canpeaje),['class'=>'form-control','id'=>'canpeaje','value'=>'0','onkeyup'=>'sumar();','value'=>'old("canpeaje")','placeholder'=>'1']) !!}
 		                    	{!! $errors->first('canpeaje', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('prepeaje') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="prepeaje" 
-		                       		placeholder="Ejm. 100"  
-		                       		value="{{ old('prepeaje',$presupuesto->prepeaje) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('prepeaje',old('prepeaje',$presupuesto->prepeaje),['class'=>'form-control','id'=>'prepeaje','value'=>'old("prepeaje")','onkeyup'=>'sumar();','placeholder'=>'100']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 								{!! $errors->first('prepeaje', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('totpeaje') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totpeaje" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totpeaje',$presupuesto->totpeaje) }}">
+		                       	<div class='input-group date'>
+		                       		{!! Form::text('totpeaje',old('totpeaje',$presupuesto->totpeaje),['class'=>'form-control','id'=>'totpeaje','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 								{!! $errors->first('totpeaje', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('cangaraje') ? 'has-error' : '' }}">
 		                    <label for="cangaraje" class="col-sm-1 control-label">Garaje:</label>
 		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="cangaraje" 
-		                        	placeholder="1" 
-		                        	value="{{ old('cangaraje',$presupuesto->cangaraje) }}">
-		                    	{!! $errors->first('cangaraje', '<span class="help-block">:message</span>') !!}
+		                    	{!! Form::text('cangaraje',old('cangaraje',$presupuesto->cangaraje),['class'=>'form-control','id'=>'cangaraje','value'=>'old("cangaraje")','onkeyup'=>'sumar();','placeholder'=>'1']) !!}
+		                        {!! $errors->first('cangaraje', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('pregaraje') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="pregaraje" 
-		                       		placeholder="Ejm. 150" 
-		                       		value="{{ old('pregaraje',$presupuesto->pregaraje) }}">
+		                       	<div class='input-group date'>
+		                       		{!! Form::text('pregaraje',old('pregaraje',$presupuesto->pregaraje),['class'=>'form-control','id'=>'pregaraje','value'=>'old("pregaraje")','onkeyup'=>'sumar();','placeholder'=>'150']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('pregaraje', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('totgaraje') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totgaraje" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totgaraje',$presupuesto->totgaraje) }}">
+		                       	<div class='input-group date'>
+		                       		{!! Form::text('totgaraje',old('totgaraje',$presupuesto->totgaraje),['class'=>'form-control','id'=>'totgaraje','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('totgaraje', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
@@ -560,6 +545,7 @@
 						<div class="{{ $errors->has('nommante') ? 'has-error' : '' }}">
 		                    <label for="nommante" class="col-sm-2 control-label">Mantenimiento/Nombre:</label>
 		                    <div class="col-sm-4">
+		                        
 		                        <input type="text" 
 		                        	class="form-control" 
 		                        	name="nommante" 
@@ -571,32 +557,27 @@
 		                <div class="{{ $errors->has('canmante') ? 'has-error' : '' }}">
 		                	<label for="cangaraje" class="col-sm-1 control-label">Cant.:</label>
 		                    <div class="col-md-1">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="canmante" 
-		                       		placeholder="1" 
-		                       		value="{{ old('canmante',$presupuesto->canmante) }}">
+		                    	{!! Form::text('canmante',old('canmante',$presupuesto->canmante),['class'=>'form-control','id'=>'canmante','value'=>'old("canmante")','onkeyup'=>'sumar();','placeholder'=>'1']) !!}
+		                       	
 		                       	{!! $errors->first('canmante', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('premante') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="premante" 
-		                       		placeholder="Ejm. 50" 
-		                       		value="{{ old('premante',$presupuesto->premante) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('premante',old('premante',$presupuesto->premante),['class'=>'form-control','id'=>'premante','value'=>'old("premante")','onkeyup'=>'sumar();','placeholder'=>'110']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('premante', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 
 						<div class="{{ $errors->has('totmante') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totmante" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totmante',$presupuesto->totmante) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('totmante',old('totmante',$presupuesto->totmante),['class'=>'form-control','id'=>'totmante','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('totmante', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
@@ -607,31 +588,26 @@
 						<div class="{{ $errors->has('canviaciu') ? 'has-error' : '' }}">
 		                    <label for="canviaciu" class="col-sm-1 control-label">Ciudad:</label>
 		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="canviaciu" 
-		                        	placeholder="1" 
-		                        	value="{{ old('canviaciu',$presupuesto->canviaciu) }}">
+		                        {!! Form::text('canviaciu',old('canviaciu',$presupuesto->canviaciu),['class'=>'form-control','id'=>'canviaciu','value'=>'old("canviaciu")','onkeyup'=>'sumar();','placeholder'=>'1']) !!}
+		                        
 		                    	{!! $errors->first('canviaciu', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('previaciu') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="previaciu" 
-		                       		placeholder="Ejm. 150" 
-		                       		value="{{ old('previaciu',$presupuesto->previaciu) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('previaciu',old('previaciu',$presupuesto->previaciu),['class'=>'form-control','id'=>'previaciu','value'=>'old("previaciu")','onkeyup'=>'sumar();','placeholder'=>'150']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('previaciu', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('totviaciu') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totviaciu" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totviaciu',$presupuesto->totviaciu) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('totviaciu',old('totviaciu',$presupuesto->totviaciu),['class'=>'form-control','id'=>'totviaciu','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('totviaciu', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
@@ -639,31 +615,27 @@
 						<div class="{{ $errors->has('canviapro') ? 'has-error' : '' }}">
 		                    <label for="canviapro" class="col-sm-1 control-label">Provincia:</label>
 		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="canviapro" 
-		                        	placeholder="1" 
-		                        	value="{{ old('canviapro',$presupuesto->canviapro) }}">
+
+		                        {!! Form::text('canviapro',old('canviapro',$presupuesto->canviapro),['class'=>'form-control','id'=>'canviapro','value'=>'old("canviapro")','onkeyup'=>'sumar();','placeholder'=>'1']) !!}
+		                        
 		                    	{!! $errors->first('canviapro', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('previapro') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="previapro" 
-		                       		placeholder="Ejm. 150" 
-		                       		value="{{ old('previapro',$presupuesto->previapro) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('previapro',old('previapro',$presupuesto->previapro),['class'=>'form-control','id'=>'previapro','value'=>'old("previapro")','onkeyup'=>'sumar();','placeholder'=>'150']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('previapro', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('totviapro') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totviapro" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totviapro',$presupuesto->totviapro) }}">
+		                    	<div class='input-group date'>
+		                       		{!! Form::text('totviapro',old('totviapro',$presupuesto->totviapro),['class'=>'form-control','id'=>'totviapro','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('totviapro', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
@@ -671,42 +643,34 @@
 						<div class="{{ $errors->has('canviafro') ? 'has-error' : '' }}">
 		                    <label for="canviafro" class="col-sm-1 control-label">Frontera:</label>
 		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="canviafro" 
-		                        	placeholder="1" 
-		                        	value="{{ old('canviafro',$presupuesto->canviafro) }}">
+		                    	{!! Form::text('canviafro',old('canviafro',$presupuesto->canviafro),['class'=>'form-control','id'=>'canviafro','value'=>'old("canviafro")','onkeyup'=>'sumar();','placeholder'=>'1']) !!}
+		                        
 		                    	{!! $errors->first('canviafro', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('previafro') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="previafro" 
-		                       		placeholder="Ejm. 150" 
-		                       		value="{{ old('previafro',$presupuesto->previafro) }}">
+		                    	<div class='input-group date'>
+		                    		{!! Form::text('previafro',old('previafro',$presupuesto->previafro),['class'=>'form-control','id'=>'previafro','value'=>'old("previafro")','onkeyup'=>'sumar();','placeholder'=>'150']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('previafro', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('totviafro') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totviafro" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totviafro',$presupuesto->totviafro) }}">
+		                       	<div class='input-group date'>
+		                       		{!! Form::text('totviafro',old('totviafro',$presupuesto->totviafro),['class'=>'form-control','id'=>'totviafro','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                       		<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                       	{!! $errors->first('totviafro', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
 						<div class="{{ $errors->has('totprebol') ? 'has-error' : '' }}">
 		                    <label for="totprebol" class="col-sm-3 control-label">Total Bs.:</label>
 		                    <div class="col-sm-3">
-		                       	<input type="text" 
-		                       		class="form-control" 
-		                       		name="totprebol" 
-		                       		placeholder="Total Bs." 
-		                       		value="{{ old('totprebol',$presupuesto->totprebol) }}">
+		                    	{!! Form::text('totprebol',old('totprebol',$presupuesto->totprebol),['class'=>'form-control','id'=>'totprebol','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                       	
 		                       	{!! $errors->first('totprebol', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
@@ -753,33 +717,27 @@
 		                </div>
 		                <div class="{{ $errors->has('cantidad1') ? 'has-error' : '' }}">
 		                    <label for="cantidad1" class="col-sm-1 control-label">Cantidad:</label>
-		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="cantidad1" 
-		                        	placeholder="Ejm. 37" 
-		                        	value="{{ old('cantidad1',$presupuesto->cantidad1) }}">
+		                    <div class="col-sm-1">
+		                    	{!! Form::text('cantidad1',old('cantidad1',$presupuesto->cantidad1),['class'=>'form-control','id'=>'cantidad1','value'=>'old("cantidad1")','onkeyup'=>'sumar();','placeholder'=>'37']) !!}
 		                    	{!! $errors->first('cantidad1', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('precio1') ? 'has-error' : '' }}">
 		                    <label for="precio1" class="col-sm-1 control-label">Precio:</label>
 		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="precio1" 
-		                        	placeholder="Ejm. 80" 
-		                        	value="{{ old('precio1',$presupuesto->precio1) }}">
+		                    	<div class='input-group date'>		
+		                        	{!! Form::text('precio1',old('precio1',$presupuesto->precio1),['class'=>'form-control','id'=>'precio1','value'=>'old("precio1")','onkeyup'=>'sumar();','placeholder'=>'80']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('precio1', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('total1') ? 'has-error' : '' }}">
-		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="total1" 
-		                        	placeholder="Bs." 
-		                        	value="{{ old('total1',$presupuesto->total1) }}">
+		                    <div class="col-sm-2">
+		                    	<div class='input-group date'>	
+		                  			{!! Form::text('total1',old('total1',$presupuesto->total1),['class'=>'form-control','id'=>'total1','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('total1', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
@@ -798,33 +756,27 @@
 		                </div>
 		                <div class="{{ $errors->has('cantidad2') ? 'has-error' : '' }}">
 		                    <label for="cantidad2" class="col-sm-1 control-label">Cantidad:</label>
-		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="cantidad2" 
-		                        	placeholder="Ejm. 37" 
-		                        	value="{{ old('cantidad2',$presupuesto->cantidad2) }}">
+		                    <div class="col-sm-1">
+		                    	{!! Form::text('cantidad2',old('cantidad2',$presupuesto->cantidad2),['class'=>'form-control','id'=>'cantidad2','value'=>'old("cantidad2")','onkeyup'=>'sumar();','placeholder'=>'37']) !!}
 		                    	{!! $errors->first('cantidad2', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('precio2') ? 'has-error' : '' }}">
 		                    <label for="precio2" class="col-sm-1 control-label">Precio:</label>
 		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="precio2" 
-		                        	placeholder="Ejm. 50" 
-		                        	value="{{ old('precio2',$presupuesto->precio2) }}">
+		                    	<div class='input-group date'>		
+		                        	{!! Form::text('precio2',old('precio2',$presupuesto->precio2),['class'=>'form-control','id'=>'precio2','value'=>'old("precio2")','onkeyup'=>'sumar();','placeholder'=>'80']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('precio2', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('total2') ? 'has-error' : '' }}">
-		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="total2" 
-		                        	placeholder="Bs." 
-		                        	value="{{ old('total2',$presupuesto->total2) }}">
+		                    <div class="col-sm-2">
+		                    	<div class='input-group date'>	
+		                  			{!! Form::text('total2',old('total2',$presupuesto->total2),['class'=>'form-control','id'=>'total2','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('total2', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
@@ -836,57 +788,50 @@
 		                </div>
 		                <div class="{{ $errors->has('vueltas') ? 'has-error' : '' }}">
 		                    <label for="vueltas" class="col-sm-1 control-label">Vueltas:</label>
-		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="vueltas" 
-		                        	placeholder="Ejm. 5" 
-		                        	value="{{ old('vueltas',$presupuesto->vueltas) }}">
+		                    <div class="col-sm-1">
+		                    	{!! Form::text('vueltas',old('vueltas',$presupuesto->vueltas),['class'=>'form-control','id'=>'vueltas','value'=>'old("vueltas")','onkeyup'=>'sumar();','placeholder'=>'2']) !!}
+		                        
 		                    	{!! $errors->first('vueltas', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('preciovuelta') ? 'has-error' : '' }}">
 		                    <label for="preciovuelta" class="col-sm-1 control-label">Precio:</label>
 		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="preciovuelta" 
-		                        	placeholder="Ejm. 300" 
-		                        	value="{{ old('preciovuelta',$presupuesto->preciovuelta) }}">
+		                    	<div class='input-group date'>
+		                        	{!! Form::text('preciovuelta',old('preciovuelta',$presupuesto->preciovuelta),['class'=>'form-control','id'=>'preciovuelta','value'=>'old("preciovuelta")','onkeyup'=>'sumar();','placeholder'=>'250']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('preciovuelta', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('totalvuelta') ? 'has-error' : '' }}">
-		                    <div class="col-sm-1">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="totalvuelta" 
-		                        	placeholder="Bs." 
-		                        	value="{{ old('totalvuelta',$presupuesto->totalvuelta) }}">
+		                    <div class="col-sm-2">
+								<div class='input-group date'>
+		                    		{!! Form::text('totalvuelta',old('totalvuelta',$presupuesto->totalvuelta),['class'=>'form-control','id'=>'totalvuelta','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('totalvuelta', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		            </div>
 		            <div class="form-group">
 		                <div class="{{ $errors->has('totalpublico') ? 'has-error' : '' }}">
-		                    <label for="totalpublico" class="col-sm-3 control-label">Total transporte público:</label>
-		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="totalpublico" 
-		                        	placeholder="Ejm. 37" 
-		                        	value="{{ old('totalpublico',$presupuesto->totalpublico) }}">
+		                    <label for="totalpublico" class="col-sm-3 control-label">Total transporte público (B):</label>
+		                    <div class="col-sm-3">
+		                    	<div class='input-group date'>
+		                  			{!! Form::text('totalpublico',old('totalpublico',$presupuesto->totalpublico),['class'=>'form-control','id'=>'totalpublico','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('totalpublico', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		                <div class="{{ $errors->has('totaldiferencia') ? 'has-error' : '' }}">
-		                    <label for="totaldiferencia" class="col-sm-3 control-label">Total diferencia:</label>
-		                    <div class="col-sm-2">
-		                        <input type="text" 
-		                        	class="form-control" 
-		                        	name="totaldiferencia" 
-		                        	placeholder="Ejm. 80" 
-		                        	value="{{ old('totaldiferencia',$presupuesto->totaldiferencia) }}">
+		                    <label for="totaldiferencia" class="col-sm-3 control-label">Total diferencia (A)-(B):</label>
+		                    <div class="col-sm-3">
+		                    	<div class='input-group date'>
+		                        	{!! Form::text('totaldiferencia',old('totaldiferencia',$presupuesto->totaldiferencia),['class'=>'form-control','id'=>'totaldiferencia','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+		                        	<span class="input-group-addon">Bs.</span>
+                    			</div>
 		                    	{!! $errors->first('totaldiferencia', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
@@ -907,27 +852,33 @@
 @endsection
 
 @push('styles')
-  <link rel="stylesheet" href="/adminlte/plugins/select2/select2.min.css">
-  <link rel="stylesheet" href="/adminlte/plugins/datepicker/datepicker3.css"> 
-  <link rel="stylesheet" href="/adminlte/plugins/timepicker/bootstrap-timepicker.min.css">
-  <link rel="stylesheet" href="/adminlte/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
+  <link rel="stylesheet" href="/dashboard/plugins/datepicker/datepicker3.css"> 
+  <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.min.css">
+  <link rel="stylesheet" href="/dashboard/plugins/iCheck/all.css">
 @endpush
 
 @push('scripts') 
-   <script src="/adminlte/plugins/select2/select2.full.min.js"></script>
-   <script src="/adminlte/plugins/select2/es.js"></script>
-   <script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
-   <script src="/adminlte/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-   <script src="/adminlte/plugins/iCheck/icheck.min.js"></script>
+   <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
+   <script src="/dashboard/plugins/select2/es.js"></script>
+   <script src="/dashboard/plugins/datepicker/bootstrap-datepicker.js"></script>
+   <script src="/dashboard/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+   <script src="/dashboard/plugins/iCheck/icheck.min.js"></script>
+   <script src="/js/sistem/kilometraje.js"></script>
 <script>
 //Date picker
 	//$('.timepicker').timepicker({ 'scrollDefault': 'now' });
+	$('.timepicker').timepicker({
+      showInputs: false
+    });
 	$('#datepicker').datepicker({
 	      autoclose: true,
-	      todayHighlight:true
+	      todayHighlight:true,
+	      format: 'yyyy/mm/dd'
 	    });
 	$('#datepickere').datepicker({
-	      autoclose: true
+	      autoclose: true,
+	      format: 'yyyy/mm/dd'
 	    });
 
     $(".select2").select2({

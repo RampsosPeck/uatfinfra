@@ -22,7 +22,7 @@
 			    son obligatorios.
 			</span>  
             <!-- form start -->
-             {!! Form::open(['route'=>'destinos.store','method'=>'POST','class'=>'form-horizontal']) !!}
+             {!! Form::model($destinos,['route'=>['destinos.update',$destinos->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
                 <div class="box-body alert-info">
             		<div class="col-md-7">
@@ -138,15 +138,15 @@
 @endsection
 
 @push('styles')
-  <link rel="stylesheet" href="/adminlte/plugins/select2/select2.min.css">
-  <link rel="stylesheet" href="/adminlte/plugins/timepicker/bootstrap-timepicker.css">
+  <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
+  <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.css">
 
 @endpush
 
 @push('scripts') 
-   <script src="/adminlte/plugins/select2/select2.full.min.js"></script>
-   <script src="/adminlte/plugins/select2/es.js"></script>
-   <script src="/adminlte/plugins/timepicker/bootstrap-timepicker.js"></script>
+   <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
+   <script src="/dashboard/plugins/select2/es.js"></script>
+   <script src="/dashboard/plugins/timepicker/bootstrap-timepicker.js"></script>
 
 <script>
 //Date picker
@@ -159,6 +159,9 @@
     	placeholder: "Seleccione un conductor",
     	language: "es",
     	maximumSelectionLength: 2
+    });
+    $('.timepicker').timepicker({
+      showInputs: false
     });
     $('#timepicker2').timepicker({
                 minuteStep: 1,

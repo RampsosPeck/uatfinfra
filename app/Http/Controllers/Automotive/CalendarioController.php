@@ -2,13 +2,15 @@
 
 namespace Uatfinfra\Http\Controllers\Automotive;
 
-use Uatfinfra\ModelAutomotores\Destino;
+use Uatfinfra\ModelAutomotores\Viaje;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Session;
 use Auth;
+use Carbon\Carbon;
 
-class DestinoController extends Controller
+
+class CalendarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +19,14 @@ class DestinoController extends Controller
      */
     public function index()
     {
-        $destinos = Destino::all();
-        return view('automotives.automotive.destinos.index',compact('destinos'));
+        //return "estas aqui";
+         $viajes = Viaje::all();
+        return view('automotives.automotive.viaje.calendario',compact('viajes'));
+        //$viaje = new Viaje;
+        //$viaje->conductores->
+
+        $title = Viaje::all()->conductores()->pluck('id','name');
+        dd($title);
     }
 
     /**
@@ -28,7 +36,27 @@ class DestinoController extends Controller
      */
     public function create()
     {
-        return view('automotives.automotive.destinos.create');
+        /*$data  = array();
+        $id    = Viaje::all()->pluck('id');
+        $title = Viaje::all()->pluck('entidad');
+        $start = Viaje::all()->pluck('fecha_inicial');
+        $end   = Viaje::all()->pluck('fecha_final');
+        $count = count($id);
+        $estado= Viaje::all()->pluck('estado');
+
+        for($i=0; $i<$count; $i++) {
+            $data[$i] = array(
+                "title" => $title[$i],
+                "start" => $start[$i],
+                "end"   => $end[$i],
+                "estado"=> $estado[$i],
+                "url"   => "/viajes/".$id[$i]
+            );
+        }
+        return response()->json($data);
+        */
+        $viajes = Viaje::all();
+        return view('automotives.automotive.viaje.calendario',compact('viajes'));
     }
 
     /**
@@ -39,64 +67,49 @@ class DestinoController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request;
-        $this->validate($request,[
-           'origen'    => 'required|string|min:4',
-           'dep_inicio'=> 'required',
-           'destino'   => 'required|string|min:4',
-           'dep_final' => 'required',
-           'kilometraje'=> 'required|integer'
-        ]);
-
-        Destino::create($request->all());
-        
-        Session::flash('message','El destino se inserto correctamente...');
-        return redirect('destinos');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Uatfinfra\Destino  $destino
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+
+        $viaje =  Viaje::where('id',$id)->get();
+        return $viaje;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Uatfinfra\Destino  $destino
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $destinos = Destino::find($id);
-        return view('automotives.automotive.destinos.edit',compact('destinos'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Uatfinfra\Destino  $destino
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $destino = Destino::find($id);
-        $destino->update($request->all());
-        $destino->save();  
-        Session::flash('message','El destino fue ACTUALIZADO correctamente...');
-        return redirect('destinos'); 
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Uatfinfra\Destino  $destino
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

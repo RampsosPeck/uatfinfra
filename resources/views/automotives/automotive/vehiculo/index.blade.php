@@ -3,9 +3,9 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Lista de vehículos</h3>
+    <div class="box box-info">
+        <div class="box-header text-center">
+            <h3 class="box-title"><b>LISTA DE VEHÍCULOS</b></h3>
 		</div>
         <div class="box-body">
         <div class="table-responsive">
@@ -71,12 +71,12 @@
 
 
 @push('styles')
-   {!! Html::style('/adminlte/plugins/datatables/dataTables.bootstrap.css') !!}
+   {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
 @endpush
 
 @push('scripts') 
-   {!! Html::script('/adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
-   {!! Html::script('/adminlte/plugins/datatables/dataTables.bootstrap.min.js') !!}
+   {!! Html::script('/dashboard/plugins/datatables/jquery.dataTables.min.js') !!}
+   {!! Html::script('/dashboard/plugins/datatables/dataTables.bootstrap.min.js') !!}
 <script>
   $(function () {
     $('#vehiculo-table').DataTable( {
