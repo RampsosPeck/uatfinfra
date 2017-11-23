@@ -3,6 +3,8 @@
 namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Uatfinfra\ModelAutomotores\Viaje;
+use Uatfinfra\ModelAutomotores\Presupuesto;
+use Uatfinfra\ModelAutomotores\Ruta;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Session;
@@ -22,11 +24,7 @@ class CalendarioController extends Controller
         //return "estas aqui";
          $viajes = Viaje::all();
         return view('automotives.automotive.viaje.calendario',compact('viajes'));
-        //$viaje = new Viaje;
-        //$viaje->conductores->
-
-        $title = Viaje::all()->conductores()->pluck('id','name');
-        dd($title);
+        
     }
 
     /**
@@ -78,9 +76,10 @@ class CalendarioController extends Controller
      */
     public function show($id)
     {
-
-        $viaje =  Viaje::where('id',$id)->get();
-        return $viaje;
+        $viaje = Viaje::find($id);
+        $presupuesto = Presupuesto::where('viaje_id',$viaje->id)->first();
+        $ruta = Ruta::where('viaje_id',$viaje->id)->first();
+        return view('automotives.automotive.viaje.show',compact('viaje','presupuesto','ruta'));
     }
 
     /**

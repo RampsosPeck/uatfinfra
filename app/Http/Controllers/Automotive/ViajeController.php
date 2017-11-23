@@ -149,9 +149,26 @@ class ViajeController extends Controller
      * @param  \Uatfinfra\Viaje  $viaje
      * @return \Illuminate\Http\Response
      */
-    public function show(Viaje $viaje)
+    public function show($id)
     {
-        return "EStoy aqui shoe";
+        $viaje = Viaje::find($id);
+        $presupuesto = Presupuesto::where('viaje_id',$id)->first();
+        $ruta  = Ruta::where('viaje_id',$id)->first();
+        $date = date('d-m-Y');
+
+        $destino1 = Destino::where('id',$ruta->destino1)->first();
+        $destino2 = Destino::where('id',$ruta->destino2)->first();
+        $destino3 = Destino::where('id',$ruta->destino3)->first();
+        $destino4 = Destino::where('id',$ruta->destino4)->first();
+        $destino5 = Destino::where('id',$ruta->destino5)->first();
+        $destino6 = Destino::where('id',$ruta->destino6)->first();
+
+        $supervisor = User::where('type', 'Supervisor')->where('position', 'AUTOMOTORES')->first(); 
+
+        $view =  \View::make('automotives.automotive.viaje.presupuestoPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje','supervisor'))->render();
+        $pdf  = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('carta', 'portrat');
+        return $pdf->stream('Presupuesto'.$viaje->id.'.pdf');
     }
 
     /**

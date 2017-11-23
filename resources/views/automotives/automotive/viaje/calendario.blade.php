@@ -37,10 +37,7 @@ $(function () {
       lang: 'es',
       eventClick: function(calEvent, jsEvent, view) {
 
-          alert('Event: ' + calEvent.title);
-          alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-          alert('View: ' + view.entidad);
-          $('#modalTitle').html(event.title);
+          alert('ENTIDAD: ' + calEvent.datos);
           // change the border color just for fun
           $(this).css('border-color', 'red');
 
@@ -93,9 +90,10 @@ $(function () {
         //url:'events'
           @foreach($viajes as $viaje)
           {
-              title : '{{ $viaje->entidad }} | @foreach ($viaje->conductores as $conductor){{ $conductor->name }} @endforeach',
+              title : 'CONDUCTOR: @foreach ($viaje->conductores as $conductor){{ $conductor->name }} | @endforeach',
               start : '{{ $viaje->fecha_inicial}}',
               end   : '{{ $viaje->fecha_final}}',
+              datos : '{{ $viaje->entidad }} DESDE: {{ $viaje->horainicial }} HASTA: {{ $viaje->horafinal }} VEHÍCULO: {{ $viaje->vehiculo->placa }}',
               url   : '{{ route('calendario.show', $viaje->id) }}'
           },
           @endforeach

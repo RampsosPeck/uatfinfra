@@ -176,6 +176,7 @@ return [
         // Uatfinfra\Providers\BroadcastServiceProvider::class,
         Uatfinfra\Providers\EventServiceProvider::class,
         Uatfinfra\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

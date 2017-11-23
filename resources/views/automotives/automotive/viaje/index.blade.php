@@ -45,12 +45,15 @@
                         <td>{{ $viaje->vehiculo->placa }}</td>
                         <td>
                             {!!link_to_route('viajes.edit', $title = 'Editar', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
+                            
+                            {!!link_to_route('viajes.show', $title = ' Imprimir', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-warning btn-xs  glyphicon fa fa-print','target'=>'_blank'])!!} 
 
                             {!! Form::open(['route'=>['viajes.destroy',$viaje->id],'method'=>'DELETE']) !!}
-                                <button type="submit" class="btn btn-warning btn-xs btn-block fa fa-ban" onClick="javascript: return confirm('¿Estas seguro de cancelar el viaje?');">
+                                <button type="submit" class="btn btn-danger btn-xs btn-block fa fa-ban" onClick="javascript: return confirm('¿Estas seguro de cancelar el viaje?');">
                                     Cancelar
                                 </button>   
                             {!! Form::close() !!}
+
                         </td>
                     </tr>
                     @endforeach
