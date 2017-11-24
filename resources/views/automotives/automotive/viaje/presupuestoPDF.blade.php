@@ -43,8 +43,13 @@ use Carbon\Carbon;
         <td class="km" colspan="1"> {{$ruta->kilo2}}</td>
     </tr>
     <tr>
+        @if(empty($destino3))
         <td class="kn" colspan="1"> {{ $destino3->dep_inicio }} {{ $destino3->origen }} HASTA {{ $destino3->dep_final }} {{ $destino3->destino }}</td>
         <td class="km" colspan="1"> {{$ruta->kilo3}}</td>
+        @else
+        <td class="kn" colspan="1"> </td>
+        <td class="km" colspan="1"> </td>
+        @endif
     </tr>
     <tr>
         <td class="kn" rowspan="2"> <strong><center>CANT.</center></strong></td>
@@ -52,12 +57,22 @@ use Carbon\Carbon;
         <td class="kn" rowspan="2" colspan="1"> <strong><center>DESCRIPCIÓN</center></strong></td>
         <td class="kn" rowspan="2" colspan="1"><strong><center>p/u Bs.</center></strong></td>
         <td class="kn" rowspan="2" colspan="1"> <strong><center>TOTAL Bs.</center></strong></td>
-        <td class="kn"colspan="1"> {{ $destino4->dep_inicio }} {{ $destino4->origen }} HASTA {{ $destino4->dep_final }} {{ $destino4->destino }}</td>
+        @if(empty($destino4))
+        <td class="kn" colspan="1"> {{ $destino4->dep_inicio }} {{ $destino4->origen }} HASTA {{ $destino4->dep_final }} {{ $destino4->destino }}</td>
         <td class="km" colspan="1">{{$ruta->kilo4}} </td>
+        @else
+        <td class="kn" colspan="1"> </td>
+        <td class="km" colspan="1"> </td>
+        @endif
     </tr>
     <tr>
+        @if(empty($destino5))
         <td colspan="1" class="kn"> {{ $destino5->dep_inicio }} {{ $destino5->origen }} HASTA {{ $destino5->dep_final }} {{ $destino5->destino }}</td>
         <td  colspan="1" class="km">{{$ruta->kilo5}} </td>
+        @else
+        <td class="kn" colspan="1"> </td>
+        <td class="km" colspan="1"> </td>
+        @endif
     </tr>
     <tr><?php $totalcombu = $presupuesto->totalcombu;
               $combulitros= number_format($totalcombu, 2, '.', ',');?>
@@ -73,8 +88,13 @@ use Carbon\Carbon;
               $precombu = number_format($premoney, 2, '.', ',');?>
         <td class="km" colspan="1">{{ $precombu }} </td>
         <td class="km" colspan="1">  {{$presupuesto->totalprecio}}</td>
+        @if(empty($destino6))
         <td colspan="1" class="kn"> {{ $destino6->dep_inicio }} {{ $destino6->origen }} HASTA {{ $destino6->dep_final }} {{ $destino6->destino }}</td>
         <td colspan="1" class="km" >{{$ruta->kilo6}}</td>
+        @else
+        <td class="kn" colspan="1"> </td>
+        <td class="km" colspan="1"> </td>
+        @endif
     </tr>
     <tr>
         <td class="km" colspan="1"> {{$presupuesto->canviaciu}}</td>
@@ -123,7 +143,7 @@ use Carbon\Carbon;
         <td class="km" colspan="1"> {{number_format($cm, 2, '.', ',')}}</td>
         <td colspan="1" class="kn"> Global</td>
         <?php $nomman  = $presupuesto->nommante;
-        if ($nomman == "") {$nm = "mantenimiento";} else { $nm = $nomman;}?>
+        if ($nomman == null) {$nm = "mantenimiento";} else { $nm = $nomman;}?>
         <td colspan="1" class="kn"> {{ $nm }}</td>
         <?php $preman  = $presupuesto->premante;
         if ($preman == "") {$pm = 0;} else { $pm = $preman;}?>
@@ -157,7 +177,7 @@ use Carbon\Carbon;
         <td colspan="1" class="kn"> {{$presupuesto->ruta1}}</td>
         <td class="km" colspan="1"> {{$presupuesto->precio1}}</td>
         <td class="km" colspan="1"> {{$presupuesto->total1}}</td>
-        <td colspan="2" class="kn"> Viaje de: {{$viaje->dias}} desde el:{{$viaje->fecha_inicial}} hasta el: {{$viaje->fecha_final}}</td>
+        <td colspan="2" class="kn"> Viaje de: {{$viaje->dias}} desde el: {{ Carbon::parse($viaje->fecha_inicial)->format('d-m-Y')}} hasta el: {{ Carbon::parse($viaje->fecha_final)->format('d-m-Y')}}</td>
     </tr>
     <tr>
         <td class="km" colspan="1"> {{$presupuesto->cantidad2}}</td>
@@ -166,7 +186,7 @@ use Carbon\Carbon;
         <td class="km" colspan="1"> {{$presupuesto->precio2}}</td>
         <td class="km" colspan="1"> {{$presupuesto->total2}}</td>
         <td class="kn" colspan="1"> Fecha de solicitud en S.A.</td>
-        <td class="kn" colspan="1"> {{$viaje->created_at}}</td>
+        <td class="kn" colspan="1"> {{ Carbon::parse($viaje->created_at)->format('Y-m-d') }}</td>
     </tr>
     <tr>
         <td class="km" colspan="1"> {{ $presupuesto->vueltas }}</td>
@@ -175,7 +195,7 @@ use Carbon\Carbon;
         <td class="km" colspan="1"> {{ $presupuesto->preciovuelta }}</td>
         <td class="km" colspan="1"> {{ $presupuesto->totalvuelta }}</td>
         <td colspan="1" class="kn"> Fecha de Viaje</td>
-        <td colspan="1" class="kn"> {{$viaje->fecha_inicial}}</td>
+        <td colspan="1" class="kn"> {{ Carbon::parse($viaje->fecha_inicial)->format('Y-m-d') }}</td>
     </tr>
     <tr>
         <td class="km" colspan="4"><b>TOTAL (b) bs.</b></td>
@@ -208,7 +228,7 @@ use Carbon\Carbon;
     </table><br>
         <center><h4 >Sr. {{$supervisor->name}}<br />ENCARGADO DE AUTOMOTORES </h4></center>
     <footer>
-        <center>Nuevo Sistema Web de INFRAESTRUCTURA © 2017 U.A.T.F.</center>
+        <center>Nuevo Sistema Web © 2017 Depto. INFRAESTRUCTURA</center>
     </footer>
 </body>
 </html>

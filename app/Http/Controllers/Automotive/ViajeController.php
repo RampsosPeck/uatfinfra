@@ -140,7 +140,7 @@ class ViajeController extends Controller
         
         //return back()->with('flash','Viaje creado completado correctamente...');
         Session::flash('message','El viaje fue creado correctamente...');
-        return redirect('viajes');
+        return redirect('calendario');
     }
 
     /**
@@ -158,10 +158,11 @@ class ViajeController extends Controller
 
         $destino1 = Destino::where('id',$ruta->destino1)->first();
         $destino2 = Destino::where('id',$ruta->destino2)->first();
-        $destino3 = Destino::where('id',$ruta->destino3)->first();
-        $destino4 = Destino::where('id',$ruta->destino4)->first();
-        $destino5 = Destino::where('id',$ruta->destino5)->first();
-        $destino6 = Destino::where('id',$ruta->destino6)->first();
+        $destino3 = Destino::where('id',$ruta->destino3)->first() ? 'null' : 'nulo';
+        //dd($destino3);
+        $destino4 = Destino::where('id',$ruta->destino4)->first() ? 'null' : 'nulo';
+        $destino5 = Destino::where('id',$ruta->destino5)->first() ? 'null' : 'nulo';
+        $destino6 = Destino::where('id',$ruta->destino6)->first() ? 'null' : 'nulo';
 
         $supervisor = User::where('type', 'Supervisor')->where('position', 'AUTOMOTORES')->first(); 
 
@@ -286,7 +287,7 @@ class ViajeController extends Controller
         $ruta->save();
 
         Session::flash('message','El viaje fue ACTUALIZADO correctamente...');
-        return redirect('viajes');
+        return redirect('calendario');
         
     }
 
