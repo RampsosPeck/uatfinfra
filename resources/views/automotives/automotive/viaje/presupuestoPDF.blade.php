@@ -9,8 +9,8 @@ use Carbon\Carbon;
     {!! Html::style('css/presupuestoPdf.css') !!}
 </head><br><br><br><br><br><br>
 <body>
-  <div style="background-color:#e0e0e0;">
-    
+  <!--<div style="background-color:#e0e0e0;" >-->
+  <div style="background: url(/img/dimension.png);" >
     <img style="float:right;" src="img/presupuesto.jpg" width="41px"/>
     <h1>
         <center>

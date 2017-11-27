@@ -86,7 +86,7 @@ Route::resource('viajes','Automotive\ViajeController');
 Route::resource('calendario','Automotive\CalendarioController');
 //Route::get('events','Automotive\CalendarioController@create');
 
-
+Route::resource('informes','Automotive\InformeController');
 
 
 

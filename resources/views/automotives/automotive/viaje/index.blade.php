@@ -48,6 +48,8 @@
                             
                             {!!link_to_route('viajes.show', $title = ' Imprimir', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-warning btn-xs  glyphicon fa fa-print','target'=>'_blank'])!!} 
 
+                            {!!link_to_route('informes.show', $title = ' Informe', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-xs  glyphicon fa fa-exclamation-circle','target'=>'_blank'])!!} 
+
                             {!! Form::open(['route'=>['viajes.destroy',$viaje->id],'method'=>'DELETE']) !!}
                                 <button type="submit" class="btn btn-danger btn-xs btn-block fa fa-ban" onClick="javascript: return confirm('¿Estas seguro de cancelar el viaje?');">
                                     Cancelar
