@@ -4,6 +4,8 @@ namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Uatfinfra\ModelAutomotores\Informe;
 use Uatfinfra\ModelAutomotores\Viaje;
+use Uatfinfra\ModelAutomotores\Vehiculo;
+use Uatfinfra\User;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Session;
@@ -51,8 +53,10 @@ class InformeController extends Controller
     public function show($id)
     {
         $viaje = Viaje::where('id',$id)->first();
-
-        return view('automotives.automotive.informes.create',compact('viaje'));
+        //return $viaje;
+        $vehiculos  = Vehiculo::all();
+        $conductores= User::where('type','Conductor')->where('active',true)->get();
+        return view('automotives.automotive.informes.create',compact('viaje','conductores','vehiculos'));
         
     }
 
