@@ -88,5 +88,8 @@ Route::resource('calendario','Automotive\CalendarioController');
 
 Route::resource('informes','Automotive\InformeController');
 
+Route::resource('solicitudes','Solicitud\SolicitudController');
+
+
 
 

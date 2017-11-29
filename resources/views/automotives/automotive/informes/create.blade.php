@@ -1,9 +1,25 @@
 @extends('automotives.layout')
 <?php use Carbon\Carbon;?>
 @section('content')
-<div class="row">
-  
-<form class="form-horizontal">
+  <div class="col-md-12">
+          <font color="#007bff"><span class="fa fa-exclamation-circle fa-2x form-control-feedback"></span></font>
+            <div class="box-header with-border">
+                <center>
+                  <h3 class="box-title">
+                    <font color="#007bff"><b>INFORME DEL VIAJE</b></font>
+                  </h3><br>
+                  <b>
+                    Los campos con el icono 
+                    <font color="red">
+                          <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+                      </font>
+                      son obligatorios.
+                  </b>
+              </center>
+            </div>
+             
+{!! Form::open(['route'=>'informes.store','method'=>'POST','class'=>'form-horizontal']) !!}
+    {{ csrf_field() }}
 
   <div class="col-md-5">
     <div class="box box-info">
@@ -35,12 +51,12 @@
                     {!! $errors->first('vehiculo', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
+            <input type="hidden" name="viaje_id" value="{{ $viaje->id }}">
             <div class="form-group {{ $errors->has('conductor') ? 'has-error' : '' }}">
                 <label for="conductor" class="col-sm-3 control-label">Conductor:</label>
                 <div class="col-sm-9">
                     <div class="input-group">
                         <select  class="form-control select2"
-                                multiple="multiple"
                                 name="conductor"
                                 data-placeholder="Uno o dos encargados"
                                 style="width: 100%;"
@@ -176,6 +192,9 @@
                 </div>
             </div>
             <label><font color="#3c8dbc"><b>INFORME DEL VIAJE Y DEL VEHÍCULO</b></font></label>
+                <font color="red">
+                  <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+                </font>
               <div class="form-group {{ $errors->has('informe') ? 'has-error' : '' }}">
                   <div class="col-sm-12">
                       {!! Form::textarea('informe',old('informe'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su informe sobre el viaje y el vehículo durante el viaje','required','required']) !!}
@@ -206,12 +225,9 @@
                   <label for="kmpartida" class="col-sm-2 control-label">Partida:</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('kmpartida') ? 'has-error' : '' }}">
-                        <input type="number" 
-                          class="form-control" 
-                          name="kmpartida" 
-                          id="kmpartida" 
-                          placeholder="Ejm. 30028" 
-                          value="{{ old('kmpartida') }}">
+
+                        {!! Form::text('kmpartida',null,['class'=>'form-control','id'=>'kmpartida','value'=>'old("kmpartida")','onkeyup'=>'sumar();','placeholder'=>'30028']) !!}
+
                         <span class="input-group-addon" id="basic-addon1">
                             <font color="red">
                               <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -224,12 +240,9 @@
                   <label for="kmllegada" class="col-sm-2 control-label">Llegada:</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('kmllegada') ? 'has-error' : '' }}">
-                        <input type="number" 
-                          class="form-control" 
-                          name="kmllegada" 
-                          id="kmllegada" 
-                          placeholder="Ejm. 40015" 
-                          value="{{ old('kmllegada') }}">
+
+                        {!! Form::text('kmllegada',null,['class'=>'form-control','id'=>'kmllegada','value'=>'old("kmllegada")','onkeyup'=>'sumar();','placeholder'=>'40015']) !!}
+
                         <span class="input-group-addon" id="basic-addon1">
                             <font color="red">
                            <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -239,6 +252,10 @@
                       {!! $errors->first('kmllegada', '<span class="help-block">:message</span>') !!}
                   </div>
               </div>
+              
+              {!! Form::hidden('kmtotal',null,['class'=>'form-control','id'=>'kmtotal','value'=>'0']) !!}
+              
+
               <label><font color="#3c8dbc"><b>VIÁTICOS</b></font></label>
               <div class="form-group">
                 <label for="viaticos" class="col-sm-5 control-label">Total viáticos:</label>
@@ -250,11 +267,6 @@
                           id="viaticos" 
                           placeholder="Ejm. 10150" 
                           value="{{ old('viaticos') }}">
-                        <span class="input-group-addon" id="basic-addon1">
-                            <font color="red">
-                           <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                           </font>
-                        </span>
                     </div>
                       {!! $errors->first('viaticos', '<span class="help-block">:message</span>') !!}
                   </div>
@@ -264,12 +276,9 @@
                 <label for="litro1" class="col-sm-1 control-label">1):</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('litro1') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="litro1" 
-                          id="litro1" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('litro1') }}">
+
+                        {!! Form::text('litro1',null,['class'=>'form-control','id'=>'litro1','value'=>'old("litro1")','onkeyup'=>'sumar();','placeholder'=>'30.15']) !!}
+
                         <span class="input-group-addon">Litros</span>
                     </div>
                       {!! $errors->first('litro1', '<span class="help-block">:message</span>') !!}
@@ -277,12 +286,9 @@
                   <label for="compra1" class="col-sm-3 control-label">Compra:</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('compra1') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="compra1" 
-                          id="compra1" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('compra1') }}">
+
+                      {!! Form::text('compra1',null,['class'=>'form-control','id'=>'compra1','value'=>'old("compra1")','onkeyup'=>'sumar();','placeholder'=>'112.15']) !!}
+ 
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('compra1', '<span class="help-block">:message</span>') !!}
@@ -291,12 +297,9 @@
                 <label for="litro2" class="col-sm-1 control-label">2):</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('litro2') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="litro2" 
-                          id="litro2" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('litro2') }}">
+
+                      {!! Form::text('litro2',null,['class'=>'form-control','id'=>'litro2','value'=>'old("litro2")','onkeyup'=>'sumar();','placeholder'=>'70.10']) !!}
+ 
                         <span class="input-group-addon">Litros</span>
                     </div>
                       {!! $errors->first('litro2', '<span class="help-block">:message</span>') !!}
@@ -304,12 +307,9 @@
                   <label for="compra2" class="col-sm-3 control-label">Compra:</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('compra2') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="compra2" 
-                          id="compra2" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('compra2') }}">
+
+                        {!! Form::text('compra2',null,['class'=>'form-control','id'=>'compra2','value'=>'old("compra2")','onkeyup'=>'sumar();','placeholder'=>'260.77']) !!}
+
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('compra2', '<span class="help-block">:message</span>') !!}
@@ -317,12 +317,9 @@
                 <label for="litro3" class="col-sm-1 control-label">3):</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('litro3') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="litro3" 
-                          id="litro3" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('litro3') }}">
+
+                      {!! Form::text('litro3',null,['class'=>'form-control','id'=>'litro3','value'=>'old("litro3")','onkeyup'=>'sumar();','placeholder'=>'10']) !!}
+
                         <span class="input-group-addon">Litros</span>
                     </div>
                       {!! $errors->first('litro3', '<span class="help-block">:message</span>') !!}
@@ -330,12 +327,9 @@
                   <label for="compra3" class="col-sm-3 control-label">Compra:</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('compra3') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="compra3" 
-                          id="compra3" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('compra3') }}">
+
+                      {!! Form::text('compra3',null,['class'=>'form-control','id'=>'compra3','value'=>'old("compra3")','onkeyup'=>'sumar();','placeholder'=>'37.20']) !!}
+
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('compra3', '<span class="help-block">:message</span>') !!}
@@ -346,13 +340,9 @@
                 <label for="totallitro" class="col-sm-1 control-label">Total: </label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('totallitro') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="totallitro" 
-                          id="totallitro" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('totallitro') }}"
-                          readonly="readonly">
+
+                        {!! Form::text('totallitro',null,['class'=>'form-control','id'=>'totallitro','value'=>'0','placeholder'=>'110.25','readonly']) !!}
+
                         <span class="input-group-addon">Litros</span>
                     </div>
                       {!! $errors->first('totallitro', '<span class="help-block">:message</span>') !!}
@@ -360,13 +350,9 @@
                   <label for="totalbs" class="col-sm-3 control-label">Total:</label>
                   <div class="col-sm-4 ">
                     <div class="input-group {{ $errors->has('totalbs') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="totalbs" 
-                          id="totalbs" 
-                          placeholder="Ejm. 10150" 
-                          value="{{ old('totalbs') }}"
-                          readonly="readonly">
+
+                      {!! Form::text('totalbs',null,['class'=>'form-control','id'=>'totalbs','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('totalbs', '<span class="help-block">:message</span>') !!}
@@ -415,12 +401,9 @@
                 <label for="debocombu" class="col-sm-3 control-label">Combustible:</label>
                   <div class="col-sm-3">
                     <div class="input-group {{ $errors->has('debocombu') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="debocombu" 
-                          id="debocombu" 
-                          placeholder="0.20" 
-                          value="{{ old('debocombu') }}">
+
+                        {!! Form::text('debocombu',null,['class'=>'form-control','id'=>'debocombu','value'=>'old("debocombu")','onkeyup'=>'sumar();','placeholder'=>'0.20']) !!}
+                        
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('debocombu', '<span class="help-block">:message</span>') !!}
@@ -428,12 +411,8 @@
                   <label for="debopeaje" class="col-sm-2 control-label">Peaje:</label>
                   <div class="col-sm-3">
                     <div class="input-group {{ $errors->has('debopeaje') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="debopeaje" 
-                          id="debopeaje" 
-                          placeholder="8" 
-                          value="{{ old('debopeaje') }}">
+                        
+                        {!! Form::text('debopeaje',null,['class'=>'form-control','id'=>'debopeaje','value'=>'old("debopeaje")','onkeyup'=>'sumar();','placeholder'=>'8']) !!}
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('debopeaje', '<span class="help-block">:message</span>') !!}
@@ -441,12 +420,9 @@
                   <label for="deboimprevi" class="col-sm-3 control-label">Imprevistos:</label>
                   <div class="col-sm-3">
                     <div class="input-group {{ $errors->has('deboimprevi') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="deboimprevi" 
-                          id="deboimprevi" 
-                          placeholder="110" 
-                          value="{{ old('deboimprevi') }}">
+                        
+                      {!! Form::text('deboimprevi',null,['class'=>'form-control','id'=>'deboimprevi','value'=>'old("deboimprevi")','onkeyup'=>'sumar();','placeholder'=>'110']) !!}
+
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('deboimprevi', '<span class="help-block">:message</span>') !!}
@@ -454,13 +430,9 @@
                   <label for="debototal" class="col-sm-2 control-label">Total:</label>
                   <div class="col-sm-3">
                     <div class="input-group {{ $errors->has('debototal') ? 'has-error' : '' }}">
-                        <input type="text" 
-                          class="form-control" 
-                          name="debototal" 
-                          id="debototal" 
-                          placeholder="total" 
-                          value="{{ old('debototal') }}"
-                          readonly="readonly">
+
+                        {!! Form::text('debototal',null,['class'=>'form-control','id'=>'debototal','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('debototal', '<span class="help-block">:message</span>') !!}
@@ -475,8 +447,7 @@
 
     </button>
   </center>
-</form>
-
+{!! Form::close() !!}
 </div>
 @endsection
 
@@ -493,7 +464,7 @@
    <script src="/dashboard/plugins/datepicker/bootstrap-datepicker.js"></script>
    <script src="/dashboard/plugins/timepicker/bootstrap-timepicker.min.js"></script>
    <script src="/dashboard/plugins/iCheck/icheck.min.js"></script>
-   <script src="/js/sistem/kilometraje.js"></script>
+   <script src="/js/sistem/informe.js"></script>
 <script>
 //Date picker
   $('.timepicker').timepicker({
@@ -510,9 +481,10 @@
       });
   $(".select2").select2({
       language: "es",
-      maximumSelectionLength: 2,
+      maximumSelectionLength: 1,
       allowClear: true
     });
+
 </script>
 @endpush
 

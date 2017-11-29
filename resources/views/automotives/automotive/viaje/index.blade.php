@@ -4,9 +4,9 @@
 @include('alertas.success')
 <?php use Carbon\Carbon; ?>
 <div class="container">
-    <div class="box">
+    <div class="box box-primary">
         <div class="box-header text-center">
-            <h3 class="box-title"><b>Lista de viajes</b></h3>
+            <h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE VIAJES</FONT></b></h3>
 		</div>
         <div class="box-body">
         <div class="table-responsive">
@@ -44,11 +44,11 @@
                         <td>{{ Carbon::parse($viaje->fecha_final)->format('Y-m-d')}} {{ $viaje->horafinal }}</td>
                         <td>{{ $viaje->vehiculo->placa }}</td>
                         <td>
-                            {!!link_to_route('viajes.edit', $title = 'Editar', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
+                            {!!link_to_route('viajes.edit', $title = 'Editar', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o','onClick'=>'javascript: return confirm("¿Estas seguro de EDITAR el viaje?");'])!!}
                             
-                            {!!link_to_route('viajes.show', $title = ' Imprimir', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-warning btn-xs  glyphicon fa fa-print','target'=>'_blank'])!!} 
+                            {!!link_to_route('viajes.show', $title = ' Imprimir', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-warning btn-xs btn-block glyphicon fa fa-print','target'=>'_blank'])!!} 
 
-                            {!!link_to_route('informes.show', $title = ' Informe', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-xs  glyphicon fa fa-exclamation-circle','target'=>'_blank'])!!} 
+                            {!!link_to_route('informes.show', $title = ' Informe', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-xs btn-block glyphicon fa fa-exclamation-circle','target'=>'_blank'])!!} 
 
                             {!! Form::open(['route'=>['viajes.destroy',$viaje->id],'method'=>'DELETE']) !!}
                                 <button type="submit" class="btn btn-danger btn-xs btn-block fa fa-ban" onClick="javascript: return confirm('¿Estas seguro de cancelar el viaje?');">

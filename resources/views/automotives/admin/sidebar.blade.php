@@ -50,34 +50,16 @@
         </ul>
     </li>
 
-    <li class="treeview">
-        <a href="#"><i class="fa fa-plane"></i> <span>Viajes</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#">Crear</a></li>
-          <li><a href="#">Listar</a></li>
-          <li><a href="#">Destinos</a></li>
-          <li><a href="#">Mapas</a></li>
-        </ul>
+    <li class="treeview {{ request()->is('informes*') ? 'active' : '' }}"">
+        <a href="{!! URL::to('/informes') !!}"><i class="fa fa-file-text-o"></i> <span>Informes</span></a>
     </li>
-    <li class="treeview {{ request()->is('travels*') ? 'active' : '' }}">
-        <a href="#"><i class="fa fa-calendar"></i> <span>Calendario de Viajes</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li {{ request()->is('travels') ? 'class=active' : '' }}><a href="{!! URL::to('/travels') !!}">
-            <i class="fa fa-calendar"></i> Calendario de Viajes</a></li>
-          <li><a href="#"><i class="fa fa-user-circle"></i> <span>Rol de viajes</span></a></li>
-          <li><a href="#"><i class="fa fa-dashboard"></i> <span>Combustibles</span></a></li>
-          <li><a href="#"><i class="fa fa-usd"></i> <span>Presupuestos</span></a></li>
-          <li><a href="#"><i class="fa fa-file-pdf-o"></i> <span>Informes</span></a></li>
-        </ul>
+
+    <li class="treeview {{ request()->is('solicitudes*') ? 'active' : '' }}">
+        <a href="{!! URL::to('/solicitudes') !!}"><i class="fa fa-calendar"></i> <span>Solicitud de Trabajo</span></a>
     </li>
+
+
+
     <li class="treeview {{ request()->is('reservas*') ? 'active' : '' }}">
         <a href="#"><i class="fa fa-arrow-circle-up"></i> <span>Reserva de Viajes</span>
           <span class="pull-right-container">

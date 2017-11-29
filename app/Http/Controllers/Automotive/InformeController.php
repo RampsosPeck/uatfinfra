@@ -20,7 +20,8 @@ class InformeController extends Controller
      */
     public function index()
     {
-        //
+        $informes =  Informe::all();
+        return view('automotives.automotive.informes.index',compact('informes'));
     }
 
     /**
@@ -41,7 +42,10 @@ class InformeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request;
+        Informe::create($request->all());
+        Session::flash('message','Informe del viaje CREADO correctamente...');
+        return redirect('informes');
     }
 
     /**
@@ -66,9 +70,13 @@ class InformeController extends Controller
      * @param  \Uatfinfra\Informe  $informe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Informe $informe)
+    public function edit($id)
     {
-        //
+        $informe = Informe::where('id',$id)->first();
+        $vehiculos  = Vehiculo::all();
+        $conductores= User::where('type','Conductor')->where('active',true)->get();
+        return view('automotives.automotive.informes.edit',compact('informe','conductores','vehiculos'));
+
     }
 
     /**
@@ -78,9 +86,13 @@ class InformeController extends Controller
      * @param  \Uatfinfra\Informe  $informe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Informe $informe)
+    public function update(Request $request, $id)
     {
-        //
+        $informe = Informe::find($id);
+        $informe->fill($request->all());
+        $informe->save();
+        Session::flash('message','El informe fue EDITADO correctamente...');
+        return redirect('informes');
     }
 
     /**
@@ -89,8 +101,10 @@ class InformeController extends Controller
      * @param  \Uatfinfra\Informe  $informe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Informe $informe)
+    public function destroy($id)
     {
-        //
+        Informe::destroy($id);
+        Session::flash('message','Informe de viaje Eliminado correctamente...');
+        return redirect('informes');
     }
 }
