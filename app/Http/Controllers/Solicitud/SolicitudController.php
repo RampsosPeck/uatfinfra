@@ -5,6 +5,7 @@ use Uatfinfra\ModelSolicitudes\Solicitud;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Session;
 use Auth;
 
@@ -41,7 +42,19 @@ class SolicitudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $date = Carbon::now();
+        //dd($date->toFormattedDateString());
+        //return $request;
+        $solicitud = new Solicitud;
+        $solicitud->vehiculo_id =  $request['vehiculo_id'];
+        $solicitud->user_id     =  Auth::user()->id;
+        $solicitud->descripcion =  $request['descripcion'];
+        $solicitud->fecha       =  $date->toFormattedDateString();
+        $solicitud->save();
+
+        Session::flash('message','La solicitud de trabajo para el mecanico se creo correctamente...');
+        return redirect('solicitudes');
+
     }
 
     /**

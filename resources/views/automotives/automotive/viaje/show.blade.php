@@ -64,7 +64,7 @@ use Uatfinfra\ModelAutomotores\Destino; ?>
       {!!link_to_route('viajes.edit', $title = ' Editar el viaje', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-sm btn-flat pull-left glyphicon glyphicon-pencil','onClick'=>'javascript: return confirm("¿Estas seguro de EDITAR el viaje?");'])!!}
       {!!link_to_route('viajes.show', $title = ' Imprimir Presupuesto', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-warning btn-sm btn-flat pull-right glyphicon fa fa-print','target'=>'_blank'])!!}
       {!!link_to_route('calendario.edit', $title = ' Hoja de Ruta', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-sm btn-flat pull-right glyphicon fa fa-print','target'=>'_blank'])!!}
-      {!!link_to_route('informes.show', $title = ' Informe de viaje', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-sm btn-flat pull-right glyphicon fa fa-exclamation-circle','target'=>'_blank'])!!}
+      {!!link_to_route('informes.show', $title = ' Realizar informe', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-sm btn-flat pull-right glyphicon fa fa-exclamation-circle','target'=>'_blank'])!!}
     </div>
 </div>
 <div class="box box-info">

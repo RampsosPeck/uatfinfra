@@ -2,6 +2,7 @@
 
 namespace Uatfinfra\ModelSolicitudes;
 use Uatfinfra\User;
+use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Database\Eloquent\Model;
 
 class Solicitud extends Model

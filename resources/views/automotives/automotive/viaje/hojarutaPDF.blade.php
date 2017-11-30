@@ -14,7 +14,7 @@
       <h1>HOJA DE RUTA <br /><a>Sistema Web Departamento de Infraestructura U.A.T.F.</a> </h1>
       
       <div id="project">
-          <div><span><b>CONDUCTOR:</b></span> @foreach($viaje->conductorES as $conductor) {{ $conductor->name }} @endforeach</div>
+          <div><span><b>CONDUCTOR:</b></span> @foreach($viaje->conductores as $conductor) {{ $conductor->name }} @endforeach</div>
           <div><span><b>ENTIDAD:</b></span> {{ $viaje->entidad }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>PASAJEROS:</b></span> {{ $viaje->pasajeros }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>DÍAS:</b></span> {{ $viaje->dias }}</div>
           <div><span><b>PARTIDA:</b></span> {{ Carbon::parse($viaje->fecha_inicial)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>HORA:</b></span> {{ $viaje->horainicial }}</div>
           <div><span><b>RETORNO:</b></span> {{ Carbon::parse($viaje->fecha_final)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>HORA:</b></span> {{ $viaje->horafinal }}</div>
@@ -83,7 +83,7 @@
           <p padding='4px'>................................................................................................................................................................................................................................</p><br><p padding='4px'>................................................................................................................................................................................................................................</p><br>
         </div><br><br>
         <center>_____________________________<br>Firma <br> {{ $viaje->encargado->name }}</center>
-          
+        
     </main>
     <footer>
       <center>Nuevo Sistema Web © 2017 Depto. INFRAESTRUCTURA</center>

@@ -18,7 +18,7 @@ class CreateSolicitudsTable extends Migration
             $table->unsignedInteger('vehiculo_id');
             $table->unsignedInteger('user_id');
             $table->string('descripcion');
-            $table->date('fecha');
+            $table->string('fecha');
             $table->timestamps();
         });
     }
