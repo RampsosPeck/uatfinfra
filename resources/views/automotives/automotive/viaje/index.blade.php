@@ -14,6 +14,7 @@
  				<thead>
  					<tr>
 						<th>ID</th>
+                        <th>Código</th>
                         <th>Categoria</th>
                         <th>Conductor</th>
 						<th>Tipo</th>
@@ -27,8 +28,9 @@
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
-                    @foreach($viajes as $viaje)
-                    <tr>
+                    @foreach($viajes as $key => $viaje)
+                    <tr>                    
+                        <td class="text-center">{{ ++$key }}</td>
                     	<td class="text-center">{{ $viaje->id }}</td>
                         <td>{{ $viaje->categoria }}</td>
                         <td>

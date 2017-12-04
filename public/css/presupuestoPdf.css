@@ -67,8 +67,8 @@ footer {
     background-color: #fff;
 }
 h1 {
-  border-top: 1px solid  #5D6975;
-  border-bottom: 0px solid  #5D6975;
+  border-top: 1px solid  #337ab7;
+  border-bottom: 0px solid  #337ab7;
   color: #1A1A1A;
   font-size: 1.8em;
   line-height: 1.4em;
@@ -76,7 +76,6 @@ h1 {
   text-align: right;
   margin: 0 0 1px 0;
   background: url(img/dimension.png);
-  
   vertical-align: middle;
 }
 
@@ -107,7 +106,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: 20px;
+  margin-bottom: 1px;
+  
 }
 #tab {
   width: 50%;
@@ -117,12 +117,13 @@ table {
 }
 
 table tr:nth-child(2n-2) td {
-  background: #F5F5F5;
+  background:  #F3F9FB; 
+
 }
 
 table th,
 table td {
-  text-align: center;
+  text-align: center; 
 }
 
 table th {
@@ -131,6 +132,7 @@ table th {
   border-bottom: 1px solid #C1CED9;
   white-space: nowrap;        
   font-weight: normal;
+
 }
 
 table td {

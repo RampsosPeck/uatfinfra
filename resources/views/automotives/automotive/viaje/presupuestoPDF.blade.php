@@ -17,10 +17,10 @@ use Carbon\Carbon;
         <b>PRESUPUESTO DE VIAJE </b><br>
         </center> 
     </h1>
-    <center>Sistema Web Departamento de Infraestructura</center>
+    <center><font color="#337ab7;">Sistema Web Departamento de Infraestructura</font></center>
   </div>
 <main>
-<table border="2x"rowspan="2" colspan="1"style="border-width: 2px; border-style: double; border-color: black;" class="body">
+<table border="1" >
     <tr>
         <td class="preti" colspan="5"><strong><center>VIAJE ({{ $viaje->tipo }})</center></strong></td>
         <td class="preti" colspan="1"><strong><center>Ruta</center></strong></td>
@@ -205,7 +205,7 @@ use Carbon\Carbon;
     </tr>
 </table>
 </main>
-    <table border="2x"rowspan="2" colspan="1"style="border-width: 2px; border-style: double; border-color: black;" class="body">
+<table border="1" >
 
         <tr>
             <td class="km" colspan="6"><CENTER><b>NOTA: {{ $viaje->nota }}</b></CENTER></td>
@@ -225,7 +225,7 @@ use Carbon\Carbon;
         </tr>
 
 
-    </table><br>
+    </table><br><br>
         <center><h4 >Sr. {{$supervisor->name}}<br />ENCARGADO DE AUTOMOTORES </h4></center>
     <footer>
         <center>Nuevo Sistema Web © 2017 Depto. INFRAESTRUCTURA</center>

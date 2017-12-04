@@ -441,6 +441,7 @@
           </div>
       </div>
   </div>
+</div>
   <center>
     <button type="submit" class="btn btn-sm btn-primary">
       <b>Registrar el informe</b> <i class="fa fa-check-square-o" aria-hidden="true"></i>
@@ -448,7 +449,8 @@
     </button>
   </center>
 {!! Form::close() !!}
-</div>
+
+
 @endsection
 
 @push('styles')

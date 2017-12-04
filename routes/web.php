@@ -90,6 +90,6 @@ Route::resource('informes','Automotive\InformeController');
 
 Route::resource('solicitudes','Solicitud\SolicitudController');
 
-
+Route::get('informes/{id}/pdf','Automotive\InformeController@getImprimir');
 
 

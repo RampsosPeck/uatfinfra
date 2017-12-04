@@ -11,25 +11,26 @@
       <div id="logo">
         <br><br><br><br><br><br><br>
       </div>
-      <h1>HOJA DE RUTA <br /><a>Sistema Web Departamento de Infraestructura U.A.T.F.</a> </h1>
+      <h1>HOJA DE RUTA <br /><a><font color="#337ab7;">Sistema Web Departamento de Infraestructura U.A.T.F.</font></a> </h1>
       
       <div id="project">
-          <div><span><b>CONDUCTOR:</b></span> @foreach($viaje->conductores as $conductor) {{ $conductor->name }} @endforeach</div>
+          <div><span><b>CONDUCTOR:</b></span> @foreach($viaje->conductores as $conductor) {{ $conductor->name }} @endforeach  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Código:</b>{{ $viaje->id }}</div>
           <div><span><b>ENTIDAD:</b></span> {{ $viaje->entidad }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>PASAJEROS:</b></span> {{ $viaje->pasajeros }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>DÍAS:</b></span> {{ $viaje->dias }}</div>
           <div><span><b>PARTIDA:</b></span> {{ Carbon::parse($viaje->fecha_inicial)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>HORA:</b></span> {{ $viaje->horainicial }}</div>
           <div><span><b>RETORNO:</b></span> {{ Carbon::parse($viaje->fecha_final)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>HORA:</b></span> {{ $viaje->horafinal }}</div>
           <div><span><b>VEHÍCULO:</b></span> {{ $viaje->vehiculo->placa }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>KILOMETRAJE:</b></span> {{ $ruta->totalkm }} Km. &nbsp;&nbsp;&nbsp;&nbsp;<span><b>COMBUSTIBLE:</b></span> {{ $presupuesto->totalcombu }} Litros</div>
-      </div>
+      </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img  style="float:right;" src="img/index.png" width="80px"/>
     </header>
     <center><SPAN><strong>RUTAS DEL VIAJE</strong></SPAN></center>
     <main>
       <table >
         <thead>
           <tr>
-            <th class="service"><center>Depto. Origen:</center></th>
-            <th class="desc"><center>Ruta</center></th>
-            <th class="service"><center>Depto. Destino:</center></th>
-            <th class="service"><center>Tiempo Aprox.</center></th>
+            <th class="service"><center><b>Depto. Origen:</b></center></th>
+            <th class="desc"><center><b>Ruta</b></center></th>
+            <th class="service"><center><b>Depto. Destino:</b></center></th>
+            <th class="service"><center><b>Tiempo Aprox.</b></center></th>
           </tr>
         </thead>
         <tbody>
@@ -83,10 +84,22 @@
           <p padding='4px'>................................................................................................................................................................................................................................</p><br><p padding='4px'>................................................................................................................................................................................................................................</p><br>
         </div><br><br>
         <center>_____________________________<br>Firma <br> {{ $viaje->encargado->name }}</center>
-        
+        <!--
+          <div class="tableinfo" id="tableinfo">
+              <table  >
+                <tr>
+                    <td class="km" colspan="3"><br><br>_________________<br>   <br><b>Conductor</b>
+                    </td>
+                    <td class="km" colspan="3"><br><br>_________________<br>   <br><b>Encargado de Automotores</b>
+                    </td>          </tr>
+              </table>
+          </div>
+        -->
     </main>
     <footer>
       <center>Nuevo Sistema Web © 2017 Depto. INFRAESTRUCTURA</center>
     </footer>
   </body>
 </html>
+
+

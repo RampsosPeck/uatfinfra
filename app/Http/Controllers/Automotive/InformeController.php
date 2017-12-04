@@ -107,4 +107,18 @@ class InformeController extends Controller
         Session::flash('message','Informe de viaje Eliminado correctamente...');
         return redirect('informes');
     }
+    public function getImprimir($id)
+    {
+        $informe = Informe::find($id);
+        $chofer = User::where('id',$informe->conductor)->first();
+        $viaje = Viaje::where('id',$informe->viaje_id)->first();
+        $encargado = User::where('id',$viaje->encargado_id)->first();
+        $supervisor = User::where('type','Supervisor')->where('position','AUTOMOTORES')->first();
+        $jefe  = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
+        $view =  \View::make('automotives.automotive.informes.pdf', compact('informe','chofer','encargado','viaje','supervisor','jefe'))->render();
+        $pdf  = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('carta', 'portrait');
+        return $pdf->stream('Informe'.$informe->viaje_id.'.pdf');
+    }
+
 }

@@ -36,7 +36,8 @@
                         <td>
                             {!!link_to_route('informes.edit', $title = 'Editar', $parameters = $informe->id, $attributes = ['class'=>'btn btn-primary btn-xs fa fa-pencil-square-o'])!!}
                             
-                            {!!link_to_route('informes.create', $title = ' Imprimrrrir', $parameters = $informe->id, $attributes = ['class'=>'btn btn-warning btn-xs fa fa-print','target'=>'_blank'])!!} 
+                            {!!link_to_action('Automotive\InformeController@getImprimir', $title = ' Imprimir Informe', $parameters = $informe->id,  $attributes = ['class'=>'btn btn-warning btn-xs fa fa-print','target'=>'_blank'])!!}
+
 
                         </td>
                     </tr>
