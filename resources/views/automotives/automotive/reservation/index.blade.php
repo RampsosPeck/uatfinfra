@@ -1,23 +1,21 @@
 @extends('automotives.layout')
 
 @section('content')
-
+@include('alertas.success')
 <div class="container">
-	@if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-    <div class="box box-info" >
-    	<font color="#17a2b8"><span class="fa fa-users fa-2x form-control-feedback"></span></font>
-        <div class="box-header">
-        	<center>
-        		<h3 class="box-title"><font color="#17a2b8" ><b>LISTA DE VEHÍCULOS</b></font></h3>
+    <div class="box box-info">
+        <div class="box-header text-center">
+            <center>
+        		<h3 class="box-title"><font color="#17a2b8" ><b>LISTA DE RESERVACIONES</b></font></h3>
         	</center>
+        	<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalreserva"><i class="fa fa-plus"></i> Crear RESERVA</button>
+            
+            @include('automotives.automotive.reservation.create')
+
 		</div>
         <div class="box-body">
         <div class="table-responsive">
-   			<table id="users-table" class="table table-bordered table-striped ">
+   			<table id="vehiculo-table" class="table table-bordered table-striped ">
  				<thead>
  					<tr>
 						<th>#</th>
@@ -27,11 +25,11 @@
 						<th>Fecha Inicial</th>
 						<th>Fecha Final</th>
 						<th>Pasajeros</th>
-						<th>Acciones</th>
+						<th>Acciones</th>			
 					</tr>
  				</thead>
- 				<tbody>
- 					@foreach ($reservations as $reservation)
+ 				<tbody bgcolor="#d9edf7">
+                    @foreach ($reservations as $reservation)
 					<tr>
 						<td>{{ $reservation->id }}</td>
 						<td>{{ $reservation->user->name }}</td>
@@ -41,11 +39,13 @@
 						<td>{{ $reservation->enddate }}</td>
 						<td><center>{{ $reservation->passengers }}</center></td>
 						<td>
+							{!!link_to_route('reservas.edit', $title = ' Editar', $parameters = $reservation->id, $attributes = ['class'=>'btn btn-primary btn-block btn-xs fa fa-pencil-square-o'])!!}
 
+							{!!link_to_route('reservas.show', $title = ' Concretar', $parameters = $reservation->id, $attributes = ['class'=>'btn btn-info btn-block btn-xs fa fa-pencil-square'])!!}
 						</td>
 					</tr>
 					@endforeach
- 				</tbody>
+                </tbody>
  			</table>
  		</div>	     			
    		</div>
@@ -54,3 +54,43 @@
 @endsection
 
 
+@push('styles')
+   {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
+@endpush
+
+@push('scripts') 
+   {!! Html::script('/dashboard/plugins/datatables/jquery.dataTables.min.js') !!}
+   {!! Html::script('/dashboard/plugins/datatables/dataTables.bootstrap.min.js') !!}
+<script>
+  $(function () {
+    $('#vehiculo-table').DataTable( {
+        "language": {
+          
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "NingÃºn dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Ãšltimo",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+            },
+            "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
+  });
+  
+  </script>
+@endpush

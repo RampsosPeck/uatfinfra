@@ -57,20 +57,13 @@
     <li class="treeview {{ request()->is('solicitudes*') ? 'active' : '' }}">
         <a href="{!! URL::to('/solicitudes') !!}"><i class="fa fa-calendar"></i> <span>Solicitud de Trabajo</span></a>
     </li>
-
-
-
     <li class="treeview {{ request()->is('reservas*') ? 'active' : '' }}">
-        <a href="#"><i class="fa fa-arrow-circle-up"></i> <span>Reserva de Viajes</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
+        <a href="{!! URL::to('/reservas') !!}"><i class="fa fa-calendar-check-o"></i> <span>Reserva de Viajes
         </a>
-        <ul class="treeview-menu">
-          <li {{ request()->is('reservas/create') ? 'class=active' : '' }}><a href="{!! URL::to('/reservas/create') !!}"><i class="fa fa-paper-plane"></i> <b>Crear</b></a></li>
-          <li {{ request()->is('reservas') ? 'class=active' : '' }}><a href="{!! URL::to('/reservas') !!}"><i class="fa fa-ellipsis-v"></i> <b>Listar</b></a></li>
-        </ul>
-    </li>    
+    </li> 
+
+
+       
         
         <li class="treeview">
           <a href="#"><i class="fa fa-sitemap"></i> <span>Solictud de trabajo</span>

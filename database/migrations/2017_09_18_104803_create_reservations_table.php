@@ -15,12 +15,11 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('entidad');
-            $table->mediumText('objectivo');
-            $table->integer('pasajeros');
-            $table->integer('dias');
-            $table->timestamp('fecha_inicial')->nullable();
-            $table->timestamp('fecha_final')->nullable();
+            $table->string('entity');
+            $table->mediumText('objective');
+            $table->integer('pasengers');
+            $table->timestamp('startdate')->nullable();
+            $table->timestamp('enddate')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
         });

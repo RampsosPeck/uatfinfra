@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Uatfinfra\User;
 use Uatfinfra\Reservation;
 use Uatfinfra\Http\Controllers\Controller;
+use Session;
+use Auth;
 
 class ReservationController extends Controller
 {
@@ -17,8 +19,8 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Reservation::all();
-        //dd($reservations);
-        return view('automotives.automotive.reservation.index',compact('reservations'));
+        $users = User::where('type','Enc. de Viaje')->where('position','U.A.T.F.')->get();
+        return view('automotives.automotive.reservation.index',compact('reservations','users'));
     }
 
     /**
@@ -28,8 +30,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view('automotives.automotive.reservation.create', compact('users'));
+       
     }
 
     /**
@@ -45,15 +46,15 @@ class ReservationController extends Controller
         
         $reserva = new Reservation;
         $reserva->entity = $request->get('entity');
-        $reserva->objective = $request->get('objective');
+        $reserva->objetive = $request->get('objetive');
         $reserva->passengers = $request->get('passengers');
-        $reserva->days = 5;
         $reserva->startdate = $request->get('startdate');
         $reserva->enddate = $request->get('enddate');
         $reserva->user_id = $request->get('user_id');
         $reserva->save();
 
-        return redirect('reservas')->with('flash', 'Tu reserva fue creada correctamente!!!');
+        Session::flash('message','La reserva fue CREADA correctamente...');
+        return redirect('reservas');
         
     }
 
@@ -65,7 +66,7 @@ class ReservationController extends Controller
      */
     public function show($id)
     {
-        //
+        return Reservation::find($id);
     }
 
     /**
@@ -76,7 +77,9 @@ class ReservationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reservas =  Reservation::find($id);
+        $users = User::where('type','Enc. de Viaje')->where('position','U.A.T.F.')->get();
+        return view('automotives.automotive.reservation.edit',compact('reservas','users'));
     }
 
     /**

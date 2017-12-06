@@ -3,13 +3,14 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box">
+    <div class="box box-info">
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO</FONT></b></h3></center>
              <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Crear SOLICITUD</button>
 
 
         @include('solicitudes.mecanico.solicitud.create')
+
 
 		</div>
         <div class="box-body">

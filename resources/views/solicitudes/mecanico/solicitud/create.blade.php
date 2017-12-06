@@ -7,7 +7,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title text-center" id="exampleModalLabel"><b>INGRESE LOS SIGUENTES DATOS</b></h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" STYLE="background:#bce8f1">
         
           <div class="form-group {{ $errors->has('vehiculo') ? 'has-error' : '' }}">
               <label for="recipient-name" class="control-label">Vehículo:</label>

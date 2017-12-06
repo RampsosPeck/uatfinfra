@@ -1,13 +1,19 @@
-{!! Form::open(['route'=>'reservas.store','method'=>'POST']) !!}
+@extends('automotives.layout')
+<?php use Carbon\Carbon;?>
+@section('content')
+<br><br>
+<div class="col-md-3">
+</div>
+<div class="col-md-6">
+    <div class="box box-info">
+        <div class="box-header with-border">
+          <CENTER><h3 class="box-title"><b>EDITAR LA RESERVA</b></h3></CENTER>
+        </div>
+        <div class="box-body" STYLE="background:#bce8f1" >
+    	{!! Form::model($reservas,['route'=>['reservas.update',$reservas->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
               {{ csrf_field() }}
-<div class="modal fade" id="myModalreserva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center" id="exampleModalLabel"><b>INGRESE LOS SIGUENTES DATOS</b></h4>
-      </div>
-      <div class="modal-body" STYLE="background:#bce8f1">
+		
+            
 			<div class="form-group">
                 <label for="startdate" class="col-sm-3 control-label">Fecha Inicial:</label>
                 <div class="input-group date">
@@ -63,20 +69,27 @@
                 </div>	
             </div>
 
-      </div>
-      <div class="modal-footer ">
-            <center>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancelar</b></button>
 
-                <button type="submit" class="btn btn-success">Guardar los datos</button>
-              
-            </center>
-        </div>
-    </div>
-  </div>
+
+			
+		    <center>
+		      <button type="submit" class="btn btn-sm btn-primary">
+		        <b>Guardar la solicitud</b> <i class="fa fa-check-square-o" aria-hidden="true"></i>
+		      </button>
+		    </center>
+
+		{!! Form::close() !!}
+		<center>
+		 {!! Form::open(['route'=>['reservas.destroy',$reservas->id],'method'=>'DELETE']) !!}
+		                <button type="submit" class="btn btn-danger btn-sm " onClick="javascript: return confirm('¿Estas seguro de eliminar a la solicitud?');">
+		                   <b>Eliminar la solicitud</b> <i class="fa fa-trash" aria-hidden="true"></i> 
+		                </button>
+		{!! Form::close() !!}
+		</center>
+		</div>
+	</div>		
 </div>
-{{ FORM::close() }}
-
+@endsection
 
 
 @push('styles')
@@ -103,11 +116,3 @@
     $(".select2").select2();
 </script>
 @endpush
-
-
-
-
-
-
-
- 
