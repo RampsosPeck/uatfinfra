@@ -114,8 +114,16 @@ class InformeController extends Controller
         $viaje = Viaje::where('id',$informe->viaje_id)->first();
         $encargado = User::where('id',$viaje->encargado_id)->first();
         $supervisor = User::where('type','Supervisor')->where('position','AUTOMOTORES')->first();
+        
+        if($viaje->recurso == "viajeuatf")
+        {
+            $recurso = "U.A.T.F.";
+        }else{
+            $recurso = "PROPIOS";
+        }
+        
         $jefe  = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
-        $view =  \View::make('automotives.automotive.informes.pdf', compact('informe','chofer','encargado','viaje','supervisor','jefe'))->render();
+        $view =  \View::make('automotives.automotive.informes.pdf', compact('informe','chofer','encargado','viaje','supervisor','jefe','recurso'))->render();
         $pdf  = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('carta', 'portrait');
         return $pdf->stream('Informe'.$informe->viaje_id.'.pdf');

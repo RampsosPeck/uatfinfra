@@ -74,9 +74,13 @@ class SolicitudController extends Controller
      * @param  \Uatfinfra\ModelAutomotores\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function edit(Solicitud $solicitud)
+    public function edit($id)
     {
-        //
+        //return Solicitud::find($id);
+        $solicitud = Solicitud::find($id);
+        $vehiculos = Vehiculo::all();
+        return view('solicitudes.mecanico.solicitud.edit',compact('solicitud','vehiculos'));
+
     }
 
     /**
@@ -86,9 +90,18 @@ class SolicitudController extends Controller
      * @param  \Uatfinfra\ModelAutomotores\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Solicitud $solicitud)
+    public function update(Request $request, $id)
     {
-        //
+        $date = Carbon::now();
+        
+        $solicitud = Solicitud::find($id);
+        $solicitud->vehiculo_id =  $request['vehiculo_id'];
+        $solicitud->user_id     =  Auth::user()->id;
+        $solicitud->descripcion =  $request['descripcion'];
+        $solicitud->fecha       =  $date->toFormattedDateString();
+        $solicitud->save();
+        Session::flash('message','La solicitud fue EDITADA correctamente...');
+        return redirect('solicitudes');
     }
 
     /**
@@ -97,8 +110,10 @@ class SolicitudController extends Controller
      * @param  \Uatfinfra\ModelAutomotores\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Solicitud $solicitud)
+    public function destroy($id)
     {
-        //
+        Solicitud::destroy($id);
+        Session::flash('message','La solicitud fue eliminada correctamente...');
+        return redirect('solicitudes');
     }
 }

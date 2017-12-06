@@ -107,7 +107,14 @@ class CalendarioController extends Controller
 
         $supervisor = User::where('type', 'Supervisor')->where('position', 'AUTOMOTORES')->first(); 
 
-        $view =  \View::make('automotives.automotive.viaje.hojarutaPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje','supervisor'))->render();
+        if($viaje->recurso == "viajeuatf")
+        {
+            $recurso = "U.A.T.F.";
+        }else{
+            $recurso = "PROPIOS";
+        }
+
+        $view =  \View::make('automotives.automotive.viaje.hojarutaPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje','supervisor','recurso'))->render();
         $pdf  = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('carta', 'portrat');
         return $pdf->stream('Hoja de ruta.pdf');

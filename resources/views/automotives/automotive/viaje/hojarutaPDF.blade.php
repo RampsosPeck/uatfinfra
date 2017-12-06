@@ -14,11 +14,12 @@
       <h1>HOJA DE RUTA <br /><a><font color="#337ab7;">Sistema Web Departamento de Infraestructura U.A.T.F.</font></a> </h1>
       
       <div id="project">
-          <div><span><b>CONDUCTOR:</b></span> @foreach($viaje->conductores as $conductor) {{ $conductor->name }} @endforeach  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Código:</b>{{ $viaje->id }}</div>
-          <div><span><b>ENTIDAD:</b></span> {{ $viaje->entidad }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>PASAJEROS:</b></span> {{ $viaje->pasajeros }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>DÍAS:</b></span> {{ $viaje->dias }}</div>
-          <div><span><b>PARTIDA:</b></span> {{ Carbon::parse($viaje->fecha_inicial)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>HORA:</b></span> {{ $viaje->horainicial }}</div>
-          <div><span><b>RETORNO:</b></span> {{ Carbon::parse($viaje->fecha_final)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>HORA:</b></span> {{ $viaje->horafinal }}</div>
-          <div><span><b>VEHÍCULO:</b></span> {{ $viaje->vehiculo->placa }} &nbsp;&nbsp;&nbsp;&nbsp;<span><b>KILOMETRAJE:</b></span> {{ $ruta->totalkm }} Km. &nbsp;&nbsp;&nbsp;&nbsp;<span><b>COMBUSTIBLE:</b></span> {{ $presupuesto->totalcombu }} Litros</div>
+          <div><b>CONDUCTOR:</b> @foreach($viaje->conductores as $conductor) {{ $conductor->name }} @endforeach  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Código:</b>{{ $viaje->id }}</div>
+          <div><b>ENTIDAD:</b> {{ $viaje->entidad }} &nbsp;&nbsp;&nbsp;&nbsp;<b>RECURSOS:</b> {{ $recurso }} </div>
+          <div><b>PARTIDA:</b> {{ Carbon::parse($viaje->fecha_inicial)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<b>HORA:</b> {{ $viaje->horainicial }}</div>
+          <div><b>RETORNO:</b> {{ Carbon::parse($viaje->fecha_final)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<b>HORA:</b> {{ $viaje->horafinal }}</div>
+          <div><b>VEHÍCULO:</b> {{ $viaje->vehiculo->placa }} &nbsp;&nbsp;&nbsp;&nbsp;<b>PASAJEROS:</b> {{ $viaje->pasajeros }}&nbsp;&nbsp;&nbsp;&nbsp;<b>DÍAS:</b> {{ $viaje->dias }}</div>
+          <div><b>KILOMETRAJE:</b> {{ $ruta->totalkm }} Km. &nbsp;&nbsp;&nbsp;&nbsp;<b>COMBUSTIBLE:</b> {{ $presupuesto->totalcombu }} Litros</div>
       </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <img  style="float:right;" src="img/index.png" width="80px"/>
     </header>

@@ -17,6 +17,7 @@
           <div><b>VEHÍCULO:</b> {{ $informe->vehiculo->placa }}</div>
           <div><b>ENTIDAD:</b> {{ $viaje->entidad }}</div>
           <div><b>RESPONSABLE:</b> {{ $encargado->name }}</div>
+          <div><b>RECURSOS:</b> {{ $recurso }}</div>
           <div><b>VIÁTICOS:</b> {{ $informe->viaticos }} Bs. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>DIAS:</b> {{ $informe->dias }} </div>
     </div>
       <img  style="float:right;" src="img/images.jpeg" width="100px"/>
