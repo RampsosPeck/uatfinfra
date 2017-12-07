@@ -6,6 +6,7 @@ use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Uatfinfra\User;
 use Session;
 use Auth;
 
@@ -63,9 +64,18 @@ class SolicitudController extends Controller
      * @param  \Uatfinfra\ModelAutomotores\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function show(Solicitud $solicitud)
+    public function show($id)
     {
-        //
+        //return Solicitud::find($id);
+        $solicitud = Solicitud::find($id);
+        $supervisor = User::where('type','Supervisor')->where('position','AUTOMOTORES')->first();
+        $jefe  = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
+        
+        $view =  \View::make('solicitudes.mecanico.solicitud.pdf', compact('solicitud','supervisor','jefe'))->render();
+        $pdf  = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('carta', 'portrait');
+        return $pdf->stream('Solicitud'.$solicitud->id.'.pdf');
+
     }
 
     /**

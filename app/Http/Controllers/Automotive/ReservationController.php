@@ -3,11 +3,14 @@
 namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Illuminate\Http\Request;
+use Uatfinfra\ModelAutomotores\Destino;
+use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\User;
 use Uatfinfra\Reservation;
 use Uatfinfra\Http\Controllers\Controller;
 use Session;
 use Auth;
+
 
 class ReservationController extends Controller
 {
@@ -66,7 +69,15 @@ class ReservationController extends Controller
      */
     public function show($id)
     {
-        return Reservation::find($id);
+        //return Reservation::find($id);
+        $reservas = Reservation::find($id); 
+
+        $vehiculos  = Vehiculo::all();
+        $destinos   = Destino::all();
+        $encargados = User::where('type','Enc. de Viaje')->where('active',true)->get();
+        $conductores= User::where('type','Conductor')->where('active',true)->get();
+
+        return view('automotives.automotive.reservation.concretar', compact('vehiculos','destinos','encargados','conductores','reservas'));
     }
 
     /**
@@ -91,7 +102,12 @@ class ReservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return $request;
+        $reserva = Reservation::find($id);
+        $reserva->fill($request->all());
+        $reserva->save();
+        Session::flash('message','La reserva fue EDITADA correctamente...');
+        return redirect('reservas');
     }
 
     /**
@@ -102,6 +118,8 @@ class ReservationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Reservation::destroy($id);
+        Session::flash('message','La reserva de viaje Eliminada correctamente...');
+        return redirect('reservas');
     }
 }

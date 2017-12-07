@@ -2,6 +2,7 @@
 
 @section('content')
 @include('alertas.success')
+<?php use Carbon\Carbon;?>
 <div class="container">
     <div class="box box-info">
         <div class="box-header text-center">
@@ -34,9 +35,9 @@
 						<td>{{ $reservation->id }}</td>
 						<td>{{ $reservation->user->name }}</td>
 						<td>{{ $reservation->entity }}</td>
-						<td>{{ $reservation->objective }}</td>
-						<td>{{ $reservation->startdate }}</td>
-						<td>{{ $reservation->enddate }}</td>
+						<td>{{ $reservation->objetive }}</td>
+						<td>{{ Carbon::parse($reservation->startdate)->format('Y-m-d')}}</td>
+						<td>{{ Carbon::parse($reservation->enddate)->format('Y-m-d')}}</td>
 						<td><center>{{ $reservation->passengers }}</center></td>
 						<td>
 							{!!link_to_route('reservas.edit', $title = ' Editar', $parameters = $reservation->id, $attributes = ['class'=>'btn btn-primary btn-block btn-xs fa fa-pencil-square-o'])!!}

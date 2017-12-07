@@ -16,8 +16,12 @@
             
 			<div class="form-group">
                 <label for="startdate" class="col-sm-3 control-label">Fecha Inicial:</label>
-                <div class="input-group date">
-                  <input name="startdate" type="text" class="form-control pull-right" id="datepicker1">
+                <div class="input-group date col-md-8">
+                  <input name="startdate" 
+                  	type="text" 
+                  	class="form-control pull-right" 
+                  	id="datepicker1"
+                  	value="{{ old('startdate', Carbon::parse($reservas->startdate)->format('Y/m/d')) }}">
                   		<div class="input-group-addon">
 		                    <i class="fa fa-calendar"></i>
 		                </div>
@@ -25,8 +29,12 @@
             </div>
         	<div class="form-group">
                 <label for="enddate" class="col-sm-3 control-label">Fecha Final:</label>
-                <div class="input-group date">
-                    <input name="enddate" type="text" class="form-control pull-right" id="datepicker2">
+                <div class="input-group date col-md-8">
+                    <input name="enddate" 
+                        type="text" 
+                        class="form-control pull-right" 
+                        id="datepicker2"
+                        value="{{ old('enddate', Carbon::parse($reservas->enddate)->format('Y/m/d')) }}">
                   		<div class="input-group-addon">
 		                    <i class="fa fa-calendar"></i>
 		                </div>
@@ -35,11 +43,13 @@
             @if (Auth::user()->type == "Jefatura" OR Auth::user()->type == "Supervisor" OR Auth::user()->type == "Administrator")
             	<div class="form-group">
                 	<label for="user_id" class="col-sm-3 control-label">Encargado:</label>
-                	<div class="col-md-9 input-group">	
+                	<div class="col-md-8 input-group">	
                 			<select name="user_id" class="form-control select2" data-placeholder="Seleccione un encargado" style="width: 100%;">
                 			<option value="">Seleccione un encargado</option>
                 			@foreach ($users as $user)
-                				<option value="{{ $user->id }}">{{ $user->name }}</option>
+                			    <option value="{{ $user->id }}"
+                                  {{ old('user_id', $reservas->user_id) == $user->id ? 'selected' : '' }}
+                                  >{{ $user->name }} </option>
                 			@endforeach
                 			</select>
                 	</div>
@@ -52,20 +62,35 @@
                    
         	<div class="form-group">
                 <label for="entity" class="	col-sm-3 control-label">Entidad: </label>
-               	<div class="col-md-9 input-group">	
-                    <input type="text" class="form-control" name="entity" id="entity" placeholder="Ejm. Carrera de Ing. de Sistemas">
+               	<div class="col-md-8 input-group">	
+                    <input type="text" 
+                    	class="form-control" 
+                    	name="entity" 
+                    	id="entity" 
+                    	placeholder="Ejm. Carrera de Ing. de Sistemas"
+                        value="{{ old('entity', $reservas->entity) }}">
                 </div>
             </div>
         	<div class="form-group">
                 <label for="objetive" class="col-sm-3 control-label">Objetivo:</label>
-                <div class="col-md-9 input-group">	
-                    <input type="text" name="objetive" class="form-control" id="objective" placeholder="Ejm. Viaje de Práctica">
+                <div class="col-md-8 input-group">	
+                    <input type="text" 
+                    	name="objetive" 
+                    	class="form-control" 
+                    	id="objective" 
+                    	placeholder="Ejm. Viaje de Práctica"
+                        value="{{ old('objetive', $reservas->objetive) }}">
                 </div>	
             </div>
             <div class="form-group">
                 <label for="passengers" class="col-sm-3	control-label">Pasajeros:</label>
-                <div class="col-md-9 input-group">		
-                    <input type="number" class="form-control" id="passengers" name="passengers" placeholder="Ejm. 37">
+                <div class="col-md-8 input-group">		
+                    <input type="number" 
+                    	class="form-control" 
+                    	id="passengers" 
+                    	name="passengers" 
+                    	placeholder="Ejm. 37"
+                        value="{{ old('passengers', $reservas->passengers) }}">
                 </div>	
             </div>
 
@@ -81,7 +106,7 @@
 		{!! Form::close() !!}
 		<center>
 		 {!! Form::open(['route'=>['reservas.destroy',$reservas->id],'method'=>'DELETE']) !!}
-		                <button type="submit" class="btn btn-danger btn-sm " onClick="javascript: return confirm('¿Estas seguro de eliminar a la solicitud?');">
+		                <button type="submit" class="btn btn-danger btn-sm " onClick="javascript: return confirm('¿Estas seguro de eliminar la reserva?');">
 		                   <b>Eliminar la solicitud</b> <i class="fa fa-trash" aria-hidden="true"></i> 
 		                </button>
 		{!! Form::close() !!}
