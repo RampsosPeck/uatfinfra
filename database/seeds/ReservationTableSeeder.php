@@ -13,12 +13,11 @@ class ReservationTableSeeder extends Seeder
     public function run()
     {
         $reser = new Reservation;
-        $reser->entidad = "La entidad";
-		$reser->objectivo = "El objetivo";
-		$reser->pasajeros= 5;
-		$reser->dias      = 4;
-		$reser->fecha_inicial= Carbon::now();
-		$reser->fecha_final= Carbon::now();
+        $reser->entity = "La entidad";
+		$reser->objetive = "El objetivo";
+		$reser->passengers= 5;
+		$reser->startdate= Carbon::now();
+		$reser->enddate= Carbon::now();
 		$reser->user_id    = 1;
 		$reser->save();
 

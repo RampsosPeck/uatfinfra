@@ -17,7 +17,6 @@
                         <th>Código</th>
                         <th>Categoria</th>
                         <th>Conductor</th>
-						<th>Tipo</th>
                         <th>Encargado</th>
 						<th>Entidad</th>
                         <th>Dias/Pax</th>
@@ -38,7 +37,6 @@
                                 {{ $conductor->name }}.
                             @endforeach
                         </td>
-                        <td>{{ $viaje->tipo }}</td>
                         <td>{{ $viaje->encargado->name }}</td>
                         <td>{{ $viaje->entidad }}</td>
                         <td>{{ $viaje->dias }} <b>Pasajeros:</b>{{ $viaje->pasajeros }}</td>

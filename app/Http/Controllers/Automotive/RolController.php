@@ -3,8 +3,13 @@
 namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Illuminate\Http\Request;
+use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\User;
+use Uatfinfra\ModelAutomotores\Viaje;
+use Session;
+use Auth;
 
-class RoleController extends Controller
+class RolController extends Controller
 {
      /**
      * Display a listing of the resource.
@@ -12,9 +17,23 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {	
+        /*
+        $user = \DB::table('users')
+            ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
+            ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
+            ->select('users.*', 'viajes.*')
+            ->where('viajes.categoria','provincia')
+            ->orderBy('users.name')
+            ->count();
+        return $user;*/
 
-    }
+        $viaje = Viaje::where('categoria','provincia')->count();
+        //return $viaje;
+        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
+
+    	return view('automotives.automotive.rol.index',compact('choferes','viaje'));
+    }	
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +42,13 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+
+        $viaje = Viaje::where('categoria','ciudad')->count();
+        //return $viaje;
+        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
+
+        return view('automotives.automotive.rol.create',compact('choferes','viaje'));
+
     }
 
     /**
@@ -45,7 +70,11 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $viaje = Viaje::where('categoria','frontera')->count();
+        //return $viaje;
+        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
+
+        return view('automotives.automotive.rol.edit',compact('choferes','viaje'));
     }
 
     /**

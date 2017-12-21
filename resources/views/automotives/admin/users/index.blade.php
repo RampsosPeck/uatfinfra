@@ -36,7 +36,7 @@
 						<td>{{ $user->email }}</td>
 						<td>{{ $user->type }}</td>
 						<td>{{ $user->entidad }}</td>
-						@if($user->active === 1)
+						@if($user->active === true)
 							<td class="text-center"><font color="green"><b>{{ "SI" }}</b></font></td>
 						@else
 							<td class="text-center"><font color="red"><b>{{ "NO" }}</b></font></td>

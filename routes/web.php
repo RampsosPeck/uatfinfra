@@ -92,4 +92,6 @@ Route::resource('solicitudes','Solicitud\SolicitudController');
 
 Route::get('informes/{id}/pdf','Automotive\InformeController@getImprimir');
 
+Route::resource('roles','Automotive\RolController');
+
 

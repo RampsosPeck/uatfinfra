@@ -21,7 +21,7 @@
           <div><b>VIÁTICOS:</b> {{ $informe->viaticos }} Bs. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>DIAS:</b> {{ $informe->dias }} </div>
     </div>
       <img  style="float:right;" src="img/images.jpeg" width="100px"/>
-      <p  style="float:right;"><center><b>Código:</b>{{ $informe->viaje_id }}</center></p>
+      <p  style="float:right;"><center><b>Nro.Viaje:</b>{{ $informe->viaje_id }}</center></p>
     </header>
     <main>
       <div class="tableinfo" id="tableinfo">

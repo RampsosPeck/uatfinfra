@@ -10,7 +10,7 @@
     <li><a href="{!! URL::to('/viajes') !!}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="bottom" title="Recarga de combustible" ><i class="fa fa-plane"></i>&nbsp; <b>Viajes/Presupuesto</b></a></li>
     <li><a href="{!! URL::to('/informes') !!}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Recarga de combustible" ><i class="fa fa-exclamation-circle"></i>&nbsp; <b>Informes</b></a></li>
 
-    <li><a href="#" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="bottom" title="Rol de conductores"><i class="fa fa-group"></i>&nbsp; <b>Rol de viajes</b></a></li>
+    <li><a href="{!! URL::to('/roles') !!}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="bottom" title="Rol de conductores"><i class="fa fa-group"></i>&nbsp; <b>Rol de viajes</b></a></li>
     
     <li class="active">Here Conductor</li>
   </ol>
