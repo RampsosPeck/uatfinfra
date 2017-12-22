@@ -44,14 +44,16 @@
                         <td>{{ Carbon::parse($viaje->fecha_final)->format('Y-m-d')}} {{ $viaje->horafinal }}</td>
                         <td>{{ $viaje->vehiculo->placa }}</td>
                         <td>
-                            {!!link_to_route('viajes.edit', $title = 'Editar', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o','onClick'=>'javascript: return confirm("¿Estas seguro de EDITAR el viaje?");'])!!}
+                            {!!link_to_route('viajes.edit', $title = 'Editar', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o','onClick'=>'javascript: return confirm("¿Estas seguro de EDITAR el viaje?");','data-toggle'=>'tooltip', 'data-placement'=>'left', 'title'=>'Editar los registros del viaje?'])!!}
                             
-                            {!!link_to_route('viajes.show', $title = ' Imprimir', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-warning btn-xs btn-block glyphicon fa fa-print','target'=>'_blank'])!!} 
+                            {!!link_to_route('viajes.show', $title = ' Presupuesto', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-warning btn-xs btn-block glyphicon fa fa-print','target'=>'_blank','data-toggle'=>'tooltip', 'data-placement'=>'left', 'title'=>'Imprimir el presupuesto de viaje'])!!} 
+                            
+                            {!!link_to_route('calendario.edit', $title = ' Hoja de Ruta', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block glyphicon fa fa-print','target'=>'_blank','data-toggle'=>'tooltip', 'data-placement'=>'left', 'title'=>'Imprimir la hoja de ruta'])!!}
 
-                            {!!link_to_route('informes.show', $title = ' Informe', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-xs btn-block glyphicon fa fa-exclamation-circle','target'=>'_blank'])!!} 
-
+                            {!!link_to_route('informes.show', $title = ' Informe', $parameters = $viaje->id, $attributes = ['class'=>'btn btn-info btn-xs btn-block glyphicon fa fa-exclamation-circle','target'=>'_blank','data-toggle'=>'tooltip', 'data-placement'=>'left', 'title'=>'Realizar el informe del viaje'])!!} 
+                            
                             {!! Form::open(['route'=>['viajes.destroy',$viaje->id],'method'=>'DELETE']) !!}
-                                <button type="submit" class="btn btn-danger btn-xs btn-block fa fa-ban" onClick="javascript: return confirm('¿Estas seguro de cancelar el viaje?');">
+                                <button type="submit" class="btn btn-danger btn-xs btn-block fa fa-ban" onClick="javascript: return confirm('¿Estas seguro de cancelar el viaje?');"  data-toggle="tooltip" data-placement="left" title="Cancelar el viaje">
                                     Cancelar
                                 </button>   
                             {!! Form::close() !!}
