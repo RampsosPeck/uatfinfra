@@ -56,7 +56,7 @@ class ViajeController extends Controller
         $fi = $request->get('fecha_final');
         $fi = $fi.' 23:59:59';
         //return $fi;
-        
+
         $viaje = new Viaje;
         $viaje->tipo          = $request->get('tipo');
         $viaje->encargado_id  = $request->get('encargado');
@@ -74,11 +74,11 @@ class ViajeController extends Controller
         $viaje->reserva_id  = null;
         $viaje->vehiculo_id = $request->get('vehiculo_id');
         $viaje->save();
-        
+
         $viaje->conductores()->attach($request->get('conductor'));
-        
+
         //return $viaje->id;
-        
+
         $presupuesto = new Presupuesto;
         $presupuesto->viaje_id= $viaje->id;
         $presupuesto->combustible= $request->get('combustible');
@@ -137,7 +137,7 @@ class ViajeController extends Controller
         $ruta->totalkm   = $request->get('totalkm');
         $ruta->viaje_id  = $viaje->id;
         $ruta->save();
-        
+
         //return back()->with('flash','Viaje creado completado correctamente...');
         Session::flash('message','El viaje fue creado correctamente...');
         return redirect('calendario');
@@ -164,7 +164,7 @@ class ViajeController extends Controller
         $destino5 = Destino::where('id',$ruta->destino5)->first() ? 'null' : 'nulo';
         $destino6 = Destino::where('id',$ruta->destino6)->first() ? 'null' : 'nulo';
 
-        $supervisor = User::where('type', 'Supervisor')->where('position', 'AUTOMOTORES')->first(); 
+        $supervisor = User::where('type', 'Supervisor')->where('position', 'AUTOMOTORES')->first();
 
         $view =  \View::make('automotives.automotive.viaje.presupuestoPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje','supervisor'))->render();
         $pdf  = \App::make('dompdf.wrapper');
@@ -288,7 +288,7 @@ class ViajeController extends Controller
 
         Session::flash('message','El viaje fue ACTUALIZADO correctamente...');
         return redirect('calendario');
-        
+
     }
 
     /**
@@ -305,5 +305,5 @@ class ViajeController extends Controller
         Session::flash('message','El viaje fue CANCELADO correctamente...');
         return redirect('viajes');
     }
-    
+
 }

@@ -34,12 +34,26 @@
 
 </head>
 
-
+<body>
 
 @yield('content')
 
 
-
+    <footer class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright"><font color="#fff"><b>COPYRIGHT&copy; </b></font><a href="https://www.facebook.com/jorge.peralta.3576224" target="_blank"><font color="#fec503"><b>ING. JORGE PERALTA</b></font></a></span>
+          </div>
+          <div class="col-md-4">
+            <font color="#fff"><b>U.A.T.F. - 2018</b></font>
+          </div>
+          <div class="col-md-4">
+            <span class="copyright"><font color="#fff"><b>DEPTO. INFRAESTRUCTURA</b></font></span>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 <!-- jQuery 3 -->
 {!! Html::script('/entrar/jquery.min.js') !!}

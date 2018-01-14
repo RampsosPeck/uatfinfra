@@ -15,28 +15,28 @@
           		</center>
             </div>
             <span class="input-group-addon" id="basic-addon1">
-				Los campos con el icono 
+				Los campos con el icono
 				<font color="red">
 			        <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
 			    </font>
 			    son obligatorios.
-			</span>  
+			</span>
             <!-- form start -->
              {!! Form::open(['route'=>'viajes.store','method'=>'POST','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
-           
+
                 <div class="box-body alert-info">
-            		
+
             		<div class="col-md-7">
             			<div class="form-group {{ $errors->has('destino1') ? 'has-error' : '' }}">
 		                    <div class="col-sm-9">
 			                	<center><label for="destinos">DESTINOS</label></center>
-		                    	<select name="destino1" 
-		                    		class="form-control select2" 
+		                    	<select name="destino1"
+		                    		class="form-control select2"
 		                    		id="destino1">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
@@ -56,12 +56,12 @@
 	                    </div>
 	                    <div class="form-group {{ $errors->has('destino2') ? 'has-error' : '' }}">
 		                    <div class="col-sm-9">
-			                	<select name="destino2" 
-		                    		class="form-control select2" 
+			                	<select name="destino2"
+		                    		class="form-control select2"
 		                    		id="destino2">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
@@ -80,12 +80,12 @@
 	                    </div>
 	                    <div class="form-group {{ $errors->has('destino3') ? 'has-error' : '' }}">
 		                    <div class="col-sm-9">
-			                	<select name="destino3" 
-		                    		class="form-control select2" 
+			                	<select name="destino3"
+		                    		class="form-control select2"
 		                    		id="destino3">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
@@ -97,12 +97,12 @@
 	                    </div>
 	                    <div class="form-group {{ $errors->has('destino4') ? 'has-error' : '' }}">
 		                    <div class="col-sm-9">
-			                	<select name="destino4" 
-		                    		class="form-control select2" 
+			                	<select name="destino4"
+		                    		class="form-control select2"
 		                    		id="destino4">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
@@ -114,12 +114,12 @@
 	                    </div>
 	                    <div class="form-group {{ $errors->has('destino5') ? 'has-error' : '' }}">
 		                    <div class="col-sm-9">
-			                	<select name="destino5" 
-		                    		class="form-control select2" 
+			                	<select name="destino5"
+		                    		class="form-control select2"
 		                    		id="destino5">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
@@ -131,12 +131,12 @@
 	                    </div>
 		                <div class="form-group {{ $errors->has('destino6') ? 'has-error' : '' }}">
 		                    <div class="col-sm-9">
-			                	<select name="destino6" 
-		                    		class="form-control select2" 
+			                	<select name="destino6"
+		                    		class="form-control select2"
 		                    		id="destino6">
 									<option value="">Seleccione un destino</option>
 										@foreach ($destinos as $destino)
-											<option value="{{ $destino->id }}" 
+											<option value="{{ $destino->id }}"
 												>({{ $destino->dep_inicio }}) {{ $destino->origen }} HASTA {{ $destino->destino }} ({{ $destino->dep_final }})</option>
 										@endforeach
 								</select>
@@ -150,7 +150,7 @@
 		                    <label for="adicional" class="col-sm-2 control-label">Adicional:</label>
 		                    <div class="col-sm-4">
 			                	<div class="input-group {{ $errors->has('adicional') ? 'has-error' : '' }}">
-		                        	
+
 		                        	{!! Form::text('adicional',null,['class'=>'form-control','id'=>'adicional','required','value'=>'0','onkeyup'=>'sumar();']) !!}
 		                       		<span class="input-group-addon" id="basic-addon1">
 			                    		<font color="red">
@@ -163,7 +163,7 @@
 		                    <label for="totalkm" class="col-sm-3 control-label">Total Km.:</label>
 		                    <div class="col-md-3">
 								<div class="input-group {{ $errors->has('totalkm') ? 'has-error' : '' }}">
-		                        	
+
 		                        	{!! Form::text('totalkm',null,['class'=>'form-control','id'=>'totalkm',' value'=>'0','required','readonly'=>'readonly']) !!}
 		                       		 <span class="input-group-addon" id="basic-addon1">
 			                    		<font color="red">
@@ -195,8 +195,8 @@
 		                    <label for="encargado" class="col-sm-4 control-label">Encargado:</label>
 			                <div class="col-sm-8">
 			                    <div class="input-group">
-									<select name="encargado" 
-			                    		class="form-control select2" 
+									<select name="encargado"
+			                    		class="form-control select2"
 			                    		id="encargado">
 										<option value="">Seleccione un Encargado</option>
 											@foreach ($encargados as $encargado)
@@ -239,8 +239,8 @@
 		                    <label for="vehiculo" class="col-sm-4 control-label">Vehículo:</label>
 			                <div class="col-sm-8">
 			                    <div class="input-group">
-			                    	<select name="vehiculo_id" 
-			                    		class="form-control select2" 
+			                    	<select name="vehiculo_id"
+			                    		class="form-control select2"
 			                    		id="vehiculo">
 										<option value="">Seleccione un Vehículo</option>
 											@foreach ($vehiculos as $vehiculo)
@@ -298,7 +298,7 @@
 			                    {!! $errors->first('pasajeros', '<span class="help-block">:message</span>') !!}
 			                </div>
 		                </div>
-		                
+
                     </div>
               	</div>
               	<li class="list-group-item list-group-item-info col-md-12">
@@ -310,10 +310,9 @@
 				                  <div class="input-group-addon">
 				                    <i class="fa fa-calendar"></i>
 				                  </div>
-				                  <input name="fecha_inicial" 
-				                  		class="form-control" 
-				                  		type="date" 
-										value="{{ old('fecha_inicial') }}" 
+				                  <input name="fecha_inicial"
+				                  		class="form-control"
+										value="{{ old('fecha_inicial') }}"
 				                  		id="datepicker">
 				                  		<span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
@@ -343,10 +342,9 @@
 				                  <div class="input-group-addon">
 				                    <i class="fa fa-calendar"></i>
 				                  </div>
-				                  <input name="fecha_final" 
-				                  		class="form-control" 
-				                  		type="date" 
-										value="{{ old('fecha_final') }}" 
+				                  <input name="fecha_final"
+				                  		class="form-control"
+										value="{{ old('fecha_final') }}"
 				                  		id="datepickere">
 				                  		<span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
@@ -355,7 +353,7 @@
 			      						</span>
 				                </div>
 			                    {!! $errors->first('fecha_final', '<span class="help-block">:message</span>') !!}
-			                
+
 				             </div>
 				             <div class="col-sm-2" >
 				                <div class="bootstrap-timepicker">
@@ -418,7 +416,7 @@
 			                    	{!! $errors->first('combustible', '<span class="help-block">:message</span>') !!}
 			                    </div>
 			                </div>
-			                 
+
 		                <div class="{{ $errors->has('totalcombu') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
 		                    	<div class='input-group date'>
@@ -453,7 +451,7 @@
 						</div>
                     </div>
 					<center><label for="viaticos">GASTOS</label></center>
-					
+
                     <div class="form-group">
 	                    <div class="{{ $errors->has('canpeaje') ? 'has-error' : '' }}">
 		                    <label for="canpeaje" class="col-sm-1 control-label">Peaje:</label>
@@ -614,7 +612,7 @@
 						</div>
 						<div class="{{ $errors->has('totviafro') ? 'has-error' : '' }}">
 		                    <div class="col-md-2">
-		                       	<div class='input-group date'>	
+		                       	<div class='input-group date'>
 		                  			{!! Form::text('totviafro',null,['class'=>'form-control','id'=>'totviafro','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
 		                       		<span class="input-group-addon">Bs.</span>
                     			</div>
@@ -645,7 +643,7 @@
 		                    </div>
 		                </div>
 		            </div>
-		            
+
 			            <div class="form-group {{ $errors->has('recurso') ? 'has-error' : '' }} text-center">
 						    <label>
 			                	Viaje con recursos de la U.A.T.F.
@@ -658,7 +656,7 @@
 			                {!! $errors->first('recurso', '<span class="help-block">:message</span>') !!}
 			            </div>
 		            </li>
-		
+
 		            <center><label for="publico">TRANSPORTE PÚBLICO</label></center>
 		            <div class="form-group">
 	                    <div class="{{ $errors->has('ruta1') ? 'has-error' : '' }}">
@@ -678,7 +676,7 @@
 		                <div class="{{ $errors->has('precio1') ? 'has-error' : '' }}">
 		                    <label for="precio1" class="col-sm-1 control-label">Precio:</label>
 		                    <div class="col-sm-2">
-		                        <div class='input-group date'>		
+		                        <div class='input-group date'>
 		                        	{!! Form::text('precio1',null,['class'=>'form-control','id'=>'precio1','value'=>'old("precio1")','onkeyup'=>'sumar();','placeholder'=>'80']) !!}
 		                        	<span class="input-group-addon">Bs.</span>
                     			</div>
@@ -687,7 +685,7 @@
 		                </div>
 		                <div class="{{ $errors->has('total1') ? 'has-error' : '' }}">
 		                    <div class="col-sm-2">
-		                    	<div class='input-group date'>	
+		                    	<div class='input-group date'>
 		                  			{!! Form::text('total1',null,['class'=>'form-control','id'=>'total1','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
 		                        	<span class="input-group-addon">Bs.</span>
                     			</div>
@@ -713,7 +711,7 @@
 		                <div class="{{ $errors->has('precio2') ? 'has-error' : '' }}">
 		                    <label for="precio2" class="col-sm-1 control-label">Precio:</label>
 		                    <div class="col-sm-2">
-		                    	<div class='input-group date'>		
+		                    	<div class='input-group date'>
 		                        	{!! Form::text('precio2',null,['class'=>'form-control','id'=>'precio2','value'=>'old("precio2")','onkeyup'=>'sumar();','placeholder'=>'80']) !!}
 		                        	<span class="input-group-addon">Bs.</span>
                     			</div>
@@ -722,7 +720,7 @@
 		                </div>
 		                <div class="{{ $errors->has('total2') ? 'has-error' : '' }}">
 		                    <div class="col-sm-2">
-		                    	<div class='input-group date'>	
+		                    	<div class='input-group date'>
 		                  			{!! Form::text('total2',null,['class'=>'form-control','id'=>'total2','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
 		                        	<span class="input-group-addon">Bs.</span>
                     			</div>
@@ -733,7 +731,7 @@
 		            <div class="form-group">
 	                    <div class="{{ $errors->has('ruta') ? 'has-error' : '' }}">
 		                    <label for="ruta" class="col-sm-5 control-label">Flete del Camión General:</label>
-		                   
+
 		                </div>
 		                <div class="{{ $errors->has('vueltas') ? 'has-error' : '' }}">
 		                    <label for="vueltas" class="col-sm-1 control-label">Vueltas:</label>
@@ -785,7 +783,7 @@
 		                </div>
 		            </div>
               	</div>
-              	
+
               	<!-- /.box-body -->
               	<div class="box-footer">
               		<center>
@@ -801,12 +799,12 @@
 
 @push('styles')
   <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
-  <link rel="stylesheet" href="/dashboard/plugins/datepicker/datepicker3.css"> 
+  <link rel="stylesheet" href="/dashboard/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="/dashboard/plugins/iCheck/all.css">
 @endpush
 
-@push('scripts') 
+@push('scripts')
    <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
    <script src="/dashboard/plugins/select2/es.js"></script>
    <script src="/dashboard/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -818,14 +816,16 @@
 	$('.timepicker').timepicker({
       showInputs: false
     });
+
+
 	$('#datepicker').datepicker({
 	      autoclose: true,
 	      todayHighlight:true,
-	      format: 'yyyy/mm/dd'
+	      format: 'yyyy-mm-dd'
 	    });
 	$('#datepickere').datepicker({
 	      autoclose: true,
-	      format: 'yyyy/mm/dd'
+	      format: 'yyyy-mm-dd'
 	    });
 
     $(".select2").select2({
@@ -884,6 +884,3 @@
     });
 </script>
 @endpush
-
-
-

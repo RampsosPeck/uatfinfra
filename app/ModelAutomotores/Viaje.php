@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Viaje extends Model
 {
     protected $table = 'viajes';
-	
+
 	protected $fillable = ['tipo',
                             'entidad',
                             'dias',
@@ -23,7 +23,7 @@ class Viaje extends Model
                             'vehiculo_id',
                             'reserva_id'];
 
-	public function roles()
+  public function roles()
     {
         return $this->hasMany(Viaje::class);
     }
@@ -57,7 +57,3 @@ class Viaje extends Model
 
 
 }
-
-
-
-

@@ -220,10 +220,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        Todos los derechos reservados.
+        <strong>Copyright &copy;<a href="https://www.facebook.com/jorge.peralta.3576224" target="__blank"> <font color="#f39c12"> Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#">U.A.T.F.</a><font color="#f39c12"><i class="fa fa-android fa-spin fa-1x fa-fw"></i> Ing. Jorge Peralta</font></strong> 
+    <strong>U.A.T.F. - 2018</strong> 
   </footer>
 
   <!-- Control Sidebar -->

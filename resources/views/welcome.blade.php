@@ -1,15 +1,15 @@
 @extends('layout')
 
 @section('content')
-  <body id="page-top">
+<body id="page-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top"><strong>Universidad Autónoma "Tomás Frías"</strong></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
+          <b>Menu
+          <i class="fa fa-bars"></i></b>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
@@ -120,7 +120,7 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="form-group">
+                    <div class="form-group"><br>
                         <textarea rows="6" id="men" name="body" type="text" class="form-control" placeholder="Ingresa aqui el contenido de tu mensaje" required data-validation-required-message="Porfavor introdusca su mensaje."></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
