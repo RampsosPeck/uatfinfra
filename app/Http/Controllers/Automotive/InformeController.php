@@ -8,6 +8,7 @@ use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\User;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\Http\Requests\InfoSaveRequest;
 use Session;
 use Auth;
 
@@ -40,7 +41,7 @@ class InformeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InfoSaveRequest $request)
     {
         //return $request;
         Informe::create($request->all());

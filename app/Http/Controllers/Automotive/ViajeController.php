@@ -9,6 +9,7 @@ use Uatfinfra\ModelAutomotores\Destino;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\Http\Requests\ViajeSaveRequest;
 use Uatfinfra\User;
 use Carbon\Carbon;
 use Session;
@@ -49,15 +50,27 @@ class ViajeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ViajeSaveRequest $request)
     {
         //return $request;
+        //$cantivia = Viaje::count();
+        $año = intval(date("Y"));
+        $desde = $año."-01-01";
+        $hasta = $año."-12-31";
+        $cantivia = Viaje::whereBetween('fecha_inicial',[$desde,$hasta])->count()+1;
+        //dd($cantivia);
+        $date = date('y');
+        //dd($date);
+        $coding = "$cantivia"."/".$date;
+        //dd($coding);
+        
         //$viaje->fecha_inicial = Carbon::parse($request->get('fecha_inicial'));
         $fi = $request->get('fecha_final');
         $fi = $fi.' 23:59:59';
         //return $fi;
 
         $viaje = new Viaje;
+        $viaje->codigo        = $coding;
         $viaje->tipo          = $request->get('tipo');
         $viaje->encargado_id  = $request->get('encargado');
         $viaje->entidad       = $request->get('entidad');
@@ -201,7 +214,7 @@ class ViajeController extends Controller
      * @param  \Uatfinfra\Viaje  $viaje
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ViajeSaveRequest $request, $id)
     {
         $fi = $request->get('fecha_final');
         $fi = $fi.' 23:59:59';

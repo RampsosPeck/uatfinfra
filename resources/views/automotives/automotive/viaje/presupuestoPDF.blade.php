@@ -27,7 +27,7 @@ use Carbon\Carbon;
         <td class="preti" colspan="1"><strong><center>KM</center></strong></td>
     </tr>
     <tr>
-    <td rowspan="3" style="font-size:90%;"> <center><strong>Viaje</strong><br /> N° {{$viaje->id}}</center> </td>
+    <td rowspan="3" style="font-size:90%;"> <center><strong>Viaje</strong><br /> {{$viaje->codigo}}</center> </td>
 
         <td rowspan="3" colspan="4" style="font-size:90%;"><strong>Vehículo: </strong>{{ $viaje->vehiculo->tipo }} {{ $viaje->vehiculo->placa }}<br/>
                                     <strong>Chofer: </strong> @foreach ($viaje->conductores as $conductor)
@@ -228,7 +228,7 @@ use Carbon\Carbon;
     </table><br><br>
         <center><h4 >Sr. {{$supervisor->name}}<br />ENCARGADO DE AUTOMOTORES </h4></center>
     <footer>
-        <center>Nuevo Sistema Web © 2017 Depto. INFRAESTRUCTURA</center>
+        <center>Nuevo Sistema Web © 2018 Depto. INFRAESTRUCTURA</center>
     </footer>
 </body>
 </html>

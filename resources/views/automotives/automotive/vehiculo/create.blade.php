@@ -31,7 +31,7 @@
 		                    <label for="oil" class="col-sm-4 control-label">Combustible:</label>
 			                <div class="col-sm-8">
 			                	<div class="input-group">
-			                    	<select name="oil_id[]" multiple="multiple" class="form-control select2" id="oil_id" required>
+			                    	<select name="oil_id[]" multiple="multiple" class="form-control select2" id="oil_id" >
 											@foreach ($oils as $oil)
 												 <option {{ collect(old('oil_id'))->contains($oil->id) ? 'selected' : '' }} value="{{ $oil->id }}">{{ $oil->name }}</option>
 											@endforeach
@@ -74,7 +74,7 @@
 		                    <label for="estado" class="col-sm-4 control-label">Estado:</label>
 			                <div class="col-sm-8">
 			                	<div class="input-group">
-			                		{!! Form::select('estado', config('tipo.vehi'), null, ['class' => 'form-control  select2','placeholder'=>'Ejm. Óptimo','required','style'=>'width: 100%;','id'=>'estado']) !!}
+			                		{!! Form::select('estado', config('tipo.vehi'), null, ['class' => 'form-control  select2','placeholder'=>'Ejm. Óptimo','style'=>'width: 100%;','id'=>'estado']) !!}
 
 			                    	<span class="input-group-addon" id="basic-addon1">
 			                    		<font color="red">
@@ -90,7 +90,7 @@
 		                    <label for="placa" class="col-sm-4 control-label">Placa:</label>
 		                    <div class="col-sm-8">
 		                    	<div class="input-group">
-		                        	<input type="text" class="form-control" name="placa" placeholder="Ejm. 1325 RKU" required value="{{ old('placa') }}">
+		                        	<input type="text" class="form-control" name="placa" placeholder="Ejm. 1325 RKU"  value="{{ old('placa') }}">
 		                        	<span class="input-group-addon" id="basic-addon1">
 			                    		<font color="red">
 			      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -104,7 +104,7 @@
 		                    <label for="tipo" class="col-sm-4 control-label">Tipo:</label>
 			                <div class="col-sm-8">
 			                    <div class="input-group">
-			                    	<input type="text" class="form-control" name="tipo" placeholder="Ejm. Vagoneta" required value="{{ old('tipo') }}">
+			                    	<input type="text" class="form-control" name="tipo" placeholder="Ejm. Vagoneta"  value="{{ old('tipo') }}">
 			                    	<span class="input-group-addon" id="basic-addon1">
 			                    		<font color="red">
 			      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -153,13 +153,15 @@
 			                </div>
 			                <label for="pasajeros" class="col-sm-2 control-label">Pasajeros:</label>
 			                <div class="col-sm-4">
-				                <div class="input-group">    
+				                <div class="input-group {{ $errors->has('pasajeros') ? 'has-error' : '' }}">    
 				                    <input type="number" class="form-control" name="pasajeros" id="pasajeros" value="{{ old('pasajeros') }}" placeholder="Ejm. 45">
+				                    
 				                    <span class="input-group-addon" id="basic-addon1">
 				                    		<font color="red">
 				      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
 				      						</font>
 			      					</span>
+
 			                	</div>
 			                    {!! $errors->first('pasajeros', '<span class="help-block">:message</span>') !!}
 			                </div>

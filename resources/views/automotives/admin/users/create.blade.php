@@ -37,8 +37,7 @@
 			                    		id="entidad" 
 			                    		value="{{ old('entidad') }}"
 			                    		name="entidad" 
-			                    		placeholder="Entidad correspondiente. Ejm. Ing. de Sistemas"
-			                    		required>
+			                    		placeholder="Entidad correspondiente. Ejm. Ing. de Sistemas" >
 			                    		<span class="input-group-addon" id="basic-addon1"><font color="red">
 			                    			<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></font></span>
 
@@ -56,7 +55,7 @@
 		                        		value="{{ old('name') }}" 
 		                        		name="name" 
 		                        		placeholder="Nombre completo. Ejm. Ing. Jorge Peralta"
-		                        		required>
+		                        		>
 		                        		<span class="input-group-addon" id="basic-addon1"><font color="red">
 			                    			<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></font></span>
 		                        </div>
@@ -86,8 +85,7 @@
 		                        		id="cedula"
 		                        		value="{{ old('cedula') }}" 
 		                        		name="cedula" 
-		                        		placeholder="Cédula de Identidad"
-		                        		required>
+		                        		placeholder="Cédula de Identidad">
 		                        		<span class="input-group-addon" id="basic-addon1"><font color="red">
 			                    			<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></font></span>
 		                    	</div>
@@ -120,11 +118,13 @@
               	<div class="box-footer">
 
               	@if (Auth::user()->type == "Administrator" && Auth::user()->position == "WEB SITE")
-              		<div class="col-sm-3">
-	                	{!! Form::select('type', config('tipo.type'), null, ['class' => 'form-control  select2','placeholder'=>'Types Users','required','style'=>'width: 100%;']) !!}
+              		<div class="col-sm-3 {{ $errors->has('type') ? 'has-error' : '' }}">
+	                	{!! Form::select('type', config('tipo.type'), null, ['class' => 'form-control  select2','placeholder'=>'Types Users','style'=>'width: 100%;']) !!}
+	                	{!! $errors->first('type', '<span class="help-block">:message</span>') !!}
 	                </div>
-	                <div class="col-sm-3">
-	                	{!! Form::select('position', config('tipo.position'), null, ['class' => 'form-control  select2','placeholder'=>'Positions Users','required','style'=>'width: 100%;']) !!}
+	                <div class="col-sm-3 {{ $errors->has('position') ? 'has-error' : '' }}">
+	                	{!! Form::select('position', config('tipo.position'), null, ['class' => 'form-control  select2','placeholder'=>'Positions Users','style'=>'width: 100%;']) !!}
+	                	{!! $errors->first('position', '<span class="help-block">:message</span>') !!}
 	                </div>
 	            @else
 		            <div class="col-sm-3">
@@ -134,8 +134,9 @@
 						<input type="hidden" name="position" value="U.A.T.F.">	
 					</div>
 	            @endif
-		            <div class="col-sm-3">
-	                	{!! Form::select('active', config('tipo.active'), null, ['class' => 'form-control  select2','placeholder'=>'Permisos','required','style'=>'width: 100%;']) !!}
+		            <div class="col-sm-3 {{ $errors->has('active') ? 'has-error' : '' }}">
+	                	{!! Form::select('active', config('tipo.active'), null, ['class' => 'form-control  select2','placeholder'=>'Permisos','style'=>'width: 100%;']) !!}
+	                	{!! $errors->first('active', '<span class="help-block">:message</span>') !!}
 	                </div>
 	                <div class="col-sm-3">
                 		<button type="submit" class="btn btn-primary pull-left btn-block" data-toggle="tooltip" data-placement="left" title="Insertar al usuario al sistema">Guardar los datos</button>

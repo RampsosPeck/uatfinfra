@@ -6,6 +6,7 @@ use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\ModelAutomotores\Combustible;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\Http\Requests\VehiculoSaveRequest;
 use Uatfinfra\User;
 use Session;
 use Auth;
@@ -41,14 +42,9 @@ class VehiculoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VehiculoSaveRequest $request)
     {
-        $this->validate($request, [
-            'estado' => 'required|in:ÓPTIMO,MANTENIMIENTO,DESUSO',
-            'placa'  => 'required|string|min:4|max:12|unique:vehiculos',
-            'tipo'   => 'required',
-            'pasajeros' => 'required' 
-                    ]);
+         
        // return $request;
         //Vehiculo::create($request->all());
         
@@ -115,14 +111,8 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VehiculoSaveRequest $request, $id)
     {
-        $this->validate($request, [
-            'estado' => 'required|in:ÓPTIMO,MANTENIMIENTO,DESUSO',
-            'placa'  => 'required|string|min:4|max:12',
-            'tipo'   => 'required',
-            'pasajeros' => 'required' 
-                    ]);
         //return $request;
 
         if($request->get('user_id') === null ){

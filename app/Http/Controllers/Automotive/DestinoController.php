@@ -5,6 +5,7 @@ namespace Uatfinfra\Http\Controllers\Automotive;
 use Uatfinfra\ModelAutomotores\Destino;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\Http\Requests\DestinoSaveRequest;
 use Session;
 use Auth;
 
@@ -37,16 +38,9 @@ class DestinoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DestinoSaveRequest $request)
     {
         //return $request;
-        $this->validate($request,[
-           'origen'    => 'required|string|min:4',
-           'dep_inicio'=> 'required',
-           'destino'   => 'required|string|min:4',
-           'dep_final' => 'required',
-           'kilometraje'=> 'required|integer'
-        ]);
 
         Destino::create($request->all());
         
@@ -84,7 +78,7 @@ class DestinoController extends Controller
      * @param  \Uatfinfra\Destino  $destino
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DestinoSaveRequest $request, $id)
     {
         $destino = Destino::find($id);
         $destino->update($request->all());

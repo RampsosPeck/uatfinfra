@@ -81,12 +81,16 @@
                     	<div class="form-group {{ $errors->has('cedula') ? 'has-error' : '' }}">
 		                    <label for="cedula" class="col-sm-3 control-label">Cédula:</label>
 		                    <div class="col-sm-9">
-		                        <input type="text" 
+		                    	<div class="input-group">
+		                        	<input type="text" 
 		                        		class="form-control" 
 		                        		id="cedula"
 		                        		value="{{ old('cedula',$user->cedula) }}" 
 		                        		name="cedula" 
 		                        		placeholder="Cédula de Identidad">
+		                        		<span class="input-group-addon" id="basic-addon1"><font color="red">
+			                    			<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i></font></span>
+								</div>
 		                        	{!! $errors->first('cedula', '<span class="help-block">:message</span>') !!}				                      	
 		                    </div>
 	                    </div>
@@ -116,11 +120,13 @@
               	<div class="box-footer">
 
               	@if (Auth::user()->type == "Administrator" && Auth::user()->position == "WEB SITE")
-              		<div class="col-sm-3">
-	                	{!! Form::select('type', config('tipo.type'), $user->type, ['class' => 'form-control  select2','placeholder'=>'Types Users','required','style'=>'width: 100%;']) !!}
+              		<div class="col-sm-3 {{ $errors->has('type') ? 'has-error' : '' }}">
+	                	{!! Form::select('type', config('tipo.type'), $user->type, ['class' => 'form-control  select2','placeholder'=>'Types Users','style'=>'width: 100%;']) !!}
+	                	{!! $errors->first('type', '<span class="help-block">:message</span>') !!}
 	                </div>
-	                <div class="col-sm-3">
-	                	{!! Form::select('position', config('tipo.position'),$user->position, ['class' => 'form-control  select2','placeholder'=>'Positions Users','required','style'=>'width: 100%;']) !!}
+	                <div class="col-sm-3 {{ $errors->has('position') ? 'has-error' : '' }}">
+	                	{!! Form::select('position', config('tipo.position'),$user->position, ['class' => 'form-control  select2','placeholder'=>'Positions Users','style'=>'width: 100%;']) !!}
+	                	{!! $errors->first('position', '<span class="help-block">:message</span>') !!}
 	                </div>
 	            @else
 	            <div class="col-sm-3">
@@ -130,8 +136,9 @@
 					<input type="hidden" name="position" value="U.A.T.F.">	
 				</div>
 	            @endif
-                <div class="col-sm-3">
-					{!! Form::select('active', config('tipo.active'), $user->active, ['class' => 'form-control  select2','placeholder'=>'Permisos','required','style'=>'width: 100%;']) !!}
+                <div class="col-sm-3 {{ $errors->has('active') ? 'has-error' : '' }}">
+					{!! Form::select('active', config('tipo.active'), $user->active, ['class' => 'form-control  select2','placeholder'=>'Permisos','style'=>'width: 100%;']) !!}
+					{!! $errors->first('active', '<span class="help-block">:message</span>') !!}
                 </div>
 	                <div class="col-sm-3">
                 		<button type="submit" class="btn btn-primary pull-left btn-block" data-toggle="tooltip" data-placement="left" title="Insertar al usuario al sistema">Guardar los datos</button>

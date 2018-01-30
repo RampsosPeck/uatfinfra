@@ -15,6 +15,7 @@ class CreateViajesTable extends Migration
     {
         Schema::create('viajes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codigo')->unique();
             $table->unsignedInteger('encargado_id');
             $table->string('tipo');
             $table->string('entidad');

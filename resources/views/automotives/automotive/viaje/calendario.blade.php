@@ -3,9 +3,10 @@
 @section('content')
 @include('alertas.success')
 
-<div class="box box-primary">
+<div class="container">
+  <div class="box box-primary">      
     <div id="calendar"></div>
-  
+  </div>  
 </div>
 		  
 @endsection
@@ -93,7 +94,8 @@ $(function () {
               title : 'CONDUCTOR: @foreach ($viaje->conductores as $conductor){{ $conductor->name }} | @endforeach',
               start : '{{ $viaje->fecha_inicial}}',
               end   : '{{ $viaje->fecha_final}}',
-              datos : '{{ $viaje->entidad }} DESDE: {{ $viaje->horainicial }} HASTA: {{ $viaje->horafinal }} VEHÍCULO: {{ $viaje->vehiculo->placa }}',
+              estado: '{{ $viaje->estado}}',
+              datos : '{{ $viaje->entidad }} DESDE: {{ $viaje->horainicial }} HASTA: {{ $viaje->horafinal }} VEHÍCULO: {{ $viaje->vehiculo->placa }} ESTADO: {{ $viaje->estado }}',
               url   : '{{ route('calendario.show', $viaje->id) }}'
           },
           @endforeach

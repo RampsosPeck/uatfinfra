@@ -85,7 +85,7 @@
                       </div>
                       <input name="fecha_inicial"
                       class="form-control"
-                      value="{{ old('fecha_inicial',Carbon::parse($informe->fecha_inicial)->format('Y/m/d')) }}"
+                      value="{{ old('fecha_inicial',Carbon::parse($informe->fecha_inicial)->format('Y-m-d')) }}"
                       id="datepicker">
                       <span class="input-group-addon" id="basic-addon1">
                         <font color="red">
@@ -105,7 +105,7 @@
                       </div>
                       <input name="fecha_final"
                       class="form-control" 
-                      value="{{ old('fecha_final',Carbon::parse($informe->fecha_final)->format('Y/m/d')) }}"
+                      value="{{ old('fecha_final',Carbon::parse($informe->fecha_final)->format('Y-m-d')) }}"
                       id="datepickere">
                       <span class="input-group-addon" id="basic-addon1">
                         <font color="red">
@@ -489,11 +489,14 @@
   $('#datepicker').datepicker({
         autoclose: true,
         todayHighlight:true,
-        format: 'yyyy/mm/dd'
+        format: 'yyyy-mm-dd',
+        clearBtn:true
       });
   $('#datepickere').datepicker({
         autoclose: true,
-        format: 'yyyy/mm/dd'
+        todayHighlight:true,
+        format: 'yyyy-mm-dd',
+        clearBtn:true
       });
   $(".select2").select2({
       language: "es",

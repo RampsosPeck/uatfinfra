@@ -14,7 +14,7 @@
       <h1>HOJA DE RUTA <br /><a><font color="#337ab7;">Sistema Web Departamento de Infraestructura U.A.T.F.</font></a> </h1>
       
       <div id="project">
-          <div><b>CONDUCTOR:</b> @foreach($viaje->conductores as $conductor) {{ $conductor->name }} @endforeach  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Código:</b>{{ $viaje->id }}</div>
+          <div><b>CONDUCTOR:</b> @foreach($viaje->conductores as $conductor) {{ $conductor->name }} @endforeach  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Código:</b>{{ $viaje->codigo }}</div>
           <div><b>ENTIDAD:</b> {{ $viaje->entidad }} &nbsp;&nbsp;&nbsp;&nbsp;<b>RECURSOS:</b> {{ $recurso }} </div>
           <div><b>PARTIDA:</b> {{ Carbon::parse($viaje->fecha_inicial)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<b>HORA:</b> {{ $viaje->horainicial }}</div>
           <div><b>RETORNO:</b> {{ Carbon::parse($viaje->fecha_final)->format('d-m-Y')}} &nbsp;&nbsp;&nbsp;&nbsp;<b>HORA:</b> {{ $viaje->horafinal }}</div>
@@ -98,7 +98,7 @@
         -->
     </main>
     <footer>
-      <center>Nuevo Sistema Web © 2017 Depto. INFRAESTRUCTURA</center>
+      <center>Nuevo Sistema Web © 2018 Depto. INFRAESTRUCTURA</center>
     </footer>
   </body>
 </html>

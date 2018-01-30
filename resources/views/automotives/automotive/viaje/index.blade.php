@@ -30,7 +30,7 @@
                     @foreach($viajes as $key => $viaje)
                     <tr>                    
                         <td class="text-center">{{ ++$key }}</td>
-                    	<td class="text-center">{{ $viaje->id }}</td>
+                    	<td class="text-center">{{ $viaje->codigo }}</td>
                         <td>{{ $viaje->categoria }}</td>
                         <td>
                             @foreach ($viaje->conductores as $conductor)
@@ -80,6 +80,7 @@
 <script>
   $(function () {
     $('#vehiculo-table').DataTable( {
+        "order": [[ 0, "desc" ]],
         "language": {
           
             "sProcessing": "Procesando...",

@@ -407,16 +407,14 @@
 				            </div>
 		                </div>
 	                </div>
-				</li>
-              	<div class="box-header with-border">
+				
 	              	<center>
 	              		<h3 class="box-title">
 	              			<font color="#f39c12"><b>PRESUPUESTO DE VIAJE</b></font>
 	          			</h3>
 	          		</center>
-	            </div>
-	            <li class="list-group-item list-group-item-info col-md-12">
-		            <div class="form-group {{ $errors->has('categoria') ? 'has-error' : '' }} text-center">
+	          
+		            <div class="form-group {{ $errors->has('categoria') ? 'has-error' : '' }} text-center alert-warning">
 		                <label>VIAJE CONCIDERADO COMO:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                <label>
 		                	Ciudad:
@@ -432,12 +430,10 @@
 		                </label>
 		                {!! $errors->first('categoria', '<span class="help-block">:message</span>') !!}
 		  			</div>
-	  			</li>
-              	<div class="box-body alert-warning">
-              		<li class="list-group-item list-group-item-info col-md-12">
-              		<center>
-              		<label class="control-label">COMBUSTIBLE:</label></center>
-              		<div class="form-group">
+
+              	<div class="box-body">
+              		<center><label class="control-label">COMBUSTIBLE:</label></center>
+              		<div class="form-group alert-warning">
               			<div class="{{ $errors->has('combustible') ? 'has-error' : '' }}">
 		                    <label for="combustible" class="col-sm-2 control-label">Diesel/Gasolina:</label>
 		                    <div class="col-sm-2">
@@ -487,7 +483,7 @@
                     </div>
 					<center><label for="viaticos">GASTOS</label></center>
 
-                    <div class="form-group">
+                    <div class="form-group alert-warning">
 	                    <div class="{{ $errors->has('canpeaje') ? 'has-error' : '' }}">
 		                    <label for="canpeaje" class="col-sm-1 control-label">Peaje:</label>
 		                    <div class="col-sm-1">
@@ -580,9 +576,9 @@
 							</div>
 						</div>
 					</div>
-				</li>
+				 
 					<center><label for="viaticos">VIATICOS</label></center>
-					<div class="form-group">
+					<div class="form-group alert-warning">
 						<div class="{{ $errors->has('canviaciu') ? 'has-error' : '' }}">
 		                    <label for="canviaciu" class="col-sm-1 control-label">Ciudad:</label>
 		                    <div class="col-sm-1">
@@ -665,40 +661,53 @@
 							</div>
 						</div>
 						<div class="{{ $errors->has('totprebol') ? 'has-error' : '' }}">
-		                    <label for="totprebol" class="col-sm-3 control-label">Total Bs.:</label>
+		                    <label for="totprebol" class="col-sm-3 control-label">Total Bs.(A):</label>
 		                    <div class="col-sm-3">
-		                    	{!! Form::text('totprebol',old('totprebol',$presupuesto->totprebol),['class'=>'form-control','id'=>'totprebol','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
-
+		                    	<div class="input-group">
+		                    		{!! Form::text('totprebol',old('totprebol',$presupuesto->totprebol),['class'=>'form-control','id'=>'totprebol','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
+									<span class="input-group-addon" id="basic-addon1">
+			                    		<font color="red">
+			      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+			      						</font>
+			      					</span>
+			      				</div>
 		                       	{!! $errors->first('totprebol', '<span class="help-block">:message</span>') !!}
 							</div>
 						</div>
-                    </div><li class="list-group-item list-group-item-info col-md-12">
+                    </div>
                     <center><label for="nota">OBJETIVO / NOTA</label></center>
                     <div class="form-group">
 	                    <div class="{{ $errors->has('nota') ? 'has-error' : '' }}">
 		                    <div class="col-sm-12">
-		                        <input type="text"
-		                        	class="form-control"
-		                        	name="nota"
-		                        	placeholder="Ejm. Viaje de la carrera de Sistemas con sus propios recursos al congreso nacional de computación."
-		                        	value="{{ old('nota',$viaje->nota) }}">
+		                    	<div class="input-group">
+			                        <input type="text"
+			                        	class="form-control"
+			                        	name="nota"
+			                        	placeholder="Ejm. Viaje de la carrera de Sistemas con sus propios recursos al congreso nacional de computación."
+			                        	value="{{ old('nota',$viaje->nota) }}">
+			                        <span class="input-group-addon" id="basic-addon1">
+			                    		<font color="red">
+			      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+			      						</font>
+			      					</span>
+			                	</div>
 		                    	{!! $errors->first('nota', '<span class="help-block">:message</span>') !!}
 		                    </div>
 		                </div>
 		            </div>
 
-			            <div class="form-group {{ $errors->has('recurso') ? 'has-error' : '' }} text-center">
-						    <label>
-			                	Viaje con recursos de la U.A.T.F.
-			                  <input type="radio" name="recurso" value="viajeuatf" {{ old('recurso', $viaje->recurso ) == 'viajeuatf' ? 'checked' : '' }} class="flat-red" >
-			                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                <label>
-			                	Viaje con recursos de los estudiantes y/o encargados:
-			                  <input type="radio" name="recurso" value="viajepropio" {{ old('recurso', $viaje->recurso ) == 'viajepropio' ? 'checked' : '' }} class="flat-red" >
-			                </label>
-			                {!! $errors->first('recurso', '<span class="help-block">:message</span>') !!}
-			            </div>
-		            </li>
+		            <div class="form-group {{ $errors->has('recurso') ? 'has-error' : '' }} text-center alert-warning">
+					    <label>
+		                	Viaje con recursos de la U.A.T.F.
+		                  <input type="radio" name="recurso" value="viajeuatf" {{ old('recurso', $viaje->recurso ) == 'viajeuatf' ? 'checked' : '' }} class="flat-red" >
+		                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <label>
+		                	Viaje con recursos de los estudiantes y/o encargados:
+		                  <input type="radio" name="recurso" value="viajepropio" {{ old('recurso', $viaje->recurso ) == 'viajepropio' ? 'checked' : '' }} class="flat-red" >
+		                </label>
+		                {!! $errors->first('recurso', '<span class="help-block">:message</span>') !!}
+		            </div>
+		           
 
 		            <center><label for="publico">TRANSPORTE PÚBLICO</label></center>
 		            <div class="form-group">
@@ -834,6 +843,7 @@
 		                    </div>
 		                </div>
 		            </div>
+		            </li>
               	</div>
 
               	<!-- /.box-body -->
@@ -866,17 +876,19 @@
 <script>
 //Date picker
 	//$('.timepicker').timepicker({ 'scrollDefault': 'now' });
-	$('.timepicker').timepicker({
-      showInputs: false
-    });
+	$('.timepicker').timepicker({ 'scrollDefault': 'now' });
+	
 	$('#datepicker').datepicker({
 	      autoclose: true,
 	      todayHighlight:true,
-	      format: 'yyyy-mm-dd'
+	      format: 'yyyy-mm-dd',
+	      clearBtn:true
 	    });
 	$('#datepickere').datepicker({
 	      autoclose: true,
-	      format: 'yyyy-mm-dd'
+	      todayHighlight:true,
+	      format: 'yyyy-mm-dd',
+	      clearBtn:true
 	    });
 
     $(".select2").select2({

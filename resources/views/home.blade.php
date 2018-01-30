@@ -220,10 +220,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        <strong>Copyright &copy;<a href="https://www.facebook.com/jorge.peralta.3576224" target="__blank"> <font color="#f39c12"> Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong>
+        <strong>U.A.T.F. - 2018</strong>
     </div>
     <!-- Default to the left -->
-    <strong>U.A.T.F. - 2018</strong> 
+    <strong>Copyright &copy;<a href="https://www.facebook.com/jorge.peralta.3576224" target="__blank"> <font color="#f39c12"> Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong> 
   </footer>
 
   <!-- Control Sidebar -->

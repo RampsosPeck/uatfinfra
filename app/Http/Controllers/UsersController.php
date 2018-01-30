@@ -4,6 +4,7 @@ namespace Uatfinfra\Http\Controllers;
 
 use Uatfinfra\User;
 use Illuminate\Http\Request;
+use Uatfinfra\Http\Requests\UserSaveRequest;
 use Session;
 use Auth;
 
@@ -35,15 +36,10 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserSaveRequest $request)
     {
         //return $request;
 
-        $this->validate($request, [
-            'name'   => 'required|string|min:4|max:100',
-            'entidad'=> 'required|string|min:4|max:100',
-            'cedula' => 'required|string|min:6|max:12|unique:users'
-        ]);
 
         if($request->get('password') === null ){
             $pass =  bcrypt($request->get('cedula'));  
@@ -108,10 +104,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserSaveRequest $request, $id)
     {
 
-        //Verificamos si el usuario esta modificando el passwod 
+        //Verificamos si el usuario esta modificando el password 
         if($request->get('password') === null )
         {
             //En el caso de que no mande ningun password se mantiene 

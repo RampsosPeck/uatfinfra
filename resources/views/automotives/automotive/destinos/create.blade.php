@@ -100,24 +100,7 @@
 			                    {!! $errors->first('kilometraje', '<span class="help-block">:message</span>') !!}
 			                </div>
 			            </div>
-		                <div class="form-group {{ $errors->has('tiempo') ? 'has-error' : '' }} ">
-		                    <label for="tiempo" class="col-sm-4 control-label">Tiempo:</label>
-			                <div class="col-sm-8" >
-				                <div class="bootstrap-timepicker">
-					                <div class="form-group">
-					                  <div class="input-group">
-					                    <input type="text" class="form-control timepicker" name="tiempo" value="{{ old('tiempo') }}">
-					                    <div class="input-group-addon">
-					                      <i class="fa fa-clock-o"></i>
-					                    </div>
-					                  </div>
-					                  <!-- /.input group -->
-					                </div>
-					                <!-- /.form group -->
-				                </div>
-			                    {!! $errors->first('tiempo', '<span class="help-block">:message</span>') !!}
-				            </div>
-		                </div>
+		                
 	                	<div class="form-group {{ $errors->has('ruta') ? 'has-error' : '' }} ">
 		                    <label for="ruta" class="col-sm-4 control-label">Ruta:</label>
 		                    <div class="col-sm-8">
@@ -128,6 +111,18 @@
 								{!! $errors->first('ruta', '<span class="help-block">:message</span>') !!}
 		                    </div>
 	                    </div>
+	                    <div class="form-group {{ $errors->has('tiempo') ? 'has-error' : '' }} ">
+		                    <label for="tiempo" class="col-sm-4 control-label">Tiempo:</label>
+			                <div class="col-sm-8" >
+				                <div class="bootstrap-timepicker">
+					                 
+					                    <input type="text" class="form-control timepicker" name="tiempo" value="{{ old('tiempo') }}">
+					                    
+					                <!-- /.form group -->
+				                </div>
+			                    {!! $errors->first('tiempo', '<span class="help-block">:message</span>') !!}
+				            </div>
+		                </div>
                     </div>
               	</div>
               	<!-- /.box-body -->

@@ -31,17 +31,18 @@
                 <label for="vehiculo" class="col-sm-3 control-label">Vehículo:</label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <select name="vehiculo_id"
-                          class="form-control select2"
-                          id="vehiculo">
-                          <option value="">Seleccione un Vehículo</option>
+                        <select class="form-control select2"
+                                name="vehiculo_id"
+                                data-placeholder="Uno o dos encargados"
+                                style="width: 100%;"
+                                >
                           @foreach ($vehiculos as $vehiculo)
                             <option value="{{ $vehiculo->id }}"
                               {{ old('vehiculo_id', $viaje->vehiculo_id) == $vehiculo->id ? 'selected' : '' }}
                               >{{ $vehiculo->placa }} </option>
 
                           @endforeach
-                          </select>
+                        </select>
                           <span class="input-group-addon" id="basic-addon1">
                                     <font color="red">
                                 <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
@@ -85,7 +86,7 @@
                       </div>
                       <input name="fecha_inicial"
                       class="form-control"
-                      value="{{ old('fecha_inicial',Carbon::parse($viaje->fecha_inicial)->format('Y/m/d')) }}"
+                      value="{{ old('fecha_inicial',Carbon::parse($viaje->fecha_inicial)->format('Y-m-d')) }}"
                       id="datepicker">
                       <span class="input-group-addon" id="basic-addon1">
                         <font color="red">
@@ -105,7 +106,7 @@
                       </div>
                       <input name="fecha_final"
                       class="form-control"
-                      value="{{ old('fecha_final',Carbon::parse($viaje->fecha_final)->format('Y/m/d')) }}"
+                      value="{{ old('fecha_final',Carbon::parse($viaje->fecha_final)->format('Y-m-d')) }}"
                       id="datepickere">
                       <span class="input-group-addon" id="basic-addon1">
                         <font color="red">
@@ -116,7 +117,7 @@
                   {!! $errors->first('fecha_final', '<span class="help-block">:message</span>') !!}
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('horainicial') ? 'has-error' : '' }}">
               <label for="fecha_final" class="col-sm-2 control-label">Partida:</label>
               <div class="col-sm-4" >
                   <div class="bootstrap-timepicker">
@@ -130,13 +131,14 @@
                           <i class="fa fa-clock-o"></i>
                         </div>
                       </div>
+                      {!! $errors->first('horainicial', '<span class="help-block">:message</span>') !!}
                       <!-- /.input group -->
                     </div>
                     <!-- /.form group -->
                   </div>
               </div>
               <label for="fecha_final" class="col-sm-2 control-label">Llegada:</label>
-              <div class="col-sm-4" >
+              <div class="col-sm-4 {{ $errors->has('horafinal') ? 'has-error' : '' }}" >
                   <div class="bootstrap-timepicker">
                     <div class="form-group">
                       <div class="input-group">
@@ -148,7 +150,7 @@
                           <i class="fa fa-clock-o"></i>
                         </div>
                       </div>
-                      <!-- /.input group -->
+                      {!! $errors->first('horafinal', '<span class="help-block">:message</span>') !!}
                     </div>
                     <!-- /.form group -->
                   </div>
@@ -181,28 +183,42 @@
                         placeholder="Ejm. 47"
                         value="{{ old('pasajeros', $viaje->pasajeros) }}">
                       <span class="input-group-addon" id="basic-addon1">
-                          <font color="red">
-                      <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                    </font>
-                </span>
+                                <font color="red">
+                            <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+                          </font>
+                      </span>
                   </div>
                     {!! $errors->first('pasajeros', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
+             <div class="form-group">
+                <label for="viaticos" class="col-sm-5 control-label">Total viáticos:</label>
+                  <div class="col-sm-7 ">
+                    <div class="input-group {{ $errors->has('viaticos') ? 'has-error' : '' }}">
+                        <input type="number"
+                          class="form-control"
+                          name="viaticos"
+                          id="viaticos"
+                          placeholder="Ejm. 10150"
+                          value="{{ old('viaticos') }}">
+                    </div>
+                      {!! $errors->first('viaticos', '<span class="help-block">:message</span>') !!}
+                  </div>
+              </div>
             <label><font color="#3c8dbc"><b>INFORME DEL VIAJE Y DEL VEHÍCULO</b></font></label>
                 <font color="red">
                   <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
                 </font>
               <div class="form-group {{ $errors->has('informe') ? 'has-error' : '' }}">
                   <div class="col-sm-12">
-                      {!! Form::textarea('informe',old('informe'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su informe sobre el viaje y el vehículo durante el viaje','required','required']) !!}
+                      {!! Form::textarea('informe',old('informe'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su informe sobre el viaje y el vehículo durante el viaje',]) !!}
                       {!! $errors->first('informe', '<span class="help-block">:message</span>') !!}
                   </div>
               </div>
               <label><font color="#3c8dbc"><b>RECOMENDACIÓN SOBRE EL VEHÍCULO</b></font></label>
-              <div class="form-group">
+              <div class="form-group {{ $errors->has('recomendacion') ? 'has-error' : '' }}">
                   <div class="col-sm-12">
-                      {!! Form::textarea('recomendacion',old('recomendacion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su recomendacion sobre el vehículo del viaje','required','required']) !!}
+                      {!! Form::textarea('recomendacion',old('recomendacion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su recomendacion sobre el vehículo del viaje']) !!}
                       {!! $errors->first('recomendacion', '<span class="help-block">:message</span>') !!}
                   </div>
               </div>
@@ -251,22 +267,17 @@
                   </div>
               </div>
 
-              {!! Form::hidden('kmtotal',null,['class'=>'form-control','id'=>'kmtotal','value'=>'0']) !!}
 
-
-              <label><font color="#3c8dbc"><b>VIÁTICOS</b></font></label>
               <div class="form-group">
-                <label for="viaticos" class="col-sm-5 control-label">Total viáticos:</label>
-                  <div class="col-sm-4 ">
-                    <div class="input-group {{ $errors->has('viaticos') ? 'has-error' : '' }}">
-                        <input type="number"
-                          class="form-control"
-                          name="viaticos"
-                          id="viaticos"
-                          placeholder="Ejm. 10150"
-                          value="{{ old('viaticos') }}">
+                <label for="viaticos" class="col-sm-5 control-label">Recorrido total:</label>
+                  <div class="col-sm-4">
+                    <div class="input-group {{ $errors->has('kmtotal') ? 'has-error' : '' }}">
+                        {!! Form::text('kmtotal',null,['class'=>'form-control','id'=>'kmtotal',' value'=>'0','readonly'=>'readonly']) !!}
+                        <span class="input-group-addon" id="basic-addon1">
+                          <font color="red">Km.</font>
+                        </span>
                     </div>
-                      {!! $errors->first('viaticos', '<span class="help-block">:message</span>') !!}
+                      {!! $errors->first('kmtotal', '<span class="help-block">:message</span>') !!}
                   </div>
               </div>
               <label><font color="#3c8dbc"><b>COMPRA DE COMBUSTIBLE</b></font></label>
@@ -390,7 +401,7 @@
               <div class="form-group {{ $errors->has('descripcion') ? 'has-error' : '' }}">
                   <label for="descripcion" class="col-sm-3 control-label">Descripcion:</label>
                   <div class="col-sm-7">
-                      {!! Form::textarea('descripcion',old('descripcion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Realize una descripción del pago de peajes o de los imprevistos','required','required']) !!}
+                      {!! Form::textarea('descripcion',old('descripcion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Realize una descripción del pago de peajes o de los imprevistos']) !!}
                       {!! $errors->first('descripcion', '<span class="help-block">:message</span>') !!}
                   </div>
               </div>
@@ -473,11 +484,14 @@
   $('#datepicker').datepicker({
         autoclose: true,
         todayHighlight:true,
-        format: 'yyyy/mm/dd'
+        format: 'yyyy-mm-dd',
+        clearBtn:true
       });
   $('#datepickere').datepicker({
         autoclose: true,
-        format: 'yyyy/mm/dd'
+        todayHighlight:true,
+        format: 'yyyy-mm-dd',
+        clearBtn:true
       });
   $(".select2").select2({
       language: "es",
