@@ -1,4 +1,5 @@
-{!! Form::open(['route'=>'reservas.store','method'=>'POST']) !!}
+
+<form method="POST" action="{{ route('reservas.store', '#create') }}"  accept-charset="utf-8">
               {{ csrf_field() }}
 <div class="modal fade" id="myModalreserva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
@@ -8,7 +9,7 @@
         <h4 class="modal-title text-center" id="exampleModalLabel"><b>INGRESE LOS SIGUENTES DATOS</b></h4>
       </div>
       <div class="modal-body" STYLE="background:#bce8f1">
-			<div class="form-group">
+			<div class="form-group {{ $errors->has('startdate') ? 'has-error' : '' }}">
                 <label for="startdate" class="col-sm-3 control-label">Fecha Inicial:</label>
                 <div class="input-group date">
                   <input name="startdate" type="text" class="form-control pull-right" id="datepicker1">
@@ -16,8 +17,9 @@
 		                    <i class="fa fa-calendar"></i>
 		                </div>
                 </div>
+                {!! $errors->first('startdate', '<span class="help-block">:message</span>') !!}
             </div>
-        	<div class="form-group">
+        	<div class="form-group {{ $errors->has('enddate') ? 'has-error' : '' }}">
                 <label for="enddate" class="col-sm-3 control-label">Fecha Final:</label>
                 <div class="input-group date">
                     <input name="enddate" type="text" class="form-control pull-right" id="datepicker2">
@@ -25,9 +27,10 @@
 		                    <i class="fa fa-calendar"></i>
 		                </div>
                 </div>
+                {!! $errors->first('enddate', '<span class="help-block">:message</span>') !!}
             </div>
             @if (Auth::user()->type == "Jefatura" OR Auth::user()->type == "Supervisor" OR Auth::user()->type == "Administrator")
-            	<div class="form-group">
+            	<div class="form-group {{ $errors->has('user_id') ? 'has-error' : '' }}">
                 	<label for="user_id" class="col-sm-3 control-label">Encargado:</label>
                 	<div class="col-md-9 input-group">	
                 			<select name="user_id" class="form-control select2" data-placeholder="Seleccione un encargado" style="width: 100%;">
@@ -36,7 +39,9 @@
                 				<option value="{{ $user->id }}">{{ $user->name }}</option>
                 			@endforeach
                 			</select>
+                      {!! $errors->first('user_id', '<span class="help-block">:message</span>') !!}
                 	</div>
+                  
             	</div>
             @else
             	<?php $id = Auth::user()->id; ?>
@@ -44,23 +49,26 @@
             @endif
                     
                    
-        	<div class="form-group">
+        	<div class="form-group {{ $errors->has('entity') ? 'has-error' : '' }}">
                 <label for="entity" class="	col-sm-3 control-label">Entidad: </label>
                	<div class="col-md-9 input-group">	
                     <input type="text" class="form-control" name="entity" id="entity" placeholder="Ejm. Carrera de Ing. de Sistemas">
                 </div>
+                {!! $errors->first('entity', '<span class="help-block">:message</span>') !!}
             </div>
-        	<div class="form-group">
+        	<div class="form-group {{ $errors->has('objective') ? 'has-error' : '' }}">
                 <label for="objetive" class="col-sm-3 control-label">Objetivo:</label>
                 <div class="col-md-9 input-group">	
                     <input type="text" name="objetive" class="form-control" id="objective" placeholder="Ejm. Viaje de Práctica">
                 </div>	
+                {!! $errors->first('objective', '<span class="help-block">:message</span>') !!}
             </div>
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('passengers') ? 'has-error' : '' }}">
                 <label for="passengers" class="col-sm-3	control-label">Pasajeros:</label>
                 <div class="col-md-9 input-group">		
                     <input type="number" class="form-control" id="passengers" name="passengers" placeholder="Ejm. 37">
                 </div>	
+                {!! $errors->first('passengers', '<span class="help-block">:message</span>') !!}
             </div>
 
       </div>
@@ -75,8 +83,8 @@
     </div>
   </div>
 </div>
-{{ FORM::close() }}
 
+</form>
 
 
 @push('styles')
@@ -101,6 +109,23 @@
       format: 'yyyy-mm-dd'
     });
     $(".select2").select2();
+</script>
+<script>
+  
+  if(window.location.hash === '#create')
+  {
+    $('#myModalreserva').modal('show');
+  }
+
+  $('#myModalreserva').on('hide.bs.modal', function(){
+    //console.log('El modal se cierra');
+    window.location.hash = '#';
+  });
+
+  $('#myModalreserva').on('show.bs.modal', function(){
+     window.location.hash = '#create';
+  });
+
 </script>
 @endpush
 

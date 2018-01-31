@@ -8,6 +8,7 @@ use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\User;
 use Uatfinfra\Reservation;
 use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\Http\Requests\ReserSaveRequest;
 use Session;
 use Auth;
 
@@ -42,7 +43,7 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReserSaveRequest $request)
     {
         //return $request;
         //Reservation::create($request->all());
@@ -100,7 +101,7 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ReserSaveRequest $request, $id)
     {
         //return $request;
         $reserva = Reservation::find($id);
