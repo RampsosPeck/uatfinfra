@@ -75,8 +75,9 @@ class InformeController extends Controller
     {
         $informe = Informe::where('id',$id)->first();
         $vehiculos  = Vehiculo::all();
+        $viajeCodigo = Viaje::where('id',$informe->viaje_id)->pluck('codigo');
         $conductores= User::where('type','Conductor')->where('active',true)->get();
-        return view('automotives.automotive.informes.edit',compact('informe','conductores','vehiculos'));
+        return view('automotives.automotive.informes.edit',compact('informe','conductores','vehiculos','viajeCodigo'));
 
     }
 
@@ -87,7 +88,7 @@ class InformeController extends Controller
      * @param  \Uatfinfra\Informe  $informe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(InfoSaveRequest  $request, $id)
     {
         $informe = Informe::find($id);
         $informe->fill($request->all());

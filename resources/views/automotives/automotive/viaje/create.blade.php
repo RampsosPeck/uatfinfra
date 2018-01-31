@@ -25,6 +25,8 @@
              {!! Form::open(['route'=>'viajes.store','method'=>'POST','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
 
+				<input type="hidden" name="reserva" value="no">
+		
                 <div class="box-body alert-info">
 
             		<div class="col-md-7">
@@ -797,9 +799,8 @@
 		                    </div>
 		                </div>
 		            </div>
-		            </li>
               	</div>
-
+				</li>
               	<!-- /.box-body -->
               	<div class="box-footer">
               		<center>

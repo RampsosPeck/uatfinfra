@@ -151,6 +151,11 @@ class ViajeController extends Controller
         $ruta->viaje_id  = $viaje->id;
         $ruta->save();
 
+        if ($request->get('reserva')  != "no" ) {
+            $re =intval($request->get('reserva'));
+            \DB::table('reservations')->where('id',$re)->delete();
+        }
+
         //return back()->with('flash','Viaje creado completado correctamente...');
         Session::flash('message','El viaje fue creado correctamente...');
         return redirect('calendario');

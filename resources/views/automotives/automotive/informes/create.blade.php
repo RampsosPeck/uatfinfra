@@ -24,7 +24,7 @@
   <div class="col-md-5">
     <div class="box box-info">
         <div class="box-header with-border">
-          <CENTER><h3 class="box-title"><b>DATOS DEL VIAJE </b></h3></CENTER>
+          <CENTER><h3 class="box-title"><b>DATOS DEL VIAJE <font color="blue">Codigo:{{ $viaje->codigo }}</font></b></h3></CENTER>
         </div>
         <div class="box-body" STYLE="background:#bce8f1">
             <div class="form-group {{ $errors->has('vehiculo') ? 'has-error' : '' }}">

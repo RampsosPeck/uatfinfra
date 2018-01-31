@@ -21,7 +21,7 @@
           <div><b>VIÁTICOS:</b> {{ $informe->viaticos }} Bs. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>DIAS:</b> {{ $informe->dias }} </div>
     </div>
       <img  style="float:right;" src="img/images.jpeg" width="100px"/>
-      <p  style="float:right;"><center><b>Nro.Viaje:</b>{{ $informe->viaje_id }}</center></p>
+      <p  style="float:right;"><center><b>Nro.Viaje:</b>{{ $viaje->codigo }}</center></p>
     </header>
     <main>
       <div class="tableinfo" id="tableinfo">
@@ -89,11 +89,11 @@
 
         <table  >
           <tr>
-              <td class="km" colspan="2"><br><br><br><br>_________________<br>{{ $chofer->name }}<br><b>Conductor</b>
+              <td class="km" colspan="2"><br><br><br><br>__________________________<br>{{ $chofer->name }}<br><b>Conductor</b>
               </td>
-              <td class="km" colspan="2"><br><br><br><br>_________________<br>{{ $supervisor->name }}<br><b>Encargado de Automotores</b>
+              <td class="km" colspan="2"><br><br><br><br>__________________________<br>{{ $jefe->name }}<br><b>Jeje de Infraestructura</b>
               </td>
-              <td class="km" colspan="2"><br><br><br><br>_________________<br>{{ $jefe->name }}<br><b>Jeje de Infraestructura</b>
+              <td class="km" colspan="2"><br><br><br><br>__________________________<br>{{ $supervisor->name }}<br><b>Encargado de Automotores</b>
               </td>
           </tr>
         </table>

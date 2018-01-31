@@ -25,6 +25,8 @@
             {!! Form::model($viaje,['route'=>['viajes.update',$viaje->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
 
+				<input type="hidden" name="reserva" value="no">
+
                 <div class="box-body alert-info">
 
             		<div class="col-md-7">
@@ -843,8 +845,8 @@
 		                    </div>
 		                </div>
 		            </div>
-		            </li>
               	</div>
+		        </li>
 
               	<!-- /.box-body -->
               	<div class="box-footer">
