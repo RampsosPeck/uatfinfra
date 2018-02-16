@@ -131,4 +131,40 @@ class InformeController extends Controller
         return $pdf->stream('Informe'.$informe->viaje_id.'.pdf');
     }
 
+    public function getAprobar($id)
+    {
+        $informe = Informe::find($id);
+        $kmvehi =Vehiculo::where('id',$informe->vehiculo_id)->pluck('kilometraje');
+        $kmtotvi = intval($kmvehi[0]) + intval($informe->kmtotal);
+        //dd($kmtotvi);
+ 
+        Vehiculo::where('id',$informe->vehiculo_id)
+          ->update(['kilometraje' => $kmtotvi]);
+
+        Informe::where('id',$id)
+          ->update(['estado' => "APROBADO"]);  
+
+        Session::flash('message','El informe fue aprobado correctamente, actualizando el km. del vehículo.');
+        return redirect('informes');
+    }
+
+    public function getObservar($id)
+    {
+        $informe = Informe::find($id);
+        if($informe->estado === "APROBADO") 
+        {
+            $kmvehiculo = Vehiculo::where('id',$informe->vehiculo_id)->pluck('kilometraje');
+            $valor = intval($kmvehiculo[0]) - intval($informe->kmtotal);
+
+            Vehiculo::where('id',$informe->vehiculo_id)
+            ->update(['kilometraje' => $valor]);
+        }
+
+        Informe::where('id',$id)
+          ->update(['estado' => "OBSERVADO"]);
+
+        Session::flash('message','El informe de viaje fue OBSERVADO!!!');
+        return redirect('informes');        
+    }
+
 }

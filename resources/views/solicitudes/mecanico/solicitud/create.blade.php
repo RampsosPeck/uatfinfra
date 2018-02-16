@@ -1,6 +1,7 @@
-{!! Form::open(['route'=>'solicitudes.store','method'=>'POST']) !!}
+<form method="POST" action="{{ route('solicitudes.store', '#create') }}"  accept-charset="utf-8">
               {{ csrf_field() }}
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+<div class="modal fade" id="modalSolMe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,24 +10,24 @@
       </div>
       <div class="modal-body" STYLE="background:#bce8f1">
         
-          <div class="form-group {{ $errors->has('vehiculo') ? 'has-error' : '' }}">
+          <div class="form-group {{ $errors->has('vehiculo_id') ? 'has-error' : '' }}">
               <label for="recipient-name" class="control-label">Vehículo:</label>
                 <select name="vehiculo_id" 
                   class="form-control select2" 
                   id="vehiculo"
                   style="width: 100%;"
-                  required="required">
+                  value="{{old('vehiculo_id')}}">
                   <option value="">Seleccione un Vehículo</option>
                     @foreach ($vehiculos as $vehiculo)
-                      <option value="{{ $vehiculo->id }}">{{ $vehiculo->tipo }} {{ $vehiculo->placa }} </option>
+                      <option value="{{ $vehiculo->id }}" {{ old('vehiculo_id', $vehiculo->vehiculo_id ) == $vehiculo->id ? 'selected' : '' }}> {{ $vehiculo->tipo }} {{ $vehiculo->placa }} </option>
                     @endforeach
                 </select>
-                {!! $errors->first('vehiculo', '<span class="help-block">:message</span>') !!}
+                {!! $errors->first('vehiculo_id', '<span class="help-block">:message</span>') !!}
           </div>
-          <div class="form-group">
+          <div class="form-group {{ $errors->has('descripcion') ? 'has-error' : '' }}">
             <label for="message-text" class="control-label">Descripcion del trabajo a realizar:</label>
-            {!! Form::textarea('descripcion',old('descripcion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Ingrese el trabajo que realizara el mecánico','required']) !!}
-                      {!! $errors->first('descripcion', '<span class="help-block">:message</span>') !!}
+            {!! Form::textarea('descripcion',old('descripcion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Ingrese el trabajo que realizara el mecánico, máximo 200 caracteres']) !!}
+              {!! $errors->first('descripcion', '<span class="help-block">:message</span>') !!}
           </div>
         
       </div>
@@ -39,8 +40,7 @@
     </div>
   </div>
 </div>
-{{ FORM::close() }}
-
+</form>
 
 
 @push('styles')
@@ -60,5 +60,24 @@
         allowClear: true
     });
   </script>
+@unless(request()->is('solicitudes'))
+  <script>
     
+    if(window.location.hash === '#create')
+    {
+      $('#modalSolMe').modal('show');
+    }
+
+    $('#modalSolMe').on('hide.bs.modal', function(){
+      //console.log('El modal se cierra');
+      window.location.hash = '#';
+    });
+
+    $('#modalSolMe').on('show.bs.modal', function(){
+       window.location.hash = '#create';
+    });
+
+  </script>
+@endunless
+
 @endpush

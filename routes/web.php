@@ -94,4 +94,7 @@ Route::get('informes/{id}/pdf','Automotive\InformeController@getImprimir');
 
 Route::resource('roles','Automotive\RolController');
 
+Route::get('informes/{id}/aprobar','Automotive\InformeController@getAprobar');
+Route::get('informes/{id}/observar','Automotive\InformeController@getObservar');
 
+Route::resource('mecanicos','Mecanico\MecanicoController');

@@ -5,6 +5,7 @@ use Uatfinfra\ModelSolicitudes\Solicitud;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
+use Uatfinfra\Http\Requests\SolMeSaveRequest;
 use Carbon\Carbon;
 use Uatfinfra\User;
 use Session;
@@ -41,12 +42,22 @@ class SolicitudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SolMeSaveRequest $request)
     {
+        $año = intval(date("Y"));
+        $desde = $año."-01-01";
+        $hasta = $año."-12-31";
+        $cantisolme = Solicitud::whereBetween('created_at',[$desde,$hasta])->count()+1;
+        //dd($cantivia);
+        $date = date('y');
+        //dd($date);
+        $coding = "$cantisolme"."/".$date;
+
         $date = Carbon::now();
         //dd($date->toFormattedDateString());
         //return $request;
         $solicitud = new Solicitud;
+        $solicitud->solmecodi   =  $coding; 
         $solicitud->vehiculo_id =  $request['vehiculo_id'];
         $solicitud->user_id     =  Auth::user()->id;
         $solicitud->descripcion =  $request['descripcion'];
@@ -100,7 +111,7 @@ class SolicitudController extends Controller
      * @param  \Uatfinfra\ModelAutomotores\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SolMeSaveRequest $request, $id)
     {
         $date = Carbon::now();
         
@@ -110,6 +121,9 @@ class SolicitudController extends Controller
         $solicitud->descripcion =  $request['descripcion'];
         $solicitud->fecha       =  $date->toFormattedDateString();
         $solicitud->save();
+
+
+
         Session::flash('message','La solicitud fue EDITADA correctamente...');
         return redirect('solicitudes');
     }

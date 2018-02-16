@@ -61,4 +61,8 @@
         <a href="{!! URL::to('/reservas') !!}"><i class="fa fa-calendar-check-o"></i> <span>Reserva de Viajes </span>
         </a>
     </li> 
+    <li class="treeview {{ request()->is('mecanicos*') ? 'active' : '' }}">
+        <a href="{!! URL::to('/mecanicos') !!}"><i class="fa fa-briefcase"></i> <span>Mecánico </span>
+        </a>
+    </li> 
 </ul>

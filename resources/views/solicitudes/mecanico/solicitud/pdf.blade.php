@@ -19,7 +19,7 @@
                   <div><b>Solicitante: Sr.</b> {{ $solicitud->user->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha:</b> {{ $solicitud->fecha }} </div>
               </td>
               <td class="ks" colspan="2">
-                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->id }} </div>
+                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi }} </div>
               </td>
           </tr>
           <tr>
@@ -59,7 +59,7 @@
                   <div><b>Solicitante: Sr.</b> {{ $solicitud->user->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha:</b> {{ $solicitud->fecha }} </div>
               </td>
               <td class="ks" colspan="2">
-                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->id }} </div>
+                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi  }} </div>
               </td>
           </tr>
           <tr>
@@ -101,7 +101,7 @@
                   <div><b>Solicitante: Sr.</b> {{ $solicitud->user->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha:</b> {{ $solicitud->fecha }} </div>
               </td>
               <td class="ks" colspan="2">
-                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->id }} </div>
+                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi  }} </div>
               </td>
           </tr>
           <tr>
@@ -142,7 +142,7 @@
                   <div><b>Solicitante: Sr.</b> {{ $solicitud->user->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha:</b> {{ $solicitud->fecha }} </div>
               </td>
               <td class="ks" colspan="2">
-                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->id }} </div>
+                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi  }} </div>
               </td>
           </tr>
           <tr>

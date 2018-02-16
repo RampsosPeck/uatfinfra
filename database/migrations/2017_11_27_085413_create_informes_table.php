@@ -45,6 +45,7 @@ class CreateInformesTable extends Migration
             $table->string('debopeaje')->nullable();
             $table->string('deboimprevi')->nullable();
             $table->string('debototal')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
         });
     }

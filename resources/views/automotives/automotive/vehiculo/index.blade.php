@@ -16,17 +16,9 @@
                         <th>Asignado A:</th>
                         <th>Placa</th>
                         <th>Combustible</th>
-                        <th>Tipo</th>
-                        <th>Especificación</th>
                         <th>KM</th>
                         <th>Pax</th>                      
-                        <th>Color</th>                      
-                        <th>Modelo</th>                      
-                        <th>Marca</th>                      
-                        <th>Chasis</th>                     
-                        <th>Motor</th>                     
-                        <th>Cilindrada</th>                     
-						<th>Estado</th>
+                        <th>Estado</th>
                         <th>Opciones</th>						
 					</tr>
  				</thead>
@@ -45,21 +37,15 @@
                             {{ $combusti->name }} 
                         @endforeach
                         </td>
-                        <td>{{ $vehiculo->tipo }}</td>
-                        <td>{{ $vehiculo->especificacion }}</td>
                         <td>{{ $vehiculo->kilometraje }}</td>
                         <td>{{ $vehiculo->pasajeros }}</td>
-                        <td>{{ $vehiculo->color }}</td>
-                        <td>{{ $vehiculo->modelo }}</td>
-                        <td>{{ $vehiculo->marca }}</td>
-                        <td>{{ $vehiculo->chasis }}</td>
-                        <td>{{ $vehiculo->motor }}</td>
-                        <td>{{ $vehiculo->cilindrada }}</td>
                         <td>{{ $vehiculo->estado }}</td>
                         <td>
-                            {!!link_to_route('vehiculos.edit', $title = 'Editar', $parameters = $vehiculo->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
+                            {!!link_to_route('vehiculos.edit', $title = 'Editar', $parameters = $vehiculo->id, $attributes = ['class'=>'btn btn-primary btn-xs   fa fa-pencil-square-o'])!!}
+                            <a href="#modalDetalle{{$vehiculo->id}}" class="btn btn-info btn-xs fa fa-eye-slash" data-toggle="modal"> Detalle</a>
                         </td>
                     </tr>
+                    @include('automotives.automotive.vehiculo.detalle')
                     @endforeach
                 </tbody>
  			</table>
@@ -104,7 +90,8 @@
             "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
-        }
+        },
+        "order": [[ 0, "desc" ]]
     });
   });
   

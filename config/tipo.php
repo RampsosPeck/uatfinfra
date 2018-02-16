@@ -4,7 +4,7 @@ return array(
 
     'position' => [
         'WEB SITE'                  => 'Web Site',
-        'DEPTO. DE INFRAESTRUCTURA' => 'Depto. de Infraestructura',
+        'INFRAESTRUCTURA'           => 'Depto. de Infraestructura',
         'AUTOMOTORES'               => 'Automotores',
         'ENC. DE VIAJE'             => 'Encargado',
         'U.A.T.F.'                  => 'U. A. T. F.'

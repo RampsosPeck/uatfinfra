@@ -67,7 +67,6 @@
     $("#vehiculo_id").select2({
         placeholder: "Selecione un vehículo",
         language: "es",
-        maximumSelectionLength: 2,
         allowClear: true
     });
   </script>

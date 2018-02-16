@@ -12,7 +12,7 @@
 			<div class="form-group {{ $errors->has('startdate') ? 'has-error' : '' }}">
                 <label for="startdate" class="col-sm-3 control-label">Fecha Inicial:</label>
                 <div class="input-group date">
-                  <input name="startdate" type="text" class="form-control pull-right" id="datepicker1">
+                  <input name="startdate" value="{{old('startdate')}}" type="text" class="form-control pull-right" id="datepicker1">
                   		<div class="input-group-addon">
 		                    <i class="fa fa-calendar"></i>
 		                </div>
@@ -22,7 +22,7 @@
         	<div class="form-group {{ $errors->has('enddate') ? 'has-error' : '' }}">
                 <label for="enddate" class="col-sm-3 control-label">Fecha Final:</label>
                 <div class="input-group date">
-                    <input name="enddate" type="text" class="form-control pull-right" id="datepicker2">
+                    <input name="enddate" value="{{old('enddate')}}" type="text" class="form-control pull-right" id="datepicker2">
                   		<div class="input-group-addon">
 		                    <i class="fa fa-calendar"></i>
 		                </div>
@@ -36,7 +36,7 @@
                 			<select name="user_id" class="form-control select2" data-placeholder="Seleccione un encargado" style="width: 100%;">
                 			<option value="">Seleccione un encargado</option>
                 			@foreach ($users as $user)
-                				<option value="{{ $user->id }}">{{ $user->name }}</option>
+                				<option value="{{ $user->id }}" {{ old('user_id', $user->user_id ) == $user->id ? 'selected' : '' }}> {{ $user->name }}</option>
                 			@endforeach
                 			</select>
                       {!! $errors->first('user_id', '<span class="help-block">:message</span>') !!}
@@ -52,21 +52,21 @@
         	<div class="form-group {{ $errors->has('entity') ? 'has-error' : '' }}">
                 <label for="entity" class="	col-sm-3 control-label">Entidad: </label>
                	<div class="col-md-9 input-group">	
-                    <input type="text" class="form-control" name="entity" id="entity" placeholder="Ejm. Carrera de Ing. de Sistemas">
+                    <input type="text" class="form-control" name="entity" value="{{old('entity')}}" id="entity" placeholder="Ejm. Carrera de Ing. de Sistemas">
                 </div>
                 {!! $errors->first('entity', '<span class="help-block">:message</span>') !!}
             </div>
-        	<div class="form-group {{ $errors->has('objective') ? 'has-error' : '' }}">
+        	<div class="form-group {{ $errors->has('objetive') ? 'has-error' : '' }}">
                 <label for="objetive" class="col-sm-3 control-label">Objetivo:</label>
                 <div class="col-md-9 input-group">	
-                    <input type="text" name="objetive" class="form-control" id="objective" placeholder="Ejm. Viaje de Práctica">
+                    <input type="text" name="objetive" class="form-control" id="objetive" value="{{old('objetive')}}" placeholder="Ejm. Viaje de Práctica">
                 </div>	
-                {!! $errors->first('objective', '<span class="help-block">:message</span>') !!}
+                {!! $errors->first('objetive', '<span class="help-block">:message</span>') !!}
             </div>
             <div class="form-group {{ $errors->has('passengers') ? 'has-error' : '' }}">
                 <label for="passengers" class="col-sm-3	control-label">Pasajeros:</label>
                 <div class="col-md-9 input-group">		
-                    <input type="number" class="form-control" id="passengers" name="passengers" placeholder="Ejm. 37">
+                    <input type="number" class="form-control" id="passengers" name="passengers" value="{{old('passengers')}}" placeholder="Ejm. 37">
                 </div>	
                 {!! $errors->first('passengers', '<span class="help-block">:message</span>') !!}
             </div>
@@ -110,23 +110,25 @@
     });
     $(".select2").select2();
 </script>
-<script>
-  
-  if(window.location.hash === '#create')
-  {
-    $('#myModalreserva').modal('show');
-  }
+@unless(request()->is('reservas*'))
+  <script>
+    
+    if(window.location.hash === '#create')
+    {
+      $('#myModalreserva').modal('show');
+    }
 
-  $('#myModalreserva').on('hide.bs.modal', function(){
-    //console.log('El modal se cierra');
-    window.location.hash = '#';
-  });
+    $('#myModalreserva').on('hide.bs.modal', function(){
+      //console.log('El modal se cierra');
+      window.location.hash = '#';
+    });
 
-  $('#myModalreserva').on('show.bs.modal', function(){
-     window.location.hash = '#create';
-  });
+    $('#myModalreserva').on('shown.bs.modal', function(){
+       window.location.hash = '#create';
+    });
 
-</script>
+  </script>
+@endunless
 @endpush
 
 

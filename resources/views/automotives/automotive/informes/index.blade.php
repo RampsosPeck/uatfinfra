@@ -4,7 +4,8 @@
 @include('alertas.success')
 <?php use Carbon\Carbon;
     use Uatfinfra\User; 
-    use Uatfinfra\ModelAutomotores\Vehiculo; ?>
+    use Uatfinfra\ModelAutomotores\Vehiculo; 
+    use Uatfinfra\ModelAutomotores\Viaje;?>
 <div class="container">
     <div class="box box-primary">
         <div class="box-header text-center">
@@ -16,18 +17,20 @@
  				<thead>
  					<tr>
 						<th>ID</th>
-                        <th>Nro. Viaje</th>
+                        <th>Cod. Viaje</th>
                         <th>Conductor</th>
                         <th>Vehículo</th>
                         <th>Fecha/Viaje</th>
-                        <th>Opciones</th>						
+                        <th>Opciones</th>
+                        <th>Estado</th>						
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
                     @foreach($informes as $key => $informe)
                     <tr>
                         <td class="text-center">{{ ++$key }}</td>
-                    	<td class="text-center">{{ $informe->viaje_id }}</td>
+                        <?php $codivi = Viaje::where('id',$informe->viaje_id)->first();?>
+                    	<td class="text-center">{{ $codivi->codigo }}</td>
                         <?php $conducname = User::where('id',$informe->conductor)->first();?>
                         <td>{{ $conducname->name }}</td>
                         <?php $vehiculo = Vehiculo::where('id',$informe->conductor)->first();?>
@@ -38,7 +41,22 @@
                             
                             {!!link_to_action('Automotive\InformeController@getImprimir', $title = ' Imprimir Informe', $parameters = $informe->id,  $attributes = ['class'=>'btn btn-warning btn-xs fa fa-print','target'=>'_blank'])!!}
 
+                        </td>
+                        <td>
+                            @if(!empty($informe->estado))
+                                @if($informe->estado === "APROBADO")
+                                    <font color="green"><b>{{ $informe->estado }}</b></font>
 
+                                    {!!link_to_action('Automotive\InformeController@getObservar', $title = '', $parameters = $informe->id, $attributes = ['class'=>'btn btn-warning btn-xs fa fa-exclamation-circle','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Observar Informe. (Deberá explicar la razón.)'])!!}
+                                @else
+                                    <font color="#f0ad4e"><b>{{ $informe->estado }}</b></font>
+
+                                    {!!link_to_action('Automotive\InformeController@getAprobar', $title = '', $parameters = $informe->id, $attributes = ['class'=>'btn btn-success btn-xs fa fa-check-square','data-toggle'=>'tooltip', 'data-placement'=>'left', 'title'=>'Aprobar el informe. (Se actualizará el km. del vehiculo)'])!!}
+                                @endif
+                            @else    
+                                {!!link_to_action('Automotive\InformeController@getAprobar', $title = '', $parameters = $informe->id, $attributes = ['class'=>'btn btn-success btn-xs fa fa-check-square','data-toggle'=>'tooltip', 'data-placement'=>'left', 'title'=>'Aprobar el informe. (Se actualizará el km. del vehiculo)'])!!}
+                                {!!link_to_action('Automotive\InformeController@getObservar', $title = '', $parameters = $informe->id, $attributes = ['class'=>'btn btn-warning btn-xs fa fa-exclamation-circle','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Observar Informe. (Deberá explicar la razón.)'])!!}
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -85,7 +103,8 @@
             "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
-        }
+        },
+        "order": [[ 0, "desc" ]]
     });
   });
   

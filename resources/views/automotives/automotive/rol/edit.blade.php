@@ -42,7 +42,7 @@
                     <tr>
                         <td class="text-center"> {{ ++$key }} </td>
                         <td class="text-center"> {{ $chofer->name }} </td>
-                        <td class="text-center"> CIUDAD </td>
+                        <td class="text-center"> FRONTERA </td>
                         <?php $user = \DB::table('users')
                             ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
                             ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
