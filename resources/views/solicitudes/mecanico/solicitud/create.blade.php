@@ -60,12 +60,12 @@
         allowClear: true
     });
   </script>
-@unless(request()->is('solicitudes'))
+@unless(request()->is('/solicitudes'))
   <script>
     
     if(window.location.hash === '#create')
     {
-      $('#modalSolMe').modal('show');
+       $('#modalSolMe').modal({ 'show' : {{ count($errors) > 0 ? true : false }}  });
     }
 
     $('#modalSolMe').on('hide.bs.modal', function(){

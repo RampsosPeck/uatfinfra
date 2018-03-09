@@ -1,17 +1,19 @@
+<?php use Uatfinfra\ModelAutomotores\Viaje; use Uatfinfra\User;?>
 <div class="container panelcontrol">
     <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aquacontrol">
             <div class="inner">
-              <h3>150</h3>
+            <?php $cantvi = Viaje::count(); ?>
+              <h3>{{$cantvi}}</h3>
 
               <p>VIAJES REALIZADOS</p>
             </div>
             <div class="icon">
               <i class="fa fa-bus"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('viajes.index')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -34,14 +36,15 @@
           <!-- small box -->
           <div class="small-box bg-yellowcontrol">
             <div class="inner">
-              <h3>44</h3>
+            <?php $cantus = User::count(); ?>
+              <h3>{{$cantus}}</h3>
 
               <p>USUARIOS REGISTRADOS</p>
             </div>
             <div class="icon">
               <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('users.index')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

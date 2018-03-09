@@ -65,8 +65,8 @@ class SolicitudController extends Controller
         $solicitud->save();
 
         Session::flash('message','La solicitud de trabajo para el mecanico se creo correctamente...');
-        return redirect('solicitudes');
 
+        return redirect('solicitudes');
     }
 
     /**
@@ -141,3 +141,4 @@ class SolicitudController extends Controller
         return redirect('solicitudes');
     }
 }
+

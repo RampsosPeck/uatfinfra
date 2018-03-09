@@ -110,12 +110,12 @@
     });
     $(".select2").select2();
 </script>
-@unless(request()->is('reservas*'))
+@unless(request()->is('/reservas*'))
   <script>
     
     if(window.location.hash === '#create')
     {
-      $('#myModalreserva').modal('show');
+      $('#myModalreserva').modal({ 'show' : {{ count($errors) > 0 ? true : false }}  });
     }
 
     $('#myModalreserva').on('hide.bs.modal', function(){

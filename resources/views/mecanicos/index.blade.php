@@ -6,7 +6,7 @@
     <div class="box box-info">
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO PARA EL  MECÁNICO</FONT></b></h3></center>
-		
+
         <button class="btn btn-info pull-right" data-toggle="modal" data-target="#modalSolMe"><i class="fa fa-eye"></i> Trabajos realizados</button>
         <button class="btn btn-warning pull-right" data-toggle="modal" data-target="#modalSolMe"><i class="fa fa-eye"></i> Pedido de Materiales</button>
         </div>
@@ -17,11 +17,11 @@
  					<tr>
 						<th class="text-center">Nro.</th>
                         <th class="text-center">Cod. Sol.</th>
-                        <th class="text-center">Responsable</th>
+                        <th class="text-center">Solicitante</th>
                         <th class="text-center">Vehículo</th>
                         <th class="text-center">Fecha</th>
                         <th class="text-center">Opciones</th>
-                        <th class="text-center">Nro. Trabajos</th>						
+                        <th class="text-center">Nro. Trabajos</th>
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
@@ -34,16 +34,16 @@
                         <td>{{ $solicitud->fecha }}</td>
                         <td>
 
-                            {!!link_to_route('mecanicos.edit', $title = ' Concretar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-info btn-xs  fa fa-pencil-square-o','data-toggle'=>'modal','data-target'=>'#modalMecaTra'])!!}
-                            
-                            {!!link_to_route('mecanicos.show', $title = ' Pedido M.', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-warning btn-xs  fa fa-print','target'=>'_blank'])!!} 
+                            {!!link_to_route('mecanicos.show', $title = ' Concretar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-info btn-xs  fa fa-pencil-square-o'])!!}
+
+                            {!!link_to_route('mecanicos.show', $title = ' Pedido M.', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-warning btn-xs  fa fa-print','target'=>'_blank'])!!}
                         </td>
                         <td>0</td>
                     </tr>
                     @endforeach
                 </tbody>
  			</table>
- 		</div>	     			
+ 		</div>
    		</div>
     </div>
 </div>
@@ -55,14 +55,14 @@
 
 @endpush
 
-@push('scripts') 
+@push('scripts')
    {!! Html::script('/dashboard/plugins/datatables/jquery.dataTables.min.js') !!}
    {!! Html::script('/dashboard/plugins/datatables/dataTables.bootstrap.min.js') !!}
 <script>
   $(function () {
     $('#vehiculo-table').DataTable( {
         "language": {
-          
+
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
             "sZeroRecords": "No se encontraron resultados",
@@ -90,5 +90,5 @@
     });
   });
   </script>
-    
+
 @endpush

@@ -1,5 +1,5 @@
 @extends('automotives.layout')
-
+    
 @section('content')
 @include('alertas.success')
 <div class="container">
@@ -92,6 +92,7 @@
         "order": [[ 0, "desc" ]]
     });
   });
-  </script>
+</script>
+
     
 @endpush
