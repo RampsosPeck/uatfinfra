@@ -14,14 +14,14 @@ class CreateTableMecanicos extends Migration {
 		Schema::create('mecanicos', function (Blueprint $table) {
 			$table->increments('id');
 			$table->unsignedInteger('sol_id');
-			$table->string('kilome');
+			$table->string('kilome')->nullable();
 			$table->date('fecha');
-			$table->string('cantidad');
-			$table->string('nombre');
+			$table->string('cantidad')->nullable();
+			$table->string('nombre')->nullable();
 			$table->string('descripcion', 800);
-			$table->string('marca');
-			$table->string('codigo');
-			$table->string('observacion', 700);
+			$table->string('marca')->nullable();
+			$table->string('codigo')->nullable();
+			$table->string('observacion', 700)->nullable();
 			$table->timestamps();
 		});
 	}

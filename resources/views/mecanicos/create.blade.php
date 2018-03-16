@@ -47,24 +47,38 @@
             </div>
             </div>
         </div>
-        <div STYLE="background:#dff0d8">
+        <div STYLE="background:#dff0d8" class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>kilome</th>
-                        <th>fecha</th>
-                        <th>nombre</th>
-                        <th>Descripción</th>
+                        <th>Nro.</th>
+                        <th>KM.</th>
+                        <th>FECHA</th>
+                        <th>CANT.</th>
+                        <th>NOMBRE</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>MARCA</th>
+                        <th>CODIGO</th>
+                        <th>OBSERVACIÓN</th>
+                        <th>OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                 @if(!empty($mecanicos))
-                    @foreach ($mecanicos as $mecanico)
+                    @foreach ($mecanicos as $key => $mecanico)
                         <tr>
+                            <td>{{ ++$key }}</td>
                             <td>{{ $mecanico->kilome }}</td>
                             <td>{{ $mecanico->fecha }}</td>
+                            <td>{{ $mecanico->cantidad }}</td>
                             <td>{{ $mecanico->nombre }}</td>
                             <td>{{ $mecanico->descripcion }}</td>
+                            <td>{{ $mecanico->marca }}</td>
+                            <td>{{ $mecanico->codigo }}</td>
+                            <td>{{ $mecanico->observacion }}</td>
+                            <td>
+                                {!!link_to_route('mecanicos.edit', $title = 'Editar', $parameters = $mecanico->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!} 
+                            </td>
                         </tr>
                     @endforeach
                 @endif

@@ -1,5 +1,6 @@
 @extends('automotives.layout')
-
+<?php 
+use Uatfinfra\ModelMecanico\Mecanico;?>
 @section('content')
 @include('alertas.success')
 <div class="container">
@@ -38,7 +39,12 @@
 
                             {!!link_to_route('mecanicos.show', $title = ' Pedido M.', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-warning btn-xs  fa fa-print','target'=>'_blank'])!!}
                         </td>
-                        <td>0</td>
+                        <?php $work = Mecanico::where('sol_id',$solicitud->id)->count();?>
+                        @if($work == 0)
+                            <td class="text-center" bgcolor="#f2dede">{{ "0" }}</td>
+                        @else
+                            <td class="text-center">{{ $work }}</td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

@@ -7,7 +7,7 @@
         <label for="kilome" class="col-md-4 control-label">Kilometraje:</label>
 
         <div class="col-md-6">
-            <input id="kilome" type="number" class="form-control" name="kilome" value="{{ old('kilome') }}" >
+            <input id="kilome" type="number" class="form-control" name="kilome" value="{{ old('kilome') }}" placeholder="Ejm. 25863" >
 
             @if ($errors->has('kilome'))
                 <span class="help-block">
@@ -21,7 +21,7 @@
         <label for="fecha" class="col-md-4 control-label">Fecha:</label>
 
         <div class="col-md-6">
-            <input id="fecha" type="date" class="form-control" name="fecha" >
+            <input id="fecha" type="date" class="form-control" name="fecha" placeholder="dd/mm/aaaa">
 
             @if ($errors->has('fecha'))
                 <span class="help-block">
@@ -35,7 +35,7 @@
         <label for="cantidad" class="col-md-4 control-label">Cantidad:</label>
 
         <div class="col-md-6">
-            <input id="cantidad" type="text" class="form-control" name="cantidad" value="{{ old('cantidad') }}" >
+            <input id="cantidad" type="text" class="form-control" name="cantidad" value="{{ old('cantidad') }}" placeholder="Ejm. 3 piezas">
 
             @if ($errors->has('cantidad'))
                 <span class="help-block">
@@ -49,7 +49,7 @@
         <label for="nombre" class="col-md-4 control-label">Nombre:</label>
 
         <div class="col-md-6">
-            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" >
+            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="Ejm. llantas">
 
             @if ($errors->has('nombre'))
                 <span class="help-block">
@@ -63,7 +63,7 @@
         <label for="descripcion" class="col-md-4 control-label">Descripción:</label>
 
         <div class="col-md-6">
-            <textarea id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" ></textarea>
+            <textarea id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ejm. Se realizó el cambio de llantas tres piezas del vehículo."></textarea>
 
             @if ($errors->has('descripcion'))
                 <span class="help-block">
@@ -77,7 +77,7 @@
         <label for="marca" class="col-md-4 control-label">Marca:</label>
 
         <div class="col-md-6">
-            <input id="marca" type="text" class="form-control" name="marca" value="{{ old('marca') }}" >
+            <input id="marca" type="text" class="form-control" name="marca" value="{{ old('marca') }}" placeholder="Ejm. Godggear">
 
             @if ($errors->has('marca'))
                 <span class="help-block">
@@ -91,7 +91,7 @@
         <label for="codigo" class="col-md-4 control-label">Código:</label>
 
         <div class="col-md-6">
-            <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" >
+            <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" placeholder="Ejm. ASF-2542">
 
             @if ($errors->has('codigo'))
                 <span class="help-block">
@@ -105,7 +105,7 @@
         <label for="observacion" class="col-md-4 control-label">Observación:</label>
 
         <div class="col-md-6">
-            <textarea id="observacion" type="text" class="form-control" name="observacion" value="{{ old('observacion') }}" ></textarea>
+            <textarea id="observacion" type="text" class="form-control" name="observacion" value="{{ old('observacion') }}" placeholder="Ejm. Verificar el número de entrega en el próximo cambio de llantas."></textarea>
 
             @if ($errors->has('observacion'))
                 <span class="help-block">

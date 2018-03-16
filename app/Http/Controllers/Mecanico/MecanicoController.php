@@ -1,12 +1,13 @@
 <?php
 
 namespace Uatfinfra\Http\Controllers\Mecanico;
-
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\ModelMecanico\Mecanico;
 use Uatfinfra\ModelSolicitudes\Solicitud;
+use Uatfinfra\Http\Requests\MecaConcreRequest;
 use Uatfinfra\User;
 
 class MecanicoController extends Controller {
@@ -36,7 +37,7 @@ class MecanicoController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request) {
+	public function store(MecaConcreRequest $request) {
 
 		$meca_id = \DB::table('mecanicos')->insertGetId([
 			'sol_id' => $request['sol_id'],
@@ -50,17 +51,8 @@ class MecanicoController extends Controller {
 			'observacion' => $request['observacion'],
 		]);
 
-		$mecanico = Mecanico::find($meca_id);
-
-		$mecanicos = Mecanico::where('id', $mecanico->sol_id)->get();
-		//dd($mecanicos);
-
-		$solicitud = Solicitud::find($mecanico->sol_id);
-		$user = User::find($solicitud->user_id);
-		$vehiculo = Vehiculo::find($solicitud->vehiculo_id);
-
-		return view('mecanicos.create', compact('solicitud', 'user', 'vehiculo', 'mecanicos'));
-
+		//return Redirect::back()->with('message', 'Expediente actualizado correctamente');
+		return Redirect::back();
 	}
 
 	/**
@@ -74,7 +66,9 @@ class MecanicoController extends Controller {
 		$user = User::find($solicitud->user_id);
 		$vehiculo = Vehiculo::find($solicitud->vehiculo_id);
 		//dd($solicitud);
-		return view('mecanicos.create', compact('solicitud', 'user', 'vehiculo'));
+		$mecanicos = Mecanico::where('sol_id',$id)->orderBy('id','DESC')->get();
+		//dd($mecanicos);
+		return view('mecanicos.create', compact('solicitud', 'user', 'vehiculo','mecanicos'));
 	}
 
 	/**
@@ -83,8 +77,8 @@ class MecanicoController extends Controller {
 	 * @param  \Uatfinfra\ModelMecanico\Mecanico  $mecanico
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(Mecanico $mecanico) {
-		//
+	public function edit($id) {
+		return $id;
 	}
 
 	/**
