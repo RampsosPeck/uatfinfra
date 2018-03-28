@@ -122,8 +122,6 @@ class SolicitudController extends Controller
         $solicitud->fecha       =  $date->toFormattedDateString();
         $solicitud->save();
 
-
-
         Session::flash('message','La solicitud fue EDITADA correctamente...');
         return redirect('solicitudes');
     }

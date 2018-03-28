@@ -1,7 +1,8 @@
 @extends('automotives.layout')
 
 @section('content')
-
+@include('alertas.success')
+@include('alertas.errors')
 <div class="container">
     <div class="box box-info">
         <div class="box-header">
@@ -47,6 +48,9 @@
             </div>
             </div>
         </div>
+
+       
+        
         <div STYLE="background:#dff0d8" class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -78,7 +82,16 @@
                             <td>{{ $mecanico->observacion }}</td>
                             <td>
                                 {!!link_to_route('mecanicos.edit', $title = 'Editar', $parameters = $mecanico->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!} 
+
+                                {!! Form::open(['route'=>['mecanicos.destroy',$mecanico->id],'method'=>'DELETE']) !!}
+                                    
+                                        <button type="submit" class="btn btn-danger btn-block btn-xs">
+                                            <span class="fa fa-trash"> Eliminar  </span> 
+                                        </button>
+                                    
+                                {!! Form::close() !!}
                             </td>
+
                         </tr>
                     @endforeach
                 @endif
@@ -89,10 +102,6 @@
 </div>
 @endsection
 
-
-@push('styles')
-
-@endpush
 
 @push('scripts')
 

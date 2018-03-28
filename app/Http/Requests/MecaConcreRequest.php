@@ -39,14 +39,13 @@ class MecaConcreRequest extends FormRequest
     public function messages()
     {
         return [
-                'kilome'              => 'El kilometraje tiene que ser solo numeros.',
                 'fecha.date'          => 'Inserte una fecha válida.',
-                'cantidad.regex'      => 'La canidad no debe execer los 30 caracteres.',
-                'nombre.regex'        => 'El nombre no debe execer los 30 caracteres.',
-                'descripcion.regex'      => 'En la descripción solo se aceptan letras números.',
-                'marca.regex'            => 'En la marca solo se aceptan letras y/o números.',
-                'codigo.regex'           => 'En el código solo se aceptan letras y/o números.',
-                'observacion.regex'      => 'La observacion solo debe contener letras y/o números.'
+                'cantidad'            => 'La canidad no debe execer los 30 caracteres.',
+                'nombre'              => 'El nombre no debe execer los 30 caracteres.',
+                'descripcion'         => 'En la descripción no debe exceder los 200 caracteres.',
+                'marca'               => 'En la marca no debe exceder los 50 caracteres.',
+                'codigo'              => 'En el código no debe exceder los 50 caracteres.',
+                'observacion'         => 'La observacion no debe exceder los 200 caracteres.'
 
         ];
     }

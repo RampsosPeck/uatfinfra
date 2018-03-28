@@ -8,6 +8,7 @@ use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\ModelMecanico\Mecanico;
 use Uatfinfra\ModelSolicitudes\Solicitud;
 use Uatfinfra\Http\Requests\MecaConcreRequest;
+use Session;
 use Uatfinfra\User;
 
 class MecanicoController extends Controller {
@@ -50,6 +51,8 @@ class MecanicoController extends Controller {
 			'codigo' => $request['codigo'],
 			'observacion' => $request['observacion'],
 		]);
+		
+        Solicitud::where('id',$request->sol_id)->update(['active'=>false]);
 
 		//return Redirect::back()->with('message', 'Expediente actualizado correctamente');
 		return Redirect::back();
@@ -66,7 +69,7 @@ class MecanicoController extends Controller {
 		$user = User::find($solicitud->user_id);
 		$vehiculo = Vehiculo::find($solicitud->vehiculo_id);
 		//dd($solicitud);
-		$mecanicos = Mecanico::where('sol_id',$id)->orderBy('id','DESC')->get();
+		$mecanicos = Mecanico::where('sol_id',$id)->orderBy('id','ASC')->get();
 		//dd($mecanicos);
 		return view('mecanicos.create', compact('solicitud', 'user', 'vehiculo','mecanicos'));
 	}
@@ -78,8 +81,10 @@ class MecanicoController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		return $id;
-	}
+		$mecanicos = Mecanico::find($id);
+		//dd($mecanico);
+		return view('mecanicos.edit',compact('mecanicos'));
+	}				
 
 	/**
 	 * Update the specified resource in storage.
@@ -88,8 +93,27 @@ class MecanicoController extends Controller {
 	 * @param  \Uatfinfra\ModelMecanico\Mecanico  $mecanico
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Mecanico $mecanico) {
-		dd($request);
+	public function update(MecaConcreRequest $request, Mecanico $mecanico) {
+		
+		//dd($request);
+		//dd($mecanico);
+		$mecanicotra = Mecanico::find($mecanico->id);
+        $mecanicotra->update($request->all());
+        $mecanicotra->save();  
+
+
+        
+
+        $solicitud = Solicitud::find($request->sol_id);
+		$user = User::find($solicitud->user_id);
+		$vehiculo = Vehiculo::find($solicitud->vehiculo_id);
+		//dd($solicitud);
+		$mecanicos = Mecanico::where('sol_id',$request->sol_id)->orderBy('id','ASC')->get();
+		//dd($mecanicos);
+		Session::flash('message','El trabajo fue ACTUALIZADO correctamente...');
+        
+		return view('mecanicos.create', compact('solicitud', 'user', 'vehiculo','mecanicos'));
+		
 	}
 
 	/**
@@ -99,6 +123,10 @@ class MecanicoController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Mecanico $mecanico) {
-		//
+		Mecanico::destroy($mecanico->id);
+        Session::flash('message','Trabajo eliminado correctamente...');
+        return Redirect::back();
+
+
 	}
 }

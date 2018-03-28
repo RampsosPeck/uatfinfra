@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User;
-        $user->name = "Cr. Gral. Edgar Arce Pecho";
+        $user->name = "Sr. Alberto Encinas E.";
         $user->cedula = "3711104";
         $user->celular= "73850137";
         $user->email= "supervisor@uatf.com";

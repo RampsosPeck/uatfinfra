@@ -1,3 +1,5 @@
+
+
 <form class="form-horizontal" role="form" method="POST" action="{{ route('mecanicos.store', '#create') }}">
     {{ csrf_field() }}
 
@@ -122,3 +124,4 @@
         </center>
     </div>
 </form>
+

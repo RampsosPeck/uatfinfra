@@ -1,6 +1,7 @@
 @extends('automotives.layout')
 <?php 
-use Uatfinfra\ModelMecanico\Mecanico;?>
+use Uatfinfra\ModelMecanico\Mecanico;
+use Uatfinfra\ModelMecanico\Pedido;?>
 @section('content')
 @include('alertas.success')
 <div class="container">
@@ -8,8 +9,7 @@ use Uatfinfra\ModelMecanico\Mecanico;?>
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO PARA EL  MECÁNICO</FONT></b></h3></center>
 
-        <button class="btn btn-info pull-right" data-toggle="modal" data-target="#modalSolMe"><i class="fa fa-eye"></i> Trabajos realizados</button>
-        <button class="btn btn-warning pull-right" data-toggle="modal" data-target="#modalSolMe"><i class="fa fa-eye"></i> Pedido de Materiales</button>
+        <a href="{{ route('pedidos.index') }}" class="btn btn-warning pull-right"><i class="fa fa-eye"></i> Pedido de Materiales</a>
         </div>
         <div class="box-body">
         <div class="table-responsive">
@@ -20,9 +20,11 @@ use Uatfinfra\ModelMecanico\Mecanico;?>
                         <th class="text-center">Cod. Sol.</th>
                         <th class="text-center">Solicitante</th>
                         <th class="text-center">Vehículo</th>
+                        <th class="text-center">Descripción</th>
                         <th class="text-center">Fecha</th>
                         <th class="text-center">Opciones</th>
                         <th class="text-center">Nro. Trabajos</th>
+                        <th class="text-center">Pedido M.</th>                        
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
@@ -32,18 +34,27 @@ use Uatfinfra\ModelMecanico\Mecanico;?>
                     	<td class="text-center">{{ $solicitud->solmecodi }}</td>
                         <td>{{ $solicitud->user->name }}</td>
                         <td>{{ $solicitud->vehiculo->placa }}</td>
+                        <td>{{ $solicitud->descripcion }}</td>
                         <td>{{ $solicitud->fecha }}</td>
                         <td>
 
-                            {!!link_to_route('mecanicos.show', $title = ' Concretar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-info btn-xs  fa fa-pencil-square-o'])!!}
+                            {!!link_to_route('mecanicos.show', $title = ' Concretar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-info btn-block btn-xs  fa fa-pencil-square-o','data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Registre el trabajo que realizó en esta solicitud.'])!!}
 
-                            {!!link_to_route('mecanicos.show', $title = ' Pedido M.', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-warning btn-xs  fa fa-print','target'=>'_blank'])!!}
+                            {!!link_to_route('pedidos.show', $title = ' Pedido M.', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-warning btn-block btn-xs  fa fa-print', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Solicite material para realizar el trabajo de esta solicitud.'])!!}
                         </td>
                         <?php $work = Mecanico::where('sol_id',$solicitud->id)->count();?>
                         @if($work == 0)
                             <td class="text-center" bgcolor="#f2dede">{{ "0" }}</td>
                         @else
-                            <td class="text-center">{{ $work }}</td>
+                            <td class="text-center">{{ $work }}
+                                {!!link_to_route('mecanicos.show', $title = ' Ver', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-primary btn-xs  fa fa-eye','data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Vea todos los trabajos realizados para esta solicitud.'])!!}</td>
+                        @endif
+                        <?php $pedido = Pedido::where('sol_id',$solicitud->id)->first();?>
+                        @if(empty($pedido))
+                            <td class="text-center" >{{ "NO" }}</td>
+                        @else
+                            <td class="text-center" bgcolor="#f2dede">{{ "SI" }}
+                            {!!link_to_action('Mecanico\PedidoController@getImprimir', $title = ' Ver', $parameters = $pedido->id,  $attributes = ['class'=>'btn btn-info btn-xs btn-block fa fa-print','target'=>'_blank', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Vea el pedido de material para esta solicitud.'])!!}</td>
                         @endif
                     </tr>
                     @endforeach

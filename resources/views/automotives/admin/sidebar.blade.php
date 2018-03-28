@@ -65,4 +65,8 @@
         <a href="{!! URL::to('/mecanicos') !!}"><i class="fa fa-briefcase"></i> <span>Mecánico </span>
         </a>
     </li> 
+    <li class="treeview {{ request()->is('pedidos*') ? 'active' : '' }}">
+        <a href="{!! URL::to('/pedidos') !!}"><i class="fa fa-cogs"></i> <span>Pedido M. </span>
+        </a>
+    </li> 
 </ul>
