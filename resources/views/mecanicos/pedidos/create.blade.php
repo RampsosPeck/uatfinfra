@@ -278,6 +278,14 @@
 </div>
 @endsection
 
+@push('styles')
+	<style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
+@endpush
+
 
 
 

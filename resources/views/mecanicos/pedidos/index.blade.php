@@ -16,14 +16,14 @@ use Uatfinfra\ModelSolicitudes\Solicitud; ?>
    			<table id="vehiculo-table" class="table table-bordered table-striped ">
  				<thead>
  					<tr>
-						<th class="text-center">Nro.</th>
-                        <th class="text-center">Cod. Sol.</th>
-                        <th class="text-center">Solicitante</th>
-                        <th class="text-center">Vehículo</th>
-                        <th class="text-center">Justificación</th>
-                        <th class="text-center">Observación</th>
-                        <th class="text-center">Fecha</th>
-                        <th class="text-center">Opciones</th>                        
+						<th>Nro.</th>
+                        <th>Cod. Sol.</th>
+                        <th>Solicitante</th>
+                        <th>Vehículo</th>
+                        <th>Justificación</th>
+                        <th>Observación</th>
+                        <th>Fecha</th>
+                        <th>Opciones</th>                        
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
@@ -65,7 +65,14 @@ use Uatfinfra\ModelSolicitudes\Solicitud; ?>
 
 @push('styles')
    {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
-
+    <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+  </style>
 @endpush
 
 @push('scripts')

@@ -58,6 +58,14 @@
 
 @push('styles')
    {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
+   <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+  </style>
 @endpush
 
 @push('scripts') 

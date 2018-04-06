@@ -1,8 +1,9 @@
 @extends('automotives.layout')
 
 @section('content')
-
-<div class="panel panel-default">
+<div class="container">
+    
+ 
      
   <div class="panel-body">
          
@@ -137,7 +138,13 @@
 
   </div>
 </div>
-      
+</div></div>
 @endsection
-
+@push('styles')
+    <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
+@endpush
 

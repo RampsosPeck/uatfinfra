@@ -16,12 +16,17 @@ class Viaje extends Model
                             'fecha_final',
                             'horainicial',
                             'horafinal',
-                            'categoria',
+                            'fecha_inicial2',
+                            'fecha_final2',
+                            'horainicial2',
+                            'horafinal2',
                             'nota',
                             'recurso',
                             'estado',
                             'vehiculo_id',
                             'reserva_id'];
+
+ 
 
   public function roles()
     {
@@ -55,5 +60,9 @@ class Viaje extends Model
         return $this->hasOne(Ruta::class);
     }
 
+    public function tipos()
+    {
+        return $this->belongsToMany(Tipo::class);
+    }
 
 }

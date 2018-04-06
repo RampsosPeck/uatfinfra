@@ -3,7 +3,8 @@
 @section('content')
 @include('alertas.success')
 
-
+<div class="container">
+  
 <ul class="nav nav-pills nav-justified">
   <li {{ request()->is('roles') ? 'class=active' : '' }} role="presentation" >
       <a href="{!! URL::to('/roles') !!}"><strong><font color="#011620"> PROVINCIA </font></strong></a>
@@ -66,3 +67,15 @@
 
 
 @endsection
+
+
+@push('styles')
+  <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+  </style>
+@endpush

@@ -102,6 +102,16 @@
 </div>
 @endsection
 
+@push('styles')
+    <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+  </style>
+@endpush
 
 @push('scripts')
 

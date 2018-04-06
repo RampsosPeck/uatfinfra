@@ -4,8 +4,12 @@
 @include('alertas.success')
 
 <div class="container">
-  <div class="box box-primary">      
-    <div id="calendar"></div>
+  <div class=" col-md-11">
+    
+    <div class="box box-primary">      
+      <div id="calendar"></div>
+    </div>
+
   </div>  
 </div>
 		  
@@ -14,6 +18,11 @@
 
 @push('styles')
    {!! Html::style('/dashboard/plugins/fullcalendar/fullcalendar.min.css') !!}
+   <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+  </style>
 @endpush
 
 @push('scripts') 
@@ -93,7 +102,7 @@ $(function () {
           {
               title : 'CONDUCTOR: @foreach ($viaje->conductores as $conductor){{ $conductor->name }} | @endforeach',
               start : '{{ $viaje->fecha_inicial}}',
-              end   : '{{ $viaje->fecha_final}}',
+              end   : '{{ $viaje->fecha_final2}}',
               estado: '{{ $viaje->estado}}',
               datos : '{{ $viaje->entidad }} DESDE: {{ $viaje->horainicial }} HASTA: {{ $viaje->horafinal }} VEHÍCULO: {{ $viaje->vehiculo->placa }} ESTADO: {{ $viaje->estado }}',
               url   : '{{ route('calendario.show', $viaje->id) }}'

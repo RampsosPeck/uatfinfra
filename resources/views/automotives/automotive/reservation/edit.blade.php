@@ -1,6 +1,7 @@
 @extends('automotives.layout')
 <?php use Carbon\Carbon;?>
 @section('content')
+<div class="container">
 <br><br>
 <div class="col-md-3">
 </div>
@@ -113,6 +114,7 @@
 		</div>
 	</div>		
 </div>
+</div>
 @endsection
 
 
@@ -120,7 +122,11 @@
 
   <link rel="stylesheet" href="/dashboard/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
-
+    <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
 @endpush
 
 @push('scripts')

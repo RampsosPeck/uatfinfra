@@ -19,13 +19,13 @@
    			<table id="vehiculo-table" class="table table-bordered table-striped ">
  				<thead>
  					<tr>
-						<th class="text-center">Nro.</th>
-                        <th class="text-center">Cod. Sol.</th>
-                        <th class="text-center">Responsable</th>
-                        <th class="text-center">Vehículo</th>
-                        <th class="text-center">Descripción</th>
-                        <th class="text-center">Fecha</th>
-                        <th class="text-center">Opciones</th>						
+						<th>Nro.</th>
+                        <th>Cod. Sol.</th>
+                        <th>Responsable</th>
+                        <th>Vehículo</th>
+                        <th>Descripción</th>
+                        <th>Fecha</th>
+                        <th>Opciones</th>						
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
@@ -55,7 +55,14 @@
 
 @push('styles')
    {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
-
+    <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+    </style>
 @endpush
 
 @push('scripts') 

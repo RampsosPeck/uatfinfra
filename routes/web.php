@@ -96,5 +96,7 @@ Route::resource('mecanicos', 'Mecanico\MecanicoController');
 Route::resource('pedidos', 'Mecanico\PedidoController');
 Route::get('informes/{id}/pdf', 'Mecanico\PedidoController@getImprimir');
 
+Route::resource('devoluciones', 'Mecanico\DevolucionController');
 
+Route::resource('servicios', 'Servicio\ServicioController');
 

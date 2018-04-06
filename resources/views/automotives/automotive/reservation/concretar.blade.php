@@ -26,8 +26,8 @@
             	{{ csrf_field() }}
 
 				<input type="hidden" name="reserva" value="{{ $reservas->id }}">
-
-                <div class="box-body alert-info">
+				<li class="list-group-item list-group-item-success col-md-12">
+                <div class="box-body">
 
             		<div class="col-md-7">
             			<div class="form-group {{ $errors->has('destino1') ? 'has-error' : '' }}">
@@ -316,7 +316,7 @@
 
                     </div>
               	</div>
-              	<li class="list-group-item list-group-item-info col-md-12">
+              	
               		<div class="col-md-12">
 	                    <div class="form-group">
 		                    <label for="fecha_inicial" class="col-sm-1 control-label">Inicio:</label>
@@ -388,28 +388,94 @@
 				            </div>
 		                </div>
 	                </div>
-	            	<center>
+	            	
+	            	<div class="col-md-12">
+	                    <div class="form-group">
+		                    <label for="fecha_inicial2" class="col-sm-1 control-label">Inicio:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_inicial2') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_inicial2"
+				                  		class="form-control"
+										value="{{ old('fecha_inicial2') }}"
+				                  		id="datepickeres">
+				                </div>
+			                    {!! $errors->first('fecha_inicial2', '<span class="help-block">:message</span>') !!}
+			                </div>
+		                	<div class="col-sm-2 {{ $errors->has('horainicial2') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horainicial2" value="{{ old('horainicial2') }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horainicial', '<span class="help-block">:message</span>') !!}
+				            </div>
+		                    <label for="fecha_final2" class="col-sm-1 control-label">Final:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_final2') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_final2"
+				                  		class="form-control"
+										value="{{ old('fecha_final2') }}"
+				                  		id="datepickeress">
+				                </div>
+			                    {!! $errors->first('fecha_final2', '<span class="help-block">:message</span>') !!}
+
+				             </div>
+				             <div class="col-sm-2 {{ $errors->has('horafinal2') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horafinal2" id="horafinal2" value="{{ old('horafinal2') }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horafinal2', '<span class="help-block">:message</span>') !!}
+				            </div>
+		                </div>
+	                </div>
+		            
+		            <div class="form-group {{ $errors->has('categoria') ? 'has-error' : '' }}">
+	                    <label for="categoria" class="col-sm-3 control-label">CATEGORÍA/TIPO:</label>
+ 						 <div class="col-sm-8">
+	                	<div class="input-group">
+	                    	<select name="categoria[]" multiple="multiple" class="form-control select2" id="categoria" >
+									@foreach ($categorias as $categoria)
+										 <option {{ collect(old('categoria'))->contains($categoria->id) ? 'selected' : '' }} value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+									@endforeach
+							</select>
+	                    	<span class="input-group-addon" id="basic-addon1">
+	                    		<font color="red">
+	      							<i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+	      						</font>
+	      					</span>
+	                	</div>
+		                {!! $errors->first('categoria', '<span class="help-block">:message</span>') !!}
+	                	</div>
+	                </div>
+	  			
+	  			    <center>
 	              		<h3 class="box-title">
 	              			<font color="#f39c12"><b>PRESUPUESTO DE VIAJE</b></font>
 	          			</h3>
 	          		</center>
-		            <div class="form-group {{ $errors->has('categoria') ? 'has-error' : '' }} text-center alert-warning">
-		                <label>VIAJE CONCIDERADO COMO:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                <label>
-		                	Ciudad:
-		                  <input type="radio" name="categoria" value="ciudad" {{ old('categoria') == 'ciudad' ? 'checked' : '' }} class="flat-red">
-		                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                <label>
-		                	Provincia:
-		                  <input type="radio" name="categoria" value="provincia" {{ old('categoria') == 'provincia' ? 'checked' : '' }} class="flat-red">
-		                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                <label>
-		                	Frontera:
-		                  <input type="radio" name="categoria" value="frontera" {{ old('categoria') == 'frontera' ? 'checked' : '' }} class="flat-red">
-		                </label>
-		                <b>{!! $errors->first('categoria', '<span class="help-block">:message</span>') !!}</b>
-		  			</div>
-	  			
+
               	<div class="box-body ">
               		
               		<center><label class="control-label">COMBUSTIBLE:</label></center>
@@ -822,6 +888,11 @@
   <link rel="stylesheet" href="/dashboard/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="/dashboard/plugins/iCheck/all.css">
+  <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+  </style>
 @endpush
 
 @push('scripts')
@@ -848,9 +919,21 @@
 	      clearBtn:true
 	    });
 
+	$('#datepickeres').datepicker({
+	      autoclose: true,
+	      todayHighlight:true,
+	      format: 'yyyy-mm-dd',
+	      clearBtn:true
+	    });
+	$('#datepickeress').datepicker({
+	      autoclose: true,
+	      todayHighlight:true,
+	      format: 'yyyy-mm-dd',
+	      clearBtn:true
+	    });
+
     $(".select2").select2({
-    	language: "es",
-    	maximumSelectionLength: 2,
+    	language: "es", 
     	allowClear: true
     });
 

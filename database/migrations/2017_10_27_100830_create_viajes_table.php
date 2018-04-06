@@ -25,7 +25,12 @@ class CreateViajesTable extends Migration
             $table->timestamp('fecha_final')->nullable();
             $table->time('horainicial');
             $table->time('horafinal');
-            $table->string('categoria');
+
+            $table->timestamp('fecha_inicial2')->nullable();
+            $table->timestamp('fecha_final2')->nullable();
+            $table->time('horainicial2')->nullable();
+            $table->time('horafinal2')->nullable();
+
             $table->mediumText('nota');
             $table->string('recurso');
             $table->string('estado');

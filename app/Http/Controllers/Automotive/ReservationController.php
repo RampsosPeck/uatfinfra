@@ -5,6 +5,7 @@ namespace Uatfinfra\Http\Controllers\Automotive;
 use Illuminate\Http\Request;
 use Uatfinfra\ModelAutomotores\Destino;
 use Uatfinfra\ModelAutomotores\Vehiculo;
+use Uatfinfra\ModelAutomotores\Tipo;
 use Uatfinfra\User;
 use Uatfinfra\Reservation;
 use Uatfinfra\Http\Controllers\Controller;
@@ -78,7 +79,9 @@ class ReservationController extends Controller
         $encargados = User::where('type','Enc. de Viaje')->where('active',true)->get();
         $conductores= User::where('type','Conductor')->where('active',true)->get();
 
-        return view('automotives.automotive.reservation.concretar', compact('vehiculos','destinos','encargados','conductores','reservas'));
+         $categorias = Tipo::all();
+
+        return view('automotives.automotive.reservation.concretar', compact('vehiculos','destinos','encargados','conductores','reservas','categorias'));
     }
 
     /**

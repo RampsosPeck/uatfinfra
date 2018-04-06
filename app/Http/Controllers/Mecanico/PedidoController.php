@@ -107,6 +107,7 @@ class PedidoController extends Controller
     public function getImprimir($id)
     {
         return $id;
+           
     }
 
 

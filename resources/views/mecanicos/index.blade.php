@@ -1,7 +1,8 @@
 @extends('automotives.layout')
 <?php 
 use Uatfinfra\ModelMecanico\Mecanico;
-use Uatfinfra\ModelMecanico\Pedido;?>
+use Uatfinfra\ModelMecanico\Pedido;
+use Uatfinfra\ModelMecanico\Devolucion;?>
 @section('content')
 @include('alertas.success')
 <div class="container">
@@ -16,15 +17,16 @@ use Uatfinfra\ModelMecanico\Pedido;?>
    			<table id="vehiculo-table" class="table table-bordered table-striped ">
  				<thead>
  					<tr>
-						<th class="text-center">Nro.</th>
-                        <th class="text-center">Cod. Sol.</th>
-                        <th class="text-center">Solicitante</th>
-                        <th class="text-center">Vehículo</th>
-                        <th class="text-center">Descripción</th>
-                        <th class="text-center">Fecha</th>
-                        <th class="text-center">Opciones</th>
-                        <th class="text-center">Nro. Trabajos</th>
-                        <th class="text-center">Pedido M.</th>                        
+						<th>Nro.</th>
+                        <th>Cod. Sol.</th>
+                        <th>Solicitante</th>
+                        <th>Vehículo</th>
+                        <th>Descripción</th>
+                        <th>Fecha</th>
+                        <th>Opciones</th>
+                        <th>Nro. Trabajos</th>
+                        <th>Pedido Material</th>  
+                        <th>Devolución Material</th>                      
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
@@ -47,7 +49,7 @@ use Uatfinfra\ModelMecanico\Pedido;?>
                             <td class="text-center" bgcolor="#f2dede">{{ "0" }}</td>
                         @else
                             <td class="text-center">{{ $work }}
-                                {!!link_to_route('mecanicos.show', $title = ' Ver', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-primary btn-xs  fa fa-eye','data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Vea todos los trabajos realizados para esta solicitud.'])!!}</td>
+                                {!!link_to_route('mecanicos.show', $title = ' Ver', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-success btn-xs  fa fa-eye','data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Vea todos los trabajos realizados para esta solicitud.'])!!}</td>
                         @endif
                         <?php $pedido = Pedido::where('sol_id',$solicitud->id)->first();?>
                         @if(empty($pedido))
@@ -56,6 +58,11 @@ use Uatfinfra\ModelMecanico\Pedido;?>
                             <td class="text-center" bgcolor="#f2dede">{{ "SI" }}
                             {!!link_to_action('Mecanico\PedidoController@getImprimir', $title = ' Ver', $parameters = $pedido->id,  $attributes = ['class'=>'btn btn-info btn-xs btn-block fa fa-print','target'=>'_blank', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Vea el pedido de material para esta solicitud.'])!!}</td>
                         @endif
+                        <?php $material = Devolucion::where('sol_id',$solicitud->id)->count(); ?>
+                        <td class="text-center" bgcolor="#f2dede">
+                            <font color="red">Total: {{ $material }}</font> 
+                            {!!link_to_route('devoluciones.show', $title = ' Realizar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-primary btn-block btn-xs  fa fa-print', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Realiza la devolución de material.'])!!}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -69,7 +76,14 @@ use Uatfinfra\ModelMecanico\Pedido;?>
 
 @push('styles')
    {!! Html::style('/dashboard/plugins/datatables/dataTables.bootstrap.css') !!}
-
+    <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+  </style>
 @endpush
 
 @push('scripts')

@@ -7,6 +7,7 @@ use Uatfinfra\ModelAutomotores\Ruta;
 use Uatfinfra\ModelAutomotores\Presupuesto;
 use Uatfinfra\ModelAutomotores\Destino;
 use Uatfinfra\ModelAutomotores\Vehiculo;
+use Uatfinfra\ModelAutomotores\Tipo;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\Http\Requests\ViajeSaveRequest;
@@ -39,8 +40,9 @@ class ViajeController extends Controller
         $destinos   = Destino::all();
         $encargados = User::where('type','Enc. de Viaje')->where('active',true)->get();
         $conductores= User::where('type','Conductor')->where('active',true)->get();
+        $categorias = Tipo::all();
 
-        return view('automotives.automotive.viaje.create', compact('vehiculos','destinos','encargados','conductores'));
+        return view('automotives.automotive.viaje.create', compact('vehiculos','destinos','encargados','conductores','categorias'));
 
     }
 
@@ -67,6 +69,26 @@ class ViajeController extends Controller
         //$viaje->fecha_inicial = Carbon::parse($request->get('fecha_inicial'));
         $fi = $request->get('fecha_final');
         $fi = $fi.' 23:59:59';
+
+        if(!empty($request->get('fecha_final2'))) 
+        {
+            $fini2 = Carbon::parse($request->get('fecha_inicial2'));
+
+            $fi2 = $request->get('fecha_final2');
+            $fi2 = $fi2.' 23:59:59';
+
+            $hini2 = $request->get('horainicial2');
+            $hfin2 = $request->get('horafinal2');
+        }else{
+            $fini2 = null;
+            $fi2 = $fi;
+
+            $hini2 = null;
+            $hfin2 = null;
+        }
+        
+
+        
         //return $fi;
 
         $viaje = new Viaje;
@@ -80,7 +102,10 @@ class ViajeController extends Controller
         $viaje->fecha_final   = $fi;
         $viaje->horainicial = $request->get('horainicial');
         $viaje->horafinal   = $request->get('horafinal');
-        $viaje->categoria   = $request->get('categoria');
+        $viaje->fecha_inicial2 = $fini2;
+        $viaje->fecha_final2   = $fi2;
+        $viaje->horainicial2 = $hini2;
+        $viaje->horafinal2   = $hfin2;
         $viaje->nota        = $request->get('nota');
         $viaje->recurso     = $request->get('recurso');
         $viaje->estado      = "activo";
@@ -89,6 +114,8 @@ class ViajeController extends Controller
         $viaje->save();
 
         $viaje->conductores()->attach($request->get('conductor'));
+
+        $viaje->tipos()->attach($request->get('categoria'));
 
         //return $viaje->id;
 
@@ -209,7 +236,9 @@ class ViajeController extends Controller
         //dd($presupuesto);
         $ruta = Ruta::where('viaje_id',$id)->first();
         //dd($ruta);
-        return view('automotives.automotive.viaje.edit',compact('viaje','presupuesto','ruta','vehiculos','destinos','encargados','conductores'));
+        $categorias = Tipo::all();
+
+        return view('automotives.automotive.viaje.edit',compact('viaje','presupuesto','ruta','vehiculos','destinos','encargados','conductores','categorias'));
     }
 
     /**
@@ -221,8 +250,27 @@ class ViajeController extends Controller
      */
     public function update(ViajeSaveRequest $request, $id)
     {
+        //dd($request);
         $fi = $request->get('fecha_final');
         $fi = $fi.' 23:59:59';
+
+
+        if(!empty($request->get('fecha_inicial2')))
+        {
+            $fini2 = Carbon::parse($request->get('fecha_inicial2'));
+
+            $fi2 = $request->get('fecha_final2');
+            $fi2 = $fi2.' 23:59:59';
+
+            $hini2 = $request->get('horainicial2');
+            $hfin2 = $request->get('horafinal2');
+        }else{
+            $fini2 = null;
+            $fi2 = $fi;
+
+            $hini2 = null;
+            $hfin2 = null;
+        }      
 
         //return $request;
         $viaje = Viaje::find($id);
@@ -235,7 +283,12 @@ class ViajeController extends Controller
         $viaje->fecha_final   = $fi;
         $viaje->horainicial = $request->get('horainicial');
         $viaje->horafinal   = $request->get('horafinal');
-        $viaje->categoria   = $request->get('categoria');
+
+        $viaje->fecha_inicial2 = $fini2;
+        $viaje->fecha_final2   = $fi2;
+        $viaje->horainicial2 = $hini2;
+        $viaje->horafinal2   = $hfin2;
+
         $viaje->nota        = $request->get('nota');
         $viaje->recurso     = $request->get('recurso');
         $viaje->estado      = "activo";
@@ -244,6 +297,8 @@ class ViajeController extends Controller
         $viaje->save();
 
         $viaje->conductores()->sync($request->get('conductor'));
+
+        $viaje->tipos()->sync($request->get('categoria'));
 
         $presupuesto = Presupuesto::where('viaje_id',$id)->first();
         $presupuesto->viaje_id= $viaje->id;

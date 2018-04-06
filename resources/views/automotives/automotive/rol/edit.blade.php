@@ -3,7 +3,8 @@
 @section('content')
 @include('alertas.success')
 
-
+<div class="container">
+  
 <ul class="nav nav-pills nav-justified">
   <li {{ request()->is('roles') ? 'class=active' : '' }} role="presentation" >
       <a href="{!! URL::to('/roles') !!}"><strong><font color="#011620"> PROVINCIA </font></strong></a>
@@ -31,10 +32,10 @@
             <table id="vehiculo-table" class="table table-bordered table-striped ">
                 <thead>
                     <tr>
-                        <th class="text-center">ID</th>
-                        <th class="text-center">Conductor</th>
-                        <th class="text-center">Tipo</th>
-                        <th class="text-center">Cantidad</th>                       
+                        <th>ID</th>
+                        <th>Conductor</th>
+                        <th>Tipo</th>
+                        <th>Cantidad</th>                       
                     </tr>
                 </thead>
                 <tbody bgcolor="#d9edf7" >
@@ -63,6 +64,16 @@
    
 </div>
 
-
-
 @endsection
+
+
+@push('styles')
+  <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+  </style>
+@endpush

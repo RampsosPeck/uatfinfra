@@ -140,7 +140,11 @@
 @push('styles')
   <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
   <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.css">
-
+  <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+  </style>
 @endpush
 
 @push('scripts') 

@@ -1,6 +1,8 @@
 @extends('automotives.layout')
 <?php use Carbon\Carbon;?>
 @section('content')
+<div class="container">
+  
   <div class="col-md-12">
           <font color="#007bff"><span class="fa fa-exclamation-circle fa-2x form-control-feedback"></span></font>
             <div class="box-header with-border">
@@ -459,7 +461,7 @@
   </center>
 {!! Form::close() !!}
 
-
+</div>
 @endsection
 
 @push('styles')
@@ -467,6 +469,11 @@
   <link rel="stylesheet" href="/dashboard/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="/dashboard/plugins/iCheck/all.css">
+  <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+  </style>
 @endpush
 
 @push('scripts')

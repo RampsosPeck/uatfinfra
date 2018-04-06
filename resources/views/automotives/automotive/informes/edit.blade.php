@@ -1,6 +1,8 @@
 @extends('automotives.layout')
 <?php use Carbon\Carbon;?>
 @section('content')
+<div class="container">
+
   <div class="col-md-12">
           <font color="#007bff"><span class="fa fa-exclamation-circle fa-2x form-control-feedback"></span></font>
             <div class="box-header with-border">
@@ -463,6 +465,7 @@
           </button>
       {!! Form::close() !!}
 </center>
+</div>
 @endsection
 
 @push('styles')

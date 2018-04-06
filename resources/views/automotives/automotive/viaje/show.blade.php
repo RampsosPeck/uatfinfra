@@ -1,6 +1,8 @@
 @extends('automotives.layout')
 
 @section('content')
+<div class="container">
+  
 <?php use Carbon\Carbon; 
 use Uatfinfra\ModelAutomotores\Destino; ?>
 <div class="box box-primary">
@@ -154,11 +156,19 @@ use Uatfinfra\ModelAutomotores\Destino; ?>
     </div>
 </div>
 
+</div>
 @endsection
 
 
 @push('styles')
-   
+   <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+    table th{
+        text-align: center;
+    }
+  </style>
 @endpush
 
 @push('scripts') 

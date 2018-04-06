@@ -17,7 +17,6 @@ class CreateUserViajeTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('viaje_id');
-            $table->timestamps();
         });
     }
 
