@@ -52,12 +52,8 @@
     <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
    <script src="/dashboard/plugins/select2/es.js"></script>
 <script>
-
-    $("#vehiculo").select2({
-        placeholder: "Selecione un vehículo",
-        language: "es",
-        maximumSelectionLength: 2,
-        allowClear: true
+    $('#vehiculo').select2({
+        dropdownParent: $('#modalSolMe')
     });
   </script>
 @unless(request()->is('/solicitudes'))

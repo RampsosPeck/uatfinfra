@@ -99,4 +99,6 @@ Route::get('informes/{id}/pdf', 'Mecanico\PedidoController@getImprimir');
 Route::resource('devoluciones', 'Mecanico\DevolucionController');
 
 Route::resource('servicios', 'Servicio\ServicioController');
+Route::resource('carpinterias', 'Servicio\CarpinteriaController');
+
 

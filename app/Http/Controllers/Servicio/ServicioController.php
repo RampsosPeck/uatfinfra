@@ -1,7 +1,7 @@
 <?php
 
 namespace Uatfinfra\Http\Controllers\Servicio;
-
+use Uatfinfra\ModelServicios\Servicio;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 
@@ -14,7 +14,8 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        return view('servicios.index');
+        $solicitantes = Servicio::all();
+        return view('servicios.index',compact('solicitantes'));
     }
 
     /**
