@@ -2,54 +2,17 @@
 
 
 @section('content') 
- 
-    <a class="navbar-brand js-scroll-trigger pull-right"> 
-      <font color="#fed136" SIZE=5 >  <strong> Depto. de SERVICIOS GENERALES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> </font>
-    </a>
-    <a class="navbar-brand js-scroll-trigger pull-left"> 
-      <font color="#fed136" SIZE=5 >  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U. A. T. F. </strong> </font>
-    </a>         
- @include('servicios.carpinteria.create')
-<div class="container panelcontrol">
-        <div>
-          <!-- small box -->
-          <div class="small-box bg-aquacontrol text-center">
-            <div class="inner"> 
-                <h2>
-                    <a class="fa" href="{{route('carpinterias.index')}}"  data-toggle="tooltip" data-placement="left" title="Sec. CARPINTERÍA">
-                        <font color="yellow"><i class="fa fa-cubes"></i></font>         
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="fa" href="#"  data-toggle="tooltip" data-placement="top" title="Sec. ELECTRICIDAD">
-                        <font color="yellow"><i class="fa fa-plug"></i></font>         
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="fa" href="#"  data-toggle="tooltip" data-placement="top" title="Sec. JARDINERÍA">
-                        <font color="yellow"><i class="fa fa-apple"></i></font>         
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="fa" href="#"  data-toggle="tooltip" data-placement="top" title="Sec. M. Computadoras">
-                        <font color="yellow"><i class="fa fa-television"></i></font>         
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="fa" href="#"  data-toggle="tooltip" data-placement="top" title="Sec. M. General">
-                        <font color="yellow"><i class="fa fa-signing"></i></font>         
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="fa" href="#"  data-toggle="tooltip" data-placement="top" title="Sec. Albañilería">
-                        <font color="yellow"><i class="fa fa-university"></i></font>         
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="fa" href="#"  data-toggle="tooltip" data-placement="top" title="Sec. Plomería">
-                        <font color="yellow"><i class="fa fa-s15"></i></font>         
-                    </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="fa" href="#"  data-toggle="tooltip" data-placement="right" title="Sec. Serv. Generales">
-                        <font color="yellow"><i class="fa fa-snowflake-o"></i></font>         
-                    </a>
-                </h2>
 
-              <p>S E R V I C I O S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; G E N E R A L E S</p>
-            </div>
-            <div class="icon" >
-             
-            </div>
-            <a href="{{route('viajes.index')}}" class="small-box-footer">LISTA DE SOLICITUDES <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+ @include('servicios.carpinteria.create')
+ @include('servicios.electricidad.create')
+ @include('servicios.jardineria.create')
+ @include('servicios.megeneral.create')
+ @include('servicios.albanileria.create')
+ @include('servicios.plomeria.create')
+ @include('servicios.sergeneral.create')
+ 
+<div class="container panelcontrol">
+  <div class="titulo" id="titulo">SERVICIOS GENERALES</div>
     <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -57,7 +20,7 @@
             <div class="inner"> 
               <h3><i class="fa fa-paint-brush"></i></h3>
               
-              <a href="{{ route('carpinterias.index') }}"><font color="yellow"><strong><p> CARPINTERIA</p></strong></font></a>
+              <a href="{{ route('generales.index') }}"><font color="yellow"><strong><p> CARPINTERÍA</p></strong></font></a>
             </div>
             <div class="icon">
               <i class="fa fa-cubes"></i>
@@ -71,13 +34,16 @@
           <div class="small-box bg-greencontrol">
             <div class="inner">
               <h3> <i class="fa fa-bolt"></i></h3>
+ 
+              <strong><p>
+              {!!link_to_action('Servicio\GeneralController@getElectrico', $title = ' ELÉCTRICO', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}
+            </p></strong>
 
-              <p>ELECTRICIDAD</p>
             </div>
             <div class="icon">
               <i class="fa fa-plug"></i>
             </div>
-            <a href="#" class="small-box-footer">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalElec">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -86,13 +52,14 @@
           <div class="small-box bg-yellowcontrol">
             <div class="inner"> 
               <h3> <i class="fa fa-tree"></i></h3>
-
-              <p>JARDINERÍA</p>
+              <strong><p>
+              {!!link_to_action('Servicio\GeneralController@getJardineria', $title = ' JARDINERÍA', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}
+            </p></strong>
             </div>
             <div class="icon">
               <i class="fa fa-apple"></i>
             </div>
-            <a href="{{route('users.index')}}" class="small-box-footer">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalJar">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -115,13 +82,14 @@
           <div class="small-box bg-yellowcontrol">
             <div class="inner">
               <h3><i class="fa fa-cogs"></i></h3>
-
-              <p>MECÁNICO GENERAL</p>
+              <strong>
+                <p>{!!link_to_action('Servicio\GeneralController@getMegeneral', $title = 'MECÁNICO GENERAL', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
+              </strong>
             </div>
             <div class="icon">
               <i class="fa fa-signing"></i>
             </div>
-            <a href="#" class="small-box-footer">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalMegene">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -129,13 +97,14 @@
           <div class="small-box bg-aquacontrol">
             <div class="inner">
               <h3> <i class="fa fa-home"></i></h3>
-
-              <p>ALBAÑILERÍA</p>
+              <strong>
+                <p>{!!link_to_action('Servicio\GeneralController@getAlbanileria', $title = 'ALBAÑILERÍA', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
+              </strong>
             </div>
             <div class="icon">
               <i class="fa fa-university"></i>
             </div>
-            <a href="#" class="small-box-footer">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
+             <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalAlba">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -143,13 +112,14 @@
           <div class="small-box bg-greencontrol">
             <div class="inner">
               <h3> <i class="fa fa-random"></i></h3>
-
-              <p>PLOMERÍA</p>
+              <strong>
+                <p>{!!link_to_action('Servicio\GeneralController@getPlomeria', $title = 'PLOMERÍA', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
+              </strong>
             </div>
             <div class="icon">
               <i class="fa fa-s15"></i>
             </div>
-            <a href="#" class="small-box-footer">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalPlome">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -157,13 +127,14 @@
           <div class="small-box bg-redcontrol">
             <div class="inner">
               <h3><i class="fa fa-snowflake-o"></i></h3>
-
-              <p>SERVICIOS GENERALES</p>
+              <strong>
+                <p>{!!link_to_action('Servicio\GeneralController@getPlomeria', $title = 'SERV. GENERAL', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
+              </strong>
             </div>
             <div class="icon">
               <i class="fa fa-linode"></i>
             </div>
-            <a href="#" class="small-box-footer">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalServe">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
     <!-- ./col -->
@@ -200,10 +171,13 @@
 .bg-redcontrol{
     background-color: rgba(221, 75, 57, 0.6);
 }
-
-      .container{
-            font-family: "Times New Roman", Times, serif;
-        }
+ .titulo{
+  font-weight: bolder;
+  box-sizing: inherit;
+  font-size: 2.75em;
+  text-align:  center;
+  box-sizing: content-box; 
+ }
 </style>
 @endpush
 

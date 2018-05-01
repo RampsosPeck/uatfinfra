@@ -99,6 +99,13 @@ Route::get('informes/{id}/pdf', 'Mecanico\PedidoController@getImprimir');
 Route::resource('devoluciones', 'Mecanico\DevolucionController');
 
 Route::resource('servicios', 'Servicio\ServicioController');
-Route::resource('carpinterias', 'Servicio\CarpinteriaController');
+Route::resource('generales', 'Servicio\GeneralController'); 
 
+
+Route::get('solicitudElectrico', 'Servicio\GeneralController@getElectrico');
+Route::get('solicitudJardineria', 'Servicio\GeneralController@getJardineria');
+Route::get('solicitudMegeneral', 'Servicio\GeneralController@getMegeneral');
+Route::get('solicitudAlbanileria', 'Servicio\GeneralController@getAlbanileria');
+Route::get('solicitudPlomeria', 'Servicio\GeneralController@getPlomeria');
+Route::get('solicitudSergeneral', 'Servicio\GeneralController@getSergene');
 

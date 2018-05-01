@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Uatfinfra\ModelServicios\Servicio;
 use Uatfinfra\User;
 
-class Carpinteria extends Model
+class General extends Model
 {
-    protected $table = 'carpinterias';
+    protected $table = 'generales';
 
-	protected $fillable = ['id', 'codi_carp', 'serv_id', 'descripcion','user_id','fecha','responsable'];
+	protected $fillable = ['id', 'coding', 'serv_id', 'seccion','descripcion','user_id','fecha','responsable'];
   
     public function servicio()
     {

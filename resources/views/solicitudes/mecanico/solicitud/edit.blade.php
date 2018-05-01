@@ -46,11 +46,6 @@
 
 		{!! Form::close() !!}<BR>
 		<center>
-		    {!! Form::open(['route'=>['solicitudes.destroy',$solicitud->id],'method'=>'DELETE']) !!}
-		        <button type="submit" class="btn btn-danger btn-sm " onClick="javascript: return confirm('¿Estas seguro de eliminar a la solicitud?');">
-		            <b>Eliminar la solicitud</b> <i class="fa fa-trash" aria-hidden="true"></i> 
-		        </button>
-		    {!! Form::close() !!} 
     @else
           <div class="text-center" style="background:#f2dede" >La solicitud no se puede EDITAR o ELIMINAR porque ya se realizó el pedido de material.</div>
       </center>

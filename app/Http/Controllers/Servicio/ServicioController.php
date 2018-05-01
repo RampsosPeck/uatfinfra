@@ -2,6 +2,7 @@
 
 namespace Uatfinfra\Http\Controllers\Servicio;
 use Uatfinfra\ModelServicios\Servicio;
+use Uatfinfra\ModelServicios\Seccion;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 
@@ -15,6 +16,7 @@ class ServicioController extends Controller
     public function index()
     {
         $solicitantes = Servicio::all();
+        //dd($secciones);
         return view('servicios.index',compact('solicitantes'));
     }
 

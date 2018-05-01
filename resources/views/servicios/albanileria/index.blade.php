@@ -5,11 +5,11 @@
 <div class="container ">
     <div class="box box-info ">
         <div class="box-header">
-            <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO DEL CARPINTERO</FONT></b></h3></center>
+            <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO DE ALBAÑILERIA</FONT></b></h3></center>
             
-            @include('servicios.carpinteria.create')
+            @include('servicios.albanileria.create')
             
-             <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalCarpin"><i class="fa fa-plus"></i> Crear SOLICITUD</button>
+             <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalAlba"><i class="fa fa-plus"></i> Crear SOLICITUD</button>
              
 		</div>
         <div class="box-body">

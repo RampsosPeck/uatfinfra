@@ -1,16 +1,16 @@
-<div class="modal fade" id="modalCarpin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalPlome" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="login-box-body" >
       <div class="modal-header" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         
-        <h4 class="modal-title text-center" style="color:yellow"  id="modalCarpin"><b>UNIVERSIDAD AUTÓNOMA TOMÁS FRÍAS <br> SERVICIOS GENERALES</b></h4>
-        <center><img class="img-circle" width="120" src="{!! URL::to('/img/carpinteria.jpeg') !!} "></center>
-        <h4 class="modal-title text-center"   style="color:yellow" id="modalCarpin"><b>SOLICITUD DE TRABAJO PARA CARPINTERÍA</b></h4>
+        <h4 class="modal-title text-center" style="color:yellow"  id="modalPlome"><b>UNIVERSIDAD AUTÓNOMA TOMÁS FRÍAS <br> SERVICIOS GENERALES</b></h4>
+        <center><img class="img-circle" width="120" src="{!! URL::to('/img/plomeria.png') !!} "></center>
+        <h4 class="modal-title text-center"   style="color:yellow" id="modalPlome"><b>SOLICITUD DE TRABAJO PARA PLOMERÍA</b></h4>
 
       </div>
       <div class="contenedor">
-      <form class="form-horizontal" method="POST" action="{{ route('generales.store', '#createcar') }}"  accept-charset="utf-8">
+      <form class="form-horizontal" method="POST" action="{{ route('generales.store', '#createplo') }}"  accept-charset="utf-8">
               {{ csrf_field() }}
       <div class="modal-body" > 
             <div class="form-group {{ $errors->has('serv_id') ? 'has-error' : '' }}">
@@ -18,7 +18,7 @@
               <div class="col-md-8">
                 <select name="serv_id" 
                   class="form-control select2" 
-                  id="solicitantescar"
+                  id="solicitaplo"
                   style="width: 100%;"
                   value="{{old('serv_id')}}">
                   <option value="">Seleccione la entidad solicitante</option>
@@ -29,12 +29,12 @@
                 {!! $errors->first('serv_id', '<span class="help-block">:message</span>') !!}
               </div>
             </div>
-            <input type="hidden" name="seccion" value="{{ "carpintería" }}">
+            <input type="hidden" name="seccion" value="{{ "plomería" }}">
           <div class="form-group {{ $errors->has('descripcion') ? 'has-error' : '' }}">
             <label for="message-text" class="col-md-4 control-label">Descripción del trabajo que realizará:</label>
             <div class="col-md-8">
               
-            {!! Form::textarea('descripcion',old('descripcion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Ingrese el trabajo que realizara el taller de CARPINTERÍA, máximo 200 caracteres']) !!}
+            {!! Form::textarea('descripcion',old('descripcion'),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Ingrese el trabajo que realizará PLOMERÍA, máximo 200 caracteres']) !!}
               {!! $errors->first('descripcion', '<span class="help-block">:message</span>') !!}
             
             </div>
@@ -73,25 +73,25 @@
     <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
    <script src="/dashboard/plugins/select2/es.js"></script>
 <script>
-    $('#solicitantescar').select2({
-        dropdownParent: $('#modalCarpin')
+    $('#solicitaplo').select2({
+        dropdownParent: $('#modalPlome')
     });
 </script>
 @unless(request()->is('/servicios'))
   <script>
     
-    if(window.location.hash === '#createcar')
+    if(window.location.hash === '#createplo')
     {
-       $('#modalCarpin').modal({ 'show' : {{ count($errors) > 0 ? true : false }}  });
+       $('#modalPlome').modal({ 'show' : {{ count($errors) > 0 ? true : false }}  });
     }
 
-    $('#modalCarpin').on('hide.bs.modal', function(){
+    $('#modalPlome').on('hide.bs.modal', function(){
       //console.log('El modal se cierra');
       window.location.hash = '#';
     });
 
-    $('#modalCarpin').on('show.bs.modal', function(){
-       window.location.hash = '#createcar';
+    $('#modalPlome').on('show.bs.modal', function(){
+       window.location.hash = '#createplo';
     });
 
   </script>

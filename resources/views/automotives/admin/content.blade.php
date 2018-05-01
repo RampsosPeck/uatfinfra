@@ -1,5 +1,6 @@
 <?php use Uatfinfra\ModelAutomotores\Viaje; use Uatfinfra\User;?>
 <div class="container panelcontrol">
+  <div class="titulo" id="titulo">AUTOMOTORES</div>
     <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -94,6 +95,12 @@
 .bg-redcontrol{
     background-color: rgba(221, 75, 57, 0.6);
 }
-
+.titulo{
+  font-weight: bolder;
+  box-sizing: inherit;
+  font-size: 2.75em;
+  text-align:  center;
+  box-sizing: content-box; 
+ }
 </style>
 @endpush
