@@ -56,6 +56,11 @@
                     <input type="text" class="form-control" name="cilindrada" value="{{ $vehiculo->cilindrada }}" id="cilindrada" readonly="readonly" >
                 </div>
             </div>
+            <div class="row">
+            @foreach($foto as $fo)
+                <figure  align="center" class="col-md-4"><img src="{{ $fo->url }}" class="img-responsive" alt=""> </figure>
+            @endforeach
+            </div>
       </div>
       <div class="modal-footer ">
             <center>

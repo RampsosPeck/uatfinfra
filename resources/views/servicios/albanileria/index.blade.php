@@ -23,11 +23,14 @@
                         <th>Solicitante</th> 
                         <th>Descripción</th>
                         <th>Fecha</th>
+                        <th>ESTADO</th>
                         <th>Opciones</th>						
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
                     @foreach($generales as $key => $general)
+                    @include('servicios.edit')
+                    @include('servicios.create')
                     <tr>
                         <td class="text-center">{{ ++$key }}</td>
                     	<td class="text-center">{{ $general->coding }}</td>
@@ -35,10 +38,23 @@
                         <td>{{ $general->servicio->solicitantes }}</td> 
                         <td>{{ $general->descripcion }}</td>
                         <td class="text-center">{{ $general->fecha }}</td>
+                        @if($general->estado == 'ENVIADO')
+                            <td  ALIGN=center data-toggle="tooltip" data-placement="left" title="La solicitud de trabajo esta siendo tomada en cuenta por el encargado de Servicios Generales para su APROBACIÓN o OBSERVACIÓN" > <font color="#f39c12">ENVIADO</font> </td>
+                        @endif
+                        @if($general->estado == 'APROBADO')
+                            <td  ALIGN=center data-toggle="tooltip" data-placement="left" title="NOTA: {{ $general->comentario }}" > <font color="#00a65a">APROBADO</font> </td>
+                        @endif
+                        @if($general->estado == 'OBSERVADO')
+                            <td  ALIGN=center data-toggle="tooltip" data-placement="left" title="{{ $general->comentario }}" > <font color="#dd4b39">OBSERVADO</font> </td>
+                        @endif 
                         <td>
-                             {!!link_to_route('generales.edit', $title = 'Editar', $parameters = $general->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
+                             {!!link_to_route('generales.edit', $title = 'Editar', $parameters = $general->id, $attributes = ['class'=>'btn btn-primary btn-xs  fa fa-pencil-square-o'])!!}
                             
-                            {!!link_to_route('generales.show', $title = ' Imprimir', $parameters = $general->id, $attributes = ['class'=>'btn btn-warning btn-xs btn-block fa fa-print','target'=>'_blank'])!!} 
+                            {!!link_to_route('generales.show', $title = ' Imprimir', $parameters = $general->id, $attributes = ['class'=>'btn btn-info btn-xs fa fa-print','target'=>'_blank'])!!} 
+                            <br>
+                            <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalEstado{{ $general->id }}">Aprobar</button>
+
+                            <button class="btn btn-warning btn-xs fa " data-toggle="modal" data-target="#modalObservar{{ $general->id }}">Observar</button>
                         </td>
                     </tr>
                     @endforeach

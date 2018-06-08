@@ -21,7 +21,7 @@ use Uatfinfra\ModelMecanico\Devolucion;?>
                         <th>Cod. Sol.</th>
                         <th>Solicitante</th>
                         <th>Vehículo</th>
-                        <th>Descripción</th>
+                        <th>Estado</th>
                         <th>Fecha</th>
                         <th>Opciones</th>
                         <th>Nro. Trabajos</th>
@@ -36,7 +36,15 @@ use Uatfinfra\ModelMecanico\Devolucion;?>
                     	<td class="text-center">{{ $solicitud->solmecodi }}</td>
                         <td>{{ $solicitud->user->name }}</td>
                         <td>{{ $solicitud->vehiculo->placa }}</td>
-                        <td>{{ $solicitud->descripcion }}</td>
+                        @if($solicitud->estado == 'ENVIADO')
+                            <td  ALIGN=center data-toggle="tooltip" data-placement="left" title="La solicitud de trabajo esta siendo tomada en cuenta por el encargado de Automotores para su APROBACIÓN o ESPERA de material." > <font color="#f39c12">ENVIADO</font> </td>
+                        @endif
+                        @if($solicitud->estado == 'APROBADO')
+                            <td bgcolor="#dff0d8" ALIGN=center data-toggle="tooltip" data-placement="left" title="NOTA: {{ $solicitud->comentario }}" > <font color="#00a65a">APROBADO</font> </td>
+                        @endif
+                        @if($solicitud->estado == 'ESPERA')
+                            <td bgcolor="#f39c12"  ALIGN=center data-toggle="tooltip" data-placement="left" title="NOTA: {{ $solicitud->comentario }}" > <font color="#dd4b39">ESPERA</font> </td>
+                        @endif
                         <td>{{ $solicitud->fecha }}</td>
                         <td>
 
@@ -48,14 +56,14 @@ use Uatfinfra\ModelMecanico\Devolucion;?>
                         @if($work == 0)
                             <td class="text-center" bgcolor="#f2dede">{{ "0" }}</td>
                         @else
-                            <td class="text-center">{{ $work }}
+                            <td class="text-center" bgcolor="#dff0d8"> <small class="label bg-green"> {{ $work }} </small> <br>
                                 {!!link_to_route('mecanicos.show', $title = ' Ver', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-success btn-xs  fa fa-eye','data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Vea todos los trabajos realizados para esta solicitud.'])!!}</td>
                         @endif
                         <?php $pedido = Pedido::where('sol_id',$solicitud->id)->first();?>
                         @if(empty($pedido))
                             <td class="text-center" >{{ "NO" }}</td>
                         @else
-                            <td class="text-center" bgcolor="#f2dede">{{ "SI" }}
+                            <td class="text-center" bgcolor="#bce8f1">{{ "SI" }}
                             {!!link_to_action('Mecanico\PedidoController@getImprimir', $title = ' Ver', $parameters = $pedido->id,  $attributes = ['class'=>'btn btn-info btn-xs btn-block fa fa-print','target'=>'_blank', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Vea el pedido de material para esta solicitud.'])!!}</td>
                         @endif
                         <?php $material = Devolucion::where('sol_id',$solicitud->id)->count(); ?>

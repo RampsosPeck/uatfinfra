@@ -9,7 +9,7 @@
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg"><strong>INGRESE SU CORREO ELECTRÓNICO PARA ENVIARLE EL LINK</strong></p>
+    <p class="login-box-msg"><strong>INGRESE SU CORREO ELECTRÓNICO REGISTRADO</strong></p>
         <div class="panel-body">
             @if (session('status'))
                 <div class="alert alert-success">

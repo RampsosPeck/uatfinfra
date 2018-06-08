@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Uatfinfra\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Uatfinfra\Http\Middleware\TrustProxies::class,
+
     ];
 
     /**
@@ -35,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Uatfinfra\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
 
         'api' => [
@@ -57,5 +59,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Uatfinfra\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
     ];
 }

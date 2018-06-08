@@ -49,7 +49,7 @@
 			    <div class="form-group{{ $errors->has('cantidad') ? ' has-error' : '' }}">
 			        <label for="cantidad" class="col-md-4 control-label">Cantidad:</label>
 			        <div class="col-md-6">
-			            <input id="cantidad" type="number" class="form-control" name="cantidad" value="{{ old('cantidad',$devolucion->cantidad) }}" placeholder="Ejm. 3">
+			            <input id="cantidad" type="text" class="form-control" name="cantidad" value="{{ old('cantidad',$devolucion->cantidad) }}" placeholder="Ejm. 3">
 			            @if ($errors->has('cantidad'))
 			                <span class="help-block">
 			                    <strong>{{ $errors->first('cantidad') }}</strong>

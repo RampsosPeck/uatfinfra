@@ -58,7 +58,7 @@
                                 </button>
                             {!! Form::close() !!}
 
-                        </td>
+                        </td> 
                     </tr>
                     @endforeach
                 </tbody>
@@ -75,6 +75,9 @@
    <style>
       .container{
             font-family: "Times New Roman", Times, serif;
+        }
+        .glyphicon {
+             align: left;
         }
     table th{
         text-align: center;

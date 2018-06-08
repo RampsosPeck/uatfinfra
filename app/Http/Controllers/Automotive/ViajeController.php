@@ -70,6 +70,7 @@ class ViajeController extends Controller
         $fi = $request->get('fecha_final');
         $fi = $fi.' 23:59:59';
 
+        $fix = $fi;
         if(!empty($request->get('fecha_final2'))) 
         {
             $fini2 = Carbon::parse($request->get('fecha_inicial2'));
@@ -77,18 +78,76 @@ class ViajeController extends Controller
             $fi2 = $request->get('fecha_final2');
             $fi2 = $fi2.' 23:59:59';
 
+            $fix = $fi2;
+
             $hini2 = $request->get('horainicial2');
             $hfin2 = $request->get('horafinal2');
+        
         }else{
             $fini2 = null;
-            $fi2 = $fi;
-
+            $fi2 = null;
             $hini2 = null;
             $hfin2 = null;
         }
-        
+        if(!empty($request->get('fecha_final3'))) 
+        {
+            $fini3 = Carbon::parse($request->get('fecha_inicial3'));
 
+            $fi3 = $request->get('fecha_final3');
+            $fi3 = $fi3.' 23:59:59';
+
+            $fix = $fi3;
+
+            $hini3 = $request->get('horainicial3');
+            $hfin3 = $request->get('horafinal3');
         
+        }else{
+            $fini3 = null;
+            $fi3 = null;
+            $hini3 = null;
+            $hfin3 = null;
+        }
+        if(!empty($request->get('fecha_final4'))) 
+        {
+            $fini4 = Carbon::parse($request->get('fecha_inicial4'));
+
+            $fi4 = $request->get('fecha_final4');
+            $fi4 = $fi4.' 23:59:59';
+
+            $fix = $fi4;
+
+            $hini4 = $request->get('horainicial4');
+            $hfin4 = $request->get('horafinal4');
+        
+        }else{
+            $fini4 = null;
+            $fi4 = null;
+            $hini4 = null;
+            $hfin4 = null;
+        }
+        if(!empty($request->get('fecha_final5'))) 
+        {
+            $fini5 = Carbon::parse($request->get('fecha_inicial5'));
+
+            $fi5 = $request->get('fecha_final5');
+            $fi5 = $fi5.' 23:59:59';
+
+            $fix = $fi5;
+
+            $hini5 = $request->get('horainicial5');
+            $hfin5 = $request->get('horafinal5');
+        
+        }else{
+            $fini5 = null;
+            $fi5 = null;
+            $hini5 = null;
+            $hfin5 = null;
+        }
+
+        $encarsuper = User::where([
+                    ['type', '=', "Supervisor"],
+                    ['position', '=', "AUTOMOTORES"]
+                ])->pluck('name');
         //return $fi;
 
         $viaje = new Viaje;
@@ -106,11 +165,24 @@ class ViajeController extends Controller
         $viaje->fecha_final2   = $fi2;
         $viaje->horainicial2 = $hini2;
         $viaje->horafinal2   = $hfin2;
+        $viaje->fecha_inicial3 = $fini3;
+        $viaje->fecha_final3   = $fi3;
+        $viaje->horainicial3 = $hini3;
+        $viaje->horafinal3   = $hfin3;
+        $viaje->fecha_inicial4 = $fini4;
+        $viaje->fecha_final4   = $fi4;
+        $viaje->horainicial4 = $hini4;
+        $viaje->horafinal4   = $hfin4;
+        $viaje->fecha_inicial5 = $fini5;
+        $viaje->fecha_final5   = $fix;
+        $viaje->horainicial5 = $hini5;
+        $viaje->horafinal5   = $hfin5;
         $viaje->nota        = $request->get('nota');
         $viaje->recurso     = $request->get('recurso');
         $viaje->estado      = "activo";
         $viaje->reserva_id  = null;
         $viaje->vehiculo_id = $request->get('vehiculo_id');
+        $viaje->supervisor   = $encarsuper[0];
         $viaje->save();
 
         $viaje->conductores()->attach($request->get('conductor'));
@@ -203,15 +275,22 @@ class ViajeController extends Controller
 
         $destino1 = Destino::where('id',$ruta->destino1)->first();
         $destino2 = Destino::where('id',$ruta->destino2)->first();
-        $destino3 = Destino::where('id',$ruta->destino3)->first() ? 'null' : 'nulo';
+
+        $destino3 = Destino::where('id',$ruta->destino3)->first();
         //dd($destino3);
-        $destino4 = Destino::where('id',$ruta->destino4)->first() ? 'null' : 'nulo';
-        $destino5 = Destino::where('id',$ruta->destino5)->first() ? 'null' : 'nulo';
-        $destino6 = Destino::where('id',$ruta->destino6)->first() ? 'null' : 'nulo';
+        $destino4 = Destino::where('id',$ruta->destino4)->first();
+        $destino5 = Destino::where('id',$ruta->destino5)->first();
+        $destino6 = Destino::where('id',$ruta->destino6)->first();
 
-        $supervisor = User::where('type', 'Supervisor')->where('position', 'AUTOMOTORES')->first();
+    //    $destino3 = Destino::where('id',$ruta->destino3)->first() ? 'null' : 'nulo';
+        //dd($destino3);
+    //    $destino4 = Destino::where('id',$ruta->destino4)->first() ? 'null' : 'nulo';
+    //    $destino5 = Destino::where('id',$ruta->destino5)->first() ? 'null' : 'nulo';
+    //    $destino6 = Destino::where('id',$ruta->destino6)->first() ? 'null' : 'nulo';
 
-        $view =  \View::make('automotives.automotive.viaje.presupuestoPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje','supervisor'))->render();
+        //$supervisor = User::where('type', 'Supervisor')->where('position', 'AUTOMOTORES')->first();
+
+        $view =  \View::make('automotives.automotive.viaje.presupuestoPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje'))->render();
         $pdf  = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('carta', 'portrat');
         return $pdf->stream('Presupuesto'.$viaje->id.'.pdf');
@@ -254,7 +333,7 @@ class ViajeController extends Controller
         $fi = $request->get('fecha_final');
         $fi = $fi.' 23:59:59';
 
-
+        $fix = $fi;
         if(!empty($request->get('fecha_inicial2')))
         {
             $fini2 = Carbon::parse($request->get('fecha_inicial2'));
@@ -262,15 +341,72 @@ class ViajeController extends Controller
             $fi2 = $request->get('fecha_final2');
             $fi2 = $fi2.' 23:59:59';
 
+            $fix = $fi2;
+
             $hini2 = $request->get('horainicial2');
             $hfin2 = $request->get('horafinal2');
         }else{
             $fini2 = null;
-            $fi2 = $fi;
-
+            $fi2 = null;
             $hini2 = null;
             $hfin2 = null;
+        }
+        if(!empty($request->get('fecha_inicial3')))
+        {
+            $fini3 = Carbon::parse($request->get('fecha_inicial3'));
+
+            $fi3 = $request->get('fecha_final3');
+            $fi3 = $fi3.' 23:59:59';
+
+            $fix = $fi3;
+
+            $hini3 = $request->get('horainicial3');
+            $hfin3 = $request->get('horafinal3');
+        }else{
+            $fini3 = null;
+            $fi3 = null;
+            $hini3 = null;
+            $hfin3 = null;
         }      
+        if(!empty($request->get('fecha_inicial4')))
+        {
+            $fini4 = Carbon::parse($request->get('fecha_inicial4'));
+
+            $fi4 = $request->get('fecha_final4');
+            $fi4 = $fi4.' 23:59:59';
+
+            $fix = $fi4;
+
+            $hini4 = $request->get('horainicial4');
+            $hfin4 = $request->get('horafinal4');
+        }else{
+            $fini4 = null;
+            $fi4 = null;
+            $hini4 = null;
+            $hfin4 = null;
+        }
+        if(!empty($request->get('fecha_inicial5')))
+        {
+            $fini5 = Carbon::parse($request->get('fecha_inicial5'));
+
+            $fi5 = $request->get('fecha_final5');
+            $fi5 = $fi5.' 23:59:59';
+
+            $fix = $fi5;
+
+            $hini5 = $request->get('horainicial5');
+            $hfin5 = $request->get('horafinal5');
+        }else{
+            $fini5 = null;
+            $fi5 = null;
+            $hini5 = null;
+            $hfin5 = null;
+        }
+
+        $encarsuper = User::where([
+                    ['type', '=', "Supervisor"],
+                    ['position', '=', "AUTOMOTORES"]
+                ])->pluck('name');
 
         //return $request;
         $viaje = Viaje::find($id);
@@ -288,12 +424,25 @@ class ViajeController extends Controller
         $viaje->fecha_final2   = $fi2;
         $viaje->horainicial2 = $hini2;
         $viaje->horafinal2   = $hfin2;
+        $viaje->fecha_inicial3 = $fini3;
+        $viaje->fecha_final3   = $fi3;
+        $viaje->horainicial3 = $hini3;
+        $viaje->horafinal3   = $hfin3;
+        $viaje->fecha_inicial4 = $fini4;
+        $viaje->fecha_final4   = $fi4;
+        $viaje->horainicial4 = $hini4;
+        $viaje->horafinal4   = $hfin4;
+        $viaje->fecha_inicial5 = $fini5;
+        $viaje->fecha_final5   = $fix;
+        $viaje->horainicial5 = $hini5;
+        $viaje->horafinal5   = $hfin5;
 
         $viaje->nota        = $request->get('nota');
         $viaje->recurso     = $request->get('recurso');
         $viaje->estado      = "activo";
         $viaje->reserva_id  = null;
         $viaje->vehiculo_id = $request->get('vehiculo_id');
+        $viaje->supervisor   = $encarsuper[0];
         $viaje->save();
 
         $viaje->conductores()->sync($request->get('conductor'));

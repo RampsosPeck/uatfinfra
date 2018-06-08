@@ -42,14 +42,14 @@
               {!! $errors->first('responsable', '<span class="help-block">:message</span>') !!}
           </div>
           <br>
-          @if($general->active === true)    
+          @if($general->estado === 'ENVIADO')    
               <center>
                   <button class="btn btn-primary btn-sm"><b>Guardar la Solicitud </b><i class="fa fa-save" aria-hidden="true"></i></button>
               </center>
               {!! Form::close()  !!}<br>
               <center> 
           @else
-              <div class="text-center" style="background:#f2dede" >La solicitud no se puede EDITAR o ELIMINAR porque ya se atendio con normalidad.</div>
+              <div class="text-center" style="background:#f2dede" >{{ $general->comentario }}</div>
               </center>
           @endif
 

@@ -21,7 +21,8 @@ class CreateGeneralesTable extends Migration
             $table->string('descripcion');
             $table->unsignedInteger('user_id');
             $table->string('fecha');
-            $table->boolean('active')->default(true)->nullable();
+            $table->string('estado')->default('ENVIADO')->nullable();
+            $table->string('comentario',500)->nullable();
             $table->string('responsable');
             $table->timestamps();
         });

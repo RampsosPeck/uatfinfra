@@ -10,6 +10,7 @@
  @include('servicios.albanileria.create')
  @include('servicios.plomeria.create')
  @include('servicios.sergeneral.create')
+ @include('servicios.mantegeneral.create')
  
 <div class="container panelcontrol">
   <div class="titulo" id="titulo">SERVICIOS GENERALES</div>
@@ -68,13 +69,14 @@
           <div class="small-box bg-redcontrol">
             <div class="inner">
               <h3> <i class="fa fa-windows"></i></h3>
-
-              <p>MANTENIMIENTO DE CPU</p>
+              <strong>
+                <p>{!!link_to_action('Servicio\GeneralController@getMantegene', $title = 'MANTENIMIENTO GENERAL', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
+              </strong>
             </div>
             <div class="icon">
               <i class="fa fa-television"></i>
             </div>
-            <a href="#" class="small-box-footer">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalMante">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">

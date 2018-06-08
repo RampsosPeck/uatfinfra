@@ -43,7 +43,7 @@ use Carbon\Carbon;
         <td class="km" colspan="1"> {{$ruta->kilo2}}</td>
     </tr>
     <tr>
-        @if(empty($destino3))
+        @if(!empty($destino3))
         <td class="kn" colspan="1"> {{ $destino3->dep_inicio }} {{ $destino3->origen }} HASTA {{ $destino3->dep_final }} {{ $destino3->destino }}</td>
         <td class="km" colspan="1"> {{$ruta->kilo3}}</td>
         @else
@@ -57,7 +57,7 @@ use Carbon\Carbon;
         <td class="kn" rowspan="2" colspan="1"> <strong><center>DESCRIPCIÓN</center></strong></td>
         <td class="kn" rowspan="2" colspan="1"><strong><center>p/u Bs.</center></strong></td>
         <td class="kn" rowspan="2" colspan="1"> <strong><center>TOTAL Bs.</center></strong></td>
-        @if(empty($destino4))
+        @if(!empty($destino4))
         <td class="kn" colspan="1"> {{ $destino4->dep_inicio }} {{ $destino4->origen }} HASTA {{ $destino4->dep_final }} {{ $destino4->destino }}</td>
         <td class="km" colspan="1">{{$ruta->kilo4}} </td>
         @else
@@ -66,7 +66,7 @@ use Carbon\Carbon;
         @endif
     </tr>
     <tr>
-        @if(empty($destino5))
+        @if(!empty($destino5))
         <td colspan="1" class="kn"> {{ $destino5->dep_inicio }} {{ $destino5->origen }} HASTA {{ $destino5->dep_final }} {{ $destino5->destino }}</td>
         <td  colspan="1" class="km">{{$ruta->kilo5}} </td>
         @else
@@ -88,7 +88,7 @@ use Carbon\Carbon;
               $precombu = number_format($premoney, 2, '.', ',');?>
         <td class="km" colspan="1">{{ $precombu }} </td>
         <td class="km" colspan="1">  {{$presupuesto->totalprecio}}</td>
-        @if(empty($destino6))
+        @if(!empty($destino6))
         <td colspan="1" class="kn"> {{ $destino6->dep_inicio }} {{ $destino6->origen }} HASTA {{ $destino6->dep_final }} {{ $destino6->destino }}</td>
         <td colspan="1" class="km" >{{$ruta->kilo6}}</td>
         @else
@@ -218,15 +218,48 @@ use Carbon\Carbon;
             <td class="kn" colspan="3"><b>Unidad/Sección:</b> {{ $viaje->entidad }}</td>
         </tr>
         <tr>
-            <td class="kn" colspan="2"><b>Fecha de Partida:</b>{{ Carbon::parse($viaje->fecha_inicial)->format('Y-m-d')}}</td>
+            <td class="kn" colspan="2">DÍA 1) <b>Fecha de Partida:</b>{{ Carbon::parse($viaje->fecha_inicial)->format('Y-m-d')}}</td>
             <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horainicial}}</td>
             <td class="kn" colspan="2"><b>Fecha de Retorno:</b>{{ Carbon::parse($viaje->fecha_final)->format('Y-m-d')}}</td>
             <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horafinal}}</td>
         </tr>
+        @if(!empty($viaje->fecha_inicial2))
+            <tr>
+                <td class="kn" colspan="2">DÍA 2) <b>Fecha de Partida:</b>{{ Carbon::parse($viaje->fecha_inicial2)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horainicial2}}</td>
+                <td class="kn" colspan="2"><b>Fecha de Retorno:</b>{{ Carbon::parse($viaje->fecha_final2)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horafinal2}}</td>
+            </tr>
+        @endif
+         @if(!empty($viaje->fecha_inicial3))
+            <tr>
+                <td class="kn" colspan="2">DÍA 3) <b>Fecha de Partida:</b>{{ Carbon::parse($viaje->fecha_inicial3)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horainicial3}}</td>
+                <td class="kn" colspan="2"><b>Fecha de Retorno:</b>{{ Carbon::parse($viaje->fecha_final3)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horafinal3}}</td>
+            </tr>
+        @endif
+        @if(!empty($viaje->fecha_inicial4))
+            <tr>
+                <td class="kn" colspan="2">DÍA 4) <b>Fecha de Partida:</b>{{ Carbon::parse($viaje->fecha_inicial4)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horainicial4}}</td>
+                <td class="kn" colspan="2"><b>Fecha de Retorno:</b>{{ Carbon::parse($viaje->fecha_final4)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horafinal4}}</td>
+            </tr>
+        @endif
+        @if(!empty($viaje->fecha_inicial5))
+            <tr>
+                <td class="kn" colspan="2">DÍA 5) <b>Fecha de Partida:</b>{{ Carbon::parse($viaje->fecha_inicial5)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horainicial5}}</td>
+                <td class="kn" colspan="2"><b>Fecha de Retorno:</b>{{ Carbon::parse($viaje->fecha_final5)->format('Y-m-d')}}</td>
+                <td class="kn" colspan="1"><b>Hora:</b> {{$viaje->horafinal5}}</td>
+            </tr>
+        @endif
+        
 
 
     </table><br><br>
-        <center><h4 >Sr. {{$supervisor->name}}<br />ENCARGADO DE AUTOMOTORES </h4></center>
+        <center><h4 > {{$viaje->supervisor}}<br />ENCARGADO DE AUTOMOTORES </h4></center>
     <footer>
         <center>Nuevo Sistema Web © 2018 Depto. INFRAESTRUCTURA</center>
     </footer>

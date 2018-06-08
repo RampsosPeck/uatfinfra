@@ -1,6 +1,6 @@
 <?php use Uatfinfra\ModelAutomotores\Viaje; use Uatfinfra\User;?>
 <div class="container panelcontrol">
-  <div class="titulo" id="titulo">AUTOMOTORES</div>
+  <div class="titulo" id="titulo">SECCIÓN AUTOMOTORES</div>
     <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -98,7 +98,7 @@
 .titulo{
   font-weight: bolder;
   box-sizing: inherit;
-  font-size: 2.75em;
+  font-size: 2.10em;
   text-align:  center;
   box-sizing: content-box; 
  }

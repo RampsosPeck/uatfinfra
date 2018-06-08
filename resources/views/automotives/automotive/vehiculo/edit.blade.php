@@ -1,7 +1,7 @@
 @extends('automotives.layout')
 
 @section('content')
-
+<?php  use Uatfinfra\ModelAutomotores\Photo; ?>
 <div class="container">
 	<div class="col-md-11">
     <!-- Horizontal Form -->
@@ -13,19 +13,25 @@
               			<font color="#007bff"><b>EDITAR EL VEHÍCULO</b></font>
           			</h3>
           		</center>
-            </div>
+          		{!! Form::open(['route'=>['vehiculos.destroy',$vehiculo->id],'method'=>'DELETE' ]) !!}
+	                <button type="submit" class="btn btn-danger btn-xs" style="right:inherit">
+	                    <span class="fa fa-remove">   Eliminar</span> 
+	                </button>  
+	            {!! Form::close() !!}
+	        </div>
             <span class="input-group-addon" id="basic-addon1">
 				Los campos con el icono 
 				<font color="red">
 			        <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
 			    </font>
-			    son obligatorios.
-			</span>  
+			    son obligatorios. 
+			</span>
+			  
             <!-- form start -->
              {!! Form::model($vehiculo,['route'=>['vehiculos.update',$vehiculo->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
            
-                <div class="box-body alert-info">
+                <div class="box-body "  style="background-color: #bce8f1;">
             		<div class="col-md-6">
 	                	<div class="form-group {{ $errors->has('oil_id') ? 'has-error' : '' }}">
 		                    <label for="oil" class="col-sm-4 control-label">Combustible:</label>
@@ -178,6 +184,7 @@
 			                </div>
 		                </div>
                     </div>
+                    
               	</div>
               	<!-- /.box-body -->
               	<div class="box-footer">
@@ -187,22 +194,45 @@
               	</div>
               	<!-- /.box-footer -->
             {!! Form::close() !!}
-
-            {!! Form::open(['route'=>['vehiculos.destroy',$vehiculo->id],'method'=>'DELETE']) !!}
-                
-                <center>
-	                <button type="submit" class="btn btn-danger btn-block btn-sm">
-	                    <span class="glyphicon glyphicon-trash">   Eliminar</span> 
-	                </button>
-                </center>
-                
-       		{!! Form::close() !!}
+            <div class="col-md-12" style="background-color: #bce8f1;">
+       			<div  class="col-md-4" >
+                	<B style="float:right;">	FOTOS: </B>
+                </div>
+                @if(Photo::where('vehiculo_id',$vehiculo->id)->count() < 2)
+          			<div  class="dropzone col-md-6"> 
+          				@foreach($photos as $foto)
+		          			<form method="POST" action="{{ route('photos.destroy', $foto) }}">
+		          				{{ method_field('DELETE') }}  {{ csrf_field() }}
+		          				<div class="col-md-4">
+		          					<button class="btn btn-danger btn-xs" style="position: absolute"> <i class="fa fa-remove"></i></button>
+		          						<img class="img-responsive" src="{{ url($foto->url) }}">    
+		          					</button>
+		          				</div>
+		          			</form>
+	          			@endforeach  
+          			</div>
+          		@else
+          			<div  class="col-md-6"> 
+	      				@foreach($photos as $foto)
+		          			<form method="POST" action="{{ route('photos.destroy', $foto) }}">
+		          				{{ method_field('DELETE') }}  {{ csrf_field() }}
+		          				<div class="col-md-4">
+		          					<button class="btn btn-danger btn-xs" style="position: absolute"> <i class="fa fa-remove"></i></button>
+		          						<img class="img-responsive" src="{{ url($foto->url) }}">    
+		          					</button>
+		          				</div>
+		          			</form>
+	          			@endforeach  
+	      			</div>
+          		@endif
+            </div>
 		</div>
 	</div>
 </div>
 @endsection
 
 @push('styles')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css">
   <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
   <style>
       .container{
@@ -212,6 +242,7 @@
 @endpush
 
 @push('scripts') 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"></script>
    <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
    <script src="/dashboard/plugins/select2/es.js"></script>
 
@@ -234,6 +265,37 @@
     	language: "es",
 		allowClear: true
     });
+
+     var myDropzone = new Dropzone('.dropzone',{
+    	 url :'/vehiculos/{{ $vehiculo->id }}/photosupdate',
+    	 acceptedFiles: 'image/*',
+    	 paramName: 'photo',
+    	 maxFilesize: 2,
+    	 maxFiles: 2,
+    	 headers : {
+    	 	'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    	 },
+    	dictDefaultMessage : 'Arrastra las fotos aqui para subirlas',
+    	dictDefaultMessage: "Arrastra los archivos aqui para subirlos",
+	    dictFallbackMessage: "Su navegador no soporta arrastrar y soltar para subir archivos.",
+	    dictFallbackText: "Por favor utilize el formuario de reserva de abajo como en los viejos timepos.",
+	    dictFileTooBig: "La imagen revasa el tamaño permitido ( MiB). Tam. Max :  MiB.",
+	    dictInvalidFileType: "No se puede subir este tipo de archivos.",
+	    dictResponseError: "Server responded with   code.",
+	    dictCancelUpload: "Cancel subida",
+	    dictCancelUploadConfirmation: "¿Seguro que desea cancelar esta subida?",
+	    dictRemoveFile: "Eliminar archivo",
+	    dictRemoveFileConfirmation: null,
+	    dictMaxFilesExceeded: "Se ha excedido el numero de archivos permitidos.",
+
+    });
+
+    myDropzone.on('error', function(file, res){
+    	var msg = res.errors.photo[0];
+    	$('.dz-error-message: > span').text(msg);
+    });
+
+    Dropzone.autoDiscover = false;
 </script>
 @endpush
 

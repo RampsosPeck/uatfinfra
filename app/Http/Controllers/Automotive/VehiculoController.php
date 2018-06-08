@@ -6,7 +6,8 @@ use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\ModelAutomotores\Combustible;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
-use Uatfinfra\Http\Requests\VehiculoSaveRequest;
+use Uatfinfra\Http\Requests\VehiculoSaveRequest; 
+use Uatfinfra\ModelAutomotores\Photo;
 use Uatfinfra\User;
 use Session;
 use Auth;
@@ -44,8 +45,7 @@ class VehiculoController extends Controller
      */
     public function store(VehiculoSaveRequest $request)
     {
-         
-       // return $request;
+       //return $request;
         //Vehiculo::create($request->all());
         
         if($request->get('user_id') === null ){
@@ -71,7 +71,9 @@ class VehiculoController extends Controller
         $vehiculo->save();
 
         $vehiculo->combustibles()->attach($request->get('oil_id'));
-        
+
+        Photo::where('vehiculo_id', 10000)->update(['vehiculo_id' => $vehiculo->id]);
+         
         Session::flash('message','El vehículo se inserto correctamente...');
         return redirect('vehiculos');
     }
@@ -100,8 +102,9 @@ class VehiculoController extends Controller
         $users = User::where('type','Conductor')->get();
         $vehiculo = Vehiculo::find($id);
         $oils  = Combustible::all();
-        //dd($user);
-        return view('automotives.automotive.vehiculo.edit',compact('vehiculo','users','oils'));
+        $photos = Photo::where('vehiculo_id',$id)->get();
+        //dd($photos);
+        return view('automotives.automotive.vehiculo.edit',compact('vehiculo','users','oils','photos'));
     }
 
     /**
@@ -152,7 +155,11 @@ class VehiculoController extends Controller
     public function destroy($id)
     {
         Vehiculo::destroy($id);
+
+        Photo::where('vehiculo_id', $id)->delete();
+
         Session::flash('message','Vehículo eliminado correctamente...');
         return redirect('vehiculos');
+        
     }
 }

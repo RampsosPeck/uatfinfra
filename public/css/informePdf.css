@@ -8,7 +8,10 @@ a {
   color: #5D6975;
   text-decoration: underline;
 }
-
+#projecthojaru {
+  border-top: 1px solid  #337ab7;
+  background: url(/img/dimension.png);
+}
 body {
   position: relative;
   width: 18cm;  

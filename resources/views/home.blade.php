@@ -50,7 +50,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="sidebar-mini skin-blue sidebar-expanded-on-hover sidebar-collapse" style="height: auto; min-height: 100%;">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -245,7 +245,7 @@ desired effect
 <!-- Bootstrap 3.3.6 -->
 {!! Html::script('/dashboard/bootstrap/js/bootstrap.min.js') !!}
 <!-- AdminLTE App -->
-{!! Html::script('/dashboard/js/app.min.js') !!}
+{!! Html::script('/dashboard/js/app.min.js') !!} 
 
 @stack('scripts')
 

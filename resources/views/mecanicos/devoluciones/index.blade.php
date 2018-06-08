@@ -29,6 +29,8 @@ use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
                     @foreach($devoluciones as $key => $devolucion)
+                    @include('mecanicos.devoluciones.aprobar')
+                    @include('mecanicos.devoluciones.observar')
                     <tr>
                         <td class="text-center">{{ ++$key }}</td>
                         @if ($devolucion->sol_id == 0)
@@ -46,21 +48,41 @@ use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
 
                             {!!link_to_route('devoluciones.edit', $title = ' Editar', $parameters = $devolucion->id, $attributes = ['class'=>'btn btn-primary  btn-xs btn-block  fa fa-pencil-square-o', 'data-toggle'=>'tooltip', 'data-placement'=>'top', 'title'=>'Edite su devolución de material.'])!!}
                             <br>
+                            @if($devolucion->estado != 'APROBADO')
                             {!! Form::open(['route'=>['devoluciones.destroy',$devolucion->id],'method'=>'DELETE']) !!}
                                 <button type="submit" class="btn btn-danger btn-xs btn-block" , data-toggle="tooltip", data-placement="top", title="Desea eliminar esta debolución?">
                                     <span class="fa fa-trash"> Eliminar  </span> 
                                 </button>
                             {!! Form::close() !!}
+                            @endif
 
                         </td>
-                        @if (2 == 1)
-                            <td class="text-center"><div class="box-body" STYLE="background:#bce8f1" >  
-                             Espera</div>
+                        @if ($devolucion->estado == 'ENVIADO')
+                            <td class="text-center" STYLE="background:#fcf8e3" data-toggle="tooltip" data-placement="left" title="La devolución está siendo tomada en cuenta por el encargado de AUTOMOTORES para su APROBACIÓN o OBSERVACIÓN">  
+                             ENVIADO
+                                 <br>
+                                <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalAprobar{{ $devolucion->id }}">Aprobar</button>
+
+                                <button class="btn btn-warning btn-xs fa " data-toggle="modal" data-target="#modalObservar{{ $devolucion->id }}">Observar</button>
                             </td>
                         @else 
-                            <td class="text-center"><div class="box-body" STYLE="background:#dff0d8" > 
-                             Aprobado</div>
-                            </td>
+                            @if ($devolucion->estado == 'APROBADO')
+                                <td class="text-center" STYLE="background:#dff0d8"  data-toggle="tooltip" data-placement="left" title="La devolución de material fue aprobado con éxito con el encargado de AUTOMOTORES. NOTA:{{ $devolucion->comentario }}">  
+                                 APROBADO
+                                     <br>
+                                    <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalAprobar{{ $devolucion->id }}">Aprobar</button>
+
+                                    <button class="btn btn-warning btn-xs fa " data-toggle="modal" data-target="#modalObservar{{ $devolucion->id }}">Observar</button>
+                                </td>
+                            @else
+                                <td class="text-center" STYLE="background:#f2dede" data-toggle="tooltip" data-placement="left" title="La devolución de material fue OBSERVADO comuniquese con el encargado de AUTOMOTORES. NOTA:{{ $devolucion->comentario }}">  
+                                 OBSERVADO
+                                     <br>
+                                    <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalAprobar{{ $devolucion->id }}">Aprobar</button>
+
+                                    <button class="btn btn-warning btn-xs fa " data-toggle="modal" data-target="#modalObservar{{ $devolucion->id }}">Observar</button>
+                                </td>
+                            @endif
                         @endif
                     </tr>
                     @endforeach

@@ -13,7 +13,7 @@
 
         <!-- Bootstrap core CSS -->
         {!! Html::style('/welcome/bootstrap/css/bootstrap.min.css') !!}
-
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
         <!-- Custom fonts for this template -->
         <link href="/welcome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -84,19 +84,21 @@
     <!-- Contact form JavaScript -->
 {!! Html::script('/welcome/agency/js/jqBootstrapValidation.js') !!}
 {!! Html::script('/welcome/agency/js/contact_me.js') !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 
     <!-- Custom scripts for this template -->
 {!! Html::script('/welcome/agency/js/agency.min.js') !!}
 {!! Html::script('https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js') !!}
-
+@include('sweet::alert')
     <script>    
     CKEDITOR.replace( 'men',
     {
         language: 'es',
         toolbar : 'Basic', /* this does the magic */
         uiColor : '#9AB8F3'
-    });
+    }); 
+
     </script>
   </body>
 

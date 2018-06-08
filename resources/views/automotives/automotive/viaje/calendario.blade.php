@@ -4,7 +4,7 @@
 @include('alertas.success')
 
 <div class="container">
-  <div class=" col-md-11">
+  <div class=" col-md-12">
     
     <div class="box box-primary">      
       <div id="calendar"></div>
@@ -47,7 +47,7 @@ $(function () {
       lang: 'es',
       eventClick: function(calEvent, jsEvent, view) {
 
-          alert('ENTIDAD: ' + calEvent.datos);
+          //alert('ENTIDAD: ' + calEvent.datos);
           // change the border color just for fun
           $(this).css('border-color', 'red');
 
@@ -100,9 +100,9 @@ $(function () {
         //url:'events'
           @foreach($viajes as $viaje)
           {
-              title : 'CONDUCTOR: @foreach ($viaje->conductores as $conductor){{ $conductor->name }} | @endforeach',
+              title : 'ENTIDAD: {{ $viaje->entidad }} | CONDUCTOR: @foreach ($viaje->conductores as $conductor){{ $conductor->name }} | @endforeach',
               start : '{{ $viaje->fecha_inicial}}',
-              end   : '{{ $viaje->fecha_final2}}',
+              end   : '{{ $viaje->fecha_final5}}',
               estado: '{{ $viaje->estado}}',
               datos : '{{ $viaje->entidad }} DESDE: {{ $viaje->horainicial }} HASTA: {{ $viaje->horafinal }} VEHÍCULO: {{ $viaje->vehiculo->placa }} ESTADO: {{ $viaje->estado }}',
               url   : '{{ route('calendario.show', $viaje->id) }}'
@@ -110,7 +110,7 @@ $(function () {
           @endforeach
       ],
       editable  : false,
-      droppable : false, // this allows things to be dropped onto the calendar !!!
+      droppable : true, // this allows things to be dropped onto the calendar !!!
       
     })
   })

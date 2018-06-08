@@ -37,7 +37,7 @@
 	        </div>
 			<br>
 
-    @if($solicitud->active === true)  
+    @if($solicitud->estado === "ENVIADO")  
 		    <center>
 		      <button type="submit" class="btn btn-sm btn-primary">
 		        <b>Guardar la solicitud</b> <i class="fa fa-check-square-o" aria-hidden="true"></i>
@@ -47,7 +47,7 @@
 		{!! Form::close() !!}<BR>
 		<center>
     @else
-          <div class="text-center" style="background:#f2dede" >La solicitud no se puede EDITAR o ELIMINAR porque ya se realizó el pedido de material.</div>
+          <div class="text-center" style="background:#f2dede" >{{ $solicitud->comentario }}</div>
       </center>
     @endif
 

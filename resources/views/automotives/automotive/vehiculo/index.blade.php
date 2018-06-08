@@ -1,6 +1,7 @@
 @extends('automotives.layout')
 
 @section('content')
+<?php use Uatfinfra\ModelAutomotores\Photo;?>
 @include('alertas.success')
 <div class="container">
     <div class="box box-info">
@@ -19,6 +20,7 @@
                         <th>KM</th>
                         <th>Pax</th>                      
                         <th>Estado</th>
+                        <th>Foto</th>
                         <th>Opciones</th>						
 					</tr>
  				</thead>
@@ -40,9 +42,23 @@
                         <td>{{ $vehiculo->kilometraje }}</td>
                         <td>{{ $vehiculo->pasajeros }}</td>
                         <td>{{ $vehiculo->estado }}</td>
+                        <?php $foto = Photo::where('vehiculo_id',$vehiculo->id)->get();  ?>
+                        @if(!empty($foto))
+                        <td >
+                            @foreach($foto as $fo)
+                                <div class="overlay">
+                                    <figure  class="col-md-6"><img src="{{ $fo->url }}" class="img-responsive" alt=""> </figure>
+                                </div>
+                            @endforeach
+                        </td>
+                        @else
+                        <td>{{ "Ninguno" }}</td>
+                        @endif
                         <td>
-                            {!!link_to_route('vehiculos.edit', $title = 'Editar', $parameters = $vehiculo->id, $attributes = ['class'=>'btn btn-primary btn-xs   fa fa-pencil-square-o'])!!}
-                            <a href="#modalDetalle{{$vehiculo->id}}" class="btn btn-info btn-xs fa fa-eye-slash" data-toggle="modal"> Detalle</a>
+                            <a href="#modalDetalle{{$vehiculo->id}}" class="btn btn-info btn-xs btn-block fa fa-eye-slash" data-toggle="modal"> Detalle</a>
+
+                            {!!link_to_route('vehiculos.edit', $title = 'Editar', $parameters = $vehiculo->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block  fa fa-pencil-square-o'])!!}
+   
                         </td>
                     </tr>
                     @include('automotives.automotive.vehiculo.detalle')
@@ -62,6 +78,13 @@
       .container{
             font-family: "Times New Roman", Times, serif;
         }
+       .overlay{
+            desplay: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+       }
     table th{
         text-align: center;
     }

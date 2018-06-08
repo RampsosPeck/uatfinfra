@@ -22,17 +22,18 @@
 
 {!! Form::model($informe,['route'=>['informes.update',$informe->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
               {{ csrf_field() }}
+ 
 
-  <div class="col-md-5">
+<div class="col-md-12">
     <div class="box box-info">
         <div class="box-header with-border">
           <CENTER><h3 class="box-title"><b>DATOS DEL VIAJE <font color="blue">Codigo:{{ $viajeCodigo[0] }}</font></b></h3></CENTER>
         </div>
         <div class="box-body" STYLE="background:#bce8f1">
-            <div class="form-group {{ $errors->has('vehiculo_id') ? 'has-error' : '' }}">
-                <label for="vehiculo" class="col-sm-3 control-label">Vehículo:</label>
-                <div class="col-sm-9">
-                    <div class="input-group">
+          <div class="form-group">
+            <div class=" {{ $errors->has('vehiculo_id') ? 'has-error' : '' }}">
+                <label for="vehiculo" class="col-sm-1 control-label">Vehículo:</label>
+                <div class="col-sm-2"> 
                         <select class="form-control select2"
                                 name="vehiculo_id"
                                 data-placeholder="Uno o dos encargados"
@@ -44,21 +45,14 @@
                                   >{{ $vehiculo->placa }} 
                                 </option>
                               @endforeach
-                            </select>
-                          <span class="input-group-addon" id="basic-addon1">
-                                    <font color="red">
-                                <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                              </font>
-                          </span>
-                    </div>
+                            </select> 
                     {!! $errors->first('vehiculo_id', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
-             <input type="hidden" name="viaje_id" value="{{ $informe->viaje_id }}">
-            <div class="form-group {{ $errors->has('conductor') ? 'has-error' : '' }}">
-                <label for="conductor" class="col-sm-3 control-label">Conductor:</label>
-                <div class="col-sm-9">
-                    <div class="input-group">
+            <input type="hidden" name="viaje_id" value="{{ $informe->viaje_id }}">
+            <div class="  {{ $errors->has('conductor') ? 'has-error' : '' }}">
+                <label for="conductor" class="col-sm-1 control-label">Conductor:</label>
+                <div class="col-sm-3"> 
                         <select  class="form-control select2"
                                 name="conductor"
                                 data-placeholder="Uno o dos encargados"
@@ -69,80 +63,78 @@
                               {{ old('conductores',$informe->conductor) == $conductor->id ? 'selected' : '' }}
                               >{{ $conductor->name }}</option>
                           @endforeach
-                        </select>
-                      <span class="input-group-addon" id="basic-addon1">
-                          <font color="red">
-                            <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                          </font>
-                      </span>
-                  </div>
+                        </select>  
                   {!! $errors->first('conductor', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
-            <div class="form-group">
-              <label for="fecha_inicial" class="col-sm-3 control-label">Desde:</label>
-              <div class="col-sm-9  {{ $errors->has('fecha_inicial') ? 'has-error' : '' }}">
+            <label for="dias" class="col-sm-1 control-label">Dias:</label>
+            <div class="col-sm-2"> 
+                    <input type="text"
+                      class="form-control"
+                      name="dias"
+                      placeholder="Ejm. 2 dias"
+                      value="{{ old('dias',$informe->dias) }}">
+                  {!! $errors->first('dias', '<span class="help-block">:message</span>') !!}
+            </div>
+            <label for="pasajeros" class="col-sm-1 control-label">Pasajeros:</label>
+            <div class="col-sm-1 {{ $errors->has('pasajeros') ? 'has-error' : '' }}">
+                  <input type="text"
+                    class="form-control"
+                    name="pasajeros"
+                    id="pasajeros"
+                    placeholder="Ejm. 47"
+                    value="{{ old('pasajeros', $informe->pasajeros) }}">
+                {!! $errors->first('pasajeros', '<span class="help-block">:message</span>') !!}
+            </div>
+        </div>
+        <div class="form-group">
+              <label for="fecha_inicial" class="col-sm-1 control-label">Partida:</label>
+              <div class="col-sm-2  {{ $errors->has('fecha_inicial') ? 'has-error' : '' }}">
                   <div class="input-group date">
-                      <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                      </div>
                       <input name="fecha_inicial"
                       class="form-control"
                       value="{{ old('fecha_inicial',Carbon::parse($informe->fecha_inicial)->format('Y-m-d')) }}"
-                      id="datepicker">
-                      <span class="input-group-addon" id="basic-addon1">
-                        <font color="red">
-                          <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                        </font>
-                      </span>
-                  </div>
-                  {!! $errors->first('fecha_inicial', '<span class="help-block">:message</span>') !!}
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="fecha_final" class="col-sm-3 control-label">Hasta:</label>
-              <div class="col-sm-9  {{ $errors->has('fecha_final') ? 'has-error' : '' }}">
-                  <div class="input-group date">
+                      id="datepicker"> 
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                      <input name="fecha_final"
-                      class="form-control"
-                      value="{{ old('fecha_final',Carbon::parse($informe->fecha_final)->format('Y-m-d')) }}"
-                      id="datepickere">
-                      <span class="input-group-addon" id="basic-addon1">
-                        <font color="red">
-                          <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                        </font>
-                      </span>
-                  </div>
-                  {!! $errors->first('fecha_final', '<span class="help-block">:message</span>') !!}
+                  </div> 
+                  {!! $errors->first('fecha_inicial', '<span class="help-block">:message</span>') !!}
               </div>
-            </div>
-            <div class="form-group {{ $errors->has('horainicial') ? 'has-error' : '' }}">
-              <label for="fecha_final" class="col-sm-2 control-label">Partida:</label>
-              <div class="col-sm-4" >
-                  <div class="bootstrap-timepicker">
-                    <div class="form-group">
+
+ 
+              <label for="fecha_final" class="col-sm-1 control-label {{ $errors->has('horainicial') ? 'has-error' : '' }}">Hora:</label>
+              <div class="col-sm-2" >
+                  <div class="bootstrap-timepicker"> 
                       <div class="input-group">
                         <input type="text"
                           class="form-control timepicker"
                           name="horainicial"
-                          value="{{ old('horainicial',$informe->horainicial) }}">
-                        <div class="input-group-addon">
+                          value="{{ old('horainicial',$informe->horainicial) }}"> 
+                          <div class="input-group-addon">
                           <i class="fa fa-clock-o"></i>
                         </div>
                       </div>
-                      {!! $errors->first('horainicial', '<span class="help-block">:message</span>') !!}
-                      <!-- /.input group -->
-                    </div>
-                    <!-- /.form group -->
+                      {!! $errors->first('horainicial', '<span class="help-block">:message</span>') !!} 
                   </div>
               </div>
-              <label for="fecha_final" class="col-sm-2 control-label">Llegada:</label>
-              <div class="col-sm-4 {{ $errors->has('horafinal') ? 'has-error' : '' }}" >
-                  <div class="bootstrap-timepicker">
-                    <div class="form-group">
+        
+              <label for="fecha_final" class="col-sm-1 control-label {{ $errors->has('fecha_final') ? 'has-error' : '' }}">Llegada:</label>
+              <div class="col-sm-2">
+                  <div class="input-group date">
+                      <input name="fecha_final"
+                      class="form-control"
+                      value="{{ old('fecha_final',Carbon::parse($informe->fecha_final)->format('Y-m-d')) }}"
+                      id="datepickere">         
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                  </div>
+                  {!! $errors->first('fecha_final', '<span class="help-block">:message</span>') !!}
+              </div>
+              <label for="fecha_final" class="col-sm-1 control-label">Hora:</label>
+              <div class="col-sm-2 {{ $errors->has('horafinal') ? 'has-error' : '' }}" >
+                  <div class="bootstrap-timepicker"> 
                       <div class="input-group">
                         <input type="text"
                           class="form-control timepicker"
@@ -152,200 +144,355 @@
                           <i class="fa fa-clock-o"></i>
                         </div>
                       </div>
-                      {!! $errors->first('horafinal', '<span class="help-block">:message</span>') !!}
-                    </div>
-                    <!-- /.form group -->
-                  </div>
-              </div>
-            </div>
-            <div class="form-group {{ $errors->has('dias') ? 'has-error' : '' }}">
-                <label for="dias" class="col-sm-2 control-label">Dias:</label>
-                <div class="col-sm-4">
-                  <div class="input-group">
-                      <input type="text"
-                        class="form-control"
-                        name="dias"
-                        placeholder="Ejm. 2 dias"
-                        value="{{ old('dias',$informe->dias) }}">
-                      <span class="input-group-addon" id="basic-addon1">
-                          <font color="red">
-                      <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                    </font>
-                </span>
-                  </div>
-                    {!! $errors->first('dias', '<span class="help-block">:message</span>') !!}
-                </div>
-                <label for="pasajeros" class="col-sm-2 control-label">Pax:</label>
-                <div class="col-sm-4 ">
-                  <div class="input-group {{ $errors->has('pasajeros') ? 'has-error' : '' }}">
-                      <input type="number"
-                        class="form-control"
-                        name="pasajeros"
-                        id="pasajeros"
-                        placeholder="Ejm. 47"
-                        value="{{ old('pasajeros', $informe->pasajeros) }}">
-                      <span class="input-group-addon" id="basic-addon1">
-                                <font color="red">
-                            <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                          </font>
-                      </span>
-                  </div>
-                    {!! $errors->first('pasajeros', '<span class="help-block">:message</span>') !!}
-                </div>
-            </div>
-             <div class="form-group">
-                <label for="viaticos" class="col-sm-5 control-label">Total viáticos:</label>
-                  <div class="col-sm-7 ">
-                    <div class="input-group {{ $errors->has('viaticos') ? 'has-error' : '' }}">
-                        <input type="number"
-                          class="form-control"
-                          name="viaticos"
-                          id="viaticos"
-                          placeholder="Ejm. 10150"
-                          value="{{ old('viaticos',$informe->viaticos) }}">
-                    </div>
-                      {!! $errors->first('viaticos', '<span class="help-block">:message</span>') !!}
-                  </div>
-              </div>
-            <label><font color="#3c8dbc"><b>INFORME DEL VIAJE Y DEL VEHÍCULO</b></font></label>
-                <font color="red">
-                  <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                </font>
-              <div class="form-group {{ $errors->has('informe') ? 'has-error' : '' }}">
-                  <div class="col-sm-12">
-                      {!! Form::textarea('informe',old('informe',$informe->informe),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su informe sobre el viaje y el vehículo durante el viaje','required','required']) !!}
-                            {!! $errors->first('informe', '<span class="help-block">:message</span>') !!}
-                  </div>
-              </div>
-              <label><font color="#3c8dbc"><b>RECOMENDACIÓN SOBRE EL VEHÍCULO</b></font></label>
-              <div class="form-group {{ $errors->has('recomendacion') ? 'has-error' : '' }}">
-                  <div class="col-sm-12">
-                      {!! Form::textarea('recomendacion',old('recomendacion',$informe->recomendacion),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su recomendacion sobre el vehículo del viaje','required','required']) !!}
-                            {!! $errors->first('recomendacion', '<span class="help-block">:message</span>') !!}
+                      {!! $errors->first('horafinal', '<span class="help-block">:message</span>') !!} 
                   </div>
               </div>
         </div>
-    </div>
-  </div>
 
-  <div class="col-md-7">
-      <div class="box box-success">
-          <div class="box-header with-border">
-              <CENTER><h3 class="box-title"><b>INFORME GENERAL</b></h3></CENTER>
+<div class="box box-success collapsed-box">
+    <div class="box-header with-border">
+      <center>DIAS DE VIAJE ADICIONALES</center>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+      </div>
+    </div> 
+    <div class="box-body" STYLE="background:#d6e9c6">
+
+        <div class="form-group">
+            <?php if(empty($informe->fecha_inicial2)){ $feini2 = null;}else{$feini2 = Carbon::parse($informe->fecha_inicial2)->format('Y-m-d'); } ?>
+                <label for="fecha_inicial" class="col-sm-1 control-label">Partida:</label>
+                <div class="col-sm-2  {{ $errors->has('fecha_inicial2') ? 'has-error' : '' }}">
+                    <div class="input-group date">                         
+                        <input name="fecha_inicial2"
+                        class="form-control"
+                        value="{{ old('fecha_inicial2',$feini2) }}"
+                        id="datepicker2">  
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>                     
+                    </div>
+                    {!! $errors->first('fecha_inicial', '<span class="help-block">:message</span>') !!}
+                </div>
+            <?php if(empty($informe->horainicial2)){ $hoini2 = NULL;}else{$hoini2 = $informe->horainicial2;} ?>    
+                <div class=" {{ $errors->has('horainicial2') ? 'has-error' : '' }}">
+                  <label for="fecha_final2" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horainicial2"
+                              value="{{ old('horainicial2',$hoini2) }}">
+                             <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horainicial2', '<span class="help-block">:message</span>') !!} 
+                      </div>
+                  </div>
+              <?php if(empty($informe->fecha_inicial2)){ $fefin2 = null;}else{$fefin2 = Carbon::parse($informe->fecha_final2)->format('Y-m-d'); } ?>
+                <label for="fecha_final2" class="col-sm-1 control-label">Llegada:</label>
+                  <div class="col-sm-2  {{ $errors->has('fecha_final2') ? 'has-error' : '' }}">
+                      <div class="input-group date">
+                          <input name="fecha_final2"
+                          class="form-control"
+                          value="{{ old('fecha_final2',$fefin2) }}"
+                          id="datepickere2">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>  
+                      </div>
+                      {!! $errors->first('fecha_final', '<span class="help-block">:message</span>') !!}
+                  </div>
+              <?php if(empty($informe->horafinal2)){ $hofin2 = null;}else{$hofin2 = $informe->horafinal2;} ?>
+                <label for="fecha_final2" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2 {{ $errors->has('horafinal2') ? 'has-error' : '' }}" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horafinal2"
+                              value="{{ old('horafinal2',$hofin2) }}">
+                            <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horafinal2', '<span class="help-block">:message</span>') !!}
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <?php if(empty($informe->fecha_inicial3)){ $feini3 = null;}else{$feini3 = Carbon::parse($informe->fecha_inicial3)->format('Y-m-d'); } ?>
+            <div class="form-group">
+                <label for="fecha_inicial3" class="col-sm-1 control-label">Partida:</label>
+                <div class="col-sm-2  {{ $errors->has('fecha_inicial3') ? 'has-error' : '' }}">
+                    <div class="input-group date">                         
+                        <input name="fecha_inicial3"
+                        class="form-control"
+                        value="{{ old('fecha_inicial3',$feini3) }}"
+                        id="datepicker3">  
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>                     
+                    </div>
+                    {!! $errors->first('fecha_inicial3', '<span class="help-block">:message</span>') !!}
+                </div>
+            <?php if(empty($informe->horainicial3)){ $hoini3 = null;}else{$hoini3 = $informe->horainicial3;} ?>
+                <div class=" {{ $errors->has('horainicial3') ? 'has-error' : '' }}">
+                  <label for="fecha_final" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horainicial3"
+                              value="{{ old('horainicial3',$hoini3) }}">
+                             <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horainicial3', '<span class="help-block">:message</span>') !!} 
+                      </div>
+                  </div>
+            <?php if(empty($informe->fecha_inicial3)){ $fefin3 = null;}else{$fefin3 = Carbon::parse($informe->fecha_final3)->format('Y-m-d'); } ?>
+                <label for="fecha_final3" class="col-sm-1 control-label">Llegada:</label>
+                  <div class="col-sm-2  {{ $errors->has('fecha_final3') ? 'has-error' : '' }}">
+                      <div class="input-group date">
+                          <input name="fecha_final3"
+                          class="form-control"
+                          value="{{ old('fecha_final3',$fefin3) }}"
+                          id="datepickere3">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>  
+                      </div>
+                      {!! $errors->first('fecha_final3', '<span class="help-block">:message</span>') !!}
+                  </div>
+              <?php if(empty($informe->horafinal3)){ $hofin3 = null;}else{$hofin3 = $informe->horafinal3;} ?>
+                <label for="fecha_final3" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2 {{ $errors->has('horafinal3') ? 'has-error' : '' }}" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horafinal3"
+                              value="{{ old('horafinal3',$hofin3) }}">
+                            <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horafinal3', '<span class="help-block">:message</span>') !!}
+                      </div>
+                  </div>
+              </div>
+          </div>
+        <?php if(empty($informe->fecha_inicial4)){ $feini4 = null;}else{$feini4 = Carbon::parse($informe->fecha_inicial4)->format('Y-m-d'); } ?>
+          <div class="form-group">
+                <label for="fecha_inicial4" class="col-sm-1 control-label">Partida:</label>
+                <div class="col-sm-2  {{ $errors->has('fecha_inicial4') ? 'has-error' : '' }}">
+                    <div class="input-group date">                         
+                        <input name="fecha_inicial4"
+                        class="form-control"
+                        value="{{ old('fecha_inicial4',$feini4) }}"
+                        id="datepicker4">  
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>                     
+                    </div>
+                    {!! $errors->first('fecha_inicial4', '<span class="help-block">:message</span>') !!}
+                </div>
+            <?php if(empty($informe->horainicial4)){ $hoini4 = null;}else{$hoini4 = $informe->horainicial4;} ?>
+                <div class=" {{ $errors->has('horainicial4') ? 'has-error' : '' }}">
+                  <label for="fecha_final4" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horainicial4"
+                              value="{{ old('horainicial4',$hoini4) }}">
+                             <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horainicial4', '<span class="help-block">:message</span>') !!} 
+                      </div>
+                  </div>
+            <?php if(empty($informe->fecha_inicial4)){ $fefin4 = null;}else{$fefin4 = Carbon::parse($informe->fecha_final4)->format('Y-m-d'); } ?>
+                <label for="fecha_final4" class="col-sm-1 control-label">Llegada:</label>
+                  <div class="col-sm-2  {{ $errors->has('fecha_final4') ? 'has-error' : '' }}">
+                      <div class="input-group date">
+                          <input name="fecha_final4"
+                          class="form-control"
+                          value="{{ old('fecha_final4',$fefin4) }}"
+                          id="datepickere4">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>  
+                      </div>
+                      {!! $errors->first('fecha_final4', '<span class="help-block">:message</span>') !!}
+                  </div>
+              <?php if(empty($informe->horafinal4)){ $hofin4 = null;}else{$hofin4 = $informe->horafinal4;} ?>
+                <label for="forafinal4" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2 {{ $errors->has('horafinal4') ? 'has-error' : '' }}" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horafinal4"
+                              value="{{ old('horafinal4',$hofin4) }}">
+                            <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horafinal4', '<span class="help-block">:message</span>') !!}
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <?php if(empty($informe->fecha_inicial5)){ $feini5 = null;}else{$feini5 = Carbon::parse($informe->fecha_inicial5)->format('Y-m-d'); } ?>
+          <div class="form-group">
+                <label for="fecha_inicial5" class="col-sm-1 control-label">Partida:</label>
+                <div class="col-sm-2  {{ $errors->has('fecha_inicial5') ? 'has-error' : '' }}">
+                    <div class="input-group date">                         
+                        <input name="fecha_inicial5"
+                        class="form-control"
+                        value="{{ old('fecha_inicial5',$feini5) }}"
+                        id="datepicker5">  
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>                     
+                    </div>
+                    {!! $errors->first('fecha_inicial5', '<span class="help-block">:message</span>') !!}
+                </div>
+              <?php if(empty($informe->horainicial5)){ $hoini5 = null;}else{$hoini5 = $informe->horainicial5;} ?>
+                <div class=" {{ $errors->has('horainicial5') ? 'has-error' : '' }}">
+                  <label for="horainicial5" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horainicial5"
+                              value="{{ old('horainicial5',$hoini5) }}">
+                             <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horainicial5', '<span class="help-block">:message</span>') !!} 
+                      </div>
+                  </div>
+              <?php if(empty($informe->fecha_inicial5)){ $fefin5 = null;}else{$fefin5 = Carbon::parse($informe->fecha_final5)->format('Y-m-d'); } ?>
+                <label for="fecha_final5" class="col-sm-1 control-label">Llegada:</label>
+                  <div class="col-sm-2  {{ $errors->has('fecha_final5') ? 'has-error' : '' }}">
+                      <div class="input-group date">
+                          <input name="fecha_final5"
+                          class="form-control"
+                          value="{{ old('fecha_final5',$fefin5) }}"
+                          id="datepickere5">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>  
+                      </div>
+                      {!! $errors->first('fecha_final5', '<span class="help-block">:message</span>') !!}
+                  </div>
+              <?php if(empty($informe->horafinal5)){ $hofin5 = null;}else{$hofin5 = $informe->horafinal5;} ?>
+                <label for="horafinal5" class="col-sm-1 control-label">Hora:</label>
+                  <div class="col-sm-2 {{ $errors->has('horafinal5') ? 'has-error' : '' }}" >
+                      <div class="bootstrap-timepicker">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control timepicker"
+                              name="horafinal5"
+                              value="{{ old('horafinal5',$hofin5) }}">
+                            <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                          </div>
+                          {!! $errors->first('horafinal5', '<span class="help-block">:message</span>') !!}
+                      </div>
+                  </div>
+              </div>
+          </div>
+     </div>
+</div>        
+      <li class="list-group-item list-group-item-success col-md-12">
+         <center><label class="control-label">KILOMETRAJE DEL VIAJE</label></center>
+    <div class="form-group" >
+        <label for="kmpartida" class="col-sm-2 control-label">Km. Partida:</label>
+          <div class="col-sm-2 ">
+            <div class="input-group {{ $errors->has('kmpartida') ? 'has-error' : '' }}">
+                {!! Form::text('kmpartida',$informe->kmpartida,['class'=>'form-control','id'=>'kmpartida','value'=>'old("kmpartida")','onkeyup'=>'sumar();','placeholder'=>'30028']) !!}
+                <span class="input-group-addon" id="basic-addon1">
+                    <font color="red">
+                        <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+                    </font>
+                </span>
+            </div>
+                {!! $errors->first('kmpartida', '<span class="help-block">:message</span>') !!}
           </div>
 
-          <div class="box-body"  STYLE="background:#d6e9c6">
-              <label><font color="#3c8dbc"><b>KILOMETRAJE</b></font></label>
+          <label for="kmllegada" class="col-sm-2 control-label">Km. Llegada:</label>
+          <div class="col-sm-2">
+              <div class="input-group {{ $errors->has('kmllegada') ? 'has-error' : '' }}">
 
-              <div class="form-group">
-                  <label for="kmpartida" class="col-sm-2 control-label">Partida:</label>
-                  <div class="col-sm-4 ">
-                    <div class="input-group {{ $errors->has('kmpartida') ? 'has-error' : '' }}">
+                  {!! Form::text('kmllegada',$informe->kmllegada,['class'=>'form-control','id'=>'kmllegada','value'=>'old("kmllegada")','onkeyup'=>'sumar();','placeholder'=>'40015']) !!}
 
-                        {!! Form::text('kmpartida',old('kmparitda',$informe->kmpartida),['class'=>'form-control','id'=>'kmpartida','value'=>'old("kmpartida")','onkeyup'=>'sumar();','placeholder'=>'30028']) !!}
-
-                        <span class="input-group-addon" id="basic-addon1">
-                            <font color="red">
-                              <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                            </font>
-                        </span>
-                    </div>
-                      {!! $errors->first('kmpartida', '<span class="help-block">:message</span>') !!}
-                  </div>
-
-                  <label for="kmllegada" class="col-sm-2 control-label">Llegada:</label>
-                  <div class="col-sm-4 ">
-                    <div class="input-group {{ $errors->has('kmllegada') ? 'has-error' : '' }}">
-
-                        {!! Form::text('kmllegada',old('kmllegada',$informe->kmllegada),['class'=>'form-control','id'=>'kmllegada','value'=>'old("kmllegada")','onkeyup'=>'sumar();','placeholder'=>'40015']) !!}
-
-                        <span class="input-group-addon" id="basic-addon1">
-                            <font color="red">
-                           <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                           </font>
-                        </span>
-                    </div>
-                      {!! $errors->first('kmllegada', '<span class="help-block">:message</span>') !!}
-                  </div>
+                  <span class="input-group-addon" id="basic-addon1">
+                      <font color="red">
+                     <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
+                     </font>
+                  </span>
               </div>
+                {!! $errors->first('kmllegada', '<span class="help-block">:message</span>') !!}
+          </div> 
 
+          <label for="viaticos" class="col-sm-2 control-label">Recorrido total:</label>
+          <div class="col-sm-2">
+            <div class="input-group {{ $errors->has('kmtotal') ? 'has-error' : '' }}">
+                {!! Form::text('kmtotal',$informe->kmtotal,['class'=>'form-control','id'=>'kmtotal','value'=>'0','placeholder'=>'110.25','readonly']) !!}
+                <span class="input-group-addon" id="basic-addon1">
+                  <font color="red">Km.</font>
+                </span>
+            </div>
+              {!! $errors->first('kmtotal', '<span class="help-block">:message</span>') !!}
+          </div>
+    </div>
 
-              <div class="form-group">
-                <label for="viaticos" class="col-sm-5 control-label">Recorrido total:</label>
-                  <div class="col-sm-4">
-                    <div class="input-group {{ $errors->has('kmtotal') ? 'has-error' : '' }}">
-                        {!! Form::text('kmtotal',$informe->kmtotal,['class'=>'form-control','id'=>'kmtotal','value'=>'0','placeholder'=>'110.25','readonly']) !!}
-                        <span class="input-group-addon" id="basic-addon1">
-                          <font color="red">Km.</font>
-                        </span>
-                    </div>
-                      {!! $errors->first('kmtotal', '<span class="help-block">:message</span>') !!}
-                  </div>
-              </div>
-              <label><font color="#3c8dbc"><b>COMPRA DE COMBUSTIBLE</b></font></label>
-              <div class="form-group">
-                <label for="litro1" class="col-sm-1 control-label">1):</label>
-                  <div class="col-sm-4 ">
+  <hr/>
+      <center><label class="control-label">COMBUSTIBLE DEL VIAJE</label></center>
+      <div class="form-group">
+                <label for="litro1" class="col-sm-1 control-label">Litros:</label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('litro1') ? 'has-error' : '' }}">
-
                         {!! Form::text('litro1',$informe->litro1,['class'=>'form-control','id'=>'litro1','value'=>'old("litro1")','onkeyup'=>'sumar();','placeholder'=>'30.15']) !!}
+
                         <span class="input-group-addon">Litros</span>
                     </div>
                       {!! $errors->first('litro1', '<span class="help-block">:message</span>') !!}
                   </div>
-                  <label for="compra1" class="col-sm-3 control-label">Compra:</label>
-                  <div class="col-sm-4 ">
-                    <div class="input-group {{ $errors->has('compra1') ? 'has-error' : '' }}">
 
-                       {!! Form::text('compra1',$informe->compra1,['class'=>'form-control','id'=>'compra1','value'=>'old("compra1")','onkeyup'=>'sumar();','placeholder'=>'112.15']) !!}
-                        <span class="input-group-addon">Bs.</span>
-                    </div>
-                      {!! $errors->first('compra1', '<span class="help-block">:message</span>') !!}
-                  </div>
-
-                <label for="litro2" class="col-sm-1 control-label">2):</label>
-                  <div class="col-sm-4 ">
+                   <label for="litro2" class="col-sm-1 control-label">Litros:</label>
+                  <div class="col-sm-2 ">
                     <div class="input-group {{ $errors->has('litro2') ? 'has-error' : '' }}">
-
-                       {!! Form::text('litro2',$informe->litro2,['class'=>'form-control','id'=>'litro2','value'=>'old("litro2")','onkeyup'=>'sumar();','placeholder'=>'70.10']) !!}
+                      {!! Form::text('litro2',$informe->litro2,['class'=>'form-control','id'=>'litro2','value'=>'old("litro2")','onkeyup'=>'sumar();','placeholder'=>'70.10']) !!}
                         <span class="input-group-addon">Litros</span>
                     </div>
                       {!! $errors->first('litro2', '<span class="help-block">:message</span>') !!}
                   </div>
-                  <label for="compra2" class="col-sm-3 control-label">Compra:</label>
-                  <div class="col-sm-4 ">
-                    <div class="input-group {{ $errors->has('compra2') ? 'has-error' : '' }}">
 
-                         {!! Form::text('compra2',$informe->compra2,['class'=>'form-control','id'=>'compra2','value'=>'old("compra2")','onkeyup'=>'sumar();','placeholder'=>'260.77']) !!}
-                        <span class="input-group-addon">Bs.</span>
-                    </div>
-                      {!! $errors->first('compra2', '<span class="help-block">:message</span>') !!}
-                  </div>
-                <label for="litro3" class="col-sm-1 control-label">3):</label>
-                  <div class="col-sm-4 ">
+                  <label for="litro3" class="col-sm-1 control-label">Litros:</label>
+                  <div class="col-sm-2 ">
                     <div class="input-group {{ $errors->has('litro3') ? 'has-error' : '' }}">
-
                       {!! Form::text('litro3',$informe->litro3,['class'=>'form-control','id'=>'litro3','value'=>'old("litro3")','onkeyup'=>'sumar();','placeholder'=>'10']) !!}
-
                         <span class="input-group-addon">Litros</span>
                     </div>
                       {!! $errors->first('litro3', '<span class="help-block">:message</span>') !!}
-                  </div>
-                  <label for="compra3" class="col-sm-3 control-label">Compra:</label>
-                  <div class="col-sm-4 ">
-                    <div class="input-group {{ $errors->has('compra3') ? 'has-error' : '' }}">
+                  </div> 
 
-                      {!! Form::text('compra3',$informe->compra3,['class'=>'form-control','id'=>'compra3','value'=>'old("compra3")','onkeyup'=>'sumar();','placeholder'=>'37.20']) !!}
-
-                        <span class="input-group-addon">Bs.</span>
-                    </div>
-                      {!! $errors->first('compra3', '<span class="help-block">:message</span>') !!}
-                  </div>
-              </div>
-
-              <div class="form-group">
-                <label for="totallitro" class="col-sm-1 control-label">Total: </label>
-                  <div class="col-sm-4 ">
+                  <label for="totallitro" class="col-sm-1 control-label">Total: </label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('totallitro') ? 'has-error' : '' }}">
 
                         {!! Form::text('totallitro',$informe->totallitro,['class'=>'form-control','id'=>'totallitro','value'=>'0','placeholder'=>'110.25','readonly']) !!}
@@ -354,8 +501,39 @@
                     </div>
                       {!! $errors->first('totallitro', '<span class="help-block">:message</span>') !!}
                   </div>
-                  <label for="totalbs" class="col-sm-3 control-label">Total:</label>
-                  <div class="col-sm-4 ">
+                  
+        </div>
+        <div class="form-group">
+                <label for="compra1" class="col-sm-1 control-label">Bs.:</label>
+                  <div class="col-sm-2">
+                    <div class="input-group {{ $errors->has('compra1') ? 'has-error' : '' }}">
+                      {!! Form::text('compra1',$informe->compra1,['class'=>'form-control','id'=>'compra1','value'=>'old("compra1")','onkeyup'=>'sumar();','placeholder'=>'112.15']) !!}
+
+                        <span class="input-group-addon">Bs.</span>
+                    </div>
+                      {!! $errors->first('compra1', '<span class="help-block">:message</span>') !!}
+                  </div>
+                  <label for="compra2" class="col-sm-1 control-label">Bs.:</label>
+                  <div class="col-sm-2 ">
+                    <div class="input-group {{ $errors->has('compra2') ? 'has-error' : '' }}">
+                        {!! Form::text('compra2',$informe->compra2,['class'=>'form-control','id'=>'compra2','value'=>'old("compra2")','onkeyup'=>'sumar();','placeholder'=>'260.77']) !!}
+                        <span class="input-group-addon">Bs.</span>
+                    </div>
+                      {!! $errors->first('compra2', '<span class="help-block">:message</span>') !!}
+                  </div>
+                  <label for="compra3" class="col-sm-1 control-label">Bs.:</label>
+                  <div class="col-sm-2 ">
+                    <div class="input-group {{ $errors->has('compra3') ? 'has-error' : '' }}">
+
+                      {!! Form::text('compra3',$informe->compra3,['class'=>'form-control','id'=>'compra3','value'=>'old("compra3")','onkeyup'=>'sumar();','placeholder'=>'37.20']) !!}
+
+                        <span class="input-group-addon">Bs.</span>
+                    </div>
+                      {!! $errors->first('compra3', '<span class="help-block">:message</span>') !!}
+                  </div> 
+
+                  <label for="totalbs" class="col-sm-1 control-label">Total:</label>
+                  <div class="col-sm-2 ">
                     <div class="input-group {{ $errors->has('totalbs') ? 'has-error' : '' }}">
 
                       {!! Form::text('totalbs',$informe->totalbs,['class'=>'form-control','id'=>'totalbs','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
@@ -364,12 +542,26 @@
                     </div>
                       {!! $errors->first('totalbs', '<span class="help-block">:message</span>') !!}
                   </div>
-              </div>
-              <label><font color="#3c8dbc"><b>PEAJES E IMPREVISTOS</b></font></label>
 
-              <div class="form-group">
-                  <label for="peaje" class="col-sm-2 control-label">Peajes:</label>
-                  <div class="col-sm-3">
+          </div>
+          <hr/>
+      <center><label class="control-label">VIÁTICO, PEAJES E IMPREVISTOS</label></center>
+      <div class="form-group">
+              <label for="viaticos" class="col-sm-1 control-label">Viático:</label>
+              <div class="col-sm-1 ">
+                <div class="input-group {{ $errors->has('viaticos') ? 'has-error' : '' }}">
+                    <input type="text"
+                      class="form-control"
+                      name="viaticos"
+                      id="viaticos"
+                      placeholder="117"
+                      value="{{ old('viaticos',$informe->viaticos) }}">
+                </div>
+                  {!! $errors->first('viaticos', '<span class="help-block">:message</span>') !!}
+              </div>
+
+                <label for="peaje" class="col-sm-1 control-label">Peajes:</label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('peaje') ? 'has-error' : '' }}">
                         <input type="text"
                           class="form-control"
@@ -382,8 +574,8 @@
                       {!! $errors->first('peaje', '<span class="help-block">:message</span>') !!}
                   </div>
 
-                  <label for="imprevisto" class="col-sm-3 control-label">Imprevistos:</label>
-                  <div class="col-sm-4">
+                  <label for="imprevisto" class="col-sm-1 control-label">Imprevistos:</label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('imprevisto') ? 'has-error' : '' }}">
                         <input type="text"
                           class="form-control"
@@ -394,19 +586,20 @@
                         <span class="input-group-addon">Bs.</span>
                     </div>
                       {!! $errors->first('imprevisto', '<span class="help-block">:message</span>') !!}
+                  </div> 
+                  <div class="form-group {{ $errors->has('descripcion') ? 'has-error' : '' }}">
+                      <label for="descripcion" class="col-sm-1 control-label">Descripcion:</label>
+                      <div class="col-sm-3">
+                          {!! Form::textarea('descripcion',old('descripcion',$informe->descripcion),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Realize una descripción del pago de peajes o de los imprevistos']) !!}
+                          {!! $errors->first('descripcion', '<span class="help-block">:message</span>') !!}
+                      </div>
                   </div>
               </div>
-              <div class="form-group {{ $errors->has('descripcion') ? 'has-error' : '' }}">
-                  <label for="descripcion" class="col-sm-3 control-label">Descripcion:</label>
-                  <div class="col-sm-7">
-                      {!! Form::textarea('descripcion',old('descripcion',$informe->descripcion),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Realize una descripción del pago de peajes o de los imprevistos']) !!}
-                      {!! $errors->first('descripcion', '<span class="help-block">:message</span>') !!}
-                  </div>
-              </div>
-              <label><font color="#3c8dbc"><b>DEVOLUCIONES</b></font></label>
-              <div class="form-group">
-                <label for="debocombu" class="col-sm-3 control-label">Combustible:</label>
-                  <div class="col-sm-3">
+             <hr>
+            <center><label class="control-label">DEBOLUCIONES</label></center>
+            <div class="form-group">
+                <label for="debocombu" class="col-sm-1 control-label">Combustible:</label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('debocombu') ? 'has-error' : '' }}">
 
                         {!! Form::text('debocombu',$informe->debocombu,['class'=>'form-control','id'=>'debocombu','value'=>'old("debocombu")','onkeyup'=>'sumar();','placeholder'=>'0.20']) !!}
@@ -415,8 +608,8 @@
                     </div>
                       {!! $errors->first('debocombu', '<span class="help-block">:message</span>') !!}
                   </div>
-                  <label for="debopeaje" class="col-sm-2 control-label">Peaje:</label>
-                  <div class="col-sm-3">
+                  <label for="debopeaje" class="col-sm-1 control-label">Peaje:</label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('debopeaje') ? 'has-error' : '' }}">
 
                         {!! Form::text('debopeaje',$informe->debopeaje,['class'=>'form-control','id'=>'debopeaje','value'=>'old("debopeaje")','onkeyup'=>'sumar();','placeholder'=>'8']) !!}
@@ -424,8 +617,8 @@
                     </div>
                       {!! $errors->first('debopeaje', '<span class="help-block">:message</span>') !!}
                   </div>
-                  <label for="deboimprevi" class="col-sm-3 control-label">Imprevistos:</label>
-                  <div class="col-sm-3">
+                  <label for="deboimprevi" class="col-sm-1 control-label">Imprevistos:</label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('deboimprevi') ? 'has-error' : '' }}">
 
                       {!! Form::text('deboimprevi',$informe->deboimprevi,['class'=>'form-control','id'=>'deboimprevi','value'=>'old("deboimprevi")','onkeyup'=>'sumar();','placeholder'=>'110']) !!}
@@ -434,8 +627,9 @@
                     </div>
                       {!! $errors->first('deboimprevi', '<span class="help-block">:message</span>') !!}
                   </div>
-                  <label for="debototal" class="col-sm-2 control-label">Total:</label>
-                  <div class="col-sm-3">
+
+                   <label for="debototal" class="col-sm-1 control-label">Total:</label>
+                  <div class="col-sm-2">
                     <div class="input-group {{ $errors->has('debototal') ? 'has-error' : '' }}">
 
                         {!! Form::text('debototal',$informe->debototal,['class'=>'form-control','id'=>'debototal','value'=>'0','placeholder'=>'Total Bs.','readonly']) !!}
@@ -444,20 +638,38 @@
                     </div>
                       {!! $errors->first('debototal', '<span class="help-block">:message</span>') !!}
                   </div>
+                  
               </div>
-          </div>
-      </div>
-  </div>
-</div>
-      <center>
-            <button type="submit" class="btn btn-sm btn-primary">
+        <hr>     
+
+           <center><label class="control-label">INFORME DEL VIAJE Y RECOMENDACIONES DEL VEHÍCULO</label></center>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Informe del viaje y del vehículo:</label>
+                <div class=" {{ $errors->has('informe') ? 'has-error' : '' }}">
+                    <div class="col-sm-4">
+                        {!! Form::textarea('informe',old('informe',$informe->informe),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su informe sobre el viaje y el vehículo durante el viaje',]) !!}
+                        {!! $errors->first('informe', '<span class="help-block">:message</span>') !!}
+                    </div>
+                </div>
+                <label class="col-sm-2 control-label"> Recomendación sobre el vehículo:</label>
+                <div class="  {{ $errors->has('recomendacion') ? 'has-error' : '' }}">
+                    <div class="col-sm-4">
+                        {!! Form::textarea('recomendacion',old('recomendacion',$informe->recomendacion),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Inserte su recomendacion sobre el vehículo del viaje']) !!}
+                        {!! $errors->first('recomendacion', '<span class="help-block">:message</span>') !!}
+                    </div>
+                </div>      
+            </div>
+        </li>
+        <center>
+            <button type="submit" class="btn btn-primary">
               <b>Registrar el informe</b> <i class="fa fa-check-square-o" aria-hidden="true"></i>
 
             </button>
-      </center>
-      
+          </center>
+    </div>
+</div>     
 {!! Form::close() !!}
-<br>
+ 
 <center>
       {!! Form::open(['route'=>['informes.destroy',$informe->id],'method'=>'DELETE','class'=>'form-horizontal']) !!}
           <button type="submit" class="btn btn-danger btn-sm " onClick="javascript: return confirm('¿Estas seguro de eliminar el informe de  viaje?');"  data-toggle="tooltip" data-placement="left" title="Eliminar Informe">
@@ -473,6 +685,15 @@
   <link rel="stylesheet" href="/dashboard/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="/dashboard/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="/dashboard/plugins/iCheck/all.css">
+  <style>
+      .container{
+            font-family: "Times New Roman", Times, serif;
+        }
+        hr{
+            height: 2px;
+            background-color: black;
+        }
+  </style>
 @endpush
 
 @push('scripts')
@@ -494,6 +715,30 @@
         clearBtn:true
       });
   $('#datepickere').datepicker({
+        autoclose: true,
+        todayHighlight:true,
+        format: 'yyyy-mm-dd',
+        clearBtn:true
+      });
+   $('#datepicker2, #datepickere2').datepicker({
+        autoclose: true,
+        todayHighlight:true,
+        format: 'yyyy-mm-dd',
+        clearBtn:true
+      });
+  $('#datepicker3, #datepickere3').datepicker({
+        autoclose: true,
+        todayHighlight:true,
+        format: 'yyyy-mm-dd',
+        clearBtn:true
+      });
+  $('#datepicker4, #datepickere4').datepicker({
+        autoclose: true,
+        todayHighlight:true,
+        format: 'yyyy-mm-dd',
+        clearBtn:true
+      });
+  $('#datepicker5, #datepickere5').datepicker({
         autoclose: true,
         todayHighlight:true,
         format: 'yyyy-mm-dd',

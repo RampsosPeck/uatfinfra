@@ -25,11 +25,14 @@
                         <th>Vehículo</th>
                         <th>Descripción</th>
                         <th>Fecha</th>
+                        <th>ESTADO</th>
                         <th>Opciones</th>						
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
                     @foreach($solicitudes as $key => $solicitud)
+                    @include('solicitudes.mecanico.edit')
+                    @include('solicitudes.mecanico.create')
                     <tr>
                         <td class="text-center">{{ ++$key }}</td>
                     	<td class="text-center">{{ $solicitud->solmecodi }}</td>
@@ -37,10 +40,23 @@
                         <td>{{ $solicitud->vehiculo->placa }}</td>
                         <td>{{ $solicitud->descripcion }}</td>
                         <td>{{ $solicitud->fecha }}</td>
-                        <td>
-                            {!!link_to_route('solicitudes.edit', $title = 'Editar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
+                        @if($solicitud->estado == 'ENVIADO')
+                            <td  ALIGN=center data-toggle="tooltip" data-placement="left" title="La solicitud de trabajo esta siendo tomada en cuenta por el encargado de Automotores para su APROBACIÓN o ESPERA de material." > <font color="#f39c12">ENVIADO</font> </td>
+                        @endif
+                        @if($solicitud->estado == 'APROBADO')
+                            <td  ALIGN=center data-toggle="tooltip" data-placement="left" title="NOTA: {{ $solicitud->comentario }}" > <font color="#00a65a">APROBADO</font> </td>
+                        @endif
+                        @if($solicitud->estado == 'ESPERA')
+                            <td  ALIGN=center data-toggle="tooltip" data-placement="left" title="NOTA: {{ $solicitud->comentario }}" > <font color="#dd4b39">ESPERA</font> </td>
+                        @endif
+                        <td class="text-center">
+                            {!!link_to_route('solicitudes.edit', $title = 'Editar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-primary btn-xs  fa fa-pencil-square-o'])!!}
                             
-                            {!!link_to_route('solicitudes.show', $title = ' Imprimir', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-warning btn-xs btn-block fa fa-print','target'=>'_blank'])!!} 
+                            {!!link_to_route('solicitudes.show', $title = ' Imprimir', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-info btn-xs  fa fa-print','target'=>'_blank'])!!}
+                            <br>
+                            <button class="btn btn-success btn-xs fa" data-toggle="modal" data-target="#modalAprobado{{ $solicitud->id }}">Aprobar</button>
+
+                            <button class="btn btn-warning btn-xs fa " data-toggle="modal" data-target="#modalObservar{{ $solicitud->id }}">Espera</button> 
                         </td>
                     </tr>
                     @endforeach

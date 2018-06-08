@@ -177,6 +177,7 @@ return [
         Uatfinfra\Providers\EventServiceProvider::class,
         Uatfinfra\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -231,7 +232,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];

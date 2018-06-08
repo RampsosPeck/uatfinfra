@@ -36,8 +36,7 @@ header {
 }
 
 h1 {
-  border-top: 1px solid  #337ab7;
-  border-bottom: 1px solid  #337ab7;
+  
   font-size: 2.4em;
   line-height: 1.2em;
   font-weight: normal;
@@ -49,8 +48,15 @@ a.{
   color: #5D6975;
   size: 0em;
   }
-#project {
-  float: left;
+#projecthojaru {
+  border-top: 1px solid  #337ab7;
+  background: url(/img/dimension.png);
+}
+
+ 
+
+.tit {     
+  background: url(/img/dimension.png);
 }
 
 #project span {
@@ -69,6 +75,10 @@ a.{
 #project div,
 #company div {
   white-space: nowrap;        
+}
+
+#firma{
+  text-align: right;
 }
 
 table {
@@ -129,7 +139,7 @@ table td.grand {
 footer {
   color: #5D6975;
   width: 100%;
-  height: 30px;
+  height: 25px;
   position: absolute;
   bottom: 0;
   border-top: 1px solid #C1CED9;

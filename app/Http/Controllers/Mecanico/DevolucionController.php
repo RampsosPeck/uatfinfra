@@ -6,6 +6,7 @@ use Uatfinfra\ModelMecanico\Devolucion;
 use Uatfinfra\ModelMecanico\Pedido;
 use Uatfinfra\ModelSolicitudes\Solicitud;
 use Illuminate\Http\Request;
+use Redirect;
 use Session;
 use Uatfinfra\User;
 
@@ -106,4 +107,36 @@ class DevolucionController extends Controller
         Session::flash('message','La devolución fue eliminada correctamente...');
         return redirect('devoluciones');
     }
+
+    public function getAprobar(Request $request)
+    {
+        //AQUI ENTRA EL ESTADO DEL MECANICO DE AUTOMOTORES
+        if(!empty($request->comentario) || $request->comentario != null || $request->comentario != "")
+        {
+            //return "Aqui esta con comentario en la linea";
+            $resapro = $request['comentario'];
+        }else
+        {
+            //return "Aqui esta vacio en COMEN";
+            if($request->estado == 'APROBADO')
+            {
+                $resapro = 'La solicitud de trabajo fue APROBADA, el trabajo esta siendo procesado.';
+            }else{
+                $resapro = 'La solicitud de trabajo se encuentra OBSERVADO, comuniquese con el encargado de AUTOMOTORES.';
+            }
+        }
+                 
+
+        $a = intval($request->idevolucion);
+        //dd($a);
+        Devolucion::where('id',$a)->update([
+                'estado' => $request['estado'],
+                'comentario' => $resapro
+                    ]);
+ 
+        Session::flash('message', "El estado fue actualizado.");
+        return Redirect::back();
+    }
+
+
 }

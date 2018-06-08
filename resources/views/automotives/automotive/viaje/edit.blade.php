@@ -404,11 +404,21 @@
 					                </div> 
 				                </div>
 				            </div>
-		                </div>
-	                </div>
-					<?php if(empty($viaje->fecha_inicial2)){ $feini2 = null;}else{$feini2 = Carbon::parse($viaje->fecha_inicial2)->format('Y-m-d'); } ?>
-					<div class="col-md-12">
-	                    <div class="form-group">
+
+		<br><br><br><br>
+
+		<div class="box box-success collapsed-box">
+		    <div class="box-header with-border">
+		      <center>DIAS DE VIAJE ADICIONALES</center>
+		      <div class="box-tools pull-right">
+		        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+		          </button>
+		      </div>
+		    </div> 
+		    <div class="box-body" style="background-color: #bce8f1;">
+
+ 
+							<?php if(empty($viaje->fecha_inicial2)){ $feini2 = null;}else{$feini2 = Carbon::parse($viaje->fecha_inicial2)->format('Y-m-d'); } ?>
 		                    <label for="fecha_inicial2" class="col-sm-1 control-label">Inicio:</label>
 			                <div class="col-sm-3  {{ $errors->has('fecha_inicial2') ? 'has-error' : '' }}">
 			                    <div class="input-group date">
@@ -422,7 +432,7 @@
 				                </div>
 			                    {!! $errors->first('fecha_inicial2', '<span class="help-block">:message</span>') !!}
 			                </div>
-			        <?php if(empty($viaje->horainicial2)){ $hoini2 = null;}else{$hoini2 = $viaje->horainicial2;} ?>
+			        		<?php if(empty($viaje->horainicial2)){ $hoini2 = null;}else{$hoini2 = $viaje->horainicial2;} ?>
 		                	<div class="col-sm-2 {{ $errors->has('horainicial2') ? 'has-error' : '' }}" >
 				                <div class="bootstrap-timepicker">
 					                <div class="form-group">
@@ -441,7 +451,7 @@
 				                </div>
 				                {!! $errors->first('horainicial', '<span class="help-block">:message</span>') !!}
 				            </div>
-				    <?php if(empty($viaje->fecha_inicial2)){ $fefin2 = null;}else{$fefin2 = Carbon::parse($viaje->fecha_final2)->format('Y-m-d'); } ?>
+				    		<?php if(empty($viaje->fecha_inicial2)){ $fefin2 = null;}else{$fefin2 = Carbon::parse($viaje->fecha_final2)->format('Y-m-d'); } ?>
 		                    <label for="fecha_final2" class="col-sm-1 control-label">Final:</label>
 			                <div class="col-sm-3  {{ $errors->has('fecha_final2') ? 'has-error' : '' }}">
 			                    <div class="input-group date">
@@ -456,7 +466,7 @@
 			                    {!! $errors->first('fecha_final2', '<span class="help-block">:message</span>') !!}
 
 				             </div>
-				        <?php if(empty($viaje->horafinal2)){ $hofin2 = null;}else{$hofin2 = $viaje->horafinal2;} ?>    
+				        	<?php if(empty($viaje->horafinal2)){ $hofin2 = null;}else{$hofin2 = $viaje->horafinal2;} ?>    
 				             <div class="col-sm-2 {{ $errors->has('horafinal2') ? 'has-error' : '' }}" >
 				                <div class="bootstrap-timepicker">
 					                <div class="form-group">
@@ -472,10 +482,195 @@
 				                </div>
 				                {!! $errors->first('horafinal2', '<span class="help-block">:message</span>') !!}
 				            </div>
+				            <?php if(empty($viaje->fecha_inicial3)){ $feini3 = null;}else{$feini3 = Carbon::parse($viaje->fecha_inicial3)->format('Y-m-d'); } ?>
+				             <label for="fecha_inicial3" class="col-sm-1 control-label">Inicio:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_inicial3') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_inicial3"
+				                  		class="form-control"
+										value="{{ old('fecha_inicial3', $feini3) }}"
+				                  		id="datepickeresss">
+				                </div>
+			                    {!! $errors->first('fecha_inicial3', '<span class="help-block">:message</span>') !!}
+			                </div>
+			                <?php if(empty($viaje->horainicial3)){ $hoini3 = null;}else{$hoini3 = $viaje->horainicial3;} ?>
+		                	<div class="col-sm-2 {{ $errors->has('horainicial3') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horainicial3" value="{{ old('horainicial3',$hoini3) }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horainicial3', '<span class="help-block">:message</span>') !!}
+				            </div>
+				            <?php if(empty($viaje->fecha_inicial3)){ $fefin3 = null;}else{$fefin3 = Carbon::parse($viaje->fecha_final3)->format('Y-m-d'); } ?>
+		                    <label for="fecha_final3" class="col-sm-1 control-label">Final:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_final3') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_final3"
+				                  		class="form-control"
+										value="{{ old('fecha_final3',$fefin3) }}"
+				                  		id="datepickere3">
+				                </div>
+			                    {!! $errors->first('fecha_final3', '<span class="help-block">:message</span>') !!}
+
+				             </div>
+				             <?php if(empty($viaje->horafinal3)){ $hofin3 = null;}else{$hofin3 = $viaje->horafinal3;} ?> 
+				             <div class="col-sm-2 {{ $errors->has('horafinal3') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horafinal3" id="horafinal3" value="{{ old('horafinal3',$hofin3) }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horafinal3', '<span class="help-block">:message</span>') !!}
+				            </div>
+				            <?php if(empty($viaje->fecha_inicial4)){ $feini4 = null;}else{$feini4 = Carbon::parse($viaje->fecha_inicial4)->format('Y-m-d'); } ?>
+				            <label for="fecha_inicial4" class="col-sm-1 control-label">Inicio:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_inicial4') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_inicial4"
+				                  		class="form-control"
+										value="{{ old('fecha_inicial4',$feini4) }}"
+				                  		id="datepickeressss">
+				                </div>
+			                    {!! $errors->first('fecha_inicial4', '<span class="help-block">:message</span>') !!}
+			                </div>
+			                <?php if(empty($viaje->horainicial4)){ $hoini4 = null;}else{$hoini4 = $viaje->horainicial4;} ?>
+		                	<div class="col-sm-2 {{ $errors->has('horainicial4') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horainicial4" value="{{ old('horainicial4',$hoini4) }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horainicial4', '<span class="help-block">:message</span>') !!}
+				            </div>
+				            <?php if(empty($viaje->fecha_inicial4)){ $fefin4 = null;}else{$fefin4 = Carbon::parse($viaje->fecha_final4)->format('Y-m-d'); } ?>
+		                    <label for="fecha_final4" class="col-sm-1 control-label">Final:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_final4') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_final4"
+				                  		class="form-control"
+										value="{{ old('fecha_final4',$fefin4) }}"
+				                  		id="datepickere4">
+				                </div>
+			                    {!! $errors->first('fecha_final4', '<span class="help-block">:message</span>') !!}
+
+				             </div>
+				            <?php if(empty($viaje->horafinal4)){ $hofin4 = null;}else{$hofin4 = $viaje->horafinal4;} ?>
+				             <div class="col-sm-2 {{ $errors->has('horafinal4') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horafinal4" id="horafinal4" value="{{ old('horafinal4',$hofin4) }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horafinal4', '<span class="help-block">:message</span>') !!}
+				            </div>
+				            <?php if(empty($viaje->fecha_inicial5)){ $feini5 = null;}else{$feini5 = Carbon::parse($viaje->fecha_inicial5)->format('Y-m-d'); } ?>
+				            <label for="fecha_inicial5" class="col-sm-1 control-label">Inicio:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_inicial5') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_inicial5"
+				                  		class="form-control"
+										value="{{ old('fecha_inicial5',$feini5) }}"
+				                  		id="datepickeresssss">
+				                </div>
+			                    {!! $errors->first('fecha_inicial5', '<span class="help-block">:message</span>') !!}
+			                </div>
+			                <?php if(empty($viaje->horainicial5)){ $hoini5 = null;}else{$hoini5 = $viaje->horainicial5;} ?>
+		                	<div class="col-sm-2 {{ $errors->has('horainicial5') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horainicial5" value="{{ old('horainicial5',$hoini5) }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horainicial5', '<span class="help-block">:message</span>') !!}
+				            </div>
+				            <?php if(empty($viaje->fecha_inicial5)){ $fefin5 = null;}else{$fefin5 = Carbon::parse($viaje->fecha_final5)->format('Y-m-d'); } ?>
+		                    <label for="fecha_final5" class="col-sm-1 control-label">Final:</label>
+			                <div class="col-sm-3  {{ $errors->has('fecha_final5') ? 'has-error' : '' }}">
+			                    <div class="input-group date">
+				                  <div class="input-group-addon">
+				                    <i class="fa fa-calendar"></i>
+				                  </div>
+				                  <input name="fecha_final5"
+				                  		class="form-control"
+										value="{{ old('fecha_final5',$fefin5) }}"
+				                  		id="datepickere5">
+				                </div>
+			                    {!! $errors->first('fecha_final5', '<span class="help-block">:message</span>') !!}
+
+				             </div>
+				             <?php if(empty($viaje->horafinal5)){ $hofin5 = null;}else{$hofin5 = $viaje->horafinal5;} ?>
+				             <div class="col-sm-2 {{ $errors->has('horafinal5') ? 'has-error' : '' }}" >
+				                <div class="bootstrap-timepicker">
+					                <div class="form-group">
+					                  <div class="input-group">
+					                    <input type="text" class="form-control timepicker" name="horafinal5" id="horafinal5" value="{{ old('horafinal5',$hofin5) }}">
+					                    <div class="input-group-addon">
+					                      <i class="fa fa-clock-o"></i>
+					                    </div>
+					                  </div>
+					                  <!-- /.input group -->
+					                </div>
+					                <!-- /.form group -->
+				                </div>
+				                {!! $errors->first('horafinal5', '<span class="help-block">:message</span>') !!}
+				            </div>
 		                </div>
 	                </div>
 
-	              	
+		</div>
+	</div>
+
 	          
 		            <div class="form-group {{ $errors->has('categoria') ? 'has-error' : '' }}">
 	                    <label for="categoria" class="col-sm-3 control-label">CATEGORÍA/TIPO:</label>
@@ -502,15 +697,17 @@
 	                	</div>
 	                </div>
 
+
+
 	                <center>
 	              		<h3 class="box-title">
-	              			<font color="#f39c12"><b>PRESUPUESTO DE VIAJE</b></font>
+	              			<font color="#31708f"><b>PRESUPUESTO DE VIAJE</b></font>
 	          			</h3>
 	          		</center>
 
               	<div class="box-body">
               		<center><label class="control-label">COMBUSTIBLE:</label></center>
-              		<div class="form-group alert-warning">
+              		<div class="form-group" style="background-color: #bce8f1;">
               			<div class="{{ $errors->has('combustible') ? 'has-error' : '' }}">
 		                    <label for="combustible" class="col-sm-2 control-label">Diesel/Gasolina:</label>
 		                    <div class="col-sm-2">
@@ -560,7 +757,7 @@
                     </div>
 					<center><label for="viaticos">GASTOS</label></center>
 
-                    <div class="form-group alert-warning">
+                    <div class="form-group  " style="background-color: #bce8f1;">
 	                    <div class="{{ $errors->has('canpeaje') ? 'has-error' : '' }}">
 		                    <label for="canpeaje" class="col-sm-1 control-label">Peaje:</label>
 		                    <div class="col-sm-1">
@@ -612,7 +809,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group"  style="background-color: #bce8f1;">
 						<div class="{{ $errors->has('nommante') ? 'has-error' : '' }}">
 		                    <label for="nommante" class="col-sm-2 control-label">Mantenimiento/Nombre:</label>
 		                    <div class="col-sm-4">
@@ -654,8 +851,8 @@
 						</div>
 					</div>
 				 
-					<center><label for="viaticos">VIATICOS</label></center>
-					<div class="form-group alert-warning">
+					<center><label for="viaticos">VIÁTICOS</label></center>
+					<div class="form-group "  style="background-color: #bce8f1;">
 						<div class="{{ $errors->has('canviaciu') ? 'has-error' : '' }}">
 		                    <label for="canviaciu" class="col-sm-1 control-label">Ciudad:</label>
 		                    <div class="col-sm-1">
@@ -773,7 +970,7 @@
 		                </div>
 		            </div>
 
-		            <div class="form-group {{ $errors->has('recurso') ? 'has-error' : '' }} text-center alert-warning">
+		            <div class="form-group {{ $errors->has('recurso') ? 'has-error' : '' }} text-center " style="background-color: #bce8f1;">
 					    <label>
 		                	Viaje con recursos de la U.A.T.F.
 		                  <input type="radio" name="recurso" value="viajeuatf" {{ old('recurso', $viaje->recurso ) == 'viajeuatf' ? 'checked' : '' }} class="flat-red" >
@@ -980,6 +1177,26 @@
 	      clearBtn:true
 	    });
 	$('#datepickeress').datepicker({
+	      autoclose: true,
+	      todayHighlight:true,
+	      format: 'yyyy-mm-dd',
+	      clearBtn:true
+	    });
+	$('#datepickeresss,#datepickere3').datepicker({
+	      autoclose: true,
+	      todayHighlight:true,
+	      format: 'yyyy-mm-dd',
+	      clearBtn:true
+	    });
+
+	$('#datepickeressss ,#datepickere4').datepicker({
+	      autoclose: true,
+	      todayHighlight:true,
+	      format: 'yyyy-mm-dd',
+	      clearBtn:true
+	    });
+
+	$('#datepickeresssss, #datepickere5').datepicker({
 	      autoclose: true,
 	      todayHighlight:true,
 	      format: 'yyyy-mm-dd',

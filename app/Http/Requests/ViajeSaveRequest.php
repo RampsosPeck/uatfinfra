@@ -37,7 +37,7 @@ class ViajeSaveRequest extends FormRequest
             'conductor'    => 'required',
             'vehiculo_id'  => 'required|numeric',
             'entidad'      => 'required|regex:/^[a-z 0-9 ñáéíóú -_ . ]+$/i|max:50',
-            'dias'         => 'required|regex:/^[a-z 0-9 -_ . ]+$/i|max:20',
+            'dias'         => 'required|regex:/^[a-z 0-9 -_ . áéíóúñ ]+$/i|max:20',
             'pasajeros'    => 'required|numeric',
             'fecha_inicial'=> ['required', new ValidFechaIni],
             'horainicial'  => 'required',

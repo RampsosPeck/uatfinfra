@@ -25,7 +25,7 @@
              {!! Form::open(['route'=>'vehiculos.store','method'=>'POST','class'=>'form-horizontal']) !!}
             	{{ csrf_field() }}
            
-                <div class="box-body alert-info">
+                <div class="box-body"  style="background-color: #bce8f1;">
             		<div class="col-md-6">
 	                	<div class="form-group {{ $errors->has('oil_id') ? 'has-error' : '' }}">
 		                    <label for="oil" class="col-sm-4 control-label">Combustible:</label>
@@ -114,6 +114,7 @@
 			                	{!! $errors->first('tipo', '<span class="help-block">:message</span>') !!}
 			                </div>
 		                </div>
+
                     </div>
                     <div class="col-md-6">
                     	
@@ -179,6 +180,10 @@
 			                </div>
 		                </div>
                     </div>
+                   
+              	</div>
+              	<div class="col-md-4 collect">
+              		
               	</div>
               	<!-- /.box-body -->
               	<div class="box-footer">
@@ -188,21 +193,35 @@
               	</div>
               	<!-- /.box-footer -->
             {!! Form::close() !!}
+		
+		<!--<div class="col-md-12" style="background-color: #bce8f1;">
+			<div  class="col-md-3" >
+	        	<B style="float:right;">	FOTOS: </B>
+	        </div>
+	  		<div  class="col-md-6" >
+	  			<div class="dropzone">
+	  			
+	  			</div>
+	  		</div>
+		</div>-->
 		</div>
 	</div>
 </div>
 @endsection
 
 @push('styles')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css">
   <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
   <style>
       .container{
             font-family: "Times New Roman", Times, serif;
-        }
+        } 
+}
   </style>
 @endpush
 
 @push('scripts') 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"></script>
    <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
    <script src="/dashboard/plugins/select2/es.js"></script>
 
@@ -224,6 +243,7 @@
     	language: "es",
 		allowClear: true
     });
+
 </script>
 @endpush
 

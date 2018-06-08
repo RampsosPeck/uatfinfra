@@ -4,6 +4,8 @@ namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Uatfinfra\ModelAutomotores\Viaje;
 use Uatfinfra\ModelAutomotores\Presupuesto;
+use Uatfinfra\ModelMecanico\Devolucion;
+use Uatfinfra\ModelSolicitudes\Solicitud;
 use Uatfinfra\ModelAutomotores\Ruta;
 use Uatfinfra\ModelAutomotores\Destino;
 use Uatfinfra\User;
@@ -12,7 +14,7 @@ use Uatfinfra\Http\Controllers\Controller;
 use Session;
 use Auth;
 use Carbon\Carbon;
-
+use Redirect;
 
 class CalendarioController extends Controller
 {
@@ -67,7 +69,32 @@ class CalendarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //AQUI ENTRA EL ESTADO DEL MECANICO DE AUTOMOTORES
+        if(!empty($request->comentario) || $request->comentario != null || $request->comentario != "")
+        {
+            //return "Aqui esta con comentario en la linea";
+            $resapro = $request['comentario'];
+        }else
+        {
+            //return "Aqui esta vacio en COMEN";
+            if($request->estado == 'APROBADO')
+            {
+                $resapro = 'La solicitud de trabajo fue APROBADA, el trabajo esta siendo procesado.';
+            }else{
+                $resapro = 'La solicitud de trabajo se encuentra en ESPERA, comuniquese con el encargado de AUTOMOTORES.';
+            }
+        }
+                 
+
+        $a = intval($request->idsolicitud);
+        //dd($a);
+        Solicitud::where('id',$a)->update([
+                'estado' => $request['estado'],
+                'comentario' => $resapro
+                    ]);
+ 
+        Session::flash('message', "El estado fue actualizado.");
+        return Redirect::back();
     }
 
     /**
@@ -95,7 +122,13 @@ class CalendarioController extends Controller
         $viaje = Viaje::find($id);
         $presupuesto = Presupuesto::where('viaje_id',$id)->first();
         $ruta  = Ruta::where('viaje_id',$id)->first();
-        $date = date('d-m-Y');
+        
+        $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+           'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+        $arrayDias = array( 'Domingo', 'Lunes', 'Martes',
+               'Miercoles', 'Jueves', 'Viernes', 'Sabado');
+        $date = $arrayDias[date('w')].", ".date('d')." de ".$arrayMeses[date('m')-1]." de ".date('Y');
+        $hour = date('H:m A');
 
         $destino1 = Destino::where('id',$ruta->destino1)->first();
         $destino2 = Destino::where('id',$ruta->destino2)->first();
@@ -114,7 +147,7 @@ class CalendarioController extends Controller
             $recurso = "PROPIOS";
         }
 
-        $view =  \View::make('automotives.automotive.viaje.hojarutaPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje','supervisor','recurso'))->render();
+        $view =  \View::make('automotives.automotive.viaje.hojarutaPDF', compact('date', 'presupuesto','destino1','destino2','destino3','destino4','destino5','destino6','ruta','viaje','supervisor','recurso','hour'))->render();
         $pdf  = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('carta', 'portrat');
         return $pdf->stream('Hoja de ruta.pdf');
@@ -127,9 +160,9 @@ class CalendarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
     }
 
     /**

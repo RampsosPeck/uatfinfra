@@ -41,7 +41,7 @@ class SolMeSaveRequest extends FormRequest
     public function messages()
     {
         return [
-                'vehiculo_id.required'   => 'Seleccione un vehiculo, por que es obligatorio.',
+                'vehiculo_id.required'   => 'Seleccione un vehículo, por que es obligatorio.',
                 'descripción.regex'      => 'En este campo solo se aceptan letras números.'
 
         ];

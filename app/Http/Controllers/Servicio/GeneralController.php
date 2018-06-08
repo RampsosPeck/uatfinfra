@@ -55,52 +55,70 @@ class GeneralController extends Controller
         //dd($coding); 
         
         $date = Carbon::now();
-        //dd($date->toFormattedDateString());
-        //return $request;
-        $generales = new General;
-        $generales->coding   =  $coding; 
-        $generales->serv_id     =  $request['serv_id'];
-        $generales->seccion     =  $request['seccion'];
-        $generales->descripcion =  $request['descripcion'];
-        $generales->responsable =  $request['responsable'];
-        $generales->user_id     =  Auth::user()->id;
-        $generales->fecha       =  $date->toFormattedDateString();
-        $generales->save();
-        //dd("echo Jorgito");
-        //return $request; Carpinteria::create($request->all());
-        //Devolucion::where('id',$request->sol_id)->update(['active'=>false]);
-        if ($request->seccion === "eléctrico") {
+
+        if($request->seccion != "mant._general") { 
+            $generales = new General;
+            $generales->coding   =  $coding; 
+            $generales->serv_id     =  $request['serv_id'];
+            $generales->seccion     =  $request['seccion'];
+            $generales->descripcion =  $request['descripcion'];
+            $generales->responsable =  $request['responsable'];
+            $generales->user_id     =  Auth::user()->id;
+            $generales->fecha       =  $date->toFormattedDateString();
+            $generales->save();
+
+            if ($request->seccion === "eléctrico") {
             Session::flash('message','La solicitud de trabajo para el eléctrico fue creada correctamente...!!!');
             return redirect()->action('Servicio\GeneralController@getElectrico');
-        }
+            }
 
-        if ($request->seccion === "jardinería") {
-            Session::flash('message','La solicitud de trabajo para jardinería fue creada correctamente...!!!');
-            return redirect()->action('Servicio\GeneralController@getJardineria');
-        }
+            if ($request->seccion === "jardinería") {
+                Session::flash('message','La solicitud de trabajo para jardinería fue creada correctamente...!!!');
+                return redirect()->action('Servicio\GeneralController@getJardineria');
+            }
 
-        if($request->seccion === "mecánico general") { 
-            Session::flash('message','La solicitud de trabajo para el mecánico general fue creada correctamente...!!!');
-            return redirect()->action('Servicio\GeneralController@getMegeneral');
-        }
+            if($request->seccion === "mecánico general") { 
+                Session::flash('message','La solicitud de trabajo para el mecánico general fue creada correctamente...!!!');
+                return redirect()->action('Servicio\GeneralController@getMegeneral');
+            }
 
-        if($request->seccion === "albañilería") { 
-            Session::flash('message','La solicitud de trabajo para albañilería fue creada correctamente...!!!');
-            return redirect()->action('Servicio\GeneralController@getAlbanileria');
-        }
+            if($request->seccion === "albañilería") { 
+                Session::flash('message','La solicitud de trabajo para albañilería fue creada correctamente...!!!');
+                return redirect()->action('Servicio\GeneralController@getAlbanileria');
+            }
 
-        if($request->seccion === "plomería") { 
-            Session::flash('message','La solicitud de trabajo para plomería fue creada correctamente...!!!');
-            return redirect()->action('Servicio\GeneralController@getPlomeria');
-        }
+            if($request->seccion === "plomería") { 
+                Session::flash('message','La solicitud de trabajo para plomería fue creada correctamente...!!!');
+                return redirect()->action('Servicio\GeneralController@getPlomeria');
+            }
 
-        if($request->seccion === "serv._general") { 
-            Session::flash('message','La solicitud de trabajo para serv. general fue creada correctamente...!!!');
-            return redirect()->action('Servicio\GeneralController@getSergene');
-        }
+            if($request->seccion === "serv._general") { 
+                Session::flash('message','La solicitud de trabajo para serv. general fue creada correctamente...!!!');
+                return redirect()->action('Servicio\GeneralController@getSergene');
+            }
 
-        Session::flash('message','La solicitud de trabajo fue creada correctamente...!!!');
-        return redirect('generales');
+            Session::flash('message','La solicitud de trabajo fue creada correctamente...!!!');
+            return redirect('generales');
+
+        }else{
+            $completo = 'EQUIPO:'.$request['equipo'].' MARCA:'.$request['marca'].' MODELO:'.$request['modelo'].' CÓDIGO:'.$request['codigo'].' SERIE:'.$request['serie'].' OTROS:'.$request['otros'].' DESCRIPCIÓN'.$request['descripcion'];
+            //dd($completo);
+            $generales = new General;
+            $generales->coding   =  $coding; 
+            $generales->serv_id     =  $request['serv_id'];
+            $generales->seccion     =  $request['seccion'];
+            $generales->descripcion =  $completo;
+            $generales->responsable =  $request['responsable'];
+            $generales->user_id     =  Auth::user()->id;
+            $generales->fecha       =  $date->toFormattedDateString();
+            $generales->save();
+
+            Session::flash('message','La solicitud de trabajo para mantenimiento general fue creada correctamente...!!!');
+            return redirect()->action('Servicio\GeneralController@getMantegene');
+
+
+        }
+        
 
     }
 
@@ -188,6 +206,11 @@ class GeneralController extends Controller
             return redirect()->action('Servicio\GeneralController@getSergene');
         } 
 
+        if($request->seccion === "mant._general") { 
+            Session::flash('message','La solicitud de trabajo para mantenimiento general fue editada correctamente...!!!');
+            return redirect()->action('Servicio\GeneralController@getMantegene');
+        } 
+
         Session::flash('message','La solicitud fue EDITADA correctamente...');
         return redirect('generales');
 
@@ -242,6 +265,12 @@ class GeneralController extends Controller
         $solicitantes = Servicio::all();
         $generales = General::where('seccion','serv._general')->orderBy('created_at')->get();
         return view('servicios.sergeneral.index',compact('solicitantes','generales'));
+    }
+    public function getMantegene()
+    {
+        $solicitantes = Servicio::all();
+        $generales = General::where('seccion','mant._general')->orderBy('created_at')->get();
+        return view('servicios.mantegeneral.index',compact('solicitantes','generales'));
     }
 
 }

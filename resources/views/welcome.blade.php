@@ -2,7 +2,6 @@
 
 @section('content')
 <body id="page-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -57,7 +56,7 @@
                   </li>
                   @endauth
           @endif
-          
+          <a href="redirect">REDIRECT</a>
         </div>
       </div>
     </header>

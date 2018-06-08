@@ -3,9 +3,9 @@
 @section('menu-messages')
 
 	<!-- Esto es mensajes para el ADMINISTRADOR -->
-	@if (Auth::user()->type === "Administrator")
+	@include('automotives.admin.messages')
+	@if (Auth::user()->active != "true")
 
-	        @include('automotives.admin.messages')
 
 	@endif
 
@@ -14,9 +14,8 @@
 @section('menu-notification')
 
 	<!-- Esto es notificaciones para el ADMINISTRATOR -->
-	@if (Auth::user()->type === "Administrator")
-
-	        @include('automotives.admin.notification')
+	@include('automotives.admin.notification')
+	@if (Auth::user()->active != "true")
 
 	@endif
 
@@ -25,9 +24,8 @@
 @section('menu-task')
 	
 	<!-- Esto es tareas para el ADMINISTRATOR -->
-	@if (Auth::user()->type === "Administrator")
-
-	        @include('automotives.admin.task')
+	@include('automotives.admin.task')
+	@if (Auth::user()->active != "true")
 
 	@endif
 
@@ -36,9 +34,8 @@
 @section('icon-sidebar')
 	
 	<!-- Esto es el icono del sidebar derecho para el ADMINISTRATOR -->
-	@if (Auth::user()->type === "Administrator")
-
-	        @include('automotives.admin.iconsidebar')
+	@include('automotives.admin.iconsidebar')
+	@if (Auth::user()->active != "true")
 
 	@endif
 
@@ -48,9 +45,8 @@
 @section('sidebar-menu')
 
 	<!-- Esto es el sidebar izquierdo para el ADMINISTRATOR -->
-	@if (Auth::user()->type === "Administrator")
-
-	        @include('automotives.admin.sidebar')
+	@include('automotives.admin.sidebar')
+	@if (Auth::user()->active != "true")    
 
 	@endif
     
@@ -59,24 +55,17 @@
 @section('content-header')
 
 	<!-- Esto es el contenido cabeza para el ADMINISTRATOR -->
-	@if (Auth::user()->type === "Administrator")
-
-	        @include('automotives.admin.contentheader')
+	@include('automotives.admin.contentheader')
+	@if (Auth::user()->active != "true")
 
 	@endif
 
 @endsection
 
-@section('content')
-	
-	@if (session()->has('flash'))
-	   <div class="alert alert-success">{{ session('flash') }} </div>
-	@endif
-	
+@section('content') 
 	<!-- Esto es el contenido para el ADMINISTRATOR -->
-	@if (Auth::user()->type === "Administrator")
-
-	        @include('automotives.admin.content')
+	@include('automotives.admin.content')
+	@if (Auth::user()->active != "true")
 
 	@endif
 
@@ -86,9 +75,8 @@
 @section('content-sidebar')
 
 	<!-- Esto es el sidebar derecho para el ADMINISTRATOR -->
-	@if (Auth::user()->type === "Administrator")
-
-	        @include('automotives.admin.contentsidebar')
+	@include('automotives.admin.contentsidebar')
+	@if (Auth::user()->active != "true")
 
 	@endif
 

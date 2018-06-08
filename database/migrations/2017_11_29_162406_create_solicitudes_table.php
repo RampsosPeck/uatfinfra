@@ -18,7 +18,9 @@ class CreateSolicitudesTable extends Migration {
 			$table->unsignedInteger('user_id');
 			$table->string('descripcion');
 			$table->string('fecha');
-			$table->boolean('active')->default(true)->nullable();
+            $table->string('estado')->default('ENVIADO')->nullable();
+            $table->string('comentario',500)->nullable();
+            $table->boolean('active')->default(true)->nullable();
 			$table->timestamps();
 		});
 	}

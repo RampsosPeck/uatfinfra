@@ -15,6 +15,11 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
+/*Route::get('redirect', function () {
+	Alert::success('Success Message', 'Optional Title');
+	return redirect('/');
+});*/
+
 /*Route::get('admin', function(){
 
 return view('automotive.admin.dashboard');
@@ -38,7 +43,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 //Route::get('home/users', 'UsersController@index')->name('home.users.index');
 
 Route::post('impersonations', 'ImpersonationsController@store')->name('impersonations.store');
@@ -84,7 +88,7 @@ Route::resource('informes', 'Automotive\InformeController');
 
 Route::resource('solicitudes', 'Solicitud\SolicitudController');
 
-Route::get('informes/{id}/pdf', 'Automotive\InformeController@getImprimir');
+Route::get('informevi/{id}/pdf', 'Automotive\InformeController@getImprimir');
 
 Route::resource('roles', 'Automotive\RolController');
 
@@ -108,4 +112,10 @@ Route::get('solicitudMegeneral', 'Servicio\GeneralController@getMegeneral');
 Route::get('solicitudAlbanileria', 'Servicio\GeneralController@getAlbanileria');
 Route::get('solicitudPlomeria', 'Servicio\GeneralController@getPlomeria');
 Route::get('solicitudSergeneral', 'Servicio\GeneralController@getSergene');
+Route::get('solicitudMantegene', 'Servicio\GeneralController@getMantegene');
+ 
 
+Route::post('/vehiculos/{request}/photosupdate', 'Automotive\PhotoController@update');
+Route::delete('photos/{foto}','Automotive\PhotoController@destroy')->name('photos.destroy');
+
+Route::post('devoaprobar', 'Mecanico\DevolucionController@getAprobar');

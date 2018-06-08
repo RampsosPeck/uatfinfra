@@ -22,6 +22,27 @@ class CreateInformesTable extends Migration
             $table->timestamp('fecha_final');
             $table->time('horainicial');
             $table->time('horafinal');
+
+            $table->timestamp('fecha_inicial2')->nullable();
+            $table->timestamp('fecha_final2')->nullable();
+            $table->time('horainicial2')->nullable();
+            $table->time('horafinal2')->nullable();
+
+            $table->timestamp('fecha_inicial3')->nullable();
+            $table->timestamp('fecha_final3')->nullable();
+            $table->time('horainicial3')->nullable();
+            $table->time('horafinal3')->nullable();
+
+            $table->timestamp('fecha_inicial4')->nullable();
+            $table->timestamp('fecha_final4')->nullable();
+            $table->time('horainicial4')->nullable();
+            $table->time('horafinal4')->nullable();
+
+            $table->timestamp('fecha_inicial5')->nullable();
+            $table->timestamp('fecha_final5')->nullable();
+            $table->time('horainicial5')->nullable();
+            $table->time('horafinal5')->nullable();
+
             $table->string('dias');
             $table->string('pasajeros');
             $table->mediumText('informe');

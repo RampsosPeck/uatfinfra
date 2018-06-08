@@ -18,9 +18,11 @@ class CreateDevolucionsTable extends Migration
             $table->unsignedInteger('sol_id')->nullable();
             $table->string('serial')->nullable();
             $table->date('fecha');
-            $table->integer('cantidad');
+            $table->string('cantidad');
             $table->string('nombre')->nullable();
             $table->string('detalle'); 
+            $table->string('estado')->default('ENVIADO')->nullable();
+            $table->string('comentario',500)->nullable();
             $table->timestamps();
         });
     }
