@@ -50,7 +50,7 @@ class CreateInformesTable extends Migration
             $table->string('kmpartida');
             $table->string('kmllegada');
             $table->string('kmtotal')->nullable();
-            $table->string('viaticos')->nullable();
+            $table->float('viaticos', 8, 2)->nullable();
             $table->string('litro1')->nullable();
             $table->string('compra1')->nullable();
             $table->string('litro2')->nullable();

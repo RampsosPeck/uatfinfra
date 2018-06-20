@@ -3,31 +3,20 @@
 @section('content')
 <div class="container">
 
-  <div class="col-md-12">
-          <font color="#007bff"><span class="fa fa-exclamation-circle fa-2x form-control-feedback"></span></font>
-            <div class="box-header with-border">
-                <center>
-                  <h3 class="box-title">
-                    <font color="#007bff"><b>EDITAR INFORME DEL VIAJE</b></font>
-                  </h3><br>
-                  <b>
-                    Los campos con el icono
-                    <font color="red">
-                          <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                      </font>
-                      son obligatorios.
-                  </b>
-              </center>
-            </div>
-
 {!! Form::model($informe,['route'=>['informes.update',$informe->id],'method'=>'PUT','class'=>'form-horizontal']) !!}
               {{ csrf_field() }}
  
 
 <div class="col-md-12">
     <div class="box box-info">
-        <div class="box-header with-border">
-          <CENTER><h3 class="box-title"><b>DATOS DEL VIAJE <font color="blue">Codigo:{{ $viajeCodigo[0] }}</font></b></h3></CENTER>
+        <div class="box-header with-border"> 
+          <font color="#007bff"><span class="fa fa-exclamation-circle fa-2x form-control-feedback"></span></font>    
+                <center>
+                  <h3 class="box-title">
+                    <font color="#007bff"><b>EDITAR EL INFORME DEL VIAJE</b></font>
+                    <br><b>Codigo:</b>{{ $viajeCodigo[0] }}
+                  </h3>
+                </center>
         </div>
         <div class="box-body" STYLE="background:#bce8f1">
           <div class="form-group">
@@ -677,7 +666,7 @@
           </button>
       {!! Form::close() !!}
 </center>
-</div>
+</div></div>
 @endsection
 
 @push('styles')

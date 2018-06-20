@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\User;
 use Uatfinfra\ModelAutomotores\Viaje;
+use Uatfinfra\ModelAutomotores\Informe;
 use Session;
 use Auth;
 
@@ -18,21 +19,21 @@ class RolController extends Controller
      */
     public function index()
     {	
-        /*
-        $user = \DB::table('users')
-            ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
-            ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
-            ->select('users.*', 'viajes.*')
-            ->where('viajes.categoria','provincia')
-            ->orderBy('users.name')
-            ->count();
-        return $user;*/
+        
 
-        $viaje = Viaje::where('categoria','provincia')->count();
+        /*  $viaje = Viaje::where('tipo','provincia')->count();
         //return $viaje;
+        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();  */
+
+        /*$choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->where('entidad','Depto. de Infraestructura')->get();*/
+
         $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
 
-    	return view('automotives.automotive.rol.index',compact('choferes','viaje'));
+        $viajes = Viaje::where('estado','activo')->get();
+
+        $informes = Informe::where('estado','APROBADO')->get();
+
+    	return view('automotives.automotive.rol.index',compact('choferes','viajes','informes'));
     }	
 
     /**
@@ -43,7 +44,7 @@ class RolController extends Controller
     public function create()
     {
 
-        $viaje = Viaje::where('categoria','ciudad')->count();
+        $viaje = Viaje::where('tipo','ciudad')->count();
         //return $viaje;
         $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
 
@@ -70,11 +71,25 @@ class RolController extends Controller
      */
     public function show($id)
     {
-        $viaje = Viaje::where('categoria','frontera')->count();
+        /*$viaje = Viaje::where('tipo','frontera')->count();
         //return $viaje;
         $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
+        return view('automotives.automotive.rol.edit',compact('choferes','viaje'));*/
 
-        return view('automotives.automotive.rol.edit',compact('choferes','viaje'));
+        $user = User::where('id',$id)->first();
+        //dd($user);
+
+        $viajes = \DB::table('viajes')
+            ->join('user_viaje', 'viajes.id', '=', 'user_viaje.viaje_id')
+            ->join('rutas', 'viajes.id', '=', 'rutas.viaje_id')
+            ->select('viajes.*','rutas.*')
+            ->where('user_viaje.user_id',$id)
+            ->where('viajes.estado','activo')
+            ->get();
+
+         
+        return view('automotives.automotive.rol.create',compact('user','viajes'));
+
     }
 
     /**

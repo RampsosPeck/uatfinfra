@@ -37,8 +37,10 @@
                         <td>{{ $vehiculo->tipo }} {{ $vehiculo->placa }}</td>
                         <td>{{ Carbon::parse($informe->fecha_inicial)->format('Y-m-d')}} {{ $informe->horainicial }}</td>
                         <td>
+                        @if($informe->estado != "APROBADO")
                             {!!link_to_route('informes.edit', $title = 'Editar', $parameters = $informe->id, $attributes = ['class'=>'btn btn-primary btn-xs fa fa-pencil-square-o'])!!}
-                            
+                        @endif
+
                             {!!link_to_action('Automotive\InformeController@getImprimir', $title = ' Imprimir Informe', $parameters = $informe->id,  $attributes = ['class'=>'btn btn-warning btn-xs fa fa-print','target'=>'_blank'])!!}
 
                         </td>

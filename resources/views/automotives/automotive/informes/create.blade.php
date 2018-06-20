@@ -3,30 +3,19 @@
 @section('content')
 <div class="container">
   
-  <div class="col-md-12">
-          <font color="#007bff"><span class="fa fa-exclamation-circle fa-2x form-control-feedback"></span></font>
-            <div class="box-header with-border">
-                <center>
-                  <h3 class="box-title">
-                    <font color="#007bff"><b>INFORME DEL VIAJE</b></font>
-                  </h3><br>
-                  <b>
-                      Los campos con el icono
-                      <font color="red">
-                          <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>
-                      </font>
-                      son obligatorios.
-                  </b>
-                </center>
-            </div>
-
 {!! Form::open(['route'=>'informes.store','method'=>'POST','class'=>'form-horizontal']) !!}
     {{ csrf_field() }}
 
 <div class="col-md-12">
     <div class="box box-info">
         <div class="box-header with-border">
-          <CENTER><h3 class="box-title"><b>DATOS DEL VIAJE <font color="blue">Codigo:{{ $viaje->codigo }}</font></b></h3></CENTER>
+            <font color="#007bff"><span class="fa fa-exclamation-circle fa-2x form-control-feedback"></span></font>    
+                <center>
+                  <h3 class="box-title">
+                    <font color="#007bff"><b>INFORME DEL VIAJE</b></font>
+                    <br><b>Codigo:</b>{{ $viaje->codigo }}
+                  </h3>
+                </center> 
         </div>
         <div class="box-body" STYLE="background:#bce8f1">
           <div class="form-group">
@@ -673,7 +662,7 @@
 </div> 
 {!! Form::close() !!}
 
-</div>
+</div></div>
 @endsection
 
 @push('styles')

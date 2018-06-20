@@ -1,0 +1,119 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+body {
+  font-family: "Times New Roman", serif;
+  margin: -3mm -10mm 2mm -5mm;/*el cuarto es el lado izquierdo */
+}
+
+
+
+#logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#logo img {
+  width: 600px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table td {
+  padding: 4px;
+  text-align: left;
+  font-family: "times new roman", serif;
+  font: 40% sans-serif;
+}
+
+h3 {
+  padding: 10px;
+  text-align: center;
+  font: 150% sans-serif;
+  color: #ff000000;
+  font-family: "times new roman", serif;
+
+}
+
+
+#cen{
+  text-align: center;
+  font: 80% Time;
+  color: #1A1A1A;
+
+}
+#cen1{
+  text-align: center;
+  font: 55% Time;
+  color: #FFFFFF;
+
+}
+#cen2{
+  text-align: center;
+  font: 65% Time;
+  color: #1a1a1a;
+
+}
+#cen3{
+  text-align: center;
+  font: 75% Time;
+  color: #ff000000;
+
+}
+#ver  {
+  font: 69% times new roman; 
+  color: #000000;
+  padding-left: 12;
+}
+#veris  {
+  font: 69% times new roman; 
+  color: #000000;
+  padding-left: -10;
+}
+#verisa  {
+  font: 69% times new roman; 
+  color: #000000;
+  padding-left: -20;
+}
+#vero  {
+  font: 69% times new roman; 
+  color: #000000;
+  padding-left:-20;
+  padding-right: -30;
+}
+#veros  {
+  font: 69% times new roman; 
+  color: #000000;
+  padding-left: -15;
+  padding-right: -80;
+}
+#ver1  {
+  font: 80% times new roman;
+ color: #FFFFFF;
+}
+#ver2  {
+  font: 45% times new roman;
+  color: #FFFFFF;
+}
+
+#ver3{
+  font: 85% times new roman;
+  color: #1A1A1A;
+}
+#ver4 {
+  font: 69% times new roman;/*puede ser de 67 o 69*/
+  color: #ff000000;
+}

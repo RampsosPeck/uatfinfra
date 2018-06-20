@@ -2,29 +2,13 @@
 
 @section('content')
 @include('alertas.success')
-
 <div class="container">
-  
-<ul class="nav nav-pills nav-justified">
-  <li {{ request()->is('roles') ? 'class=active' : '' }} role="presentation" >
-      <a href="{!! URL::to('/roles') !!}"><strong><font color="#011620"> PROVINCIA </font></strong></a>
-  </li>
-  <li {{ request()->is('roles/create') ? 'class=active' : '' }} role="presentation" >
-      <a href="{!! URL::to('/roles/create') !!}"><strong><font color="#011620"> CIUDAD </font></strong></a>
-  </li>
-  <li {{ request()->is('roles/edit') ? 'class=active' : '' }} role="presentation" >
-      <a href="{!! URL::to('/roles/edit') !!}"><strong><font color="#011620"> FRONTERA </font></strong></a>
-  </li>
-</ul>
-
 <div class="box box-primary">
-    
     <div class="box-header with-border ">
         <center>
           <h3 class="box-title">
-            <font color="#007bff"><b>ROL DE VIAJES
-          </h3><BR>
-          Basado en viajes de tipo CIUDAD</b></font>
+            <font color="#007bff"><b>DETALLE DE VIAJE DEL CONDUCTOR</b></font> {{ $user->name }}
+          </h3>
         </center>
     </div>
     <div class="box-body">
@@ -32,26 +16,52 @@
             <table id="vehiculo-table" class="table table-bordered table-striped ">
                 <thead>
                     <tr>
-                        <th class="text-center">ID</th>
-                        <th class="text-center">Conductor</th>
-                        <th class="text-center">Tipo</th>
-                        <th class="text-center">Cantidad</th>                       
+                        <th>ID</th>
+                        <th>Codigo</th>
+                        <th>Entidad</th>
+                        <th>Detalle</th>
+                        <th>Opciones</th>                                             
                     </tr>
                 </thead>
                 <tbody bgcolor="#d9edf7" >
-                    @foreach($choferes as $key => $chofer)
+                    @foreach($viajes as $key => $viaje)
                     <tr>
                         <td class="text-center"> {{ ++$key }} </td>
-                        <td class="text-center"> {{ $chofer->name }} </td>
-                        <td class="text-center"> CIUDAD </td>
-                        <?php $user = \DB::table('users')
-                            ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
-                            ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
-                            ->select('users.*', 'viajes.*')
-                            ->where('users.id',$chofer->id)
-                            ->where('viajes.categoria','ciudad')
-                            ->count(); ?>
-                        <td class="text-center"> {{ $user }}</td>
+                        <td class="text-center"> {{ $viaje->codigo }}</td>
+                        <td class="text-center"> {{ $viaje->entidad }}</td>
+                        <?php $destino1 = \DB::table('destinos')
+                            ->where('id',$viaje->destino1)
+                            ->first();
+                            $destino2 = \DB::table('destinos')
+                            ->where('id',$viaje->destino2)
+                            ->first();
+                            $destino3 = \DB::table('destinos')
+                            ->where('id',$viaje->destino3)
+                            ->first();
+                            $destino4 = \DB::table('destinos')
+                            ->where('id',$viaje->destino4)
+                            ->first();
+                            $destino5 = \DB::table('destinos')
+                            ->where('id',$viaje->destino5)
+                            ->first();
+                            $destino6 = \DB::table('destinos')
+                            ->where('id',$viaje->destino6)
+                            ->first(); ?>
+                        <td class="text-center"> {{ $destino1->destino }} / {{ $destino2->destino }} / @if(!empty($destino3))
+                            {{ $destino3->destino }} /
+                        @endif()
+                        @if(!empty($destino4))
+                            {{ $destino4->destino }} /
+                        @endif()
+                        @if(!empty($destino5))
+                            {{ $destino5->destino }} /
+                        @endif()
+                        @if(!empty($destino6))
+                            {{ $destino6->destino }} 
+                        @endif()
+                        </td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -59,15 +69,11 @@
         </div>                  
     </div>
     <div class="box-footer text-center">
-        Total viajes en ciudad {{ $viaje }}
+        Total viajes en provincia 
     </div>
    
 </div>
-
-
-
 @endsection
-
 
 @push('styles')
   <style>

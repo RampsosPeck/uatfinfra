@@ -16,6 +16,8 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('sol_id');
+            $table->string('pedicodi')->unique()->nullable();
+            $table->string('estado')->default('activo')->nullable();
             $table->integer('kilome')->nullable();
             $table->string('idh')->nullable();
             $table->string('justificacion')->nullable();

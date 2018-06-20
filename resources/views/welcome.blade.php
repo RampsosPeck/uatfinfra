@@ -56,7 +56,7 @@
                   </li>
                   @endauth
           @endif
-          <a href="redirect">REDIRECT</a>
+         <!-- <a href="redirect">REDIRECT</a>  -->
         </div>
       </div>
     </header>

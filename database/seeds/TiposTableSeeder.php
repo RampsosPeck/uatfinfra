@@ -16,7 +16,7 @@ class TiposTableSeeder extends Seeder
 		$tipo->save();
 
 		$tipo = new Tipo;
-        $tipo->nombre = "Cap. Provincia";
+        $tipo->nombre = "Sub. Sede";
 		$tipo->save();
 
 		$tipo = new Tipo;
@@ -24,7 +24,7 @@ class TiposTableSeeder extends Seeder
 		$tipo->save();
 
 		$tipo = new Tipo;
-        $tipo->nombre = "Localidad";
+        $tipo->nombre = "Apoyo";
 		$tipo->save();
  
     }

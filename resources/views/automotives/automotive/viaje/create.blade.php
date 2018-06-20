@@ -229,7 +229,7 @@
 			                    	<select  class="form-control select2"
 			                    			multiple="multiple"
 			                    			name="conductor[]"
-			                    			data-placeholder="Uno o dos encargados"
+			                    			data-placeholder="Uno o dos conductores"
 			                    			style="width: 100%;"
 			                    			>
 											@foreach ($conductores as $conductor)

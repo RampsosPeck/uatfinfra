@@ -39,7 +39,7 @@ class ViajeController extends Controller
         $vehiculos  = Vehiculo::all();
         $destinos   = Destino::all();
         $encargados = User::where('type','Enc. de Viaje')->where('active',true)->get();
-        $conductores= User::where('type','Conductor')->where('active',true)->get();
+        $conductores= User::where('type','Conductor')->where('position','AUTOMOTORES')->where('active',true)->get();
         $categorias = Tipo::all();
 
         return view('automotives.automotive.viaje.create', compact('vehiculos','destinos','encargados','conductores','categorias'));

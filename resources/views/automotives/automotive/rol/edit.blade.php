@@ -49,7 +49,7 @@
                             ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
                             ->select('users.*', 'viajes.*')
                             ->where('users.id',$chofer->id)
-                            ->where('viajes.categoria','frontera')
+                            ->where('viajes.tipo','frontera')
                             ->count(); ?>
                         <td class="text-center"> {{ $user }}</td>
                     </tr>
@@ -59,7 +59,7 @@
         </div>                  
     </div>
     <div class="box-footer text-center">
-        Total viajes en frontera {{ $viaje }}
+        Total viajes en frontera {{ $viajes }}
     </div>
    
 </div>

@@ -35,7 +35,7 @@
 		                <div class="form-group {{ $errors->has('justificacion') ? 'has-error' : '' }}">
 		                    <label for="justificacion" class="col-sm-4 control-label">Justificación:</label>
 		                    <div class="col-sm-8">
-		                        	<textarea class="form-control" name="justificacion" id="justificacion" placeholder="Justifique su solicitud de pedido de material."  value="{{ old('justificacion') }}"></textarea>
+		                        	<textarea class="form-control" name="justificacion" id="justificacion" placeholder="Justifique su solicitud de pedido de material.">{{ old('justificacion') }}</textarea>
 			                	{!! $errors->first('justificacion', '<span class="help-block">:message</span>') !!}
 		                    </div>
 	                    </div>
@@ -180,11 +180,11 @@
 	                    <div class="form-group {{ $errors->has('idh') ? 'has-error' : '' }}">
 						    <label for="idh" class="col-sm-6 control-label">Vehiculo con IDH? SI:</label>
 						    <div class="col-sm-6">
-			                  	<input type="radio" name="idh" value="SI" {{ old('idh') == 'si' ? 'checked' : '' }}  class="flat-red" >
+			                  	<input type="radio" name="idh" value="SI" {{ old('idh') == 'SI' ? 'checked' : '' }}  class="flat-red" > 
 			                	</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			                	<label>
 			                		NO:
-			                  	<input type="radio" name="idh" value="NO" {{ old('idh') == 'no' ? 'checked' : '' }}  class="flat-red" >
+			                  	<input type="radio" name="idh" value="NO" {{ old('idh') == 'NO' ? 'checked' : '' }}  class="flat-red" >
 			                	</label>
 			                	<strong>{!! $errors->first('idh', '<span class="help-block">:message</span>') !!}</strong>
 			                </div>
@@ -193,7 +193,7 @@
 		                <div class="form-group {{ $errors->has('observacion') ? 'has-error' : '' }}">
 		                    <label for="observacion" class="col-sm-4 control-label">Observación:</label>
 		                    <div class="col-sm-8">
-		                        	<textarea class="form-control" name="observacion" placeholder="Puede realizar alguna observación en su pedido de material."  value="{{ old('observacion') }}"></textarea>
+		                        	<textarea class="form-control" name="observacion" placeholder="Puede realizar alguna observación en su pedido de material."> {{ old('observacion') }} </textarea>
 			                	{!! $errors->first('observacion', '<span class="help-block">:message</span>') !!}
 		                    </div>
 	                    </div>

@@ -21,15 +21,15 @@
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
 
-      <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
+      <div class="form-group has-feedback{{ $errors->has('cedula') ? ' has-error' : '' }}">
         <label for="name" class="col-md-4 control-label">Cédula de Identidad:</label>
             <div class="col-md-6">
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Ingrese su Cédula de Identidad">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <input id="cedula" type="number" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus placeholder="Ingrese su Cédula de Identidad">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                @if ($errors->has('email'))
+                @if ($errors->has('cedula'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong>{{ $errors->first('cedula') }}</strong>
                     </span>
                 @endif
             </div>
