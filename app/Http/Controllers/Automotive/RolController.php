@@ -19,14 +19,6 @@ class RolController extends Controller
      */
     public function index()
     {	
-        
-
-        /*  $viaje = Viaje::where('tipo','provincia')->count();
-        //return $viaje;
-        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();  */
-
-        /*$choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->where('entidad','Depto. de Infraestructura')->get();*/
-
         $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
 
         $viajes = Viaje::where('estado','activo')->get();
@@ -43,12 +35,7 @@ class RolController extends Controller
      */
     public function create()
     {
-
-        $viaje = Viaje::where('tipo','ciudad')->count();
-        //return $viaje;
-        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
-
-        return view('automotives.automotive.rol.create',compact('choferes','viaje'));
+ 
 
     }
 

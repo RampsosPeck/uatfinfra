@@ -13,13 +13,14 @@
     </div>
     <div class="box-body">
         <div class="table-responsive">
-            <table id="vehiculo-table" class="table table-bordered table-striped ">
+            <table id="vehiculo-table" class="table table-bordered table-striped " style="background-color:#d9edf7">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Codigo</th>
                         <th>Entidad</th>
                         <th>Detalle</th>
+                        <th>Tipo</th>
                         <th>Opciones</th>                                             
                     </tr>
                 </thead>
@@ -48,19 +49,24 @@
                             ->where('id',$viaje->destino6)
                             ->first(); ?>
                         <td class="text-center"> {{ $destino1->destino }} / {{ $destino2->destino }} / @if(!empty($destino3))
-                            {{ $destino3->destino }} /
-                        @endif()
-                        @if(!empty($destino4))
-                            {{ $destino4->destino }} /
-                        @endif()
-                        @if(!empty($destino5))
-                            {{ $destino5->destino }} /
-                        @endif()
-                        @if(!empty($destino6))
-                            {{ $destino6->destino }} 
-                        @endif()
+                                    {{ $destino3->destino }} /
+                                @endif()
+                                @if(!empty($destino4))
+                                    {{ $destino4->destino }} /
+                                @endif()
+                                @if(!empty($destino5))
+                                    {{ $destino5->destino }} /
+                                @endif()
+                                @if(!empty($destino6))
+                                    {{ $destino6->destino }} 
+                                @endif()
                         </td>
-                        <td></td>
+                        <?php $tipos = \DB::table('tipo_viaje')
+                            ->join('tipos', 'tipo_viaje.tipo_id', '=', 'tipos.id')
+                            ->select('tipo_viaje.*','tipos.*')
+                            ->where('tipo_viaje.viaje_id',$viaje->id)
+                            ->get(); ?>
+                        <td class="text-center">@foreach($tipos as $key => $tipo) {{ $tipo->nombre }} / @endforeach </td>
                         <td></td>
                     </tr>
                     @endforeach

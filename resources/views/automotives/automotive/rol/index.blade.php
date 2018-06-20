@@ -13,7 +13,7 @@
     </div>
     <div class="box-body">
         <div class="table-responsive">
-            <table id="vehiculo-table" class="table table-bordered table-striped ">
+            <table id="vehiculo-table" class="table table-bordered table-striped " style="background-color:#d9edf7">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -99,7 +99,7 @@
                         ?>
                         <td class="text-center" bgcolor="#f2dede"> {{ $kilometraje }} </td>
                         <td class="text-center">
-                            {!!link_to_route('roles.show', $title = ' Verificar', $parameters = $chofer->id, $attributes = ['class'=>'btn btn-info btn-xs fa fa-pencil-square-o'])!!}
+                            {!!link_to_route('roles.show', $title = ' Mostrar', $parameters = $chofer->id, $attributes = ['class'=>'btn btn-info btn-xs fa fa-pencil-square-o'])!!}
                         </td>
                     </tr>
                     @endforeach
