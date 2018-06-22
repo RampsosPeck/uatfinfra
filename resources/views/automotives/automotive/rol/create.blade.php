@@ -3,6 +3,7 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
+<?php use Carbon\Carbon;?>
 <div class="box box-primary">
     <div class="box-header with-border ">
         <center>
@@ -20,8 +21,11 @@
                         <th>Codigo</th>
                         <th>Entidad</th>
                         <th>Detalle</th>
-                        <th>Tipo</th>
-                        <th>Opciones</th>                                             
+                        <th>Partida</th>
+                        <th>Hora</th>
+                        <th>Llegada</th>
+                        <th>Hora</th>
+                        <th>Tipo</th>                                            
                     </tr>
                 </thead>
                 <tbody bgcolor="#d9edf7" >
@@ -61,13 +65,16 @@
                                     {{ $destino6->destino }} 
                                 @endif()
                         </td>
+                        <td class="text-center">{{ Carbon::parse($viaje->fecha_inicial)->format('Y-m-d') }}</td>
+                        <td class="text-center">{{ $viaje->horainicial }}</td>
+                        <td class="text-center">{{ Carbon::parse($viaje->fecha_final)->format('Y-m-d') }}</td>
+                        <td class="text-center">{{ $viaje->horafinal }}</td>
                         <?php $tipos = \DB::table('tipo_viaje')
                             ->join('tipos', 'tipo_viaje.tipo_id', '=', 'tipos.id')
                             ->select('tipo_viaje.*','tipos.*')
                             ->where('tipo_viaje.viaje_id',$viaje->id)
                             ->get(); ?>
-                        <td class="text-center">@foreach($tipos as $key => $tipo) {{ $tipo->nombre }} / @endforeach </td>
-                        <td></td>
+                        <td class="text-center" bgcolor="#dff0d8" >@foreach($tipos as $key => $tipo) {{ $tipo->nombre }} / @endforeach </td> 
                     </tr>
                     @endforeach
                 </tbody>
@@ -75,7 +82,7 @@
         </div>                  
     </div>
     <div class="box-footer text-center">
-        Total viajes en provincia 
+        Total viajes {{ $viajes->count() }}
     </div>
    
 </div>

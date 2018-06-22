@@ -7,6 +7,8 @@ use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\User;
 use Uatfinfra\ModelAutomotores\Viaje;
 use Uatfinfra\ModelAutomotores\Informe;
+use Uatfinfra\ModelAutomotores\PermiViaje;
+use Uatfinfra\Http\Requests\PermiSaveRequest;
 use Session;
 use Auth;
 
@@ -22,10 +24,11 @@ class RolController extends Controller
         $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
 
         $viajes = Viaje::where('estado','activo')->get();
+        $totalvi = Viaje::where('estado','activo')->count();
 
         $informes = Informe::where('estado','APROBADO')->get();
 
-    	return view('automotives.automotive.rol.index',compact('choferes','viajes','informes'));
+    	return view('automotives.automotive.rol.index',compact('choferes','viajes','informes','totalvi'));
     }	
 
     /**
@@ -35,8 +38,7 @@ class RolController extends Controller
      */
     public function create()
     {
- 
-
+        
     }
 
     /**
@@ -45,9 +47,12 @@ class RolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PermiSaveRequest $request)
     {
-        //
+        PermiViaje::create($request->all());
+        
+        Session::flash('message','El permiso se inserto correctamente...');
+        return redirect('roles');
     }
 
     /**

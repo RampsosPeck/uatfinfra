@@ -19,9 +19,13 @@
                         <th>ID</th>
                         <th>Conductor</th>
                         <th>Ciudad</th>
+                        <th><i class="fa fa-exclamation-circle fa-cog" data-toggle="tooltip" data-placement="top" title="Permisos Ciudad"></i></th>
                         <th>Sub Sede</th>
+                        <th><i class="fa fa-exclamation-circle fa-cog" data-toggle="tooltip" data-placement="top" title="Permisos Sub Sede"></i></th>
                         <th>Provincia</th>
+                        <th><i class="fa fa-exclamation-circle fa-cog" data-toggle="tooltip" data-placement="top" title="Permisos Provincia"></i></th>
                         <th>Apoyo</th>
+                        <th><i class="fa fa-exclamation-circle fa-cog" data-toggle="tooltip" data-placement="top" title="Permisos Apoyo"></i></th> 
                         <th>Total</th> 
                         <th>Viáticos</th>
                         <th>Km. Gastado</th> 
@@ -29,6 +33,7 @@
                         <th>Opciones</th>                                             
                     </tr>
                 </thead>
+                <?php $totalvi = 0; $totalper = 0;?>
                 <tbody bgcolor="#d9edf7" >
                     @foreach($choferes as $key => $chofer)
                     <tr>
@@ -43,6 +48,11 @@
                             ->where('tipo_viaje.tipo_id',1)
                             ->count(); ?>
                         <td class="text-center"> {{ $ciudad }} </td>
+                        <?php $permi1 = \DB::table('permiviajes')
+                            ->where('permiviajes.user_id',$chofer->id)
+                            ->where('tipo',1)
+                            ->count(); ?>
+                        <td class="text-center" bgcolor="#dff0d8">{{ $permi1 }}</td>
                         <?php $sub_sede = \DB::table('users')
                             ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
                             ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
@@ -52,6 +62,11 @@
                             ->where('tipo_viaje.tipo_id',2)
                             ->count(); ?>
                         <td class="text-center"> {{ $sub_sede }} </td>
+                        <?php $permi2 = \DB::table('permiviajes')
+                            ->where('permiviajes.user_id',$chofer->id)
+                            ->where('tipo',2)
+                            ->count(); ?>
+                        <td class="text-center" bgcolor="#dff0d8">{{ $permi2 }}</td>
                         <?php $provincia = \DB::table('users')
                             ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
                             ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
@@ -61,6 +76,11 @@
                             ->where('tipo_viaje.tipo_id',3)
                             ->count(); ?>
                         <td class="text-center"> {{ $provincia }} </td>
+                        <?php $permi3 = \DB::table('permiviajes')
+                            ->where('permiviajes.user_id',$chofer->id)
+                            ->where('tipo',3)
+                            ->count(); ?>
+                        <td class="text-center" bgcolor="#dff0d8">{{ $permi3 }}</td>
                         <?php $apoyo = \DB::table('users')
                             ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
                             ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
@@ -70,7 +90,14 @@
                             ->where('tipo_viaje.tipo_id',4)
                             ->count(); ?>
                         <td class="text-center"> {{ $apoyo }} </td>
-                        <td class="text-center" bgcolor="#dff0d8" > {{ $ciudad+$sub_sede+$provincia+$apoyo }} </td>
+                        <?php $permi4 = \DB::table('permiviajes')
+                            ->where('permiviajes.user_id',$chofer->id)
+                            ->where('tipo',4)
+                            ->count(); ?>
+                        <td class="text-center" bgcolor="#dff0d8">{{ $permi4 }}</td>
+                        <?php $totalvi   = $totalvi+$ciudad+$sub_sede+$provincia+$apoyo; 
+                              $totalper = $totalper+$permi1+$permi2+$permi3+$permi4;   ?>
+                        <td class="text-center" bgcolor="#00c0ef" style="font-size:15px" ><b>{{ $ciudad+$sub_sede+$provincia+$apoyo+$permi1+$permi2+$permi3+$permi4 }} </b></td>
                         <?php $informes = \DB::table('informes')
                             ->where('informes.conductor',$chofer->id)
                             ->where('informes.estado','APROBADO')
@@ -108,7 +135,7 @@
         </div>                  
     </div>
     <div class="box-footer text-center">
-        Total viajes en provincia 
+       <b> Viajes realizados {{ $totalvi }}  | Permiso de viajes {{ $totalper }} </b>
     </div>
    
 </div>
@@ -121,6 +148,9 @@
         }
     table th{
         text-align: center;
+    }
+    .fa-cog {
+      color: red;
     }
   </style>
 @endpush
