@@ -5,6 +5,7 @@ namespace Uatfinfra\Http\Controllers\Auth;
 use Uatfinfra\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Alert;
 class LoginController extends Controller
 {
     /*
@@ -43,6 +44,8 @@ class LoginController extends Controller
 
         $credentials['active'] = true;
 
+        Alert::success('BIENVENIDO...!', 'Ingreso Exitoso....!!!');
+        
         return $credentials;
     }
 }

@@ -1,43 +1,41 @@
+<?php use Uatfinfra\User;
+use Uatfinfra\ModelAutomotores\Viaje;
+?>
 <!-- Create the tabs -->
 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    <li class="active"><a href="#control-sidebar-bus-tab" data-toggle="tab"><i class="fa fa-hand-o-up"></i></a></li>
+    <li><a href="#control-sidebar-hand-tab" data-toggle="tab"><i class="fa fa-hand-o-right"></i></a></li>
+    <li><a href="#control-sidebar-hand1-tab" data-toggle="tab"><i class="fa fa-hand-o-left"></i></a></li>
+    <li><a href="#control-sidebar-hand2-tab" data-toggle="tab"><i class="fa fa-thumbs-o-up"></i></a></li>
 </ul>
 <!-- Tab panes -->
 <div class="tab-content">
       <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Rol de Viajes</h3>
+      <div class="tab-pane active" id="control-sidebar-bus-tab">
+        <h3 class="control-sidebar-heading text-center">Rol de Viajes CIUDAD</h3>
+        
         <ul class="control-sidebar-menu">
           <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+            <?php $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->where('entidad','Depto. de Infraestructura')->orderBy('grade','ASC')->get();
+                  $viajes = Viaje::where('estado','activo')->get();?>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cumpleaños de Langdon</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">70%</span>
-                </span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
+                  @foreach($choferes as $key => $chofer)                
+                      <td> <font color="#00c0ef"> {{ $chofer->name }} </font></td>
+                      <?php $totalvi = 0; $ciudad = \DB::table('users')
+                          ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
+                          ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
+                          ->join('tipo_viaje', 'viajes.id', '=', 'tipo_viaje.viaje_id')
+                          ->select('users.*', 'viajes.*','tipos.*')
+                          ->where('users.id',$chofer->id)
+                          ->where('tipo_viaje.tipo_id',1)
+                          ->count(); ?> 
+                      <?php $permi1 = \DB::table('permiviajes')
+                          ->where('permiviajes.user_id',$chofer->id)
+                          ->where('tipo',1)
+                          ->count(); ?>  
+                      <td class="pull-right"> <font color="#f4645f">{{ $ciudad+$permi1 }}</font> </td><br> <br> 
+                  @endforeach
+               
           </li>
         </ul>
         <!-- /.control-sidebar-menu -->
@@ -48,22 +46,84 @@
       <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
       <!-- /.tab-pane -->
       <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+      <div class="tab-pane" id="control-sidebar-hand-tab">  
+          <h3 class="control-sidebar-heading text-center">Rol de Viajes Sub Sede</h3>
+          <ul class="control-sidebar-menu">
+            <li>
+                <?php $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->where('entidad','Depto. de Infraestructura')->orderBy('grade','ASC')->get();
+                  $viajes = Viaje::where('estado','activo')->get();?>
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
+                  @foreach($choferes as $key => $chofer)                
+                      <td> <font color="#00c0ef"> {{ $chofer->name }} </font></td>
+                      <?php $totalvi = 0; $ciudad = \DB::table('users')
+                          ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
+                          ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
+                          ->join('tipo_viaje', 'viajes.id', '=', 'tipo_viaje.viaje_id')
+                          ->select('users.*', 'viajes.*','tipos.*')
+                          ->where('users.id',$chofer->id)
+                          ->where('tipo_viaje.tipo_id',2)
+                          ->count(); ?> 
+                      <?php $permi2 = \DB::table('permiviajes')
+                          ->where('permiviajes.user_id',$chofer->id)
+                          ->where('tipo',2)
+                          ->count(); ?>  
+                      <td class="pull-right"> <font color="#f4645f">{{ $ciudad+$permi2 }}</font> </td><br> <br> 
+                  @endforeach
+            </li>
+          </ul>
+      </div> 
 
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
+      <div class="tab-pane" id="control-sidebar-hand1-tab">  
+          <h3 class="control-sidebar-heading text-center">Rol de Viajes Provincia</h3>
+          <ul class="control-sidebar-menu">
+            <li>
+                <?php $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->where('entidad','Depto. de Infraestructura')->orderBy('grade','ASC')->get();
+                  $viajes = Viaje::where('estado','activo')->get();?>
+
+                  @foreach($choferes as $key => $chofer)                
+                      <td> <font color="#00c0ef"> {{ $chofer->name }} </font></td>
+                      <?php $totalvi = 0; $ciudad = \DB::table('users')
+                          ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
+                          ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
+                          ->join('tipo_viaje', 'viajes.id', '=', 'tipo_viaje.viaje_id')
+                          ->select('users.*', 'viajes.*','tipos.*')
+                          ->where('users.id',$chofer->id)
+                          ->where('tipo_viaje.tipo_id',3)
+                          ->count(); ?> 
+                      <?php $permi3 = \DB::table('permiviajes')
+                          ->where('permiviajes.user_id',$chofer->id)
+                          ->where('tipo',3)
+                          ->count(); ?>  
+                      <td class="pull-right"> <font color="#f4645f">{{ $ciudad+$permi3 }}</font> </td><br> <br> 
+                  @endforeach
+            </li>
+          </ul>
       </div>
-      <!-- /.tab-pane -->
+
+      <div class="tab-pane" id="control-sidebar-hand2-tab">  
+          <h3 class="control-sidebar-heading text-center">Rol de Viajes Apoyo</h3>
+          <ul class="control-sidebar-menu">
+            <li>
+                <?php $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->where('entidad','Depto. de Infraestructura')->orderBy('grade','ASC')->get();
+                  $viajes = Viaje::where('estado','activo')->get();?>
+
+                  @foreach($choferes as $key => $chofer)                
+                      <td> <font color="#00c0ef"> {{ $chofer->name }} </font></td>
+                      <?php $totalvi = 0; $ciudad = \DB::table('users')
+                          ->join('user_viaje', 'users.id', '=', 'user_viaje.user_id')
+                          ->join('viajes', 'user_viaje.viaje_id', '=', 'viajes.id')
+                          ->join('tipo_viaje', 'viajes.id', '=', 'tipo_viaje.viaje_id')
+                          ->select('users.*', 'viajes.*','tipos.*')
+                          ->where('users.id',$chofer->id)
+                          ->where('tipo_viaje.tipo_id',4)
+                          ->count(); ?> 
+                      <?php $permi4 = \DB::table('permiviajes')
+                          ->where('permiviajes.user_id',$chofer->id)
+                          ->where('tipo',4)
+                          ->count(); ?>  
+                      <td class="pull-right"> <font color="#f4645f">{{ $ciudad+$permi4 }}</font> </td><br> <br> 
+                  @endforeach
+            </li>
+          </ul>
+      </div>
 </div>

@@ -83,9 +83,7 @@
 			                	{!! $errors->first('dep_final', '<span class="help-block">:message</span>') !!}
 			                </div>
 		                </div>
-                    </div>
-                    <div class="col-md-5">
-	                    <div class="form-group {{ $errors->has('kilometraje') ? 'has-error' : '' }}">
+		                <div class="form-group {{ $errors->has('kilometraje') ? 'has-error' : '' }}">
 		                    <label for="kilometraje" class="col-sm-4 control-label">Kilometraje:</label>
 			                <div class="col-sm-8">
 
@@ -100,7 +98,18 @@
 			                    {!! $errors->first('kilometraje', '<span class="help-block">:message</span>') !!}
 			                </div>
 			            </div>
-		                <div class="form-group {{ $errors->has('tiempo') ? 'has-error' : '' }} bootstrap-timepicker timepicker">
+                    </div>
+                    <div class="col-md-5">
+	                    
+		                <div class="form-group {{ $errors->has('antes') ? 'has-error' : '' }} ">
+		                    <label for="antes" class="col-sm-4 control-label">Antecedentes:</label>
+		                    <div class="col-sm-8">
+		                    	{!! Form::textarea('antes',old('antes',$destinos->antes),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Ingresa aqui los Antecedentes de la ruta.']) !!}
+								{!! $errors->first('antes', '<span class="help-block">:message</span>') !!}
+		                    </div>
+	                    </div>
+
+	                    <div class="form-group {{ $errors->has('tiempo') ? 'has-error' : '' }} bootstrap-timepicker timepicker">
 		                    <label for="tiempo" class="col-sm-4 control-label">Tiempo:</label>
 			                <div class="col-sm-8">
 			                	<div class="input-group">
@@ -112,16 +121,15 @@
 			                    {!! $errors->first('tiempo', '<span class="help-block">:message</span>') !!}
 			                </div>
 		                </div>
-	                	<div class="form-group {{ $errors->has('ruta') ? 'has-error' : '' }} ">
+	                    <div class="form-group {{ $errors->has('ruta') ? 'has-error' : '' }} ">
 		                    <label for="ruta" class="col-sm-4 control-label">Ruta:</label>
 		                    <div class="col-sm-8">
-								<textarea name="ruta" 
-									class="form-control"
-									placeholder="Ingresa aqui la ruta del destino">{{ old('ruta',$destinos->ruta) }}
-								</textarea>
+		                    	{!! Form::textarea('ruta',old('ruta',$destinos->ruta),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Ingresa aqui la ruta del destino.']) !!}
 								{!! $errors->first('ruta', '<span class="help-block">:message</span>') !!}
 		                    </div>
 	                    </div>
+
+	                    
                     </div>
               	</div>
               	<!-- /.box-body -->

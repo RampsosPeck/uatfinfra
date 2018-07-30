@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
         $user->name = "Ing. Jorge Denys Peralta Mamani";
         $user->cedula = "12345678";
         $user->celular= "75729198";
-		$user->email= "peralta.jorge.uatf@uatf.com";
+		$user->email= "peralta.jorge.uatf@gmail.com";
 		$user->password= bcrypt('123456');
         $user->active = true;
         $user->type = "Administrator";
@@ -83,6 +83,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 1;
         $user->save();
 
         $user = new User;
@@ -95,6 +96,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 2;
         $user->save();
 
         $user = new User;
@@ -107,6 +109,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 3;
         $user->save();
 
         $user = new User;
@@ -119,6 +122,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 4;
         $user->save();
 
         $user = new User;
@@ -131,6 +135,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 5;
         $user->save();
 
         $user = new User;
@@ -143,10 +148,11 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 6;
         $user->save();
 
         $user = new User;
-        $user->name = "Sr. Edgar Hermogenes Lazarte Veracruz";
+        $user->name = "Sr. Edgar Hermogenes Lazarte V.";
         $user->cedula = "974267";
         $user->celular= "70451365";
         $user->email= "garylv_5@hotmail.com";
@@ -155,6 +161,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 7;
         $user->save();
 
         $user = new User;
@@ -167,6 +174,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 8;
         $user->save();
 
         $user = new User;
@@ -179,6 +187,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 9;
         $user->save();
 
         $user = new User;
@@ -191,6 +200,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 10;
         $user->save();
 
         $user = new User;
@@ -203,6 +213,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 11;
         $user->save();
 
         $user = new User;
@@ -215,6 +226,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 12;
         $user->save();
 
         $user = new User;
@@ -227,6 +239,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Vicerrectorado";
+        $user->grade = 13;
         $user->save();
 
         $user = new User;
@@ -239,6 +252,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Rectorado";
+        $user->grade = 14;
         $user->save();
 
         $user = new User;
@@ -251,6 +265,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Depto. de Infraestructura";
+        $user->grade = 15;
         $user->save();
 
         $user = new User;
@@ -263,6 +278,7 @@ class UsersTableSeeder extends Seeder
         $user->type = "Conductor";
         $user->position = "AUTOMOTORES";
         $user->entidad = "Decanatura de Ciencias Agropecuarias";
+        $user->grade = 16;
         $user->save();
 
         $user = new User;

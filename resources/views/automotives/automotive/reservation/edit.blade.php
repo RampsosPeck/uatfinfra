@@ -15,34 +15,40 @@
               {{ csrf_field() }}
 		
             
-			<div class="form-group">
+			<div class="form-group {{ $errors->has('startdate') ? 'has-error' : '' }}">
                 <label for="startdate" class="col-sm-3 control-label">Fecha Inicial:</label>
-                <div class="input-group date col-md-8">
-                  <input name="startdate" 
-                  	type="text" 
-                  	class="form-control pull-right" 
-                  	id="datepicker1"
-                  	value="{{ old('startdate', Carbon::parse($reservas->startdate)->format('Y/m/d')) }}">
-                  		<div class="input-group-addon">
-		                    <i class="fa fa-calendar"></i>
-		                </div>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input name="startdate" 
+                            type="text" 
+                            class="form-control pull-right" 
+                            id="datepicker1"
+                            value="{{ old('startdate', Carbon::parse($reservas->startdate)->format('Y/m/d')) }}">
+                        <spam class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </spam>
+                    </div>
+                    {!! $errors->first('startdate', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
-        	<div class="form-group">
+        	<div class="form-group {{ $errors->has('enddate') ? 'has-error' : '' }}">
                 <label for="enddate" class="col-sm-3 control-label">Fecha Final:</label>
-                <div class="input-group date col-md-8">
-                    <input name="enddate" 
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input name="enddate" 
                         type="text" 
                         class="form-control pull-right" 
                         id="datepicker2"
                         value="{{ old('enddate', Carbon::parse($reservas->enddate)->format('Y/m/d')) }}">
-                  		<div class="input-group-addon">
+                  		<spam class="input-group-addon">
 		                    <i class="fa fa-calendar"></i>
-		                </div>
-                </div>
+		                </spam>
+                    </div>
+                    {!! $errors->first('enddate', '<span class="help-block">:message</span>') !!}
+                </div>        
             </div>
             @if (Auth::user()->type == "Jefatura" OR Auth::user()->type == "Supervisor" OR Auth::user()->type == "Administrator")
-            	<div class="form-group">
+            	<div class="form-group {{ $errors->has('user_id') ? 'has-error' : '' }}">
                 	<label for="user_id" class="col-sm-3 control-label">Encargado:</label>
                 	<div class="col-md-8 input-group">	
                 			<select name="user_id" class="form-control select2" data-placeholder="Seleccione un encargado" style="width: 100%;">
@@ -52,15 +58,16 @@
                                   {{ old('user_id', $reservas->user_id) == $user->id ? 'selected' : '' }}> {{ $user->name }} </option>
                 			@endforeach
                 			</select>
-                	</div>
-            	</div>
+                	   {!! $errors->first('user_id', '<span class="help-block">:message</span>') !!}
+            	    </div>   
+                </div>
             @else
             	<?php $id = Auth::user()->id; ?>
             	<input type="hidden" name="user_id" value="{{ $id }}" >
             @endif
                     
                    
-        	<div class="form-group">
+        	<div class="form-group {{ $errors->has('entity') ? 'has-error' : '' }}">
                 <label for="entity" class="	col-sm-3 control-label">Entidad: </label>
                	<div class="col-md-8 input-group">	
                     <input type="text" 
@@ -69,20 +76,18 @@
                     	id="entity" 
                     	placeholder="Ejm. Carrera de Ing. de Sistemas"
                         value="{{ old('entity', $reservas->entity) }}">
+                
+                {!! $errors->first('entity', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
-        	<div class="form-group">
+        	<div class="form-group {{ $errors->has('objetive') ? 'has-error' : '' }}">
                 <label for="objetive" class="col-sm-3 control-label">Objetivo:</label>
-                <div class="col-md-8 input-group">	
-                    <input type="text" 
-                    	name="objetive" 
-                    	class="form-control" 
-                    	id="objective" 
-                    	placeholder="Ejm. Viaje de Práctica"
-                        value="{{ old('objetive', $reservas->objetive) }}">
-                </div>	
+                <div class="col-md-8 input-group">	 
+                    {!! Form::textarea('objetive',old('objetive', $reservas->objetive),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Indique el objetivo y los lugares de práctica. Maximo 200 caracteres.']) !!}
+                    {!! $errors->first('objetive', '<span class="help-block">:message</span>') !!}
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('passengers') ? 'has-error' : '' }}">
                 <label for="passengers" class="col-sm-3	control-label">Pasajeros:</label>
                 <div class="col-md-8 input-group">		
                     <input type="number" 
@@ -91,7 +96,8 @@
                     	name="passengers" 
                     	placeholder="Ejm. 37"
                         value="{{ old('passengers', $reservas->passengers) }}">
-                </div>	
+                {!! $errors->first('passengers', '<span class="help-block">:message</span>') !!}
+                </div>
             </div>
 
 
@@ -104,7 +110,7 @@
 		    </center>
 
 		{!! Form::close() !!}
-		<center>
+		<center> <br />
 		 {!! Form::open(['route'=>['reservas.destroy',$reservas->id],'method'=>'DELETE']) !!}
 		                <button type="submit" class="btn btn-danger btn-sm " onClick="javascript: return confirm('¿Estas seguro de eliminar la reserva?');">
 		                   <b>Eliminar la solicitud</b> <i class="fa fa-trash" aria-hidden="true"></i> 

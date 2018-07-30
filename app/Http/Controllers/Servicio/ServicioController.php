@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
 use Session;
 use Redirect;
+use Alert;
+use Toastr;
 
 class ServicioController extends Controller
 {
@@ -71,7 +73,9 @@ class ServicioController extends Controller
                 'estado' => $request['estado'],
                 'comentario' => $resapro]);*/
 
-        Session::flash('message', "El estado fue actualizado.");
+        //Session::flash('message', "El estado fue actualizado.");
+        Alert::info('El estado fue actualizado...!!!');
+            Toastr::warning('El estado fue actualizado...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return Redirect::back();
     }
 
@@ -83,7 +87,12 @@ class ServicioController extends Controller
      */
     public function show($id)
     {
-        //
+        //return $id;
+        $general = General::where('id',$id)->first();
+        $si = 0;
+        $quien = "servicios";
+        //dd($general);
+        return view('mecanicos.devoluciones.create',compact('quien','general','si'));  
     }
 
     /**

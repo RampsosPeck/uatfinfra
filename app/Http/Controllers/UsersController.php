@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Uatfinfra\Http\Requests\UserSaveRequest;
 use Session;
 use Auth;
-
+use Alert;
+use Toastr;
 class UsersController extends Controller
 {
 	public function __construct()
@@ -60,7 +61,11 @@ class UsersController extends Controller
         $user->insertador   = Auth::user()->id;
         $user->save();
 
-        Session::flash('message','Usuario creado correctamente');
+        //Session::flash('message','Usuario creado correctamente');
+        Alert::success('Usuario creado correctamente...!!!');
+
+        Toastr::success('Usuario creado correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+
         return redirect('users');
         
         //return redirect('users')->with('flash', 'Añadiste al usuario correctamente!!!');
@@ -138,7 +143,11 @@ class UsersController extends Controller
             $user->save();
         }
 
-        Session::flash('message','Usuario editado correctamente...');
+        //Session::flash('message','Usuario editado correctamente...');
+        Alert::success('Usuario editado correctamente...!!!');
+
+        Toastr::success('Usuario editado correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+
         return redirect('users');
     }
 
@@ -151,7 +160,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        Session::flash('message','Usuario eliminado correctamente...');
+        Session::flash('info','Usuario eliminado correctamente...');
         return redirect('users');
     }
 }

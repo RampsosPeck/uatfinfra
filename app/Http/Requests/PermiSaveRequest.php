@@ -33,8 +33,7 @@ class PermiSaveRequest extends FormRequest
 
         if($this->method() !== 'POST')
         {
-            $rules = [
-            'user_id'       => 'required', 
+            $rules = [  
             'motivo'        => 'required|regex:/^[a-z 0-9 ñáéíóú -_ . ]+$/i|max:150',
             'fecha'         => 'required|date',
             'dias'          => 'required',

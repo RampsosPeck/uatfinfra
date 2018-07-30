@@ -4,8 +4,11 @@
 @include('alertas.success')
 <?php use Carbon\Carbon;?>
 <div class="container">
-    <div class="box box-primary">
+    <div class="box box-primary" style="background-color: #E5F2FF;">
         <div class="box-header text-center">
+
+                 {!!link_to_action('ReporteController@getDeclaratoria', $title = ' Declaratorias / Informes', $parameters = ' ', $attributes = ['class'=>'btn btn-sm btn-success fa fa-exclamation-circle pull-right','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Realizar la declaratoria en comisión.'])!!}
+            
             <h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE VIAJES</FONT></b></h3>
 		</div>
         <div class="box-body">

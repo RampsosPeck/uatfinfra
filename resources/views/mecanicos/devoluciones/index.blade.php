@@ -1,10 +1,11 @@
 @extends('automotives.layout')
 <?php 
-use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
+use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;
+use Uatfinfra\ModelServicios\General; ?>
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box box-info">
+    <div class="box box-info" style="background-color: #E5F2FF;">
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE MATERIAL DEVUELTO</FONT></b></h3></center>
 
@@ -17,6 +18,7 @@ use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
  				<thead>
  					<tr>
 						<th>Nro.</th>
+                        <th>Sección</th>
                         <th>Cod. Sol.</th>
                         <th>Serial</th>
                         <th>Fecha</th>
@@ -33,12 +35,18 @@ use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
                     @include('mecanicos.devoluciones.observar')
                     <tr>
                         <td class="text-center">{{ ++$key }}</td>
-                        @if ($devolucion->sol_id == 0)
-                            <td class="text-center">{{ "ninguno" }}</td>    
-                        @else
+                        <td class="text-center">{{ $devolucion->seccion }}</td>              
+                       
+                            @if($devolucion->seccion == "Mecánico de Buses")
                             <?php $soli = Solicitud::where('id',$devolucion->sol_id)->first(); ?>
                     	    <td class="text-center">{{ $soli->solmecodi }}</td>
-                        @endif
+                            @elseif($devolucion->seccion == "Administrador")
+                                <td class="text-center">{{ "ninguno" }}</td>
+                            @else
+                            <?php $solservi = General::where('id',$devolucion->sol_id)->first(); ?>
+                            <td class="text-center">{{ $solservi->coding }}</td>
+                            @endif
+            
                         <td>{{ $devolucion->serial }}</td>
                         <td>{{ $devolucion->fecha }}</td>
                         <td>{{ $devolucion->cantidad }}</td>
@@ -58,7 +66,7 @@ use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
 
                         </td>
                         @if ($devolucion->estado == 'ENVIADO')
-                            <td class="text-center" STYLE="background:#fcf8e3" data-toggle="tooltip" data-placement="left" title="La devolución está siendo tomada en cuenta por el encargado de AUTOMOTORES para su APROBACIÓN o OBSERVACIÓN">  
+                            <td class="text-center" STYLE="background:#fcf8e3" data-toggle="tooltip" data-placement="left" title="La devolución está siendo tomada en cuenta por el Administrador para su APROBACIÓN o OBSERVACIÓN">  
                              ENVIADO
                                  <br>
                                 <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalAprobar{{ $devolucion->id }}">Aprobar</button>
@@ -67,7 +75,7 @@ use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
                             </td>
                         @else 
                             @if ($devolucion->estado == 'APROBADO')
-                                <td class="text-center" STYLE="background:#dff0d8"  data-toggle="tooltip" data-placement="left" title="La devolución de material fue aprobado con éxito con el encargado de AUTOMOTORES. NOTA:{{ $devolucion->comentario }}">  
+                                <td class="text-center" STYLE="background:#dff0d8"  data-toggle="tooltip" data-placement="right" title="{{ $devolucion->comentario }}">  
                                  APROBADO
                                      <br>
                                     <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalAprobar{{ $devolucion->id }}">Aprobar</button>
@@ -75,7 +83,7 @@ use Uatfinfra\ModelSolicitudes\Solicitud; $si = 0;?>
                                     <button class="btn btn-warning btn-xs fa " data-toggle="modal" data-target="#modalObservar{{ $devolucion->id }}">Observar</button>
                                 </td>
                             @else
-                                <td class="text-center" STYLE="background:#f2dede" data-toggle="tooltip" data-placement="left" title="La devolución de material fue OBSERVADO comuniquese con el encargado de AUTOMOTORES. NOTA:{{ $devolucion->comentario }}">  
+                                <td class="text-center" STYLE="background:#f2dede" data-toggle="tooltip" data-placement="right" title="{{ $devolucion->comentario }}">  
                                  OBSERVADO
                                      <br>
                                     <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalAprobar{{ $devolucion->id }}">Aprobar</button>

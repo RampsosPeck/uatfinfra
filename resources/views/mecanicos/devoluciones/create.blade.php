@@ -21,11 +21,16 @@
 
 			    {{ csrf_field() }}
 				
-				@if ($si == "1" AND !empty($solicitud) )
-					<input type="hidden" name="sol_id" id="sol_id" value="{{ $solicitud->id }}">			
+				@if ($quien == "mecanico" AND !empty($solicitud) )
+					<input type="hidden" name="sol_id" id="sol_id" value="{{ $solicitud->id }}">	
+					<input type="hidden" name="seccion" id="seccion" value="Mecánico de Buses">
+				@elseif ($quien == "servicios" AND !empty($general) )
+					<input type="hidden" name="sol_id" id="sol_id" value="{{ $general->id }}">	
+					<input type="hidden" name="seccion" id="seccion" value="{{ $general->seccion }}">
 				@else
 					<input type="hidden" name="sol_id" id="sol_id" value="{{ "0" }}">
-			    @endif
+					<input type="hidden" name="seccion" id="seccion" value="Administrador">
+			    @endif 
 
 			    <div class="form-group{{ $errors->has('serial') ? ' has-error' : '' }}">
 			        <label for="serial" class="col-md-4 control-label">Serial:</label>

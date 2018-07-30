@@ -3,6 +3,7 @@
 namespace Uatfinfra\Http\Controllers\Automotive;
 
 use Uatfinfra\ModelAutomotores\Viaje;
+use Uatfinfra\ModelAutomotores\Reservation;
 use Uatfinfra\ModelAutomotores\Presupuesto;
 use Uatfinfra\ModelMecanico\Devolucion;
 use Uatfinfra\ModelSolicitudes\Solicitud;
@@ -15,7 +16,7 @@ use Session;
 use Auth;
 use Carbon\Carbon;
 use Redirect;
-
+use Alert;
 class CalendarioController extends Controller
 {
     /**
@@ -56,9 +57,13 @@ class CalendarioController extends Controller
             );
         }
         return response()->json($data);
-        */
+       
+       /*
         $viajes = Viaje::all();
-        return view('automotives.automotive.viaje.calendario',compact('viajes'));
+        return view('automotives.automotive.viaje.calendario',compact('viajes')); */
+        $viajes = \DB::select('select * from reservations');
+        $users = User::where('type','Enc. de Viaje')->where('position','U.A.T.F.')->get();
+        return view('automotives.automotive.reservation.calendario',compact('viajes','users'));
     }
 
     /**
@@ -93,7 +98,8 @@ class CalendarioController extends Controller
                 'comentario' => $resapro
                     ]);
  
-        Session::flash('message', "El estado fue actualizado.");
+        //Session::flash('message', "El estado fue actualizado.");
+        Alert::success('El estado fue actualizado....!!!');
         return Redirect::back();
     }
 

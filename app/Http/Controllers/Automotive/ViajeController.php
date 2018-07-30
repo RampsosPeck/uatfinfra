@@ -15,7 +15,8 @@ use Uatfinfra\User;
 use Carbon\Carbon;
 use Session;
 use Auth;
-
+use Alert;
+use Toastr;
 class ViajeController extends Controller
 {
     /**
@@ -256,7 +257,11 @@ class ViajeController extends Controller
         }
 
         //return back()->with('flash','Viaje creado completado correctamente...');
-        Session::flash('message','El viaje fue creado correctamente...');
+
+        //Session::flash('message','El viaje fue creado correctamente...');
+         Alert::success('El viaje fue creado correctamente...!!!');
+
+        Toastr::success('El viaje fue creado correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('calendario');
     }
 
@@ -508,7 +513,10 @@ class ViajeController extends Controller
         $ruta->viaje_id  = $viaje->id;
         $ruta->save();
 
-        Session::flash('message','El viaje fue ACTUALIZADO correctamente...');
+        //Session::flash('message','El viaje fue ACTUALIZADO correctamente...');
+        Alert::info('El viaje fue ACTUALIZADO correctamente...!!!');
+
+        Toastr::info('El viaje fue ACTUALIZADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('calendario');
 
     }
@@ -524,7 +532,11 @@ class ViajeController extends Controller
         Viaje::where('id',$id)
             ->update(['estado' => 'cancelado']);
 
-        Session::flash('message','El viaje fue CANCELADO correctamente...');
+        //Session::flash('message','El viaje fue CANCELADO correctamente...');
+
+        Alert::warning('El viaje fue CANCELADO correctamente...!!!');
+
+        Toastr::warning('El viaje fue CANCELADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('viajes');
     }
 

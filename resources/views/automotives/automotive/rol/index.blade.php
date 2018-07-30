@@ -3,13 +3,16 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
+     @include('automotives.automotive.rol.crear')
 <div class="box box-primary">
     <div class="box-header with-border ">
+        <a class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#modalPermi" ><i class="fa fa-minus-circle"></i>&nbsp; <b>Permisos de Viaje</b></a>
         <center>
           <h3 class="box-title">
             <font color="#007bff"><b>INFORME GENERAL DE VIAJES</b></font>
           </h3>
         </center>
+        
     </div>
     <div class="box-body">
         <div class="table-responsive">

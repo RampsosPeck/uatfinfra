@@ -3,7 +3,7 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box box-info">
+    <div class="box box-info" style="background-color: #E5F2FF;">
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO DEL MECÁNICO</FONT></b></h3></center>
             

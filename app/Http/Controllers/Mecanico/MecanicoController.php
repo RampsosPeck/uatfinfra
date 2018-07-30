@@ -10,6 +10,8 @@ use Uatfinfra\ModelSolicitudes\Solicitud;
 use Uatfinfra\Http\Requests\MecaConcreRequest;
 use Session;
 use Uatfinfra\User;
+use Alert;
+use Toastr;
 
 class MecanicoController extends Controller {
 	/**
@@ -110,7 +112,11 @@ class MecanicoController extends Controller {
 		//dd($solicitud);
 		$mecanicos = Mecanico::where('sol_id',$request->sol_id)->orderBy('id','ASC')->get();
 		//dd($mecanicos);
-		Session::flash('message','El trabajo fue ACTUALIZADO correctamente...');
+		
+		//Session::flash('message','El trabajo fue ACTUALIZADO correctamente...');
+		 Alert::info('El trabajo fue ACTUALIZADO correctamente...!!!');
+
+        Toastr::success('El trabajo fue ACTUALIZADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         
 		return view('mecanicos.create', compact('solicitud', 'user', 'vehiculo','mecanicos'));
 		
@@ -124,7 +130,10 @@ class MecanicoController extends Controller {
 	 */
 	public function destroy(Mecanico $mecanico) {
 		Mecanico::destroy($mecanico->id);
-        Session::flash('message','Trabajo eliminado correctamente...');
+        //Session::flash('message','Trabajo eliminado correctamente...');
+        Alert::error('Trabajo eliminado correctamente...!!!');
+
+        Toastr::warning('Trabajo eliminado correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return Redirect::back();
 
 

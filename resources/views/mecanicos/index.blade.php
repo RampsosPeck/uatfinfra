@@ -6,7 +6,7 @@ use Uatfinfra\ModelMecanico\Devolucion;?>
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box box-info">
+    <div class="box box-info" style="background-color: #E5F2FF;">
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO PARA EL  MECÁNICO</FONT></b></h3></center>
 
@@ -66,10 +66,10 @@ use Uatfinfra\ModelMecanico\Devolucion;?>
                             <td class="text-center" bgcolor="#bce8f1">{{ "SI" }}
                             {!!link_to_action('Mecanico\PedidoController@getImprimir', $title = ' Ver', $parameters = $pedido->id,  $attributes = ['class'=>'btn btn-info btn-xs btn-block fa fa-print','target'=>'_blank', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Vea el pedido de material para esta solicitud.'])!!}</td>
                         @endif
-                        <?php $material = Devolucion::where('sol_id',$solicitud->id)->count(); ?>
-                        <td class="text-center" bgcolor="#f2dede">
-                            <font color="red">Total: {{ $material }}</font> 
-                            {!!link_to_route('devoluciones.show', $title = ' Realizar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-primary btn-block btn-xs  fa fa-print', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Realiza la devolución de material.'])!!}
+                        <?php $material = Devolucion::where('sol_id',$solicitud->id)->where('seccion','Mecánico de Buses')->count(); ?>
+                        <td class="text-center" bgcolor="#f2dede"> 
+                            <font color="#3c8dbc">Total:</font><font color="#00c0ef">{{ $material }}</font> 
+                            {!!link_to_route('devoluciones.show', $title = ' Realizar', $parameters = $solicitud->id, $attributes = ['class'=>'btn btn-primary btn-block btn-xs  fa fa-reply-all', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Realiza la devolución de material.'])!!}
                         </td>
                     </tr>
                     @endforeach

@@ -3,11 +3,13 @@
 namespace Uatfinfra\Http\Controllers\Auth;
 
 use Uatfinfra\User;
+use Uatfinfra\Message;
 use Uatfinfra\ActivationToken;
 use Uatfinfra\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Uatfinfra\Notifications\MessageSent;
 
 class RegisterController extends Controller
 {
@@ -92,4 +94,33 @@ class RegisterController extends Controller
 
         return redirect('login')->withInfo('Te hemos enviado un link de activación a tu correo. Ingresa a tu correo electrónico y revice el email donde estará el link de activación!!!');
     }
+
+    protected function store(Request $request)
+    {
+        $this->validate($request, [ 
+            'body'         => 'required|max:190|min:20',
+            'name'         => 'required|max:50|min:8',
+            'email'        => 'required|max:50',
+            'celular'      => 'required|max:11|min:6',
+        ]);
+        //return $request;
+        $message = Message::create([
+            //'sender_id' => auth()->id(),
+            'sender_id'    => 10000,
+            'recipient_id' => 1,
+            'body'         => $request->body,
+            'name'         => $request->name,
+            'email'        => $request->email,
+            'celular'      => $request->celular
+        ]);
+
+        $recipient = User::where('type','Administrator')->where('position','WEB SITE')->first();
+
+        $recipient->notify(new MessageSent($message));
+
+        return back()->with('success', 'Mensaje enviado con éxito...!!!');
+    }
+    
+    
+
 }

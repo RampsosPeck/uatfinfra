@@ -29,7 +29,7 @@ class UserSaveRequest extends FormRequest
             'entidad' => 'required|regex:/^[a-z ñáéíóú -_ . ]+$/i|max:50',
             'name'    => 'required|regex:/^[a-z ñáéíóú . ]+$/i|max:50',
             'cedula'  => 'required|regex:/^[0-9 A-Z a-z]+$/i|between:6,10|unique:users,cedula', 
-            'email'   => 'max:50', 
+            'email'   => 'max:50|unique:users,email', 
             'celular' => 'max:10', 
             'password'=> 'max:12',
             'type'    => 'required',
@@ -63,7 +63,7 @@ class UserSaveRequest extends FormRequest
                 'celula.required'    => 'La cédula del usuario es obligatorio.',
                 'cedula.between'     => 'La cédula del usuario debe contener entre 6 y 10 caracteres.',
                 'cedula.unique'      => 'El usuario con está cédula ya fue registrado.',  
-                'type.required'      => 'El selector de tipo es obligatorio.',
+                'type.required'      => 'El tipo de usuario es obligatorio.',
                 'position.required'  => 'La posición es obligatorio.',
                 'active.required'    => 'El permiso es obligatorio.'
 

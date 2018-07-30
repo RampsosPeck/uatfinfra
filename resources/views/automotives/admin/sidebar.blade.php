@@ -53,9 +53,12 @@
     <li class="treeview {{ request()->is('informes*') ? 'active' : '' }}"">
         <a href="{!! URL::to('/informes') !!}"><i class="fa fa-file-text-o"></i> <span>Informes</span></a>
     </li>
-    <li class="treeview {{ request()->is('reservas*') ? 'active' : '' }}">
-        <a href="{!! URL::to('/reservas') !!}"><i class="fa fa-calendar-check-o"></i> <span>Reserva de Viajes </span>
-        </a>
+    <li class="treeview {{ request()->is('/calendario/create') ? 'active' : '' }}">
+       <!-- <a href="{!! URL::to('/reservas') !!}"><i class="fa fa-calendar-check-o"></i> <span>Reserva de Viajes </span>
+        </a> -->
+
+        <a href="{!! URL::to('/calendario/create') !!}"> <i class="fa fa-calendar-check-o"></i> <span> Reservas </span></a>
+
     </li>
     <li class="treeview {{ request()->is('solicitudes*') ? 'active' : '' }}">
         <a href="{!! URL::to('/solicitudes') !!}"><i class="fa fa-sitemap"></i> <span>Solicitud de Trabajo</span></a>
@@ -75,4 +78,5 @@
     <li class="treeview {{ request()->is('servicios*') ? 'active' : '' }}">
         <a href="{!! URL::to('/servicios') !!}"><i class="fa fa-sitemap"></i> <span>Servicios Generales</span></a>
     </li> 
+
 </ul>

@@ -4,17 +4,17 @@
   <span class="label label-warning">10</span>
 </a>
 <ul class="dropdown-menu">
-  <li class="header">You have 10 notifications</li>
+  <li class="header" style="background-color:#fcf8e3;">Tienes 10 notificaciones</li>
   <li>
     <!-- Inner Menu: contains the notifications -->
     <ul class="menu">
       <li><!-- start notification -->
         <a href="#">
-          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+          <i class="fa fa-users text-aqua"></i> 5 nuevos usuarios se registraron hoy
         </a>
       </li>
       <!-- end notification -->
     </ul>
   </li>
-  <li class="footer"><a href="#">View all</a></li>
+  <li class="footer"><a href="#">Ver todos</a></li>
 </ul>

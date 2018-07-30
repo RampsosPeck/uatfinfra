@@ -4,7 +4,7 @@ use Uatfinfra\ModelSolicitudes\Solicitud; ?>
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box box-info">
+    <div class="box box-info" style="background-color: #E5F2FF;">
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE PEDIDO DE MATERIAL DE LAS SOLICITUDES DE TRABAJO</FONT></b></h3></center>
 

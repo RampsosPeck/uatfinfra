@@ -29,6 +29,8 @@
 
       <link rel="shortcut icon" href="{!! URL::to('/img/favicon.png') !!}" />
 
+      {!! Html::style('/sweetalert/dist/sweetalert.css') !!}
+      <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     </head>
 <!--
 BODY TAG OPTIONS:
@@ -107,42 +109,32 @@ desired effect
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-6 text-center">
-                    @if (session()->has('impersonator_id'))
+              @if (session()->has('impersonator_id'))
+               
+                    
                         <center>
                           <form class="navbar-form " action="{{ route('impersonations.destroy') }}" method="POST" accept-charset="utf-8">{{ csrf_field() }} {{ method_field('DELETE') }}
                               <button type="submit" class="btn btn-xs btn-danger">Dejar de personificar</button>
                           </form>
                         </center>
-                    @else
-                      <a href="#">Friends</a>
-                    @endif
-                  </div>
-                  <div class="col-xs-6 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+                     
+              @endif
               <!-- Menu Footer-->
-              <li class="user-footer">
+              <li class="user-footer" style="background-color:#003466 ">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-success btn-flat">PERFIL</a>
                 </div>
                 <div class="pull-right">
                         <a href="{{ url('/logout') }}" 
                             onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();"
                                      class="btn btn-danger btn-flat">
-                            Salir
+                            SALIR
                         </a>
 
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
-                    
                 </div>
               </li>
             </ul>
@@ -221,10 +213,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        <strong>U.A.T.F. - 2018</strong>
+        <strong> &copy; {{ date('Y') }}. Created by <a href="https://www.facebook.com/jorge.peralta.3576224"><font color="#f39c12">Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy;<a href="https://www.facebook.com/jorge.peralta.3576224" target="__blank"> <font color="#f39c12"> Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong> 
+    <strong>U.A.T.F.</strong> 
   </footer>
 
   <!-- Control Sidebar -->
@@ -235,6 +227,11 @@ desired effect
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+     <!-- <script src="sweetalert/dist/sweetalert.min.js"></script>    -->
+    @include('sweet::alert')
+
 </div>
 <!-- ./wrapper -->
 
@@ -242,6 +239,8 @@ desired effect
 
 <!-- jQuery 2.2.3 -->
 {!! Html::script('/dashboard/jQuery/jquery-2.2.3.min.js') !!}
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::render() !!}
 <!-- Bootstrap 3.3.6 -->
 {!! Html::script('/dashboard/bootstrap/js/bootstrap.min.js') !!}
 <!-- AdminLTE App -->
@@ -249,6 +248,26 @@ desired effect
 
 @stack('scripts')
 
+<script type="text/javascript" charset="utf-8" async defer>
+  toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

@@ -123,13 +123,13 @@
         </tbody>
       </table> 
         {{ $date }} &nbsp;&nbsp;&nbsp;&nbsp;{{ $hour }}
-        <p style="float: right;">_____________________________<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $viaje->supervisor }} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ENCARGADO DE VIAJE</b><br></p><br /><br /><br /><br />
+        <p style="float: right;">_____________________________<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $viaje->supervisor }} <br><b>ENCARGADO DE AUTOMOTORES</b><br></p><br /><br /><br /><br />
       
       <center> <strong>INFORME DEL ENCARGADO DE VIAJE</strong> </center>
         <div id="informe">
           <center><br><b>Partida FECHA: ........ :........ :........ HORA: ........ :........ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Llegada FECHA: ........ :........ :........ HORA: ........ :........</b></center>
          <p padding='4px'>................................................................................................................................................................................................................................</p><p padding='4px'>................................................................................................................................................................................................................................</p> <p padding='4px'>................................................................................................................................................................................................................................</p><br>
-           <center> _____________________________<br> {{ $viaje->encargado->name }} <br>ENCARGADO DE VIAJE<br></center>
+           <center> _____________________________<br> {{ $viaje->encargado->name }} <br> <b> ENCARGADO DE VIAJE </b><br></center>
 
         </div> 
         <!--<center>_____________________________<br> {{ $viaje->Encargado->name }} <br>ENCARGADO DE AUTOMOTORES<br></center>

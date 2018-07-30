@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('type')->nullable();
             $table->string('position')->nullable();
             $table->string('entidad')->nullable();
+            $table->integer('grade')->nullable();
             $table->string('insertador')->nullable();
             $table->rememberToken();
             $table->timestamps();

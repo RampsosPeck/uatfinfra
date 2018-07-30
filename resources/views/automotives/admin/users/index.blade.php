@@ -3,7 +3,7 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box box-info" >
+    <div class="box box-info" style="background-color: #E5F2FF;">
     	<font color="#17a2b8"><span class="fa fa-users fa-2x form-control-feedback"></span></font>
         <div class="box-header">
         	<center>

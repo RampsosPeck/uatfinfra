@@ -15,6 +15,7 @@ class CreateDevolucionsTable extends Migration
     {
         Schema::create('devoluciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('seccion')->nullable();
             $table->unsignedInteger('sol_id')->nullable();
             $table->string('serial')->nullable();
             $table->date('fecha');
@@ -22,7 +23,7 @@ class CreateDevolucionsTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('detalle'); 
             $table->string('estado')->default('ENVIADO')->nullable();
-            $table->string('comentario',500)->nullable();
+            $table->string('comentario',500)->nullable(); 
             $table->timestamps();
         });
     }

@@ -8,7 +8,8 @@ use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\Http\Requests\DestinoSaveRequest;
 use Session;
 use Auth;
-
+use Alert;
+use Toastr;
 class DestinoController extends Controller
 {
     /**
@@ -44,7 +45,10 @@ class DestinoController extends Controller
 
         Destino::create($request->all());
         
-        Session::flash('message','El destino se inserto correctamente...');
+        //Session::flash('message','El destino se inserto correctamente...');
+        Alert::success('El destino se inserto correctamente...!!!');
+
+        Toastr::success('El destino se inserto correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('destinos');
     }
 
@@ -83,7 +87,10 @@ class DestinoController extends Controller
         $destino = Destino::find($id);
         $destino->update($request->all());
         $destino->save();  
-        Session::flash('message','El destino fue ACTUALIZADO correctamente...');
+        //Session::flash('message','El destino fue ACTUALIZADO correctamente...');
+        Alert::info('El destino fue ACTUALIZADO correctamente...!!!');
+
+        Toastr::info('El destino fue ACTUALIZADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('destinos'); 
     }
 

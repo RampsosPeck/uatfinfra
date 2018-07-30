@@ -12,8 +12,15 @@ use Uatfinfra\User;
 use Session;
 use Auth;
 
+use Alert;
+use Toastr;
 class VehiculoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
      /**
      * Display a listing of the resource.
      *
@@ -74,7 +81,10 @@ class VehiculoController extends Controller
 
         Photo::where('vehiculo_id', 10000)->update(['vehiculo_id' => $vehiculo->id]);
          
-        Session::flash('message','El vehículo se inserto correctamente...');
+        //Session::flash('message','El vehículo se inserto correctamente...');
+        Alert::success('El vehículo se inserto correctamente...!!!');
+
+        Toastr::success('El vehículo se inserto correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('vehiculos');
     }
 
@@ -142,7 +152,10 @@ class VehiculoController extends Controller
 
         $vehiculo->combustibles()->sync($request->get('oil_id'));
 
-        Session::flash('message','El vehículo fue editado corréctamente!!!');
+        //Session::flash('message','El vehículo fue editado corréctamente!!!');
+        Alert::info('El vehículo fue editado corréctamente...!!!');
+
+        Toastr::success('El vehículo fue editado corréctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('vehiculos');
     }
 
@@ -158,7 +171,10 @@ class VehiculoController extends Controller
 
         Photo::where('vehiculo_id', $id)->delete();
 
-        Session::flash('message','Vehículo eliminado correctamente...');
+       // Session::flash('message','Vehículo eliminado correctamente...');
+        Alert::error('Vehículo eliminado correctamente...!!!');
+
+        Toastr::warning('Vehículo eliminado correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('vehiculos');
         
     }

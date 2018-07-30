@@ -1,9 +1,10 @@
 @extends('automotives.layout')
-    
+<?php  
+use Uatfinfra\ModelMecanico\Devolucion;?>
 @section('content')
 @include('alertas.success')
 <div class="container ">
-    <div class="box box-info ">
+    <div class="box box-info " style="background-color: #E5F2FF;">
         <div class="box-header">
             <center><h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE SOLICITUDES DE TRABAJO DE LA SECCIÓN ELECTRICIDAD</FONT></b></h3></center>
             
@@ -24,7 +25,8 @@
                         <th>Descripción</th>
                         <th>Fecha</th>
                         <th>ESTADO</th>
-                        <th>Opciones</th>						
+                        <th>Opciones</th>	
+                        <th>Devolución M.</th> 					
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7" >
@@ -55,6 +57,11 @@
                             <button class="btn btn-success btn-xs fa " data-toggle="modal" data-target="#modalEstado{{ $general->id }}">Aprobar</button>
 
                             <button class="btn btn-warning btn-xs fa " data-toggle="modal" data-target="#modalObservar{{ $general->id }}">Observar</button>
+                        </td>
+                        <?php $material = Devolucion::where('sol_id',$general->id)->where('seccion','eléctrico')->count(); ?>
+                        <td class="text-center" bgcolor="#f2dede">
+                            <font color="red">Total: {{ $material }}</font>
+                            {!!link_to_route('servicios.show', $title = ' Realizar', $parameters = $general->id, $attributes = ['class'=>'btn btn-primary btn-block btn-xs fa fa-reply-all', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Realiza la devolución de material.'])!!}
                         </td>
                     </tr>
                     @endforeach

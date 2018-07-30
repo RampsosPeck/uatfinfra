@@ -16,7 +16,7 @@ class CreateActivationTokensTable extends Migration
         Schema::create('activation_tokens', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->string('token',60)->index();
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->nullable();
         });
     }
 

@@ -22,6 +22,7 @@ class CreateDestinosTable extends Migration
             $table->text('ruta')->nullable();
             $table->float('kilometraje');
             $table->time('tiempo')->nullable();
+            $table->string('antes')->nullable();
             $table->timestamps();
         });
     }

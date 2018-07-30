@@ -130,7 +130,7 @@
             <div class="inner">
               <h3><i class="fa fa-snowflake-o"></i></h3>
               <strong>
-                <p>{!!link_to_action('Servicio\GeneralController@getPlomeria', $title = 'SERV. GENERAL', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
+                <p>{!!link_to_action('Servicio\GeneralController@getSergene', $title = 'SERV. GENERAL', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
               </strong>
             </div>
             <div class="icon">

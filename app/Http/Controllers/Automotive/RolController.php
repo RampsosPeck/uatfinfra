@@ -8,9 +8,12 @@ use Uatfinfra\User;
 use Uatfinfra\ModelAutomotores\Viaje;
 use Uatfinfra\ModelAutomotores\Informe;
 use Uatfinfra\ModelAutomotores\PermiViaje;
+use Uatfinfra\ModelAutomotores\Tipo;
 use Uatfinfra\Http\Requests\PermiSaveRequest;
 use Session;
 use Auth;
+use Alert;
+use Toastr;
 
 class RolController extends Controller
 {
@@ -21,7 +24,7 @@ class RolController extends Controller
      */
     public function index()
     {	
-        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->get();
+        $choferes = User::where('type','Conductor')->where('position','AUTOMOTORES')->orderBy('grade','ASC')->get();
 
         $viajes = Viaje::where('estado','activo')->get();
         $totalvi = Viaje::where('estado','activo')->count();
@@ -51,7 +54,10 @@ class RolController extends Controller
     {
         PermiViaje::create($request->all());
         
-        Session::flash('message','El permiso se inserto correctamente...');
+        //Session::flash('message','El permiso se inserto correctamente...');
+        Alert::success('El permiso se inserto correctamente...!!!');
+
+        Toastr::success('El permiso se inserto correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('roles');
     }
 
@@ -92,7 +98,9 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permiviaje = PermiViaje::where('id',$id)->first();
+        $tipos = Tipo::get();
+        return view('automotives.automotive.rol.edit',compact('permiviaje','tipos'));
     }
 
     /**
@@ -102,9 +110,17 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PermiSaveRequest $request, $id)
     {
-        //
+        $permi = PermiViaje::find($id);
+        $permi->update($request->all());
+        $permi->save();  
+        
+       // Session::flash('message','El permiso fue EDITADO correctamente...');
+        Alert::info('El permiso fue EDITADO correctamente...!!!');
+
+        Toastr::success('El permiso fue EDITADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+        return redirect('roles');
     }
 
     /**

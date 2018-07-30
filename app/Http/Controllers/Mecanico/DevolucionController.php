@@ -5,10 +5,13 @@ use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\ModelMecanico\Devolucion;
 use Uatfinfra\ModelMecanico\Pedido;
 use Uatfinfra\ModelSolicitudes\Solicitud;
+use Uatfinfra\Http\Requests\DevolutionRequest;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use Uatfinfra\User;
+use Alert;
+use Toastr;
 
 class DevolucionController extends Controller
 {
@@ -40,11 +43,15 @@ class DevolucionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DevolutionRequest $request)
     {
         Devolucion::create($request->all());
         //Devolucion::where('id',$request->sol_id)->update(['active'=>false]);
-        Session::flash('message','La devolución  se guardo correctamente...');
+        //Session::flash('message','La devolución  se guardo correctamente...');
+
+        Alert::success('La devolución  se guardo correctamente...!!!');
+
+        Toastr::success('La devolución  se guardo correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('devoluciones');
     }
 
@@ -58,8 +65,10 @@ class DevolucionController extends Controller
     {
         //return $id;
         $solicitud = Solicitud::where('id',$id)->first();
-        $si = 1;
-        return view('mecanicos.devoluciones.create',compact('solicitud','si'));    
+        $si = 0;
+        $quien = "mecanico";
+        //dd($solicitud);
+        return view('mecanicos.devoluciones.create',compact('quien','solicitud','si'));    
     }
 
     /**
@@ -82,14 +91,18 @@ class DevolucionController extends Controller
      * @param  \Uatfinfra\ModelMecanico\Devolucion  $devolucion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DevolutionRequest $request, $id)
     {
         //return dd($id);
         //return dd($devolucion);
         $devolucion = Devolucion::find($id);
         $devolucion->update($request->all());
         $devolucion->save();  
-        Session::flash('message','La devolución fue ACTUALIZADA correctamente...');
+        
+        //Session::flash('message','La devolución fue ACTUALIZADA correctamente...');
+        Alert::info('La devolución fue ACTUALIZADA correctamente...!!!');
+
+        Toastr::success('La devolución fue ACTUALIZADA correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('devoluciones');
 
     }
@@ -104,7 +117,11 @@ class DevolucionController extends Controller
     {
         //dd($id);
         Devolucion::destroy($id);
-        Session::flash('message','La devolución fue eliminada correctamente...');
+        
+        //Session::flash('message','La devolución fue eliminada correctamente...');
+        Alert::error('La devolución fue eliminada correctamente...!!!');
+
+        Toastr::warning('La devolución fue eliminada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('devoluciones');
     }
 
@@ -120,9 +137,9 @@ class DevolucionController extends Controller
             //return "Aqui esta vacio en COMEN";
             if($request->estado == 'APROBADO')
             {
-                $resapro = 'La solicitud de trabajo fue APROBADA, el trabajo esta siendo procesado.';
+                $resapro = 'La devolución de material fue APROBADA por el Administrador.';
             }else{
-                $resapro = 'La solicitud de trabajo se encuentra OBSERVADO, comuniquese con el encargado de AUTOMOTORES.';
+                $resapro = 'La devolución de material fue OBSERVADO, comuniquese con el Administrador.';
             }
         }
                  
@@ -134,7 +151,10 @@ class DevolucionController extends Controller
                 'comentario' => $resapro
                     ]);
  
-        Session::flash('message', "El estado fue actualizado.");
+        //Session::flash('message', "El estado fue actualizado.");
+        Alert::info('El estado fue actualizado...!!!');
+
+        Toastr::warning('El estado fue actualizado..!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return Redirect::back();
     }
 

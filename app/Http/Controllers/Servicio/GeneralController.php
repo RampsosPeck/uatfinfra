@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use Uatfinfra\User;
 use Session;
 use Auth;
+use Alert;
+use Toastr;
 class GeneralController extends Controller
 {
     /*
@@ -68,36 +70,50 @@ class GeneralController extends Controller
             $generales->save();
 
             if ($request->seccion === "eléctrico") {
-            Session::flash('message','La solicitud de trabajo para el eléctrico fue creada correctamente...!!!');
+                //Session::flash('message','La solicitud de trabajo para el eléctrico fue creada correctamente...!!!');
+                Alert::success('Solicitud de trabajo para el eléctrico fue creada...!!!');
+                Toastr::success('La solicitud de trabajo para el eléctrico fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getElectrico');
             }
 
             if ($request->seccion === "jardinería") {
-                Session::flash('message','La solicitud de trabajo para jardinería fue creada correctamente...!!!');
+                //Session::flash('message','La solicitud de trabajo para jardinería fue creada correctamente...!!!');
+                Alert::success('Solicitud de trabajo para jardinería fue creada...!!!');
+                Toastr::success('La solicitud de trabajo para jardinería fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
                 return redirect()->action('Servicio\GeneralController@getJardineria');
             }
 
             if($request->seccion === "mecánico general") { 
-                Session::flash('message','La solicitud de trabajo para el mecánico general fue creada correctamente...!!!');
+                //Session::flash('message','La solicitud de trabajo para el mecánico general fue creada correctamente...!!!');
+                Alert::success('Solicitud de trabajo para el mecánico general fue creada...!!!');
+                Toastr::success('La solicitud de trabajo para el mecánico general fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
                 return redirect()->action('Servicio\GeneralController@getMegeneral');
             }
 
             if($request->seccion === "albañilería") { 
-                Session::flash('message','La solicitud de trabajo para albañilería fue creada correctamente...!!!');
+                //Session::flash('message','La solicitud de trabajo para albañilería fue creada correctamente...!!!');
+                Alert::success('Solicitud de trabajo para albañilería fue creada...!!!');
+                Toastr::success('La solicitud de trabajo para albañilería fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
                 return redirect()->action('Servicio\GeneralController@getAlbanileria');
             }
 
             if($request->seccion === "plomería") { 
-                Session::flash('message','La solicitud de trabajo para plomería fue creada correctamente...!!!');
+                //Session::flash('message','La solicitud de trabajo para plomería fue creada correctamente...!!!');
+                Alert::success('Solicitud de trabajo para plomería fue creada...!!!');
+                Toastr::success('La solicitud de trabajo para plomería fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
                 return redirect()->action('Servicio\GeneralController@getPlomeria');
             }
 
             if($request->seccion === "serv._general") { 
-                Session::flash('message','La solicitud de trabajo para serv. general fue creada correctamente...!!!');
+                //Session::flash('message','La solicitud de trabajo para serv. general fue creada correctamente...!!!');
+                Alert::success('Solicitud de trabajo para serv. general fue creada...!!!');
+                Toastr::success('La solicitud de trabajo para serv. general fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
                 return redirect()->action('Servicio\GeneralController@getSergene');
             }
 
-            Session::flash('message','La solicitud de trabajo fue creada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo fue creada correctamente...!!!');
+            Alert::success('La solicitud de trabajo fue creada correctamente...!!!');
+            Toastr::success('La solicitud de trabajo fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect('generales');
 
         }else{
@@ -113,7 +129,9 @@ class GeneralController extends Controller
             $generales->fecha       =  $date->toFormattedDateString();
             $generales->save();
 
-            Session::flash('message','La solicitud de trabajo para mantenimiento general fue creada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo para mantenimiento general fue creada correctamente...!!!');
+            Alert::success('Solicitud de trabajo para mantenimiento general fue creada...!!!');
+            Toastr::success('La solicitud de trabajo para mantenimiento general fue creada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getMantegene');
 
 
@@ -177,41 +195,57 @@ class GeneralController extends Controller
 
         //dd($request->seccion);
         if($request->seccion === "eléctrico") { 
-            Session::flash('message','La solicitud de trabajo para los eléctricos fue editada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo para los eléctricos fue editada correctamente...!!!');
+            Alert::info('Solicitud de trabajo para los eléctricos fue editada...!!!');
+            Toastr::success('La solicitud de trabajo para los eléctricos fue editada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getElectrico');
         } 
 
         if($request->seccion === "jardinería") {
-            Session::flash('message','La solicitud de trabajo  para jardinería fue editada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo  para jardinería fue editada correctamente...!!!');
+            Alert::info('Solicitud de trabajo  para jardinería fue editada...!!!');
+            Toastr::success('La solicitud de trabajo  para jardinería fue editada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getJardineria');
         }
 
         if($request->seccion === "mecánico general") { 
-            Session::flash('message','La solicitud de trabajo para el mecánico general fue editada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo para el mecánico general fue editada correctamente...!!!');
+            Alert::info('Solicitud de trabajo para el mecánico general fue editada...!!!');
+            Toastr::success('La solicitud de trabajo para el mecánico general fue editada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getMegeneral');
         } 
 
         if($request->seccion === "albañilería") { 
-            Session::flash('message','La solicitud de trabajo para el albañil fue editada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo para el albañil fue editada correctamente...!!!');
+            Alert::info('Solicitud de trabajo para el albañil fue editada...!!!');
+            Toastr::success('La solicitud de trabajo para el albañil fue editada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getAlbanileria');
         } 
 
         if($request->seccion === "plomería") { 
-            Session::flash('message','La solicitud de trabajo para plomería fue editada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo para plomería fue editada correctamente...!!!');
+            Alert::info('Solicitud de trabajo para plomería fue editada...!!!');
+            Toastr::success('La solicitud de trabajo para plomería fue editada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getPlomeria');
         } 
 
         if($request->seccion === "serv._general") { 
-            Session::flash('message','La solicitud de trabajo para serv. general fue editada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo para serv. general fue editada correctamente...!!!');
+            Alert::info('Solicitud de trabajo para serv. general fue editada...!!!');
+            Toastr::success('La solicitud de trabajo para serv. general fue editada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getSergene');
         } 
 
         if($request->seccion === "mant._general") { 
-            Session::flash('message','La solicitud de trabajo para mantenimiento general fue editada correctamente...!!!');
+            //Session::flash('message','La solicitud de trabajo para mantenimiento general fue editada correctamente...!!!');
+            Alert::info('Solicitud de trabajo para mantenimiento general fue editada...!!!');
+            Toastr::success('La solicitud de trabajo para mantenimiento general fue editada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
             return redirect()->action('Servicio\GeneralController@getMantegene');
         } 
 
-        Session::flash('message','La solicitud fue EDITADA correctamente...');
+        //Session::flash('message','La solicitud fue EDITADA correctamente...');
+        Alert::info('La solicitud fue EDITADA correctamente...!!!');
+            Toastr::success('La solicitud fue EDITADA correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('generales');
 
     }

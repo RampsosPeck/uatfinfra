@@ -12,7 +12,9 @@ use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\Http\Requests\ReserSaveRequest;
 use Session;
 use Auth;
-
+use Alert;
+use Toastr;
+use Redirect;
 
 class ReservationController extends Controller
 {
@@ -48,18 +50,35 @@ class ReservationController extends Controller
     {
         //return $request;
         //Reservation::create($request->all());
-        
-        $reserva = new Reservation;
-        $reserva->entity = $request->get('entity');
-        $reserva->objetive = $request->get('objetive');
-        $reserva->passengers = $request->get('passengers');
-        $reserva->startdate = $request->get('startdate');
-        $reserva->enddate = $request->get('enddate');
-        $reserva->user_id = $request->get('user_id');
-        $reserva->save();
+ 
+        $a = strtotime($request['startdate']);
+        $b = strtotime($request['enddate']);
+        if($a > $b)
+        {
+            Alert::error('La fecha final no debe ser mayor a la inicial...!!!');   
+            Toastr::error('No se creó la reserva de viaje correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+            return Redirect::to('/calendario/create');          
+        }else{
 
-        Session::flash('message','La reserva fue CREADA correctamente...');
-        return redirect('reservas');
+            $fi = $request->get('enddate');
+            $fi = $fi.' 23:59:59';
+            
+            $reserva = new Reservation;
+            $reserva->entity = $request->get('entity');
+            $reserva->objetive = $request->get('objetive');
+            $reserva->passengers = $request->get('passengers');
+            $reserva->startdate = $request->get('startdate');
+            $reserva->enddate = $fi;
+            $reserva->user_id = $request->get('user_id');
+            $reserva->save();
+
+            //Session::flash('message','La reserva fue CREADA correctamente...');
+            Alert::success('La reserva de viaje fue CREADA correctamente...!!!');
+
+            Toastr::success('La reserva fue CREADA correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+            return redirect('reservas');
+
+        }
         
     }
 
@@ -110,7 +129,12 @@ class ReservationController extends Controller
         $reserva = Reservation::find($id);
         $reserva->fill($request->all());
         $reserva->save();
-        Session::flash('message','La reserva fue EDITADA correctamente...');
+
+        //Session::flash('message','La reserva fue EDITADA correctamente...');
+         Alert::info('La reserva fue EDITADA correctamente...!!!');
+
+        Toastr::success('La reserva fue EDITADA correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+
         return redirect('reservas');
     }
 
@@ -123,7 +147,11 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         Reservation::destroy($id);
-        Session::flash('message','La reserva de viaje Eliminada correctamente...');
+        
+        //Session::flash('message','La reserva de viaje Eliminada correctamente...');
+        Alert::error('La reserva de viaje Eliminada correctamente...!!!');
+
+        Toastr::warning('La reserva de viaje Eliminada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('reservas');
     }
 }

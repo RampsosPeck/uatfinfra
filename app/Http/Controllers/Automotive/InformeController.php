@@ -11,6 +11,8 @@ use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\Http\Requests\InfoSaveRequest;
 use Session;
 use Auth;
+use Alert;
+use Toastr;
 
 class InformeController extends Controller
 {
@@ -45,7 +47,11 @@ class InformeController extends Controller
     {
         //return $request;
         Informe::create($request->all());
-        Session::flash('message','Informe del viaje CREADO correctamente...');
+
+        //Session::flash('message','Informe del viaje CREADO correctamente...');
+        Alert::success('El INFORME del viaje fue CREADO correctamente...!!!');
+
+        Toastr::success('El INFORME del viaje fue CREADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('informes');
     }
 
@@ -93,7 +99,11 @@ class InformeController extends Controller
         $informe = Informe::find($id);
         $informe->fill($request->all());
         $informe->save();
-        Session::flash('message','El informe fue EDITADO correctamente...');
+
+        //Session::flash('message','El informe fue EDITADO correctamente...');
+
+        Alert::info('El informe fue EDITADO correctamente...!!!');
+        Toastr::info('El informe fue EDITADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('informes');
     }
 
@@ -106,7 +116,11 @@ class InformeController extends Controller
     public function destroy($id)
     {
         Informe::destroy($id);
-        Session::flash('message','Informe de viaje Eliminado correctamente...');
+
+        //Session::flash('message','Informe de viaje Eliminado correctamente...');
+
+        Alert::error('Informe de viaje Eliminado correctamente...!!!');
+        Toastr::error('Informe de viaje Eliminado correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('informes');
     }
     public function getImprimir($id)
@@ -151,7 +165,9 @@ class InformeController extends Controller
         Informe::where('id',$id)
           ->update(['estado' => "APROBADO"]);  
 
-        Session::flash('message','El informe fue aprobado correctamente, actualizando el km. del vehículo.');
+        //Session::flash('message','El informe fue aprobado correctamente, actualizando el km. del vehículo.');
+        Alert::info('El informe fue aprobado correctamente, actualizando el km. del vehículo.!!');
+        Toastr::info('El informe fue aprobado correctamente, actualizando el km. del vehículo.!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('informes');
     }
 
@@ -170,7 +186,9 @@ class InformeController extends Controller
         Informe::where('id',$id)
           ->update(['estado' => "OBSERVADO"]);
 
-        Session::flash('message','El informe de viaje fue OBSERVADO!!!');
+        //Session::flash('message','El informe de viaje fue OBSERVADO!!!');
+        Alert::warning('El informe de viaje fue OBSERVADO.!!!');
+        Toastr::warning('El informe de viaje fue OBSERVADO.!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('informes');        
     } 
 

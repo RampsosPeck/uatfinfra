@@ -9,6 +9,8 @@ use Uatfinfra\ModelSolicitudes\Solicitud;
 use Uatfinfra\Http\Requests\PedidoSaveRequest;
 use Session;
 use Uatfinfra\User;
+use Alert;
+use Toastr;
 
 class PedidoController extends Controller
 {
@@ -51,7 +53,7 @@ class PedidoController extends Controller
         //dd($date);
         $coding = "$cantivia"."/".$date;
 
-        Pedido::create($request->all());
+        //Pedido::create($request->all());
 
         $pedido = new Pedido;
         $pedido->sol_id        = $request->get('sol_id');
@@ -97,7 +99,11 @@ class PedidoController extends Controller
         $pedido->save();
 
         Solicitud::where('id',$request->sol_id)->update(['active'=>false]);
-        Session::flash('message','El pedido se inserto correctamente...');
+        
+        //Session::flash('message','El pedido se inserto correctamente...');
+
+        Alert::success('El pedido se inserto correctamente...!!!');
+        Toastr::success('El pedido se inserto correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('pedidos');
     }
 
@@ -140,7 +146,10 @@ class PedidoController extends Controller
         $pedido = Pedido::find($pedido->id);
         $pedido->update($request->all());
         $pedido->save();  
-        Session::flash('message','El pedido fue ACTUALIZADO correctamente...');
+
+        //Session::flash('message','El pedido fue ACTUALIZADO correctamente...');
+        Alert::info('El pedido fue ACTUALIZADO correctamente...!!!');
+        Toastr::success('El pedido fue ACTUALIZADO correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('pedidos');
 
     }
@@ -154,7 +163,10 @@ class PedidoController extends Controller
     public function destroy(Pedido $pedido)
     {
         Pedido::destroy($pedido->id);
-        Session::flash('message','Pedido eliminado correctamente...');
+        
+        //Session::flash('message','Pedido eliminado correctamente...');
+        Alert::error('Pedido eliminado correctamente...!!!');
+        Toastr::warning('Pedido eliminado correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('pedidos');
     }
 

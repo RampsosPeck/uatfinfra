@@ -14,9 +14,8 @@
 @section('menu-notification')
 
 	<!-- Esto es notificaciones para el ADMINISTRATOR -->
-	@include('automotives.admin.notification')
 	@if (Auth::user()->active != "true")
-
+		@include('automotives.admin.notification')
 	@endif
 
 @endsection
@@ -24,9 +23,9 @@
 @section('menu-task')
 	
 	<!-- Esto es tareas para el ADMINISTRATOR -->
-	@include('automotives.admin.task')
+	
 	@if (Auth::user()->active != "true")
-
+		@include('automotives.admin.task')
 	@endif
 
 @endsection

@@ -178,6 +178,7 @@ return [
         Uatfinfra\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Kamaln7\Toastr\ToastrServiceProvider::class,
 
     ],
 
@@ -233,6 +234,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Toastr' => Kamaln7\Toastr\Facades\Toastr::class,
     ],
 
 ];

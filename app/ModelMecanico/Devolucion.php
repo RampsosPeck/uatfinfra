@@ -8,7 +8,7 @@ class Devolucion extends Model
 {
     protected $table = 'devoluciones';
 
-	protected $fillable = ['sol_id', 'serial', 'fecha', 'cantidad', 'nombre', 'detalle'];
+	protected $fillable = ['seccion','sol_id', 'serial', 'fecha', 'cantidad', 'nombre', 'detalle'];
 
 
 }

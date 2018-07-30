@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use Uatfinfra\User;
 use Session;
 use Auth;
+use Alert;
+use Toastr;
 
 
 class SolicitudController extends Controller
@@ -64,7 +66,9 @@ class SolicitudController extends Controller
         $solicitud->fecha       =  $date->toFormattedDateString();
         $solicitud->save();
 
-        Session::flash('message','La solicitud de trabajo para el mecanico se creo correctamente...');
+        //Session::flash('message','La solicitud de trabajo para el mecanico se creo correctamente...');
+        Alert::success('Solicitud de trabajo para el mecánico se creo correctamente...!!!');
+        Toastr::success('La solicitud de trabajo para el mecánico se creo correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
 
         return redirect('solicitudes');
     }
@@ -122,7 +126,9 @@ class SolicitudController extends Controller
         $solicitud->fecha       =  $date->toFormattedDateString();
         $solicitud->save();
 
-        Session::flash('message','La solicitud fue EDITADA correctamente...');
+        //Session::flash('message','La solicitud fue EDITADA correctamente...');
+        Alert::info('La solicitud fue EDITADA correctamente...!!!');
+        Toastr::success('La solicitud fue EDITADA correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('solicitudes');
     }
 
@@ -135,7 +141,9 @@ class SolicitudController extends Controller
     public function destroy($id)
     {
         Solicitud::destroy($id);
-        Session::flash('message','La solicitud fue eliminada correctamente...');
+        //Session::flash('message','La solicitud fue eliminada correctamente...');
+         Alert::error('La solicitud fue eliminada correctamente...!!!');
+        Toastr::warning('La solicitud fue eliminada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
         return redirect('solicitudes');
     }
 }

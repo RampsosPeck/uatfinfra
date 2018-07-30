@@ -4,7 +4,7 @@
 @include('alertas.success')
 <?php use Carbon\Carbon;?>
 <div class="container">
-    <div class="box box-info">
+    <div class="box box-info" style="background-color: #E5F2FF;">
         <div class="box-header text-center">
             <center>
         		<h3 class="box-title"><font color="#17a2b8" ><b>LISTA DE RESERVACIONES</b></font></h3>

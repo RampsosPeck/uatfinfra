@@ -1,6 +1,15 @@
 @extends('layout')
 
 @section('content')
+
+@if(session()->has('flash'))    
+    <div class="container">
+        <div class="alert alert-success">
+            {{ session('flash') }}
+        </div>
+    </div>
+@endif 
+
 <body id="page-top">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -99,29 +108,47 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <form id="contactForm" name="sentMessage" novalidate>
+
+            <form method="POST" action="{{ route('messages.store') }}" >
+
+              {{ csrf_field() }}
               <div class="row">
                 <div class="col-md-4">
-                  <div class="form-group">
-                    <label><font color="#fed136">Nombre Completo</font></label>
-                    <input class="form-control" id="name" type="text" placeholder="Su nombre completo *" required data-validation-required-message="Porfavor introdusca su nombre.">
-                    <p class="help-block text-danger"></p>
+                  <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                      <label><font color="#fed136">Nombre Completo</font></label>
+                      <input class="form-control"   name="name" type="text" placeholder="Su nombre completo *" value="{{ old('name') }}">
+                     <font color="red">
+                      {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                      </font>
                   </div>
-                  <div class="form-group">
-                    <label><font color="#fed136">Correo Electrónico</font></label>
-                    <input class="form-control" id="email" type="email" placeholder="Su correo electrónico *" required data-validation-required-message="Porfavor introdusca su dirección de correo electrónico.">
-                    <p class="help-block text-danger"></p>
+                  <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                      <label><font color="#fed136">Correo Electrónico</font></label>
+                      <input class="form-control" id="email" name="email" type="email" placeholder="Su correo electrónico *" required data-validation-required-message="Porfavor introdusca su dirección de correo electrónico." value="{{ old('email') }}">
+                      <p class="help-block text-danger">
+                      @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                      @endif</p>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group {{ $errors->has('celular') ? 'has-error' : '' }}">
                     <label><font color="#fed136">Número de teléfono</font></label>
-                    <input class="form-control" id="phone" type="tel" placeholder="Su número de teléfono *" required data-validation-required-message="Porfavor introdusca su número de teléfono.">
-                    <p class="help-block text-danger"></p>
+                    <input class="form-control" type="number" name="celular" placeholder="Su número de teléfono *"  value="{{ old('calular') }}">
+                    <p class="help-block text-danger">
+                    @if ($errors->has('celular'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('celular') }}</strong>
+                          </span>
+                      @endif</p>
                   </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="form-group"><br>
-                        <textarea rows="6" id="men" name="body" type="text" class="form-control" placeholder="Ingresa aqui el contenido de tu mensaje" required data-validation-required-message="Porfavor introdusca su mensaje."></textarea>
-                        <p class="help-block text-danger"></p>
+                    <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}"><br>
+                        
+                        {!! Form::textarea('body',old('body'),['class'=>'form-control', 'rows'=>'6','placeholder'=>'Ingresa aqui el contenido de tu mensaje.', 'id'=>'men','data-validation-required-message'=>'Porfavor introdusca su mensaje.']) !!}
+                        <p class="help-block text-danger">
+                        {!! $errors->first('body', '<span class="help-block">:message</span>') !!}</p>
+
                     </div>
                 </div>
                 <div class="clearfix"></div>

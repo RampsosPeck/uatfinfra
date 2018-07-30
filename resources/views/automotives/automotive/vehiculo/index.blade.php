@@ -4,7 +4,7 @@
 <?php use Uatfinfra\ModelAutomotores\Photo;?>
 @include('alertas.success')
 <div class="container">
-    <div class="box box-info">
+    <div class="box box-primary" style="background-color: #E5F2FF;">
         <div class="box-header text-center">
             <h3 class="box-title"><b>LISTA DE VEHÍCULOS</b></h3>
 		</div>

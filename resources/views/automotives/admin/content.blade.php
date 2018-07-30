@@ -6,7 +6,7 @@
           <!-- small box -->
           <div class="small-box bg-aquacontrol">
             <div class="inner">
-            <?php $cantvi = Viaje::count(); ?>
+            <?php $cantvi = Viaje::where('estado','activo')->count(); ?>
               <h3>{{$cantvi}}</h3>
 
               <p>VIAJES REALIZADOS</p>
@@ -22,14 +22,14 @@
           <!-- small box -->
           <div class="small-box bg-greencontrol">
             <div class="inner">
-              <h3>53</h3>
+              <h3><i class="fa fa-bar-chart" aria-hidden="true"></i></h3>
 
               <p>GRÁFICA DE VIAJES</p>
             </div>
             <div class="icon">
               <i class="fa fa-bar-chart"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('reportes.index')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -53,14 +53,14 @@
           <!-- small box -->
           <div class="small-box bg-redcontrol">
             <div class="inner">
-              <h3>65</h3>
+              <h3><i class="fa fa-tachometer" aria-hidden="true"></i></h3>
 
               <p>GRÁFICA DE COMBUSTIBLE</p>
             </div>
             <div class="icon">
               <i class="fa fa-pie-chart"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('reportes.create')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
     <!-- ./col -->

@@ -15,6 +15,15 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
+Route::post('messages', 'Auth\RegisterController@store')->name('messages.store');
+Route::get('messages/{id}', 'NotificationsController@show')->name('messages.show');
+
+Route::get('notificaciones', 'NotificationsController@index')->name('notifications.index');  
+Route::patch('notificaciones/{id}', 'NotificationsController@read')->name('notifications.read'); 
+
+Route::delete('notificaciones/{id}', 'NotificationsController@destroy')->name('notifications.destroy');
+ 
+
 /*Route::get('redirect', function () {
 	Alert::success('Success Message', 'Optional Title');
 	return redirect('/');
@@ -119,3 +128,10 @@ Route::post('/vehiculos/{request}/photosupdate', 'Automotive\PhotoController@upd
 Route::delete('photos/{foto}','Automotive\PhotoController@destroy')->name('photos.destroy');
 
 Route::post('devoaprobar', 'Mecanico\DevolucionController@getAprobar');
+
+Route::resource('reportes', 'ReporteController'); 
+
+Route::get('declaratorias', 'ReporteController@getDeclaratoria');
+ 
+
+

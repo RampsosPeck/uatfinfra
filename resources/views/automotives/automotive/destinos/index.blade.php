@@ -3,7 +3,7 @@
 @section('content')
 @include('alertas.success')
 <div class="container">
-    <div class="box">
+    <div class="box box-primary" style="background-color: #E5F2FF;">
         <div class="box-header text-center">
             <h3 class="box-title"><b>LISTA DE DESTINOS</b></h3>
 		</div>
@@ -20,7 +20,8 @@
                         <th>Ruta</th>
                         <th>Kilometraje</th>
                         <th>Tiempo</th>
-                        <th>Opciones</th>						
+                        <th>Antecedentes</th>
+                        <th>Opciones</th>	                        					
 					</tr>
  				</thead>
  				<tbody bgcolor="#d9edf7">
@@ -34,6 +35,7 @@
                         <td>{{ $destino->ruta }}</td>
                         <td>{{ $destino->kilometraje }}</td>
                         <td>{{ $destino->tiempo }}</td>
+                        <td>{{ $destino->antes }}</td>
                         <td>
                             {!!link_to_route('destinos.edit', $title = 'Editar', $parameters = $destino->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
                         </td>

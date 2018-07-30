@@ -7,7 +7,7 @@
     use Uatfinfra\ModelAutomotores\Vehiculo; 
     use Uatfinfra\ModelAutomotores\Viaje;?>
 <div class="container">
-    <div class="box box-primary">
+    <div class="box box-primary" style="background-color: #E5F2FF;">
         <div class="box-header text-center">
             <h3 class="box-title"><b><FONT COLOR="#3c8dbc">LISTA DE INFORMES</FONT></b></h3>
 		</div>
