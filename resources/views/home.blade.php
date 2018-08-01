@@ -127,7 +127,7 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer" style="background-color:#003466 ">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-success btn-flat">PERFIL</a>
+                  <a href="{{ route('perfil.view') }}" class="btn btn-success btn-flat">PERFIL</a>
                 </div>
                 <div class="pull-right">
                         <a href="{{ url('/logout') }}" 

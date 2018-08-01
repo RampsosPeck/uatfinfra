@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 class SocialLoginController extends Controller
 {
     public function redirectToSocialNetwork($socialNetwork)
-    { 
-    	return Socialite::driver($socialNetwork)->redirect();
+    {     	
+        return Socialite::driver($socialNetwork)->redirect();         
     }
     public function handleSocialNetworkCallback($socialNetwork)
     {

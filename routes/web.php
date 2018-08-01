@@ -134,7 +134,9 @@ Route::resource('reportes', 'ReporteController');
 Route::get('declaratorias', 'ReporteController@getDeclaratoria');
  
 
-Route::get('login/{socialNetwork}', 'SocialLoginController@redirectToSocialNetwork')->name('login.social');
-Route::get('login/{socialNetwork}/callback', 'SocialLoginController@handleSocialNetworkCallback');
+Route::get('login/{socialNetwork}', 'SocialLoginController@redirectToSocialNetwork')->name('login.social')->middleware('guest','social_network');
+Route::get('login/{socialNetwork}/callback', 'SocialLoginController@handleSocialNetworkCallback')->middleware('guest');
 
-
+Route::get('perfil', function () {
+	return view('automotives.admin.perfil');
+})->name('perfil.view');

@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'guest' => \Uatfinfra\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
+        'social_network' => \Uatfinfra\Http\Middleware\RedirectIfSocialNetworkNotSupported::class
     ];
 }

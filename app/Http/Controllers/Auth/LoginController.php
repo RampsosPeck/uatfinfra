@@ -44,7 +44,7 @@ class LoginController extends Controller
 
         $credentials['active'] = true;
 
-        Alert::success('BIENVENIDO...!', 'Ingreso Exitoso....!!!');
+        Alert::success('BIENVENID@...!', 'Ingreso Exitoso....!!!');
         
         return $credentials;
     }

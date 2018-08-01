@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         $user->active = true;
         $user->type = "Administrator";
         $user->position = "WEB SITE";
-        $user->entidad = "Ingeniería de Sistemas";
+        $user->entidad = "Ingeniero de Sistemas";
 		$user->save();
 
         $user = new User;
