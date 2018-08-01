@@ -18,6 +18,7 @@
   {!! Html::style('/dashboard/css/AdminLTE.min.css') !!}
   <!-- iCheck -->
   {!! Html::style('/entrar/iCheck/square/blue.css') !!}
+  {!! Html::style('/sweetalert/dist/sweetalert.css') !!}
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,7 +35,13 @@
 </head>
 
 <body>
-
+@if(session()->has('flash'))    
+    <div class="container">
+        <div class="alert alert-success">
+            {{ session('flash') }}
+        </div>
+    </div>
+@endif 
 @yield('content')
 
 
@@ -56,10 +63,12 @@
 
 <!-- jQuery 3 -->
 {!! Html::script('/entrar/jquery.min.js') !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 {!! Html::script('/dashboard/bootstrap/js/bootstrap.min.js') !!}
 <!-- iCheck -->
 {!! Html::script('/entrar/icheck.min.js') !!}
+@include('sweet::alert')
 <script>
   $(function () {
     $('input').iCheck({

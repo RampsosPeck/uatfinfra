@@ -94,14 +94,19 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="/dashboard/img/user.png" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+               
+                  <img src="{{ Auth::user()->avatar }}" class="user-image" alt="User Image">
+              
+              
+              <!-- <img src="/dashboard/img/user.png" class="user-image" alt="User Image">
+
+                hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><strong>{{ Auth::user()->name }}  <font color="#F44336">({{ mb_strtoupper(Auth::user()->type, 'UTF-8') }})</font></strong></span>
             </a>
             <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
+              <!-- The user image in the menu  <img src="/dashboard/img/user.png" class="img-circle" alt="User Image"> -->
               <li class="user-header">
-                <img src="/dashboard/img/user.png" class="img-circle" alt="User Image">
+                <img src="{{ Auth::user()->avatar }}" class="img-circle" alt="User Image">
 
                 <p>
                   <font color="yellow"> {{ Auth::user()->name }}</font> <br> <strong>{{ Auth::user()->position }}</strong>

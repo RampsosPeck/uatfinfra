@@ -134,4 +134,7 @@ Route::resource('reportes', 'ReporteController');
 Route::get('declaratorias', 'ReporteController@getDeclaratoria');
  
 
+Route::get('login/{socialNetwork}', 'SocialLoginController@redirectToSocialNetwork')->name('login.social');
+Route::get('login/{socialNetwork}/callback', 'SocialLoginController@handleSocialNetworkCallback');
+
 

@@ -70,10 +70,10 @@
       <div class="social-auth-links text-center">
         <p>- OH también! -</p>
       <div class="col-md-6">
-        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Ingresa con tu cuenta de facebook</a>
+        <a href="{{ route('login.social','facebook') }}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Ingresa con tu cuenta de facebook</a>
       </div>
       <div class="col-md-6">
-        <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Ingresa con tu cuenta de Google+</a>
+        <a href="{{ route('login.social','google') }}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Ingresa con tu cuenta de Google+</a>
       </div>
       </div>
     </div>

@@ -42,7 +42,7 @@
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                     <button class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar mensaje.">
-                                       <i class="fa fa-trans" aria-hidden="true"></i>
+                                       <i class="fa fa-times-circle" aria-hidden="true"></i>
                                     </button>
                                 </form>
                             </div>

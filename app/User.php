@@ -107,4 +107,14 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
+    public function profiles()
+    {
+        return $this->hasMany(SocialProfile::class);
+    }
+
+    public function getAvatarAttribute()
+    {
+        return optional($this->profiles->last())->avatar ?? url('dashboard/img/user.png');
+    }
+
 }
