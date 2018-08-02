@@ -26,6 +26,7 @@ class CreateVehiculosTable extends Migration
             $table->string('chasis')->unique()->nullable();
             $table->string('motor')->unique()->nullable();
             $table->string('cilindrada')->nullable();
+            $table->string('valor')->default('apta para salir de viajes')->nullable();
             $table->enum('estado',['ÓPTIMO','MANTENIMIENTO','DESUSO']);
             $table->unsignedInteger('user_id');
             $table->timestamps();

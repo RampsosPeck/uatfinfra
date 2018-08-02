@@ -131,7 +131,8 @@ Route::post('devoaprobar', 'Mecanico\DevolucionController@getAprobar');
 
 Route::resource('reportes', 'ReporteController'); 
 
-Route::get('declaratorias', 'ReporteController@getDeclaratoria');
+Route::get('declaratorias', 'ReporteController@getDeclaratoria')->name('declaratorias');
+Route::post('dec_info_viajes', 'ReporteController@getInformeviajes')->name('declaratorias.viajes');
  
 
 Route::get('login/{socialNetwork}', 'SocialLoginController@redirectToSocialNetwork')->name('login.social')->middleware('guest','social_network');

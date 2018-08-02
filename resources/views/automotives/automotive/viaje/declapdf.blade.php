@@ -7,9 +7,9 @@
         <div class="box-header text-center">             
             <h3 class="box-title"><b><FONT COLOR="#3c8dbc">DECLARATORIAS EN COMISIÓN</FONT></b></h3>
 		</div>
-        <div class="box-body"> 
+        <div class="box-body" style="background-color: #bce8f1;"> 
             <form class="form-horizontal" method="POST" action="{{ route('reportes.store') }}"  accept-charset="utf-8"> {{ csrf_field() }}
-            <div class="row form-group">
+            <div class="row form-group" >
                 <label for="titulo" class="col-sm-1 control-label">Título:</label>
                 <div class="col-sm-2  {{ $errors->has('titulo') ? 'has-error' : '' }}">
                     <input type="text" 
@@ -41,7 +41,7 @@
                     </div>
                 </div>  
                 <div class="col-md-1">
-                     <button type="submit" target="_blank" class="btn btn-info">Enviar</button>
+                     <button type="submit"  target="_blank" class="btn btn-info">Enviar</button>
                 </div>
             </div>
             </form>
@@ -55,8 +55,8 @@
                   </div>
                 </div> 
                 <div class="box-body" style="background-color: #bce8f1;">
+                    
                     <div class="form-group">
-
                         <label for="titulo" class="col-md-1 control-label">Título:</label>
                         <div class="col-md-3 {{ $errors->has('titulo') ? 'has-error' : '' }}">
                             <input type="text" 
@@ -111,7 +111,7 @@
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-info btn-block">Enviar</button>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
 
@@ -126,6 +126,7 @@
                 </div> 
                 <div class="box-body" style="background-color: #bce8f1;">
                     <div class="form-group">
+                        <form class="form-horizontal" method="POST" action="{{ route('declaratorias.viajes') }}"  accept-charset="utf-8"> {{ csrf_field() }}
                         <div class="col-sm-2"></div>
                         <label for="titulo" class="col-sm-1 control-label">Título:</label>
                         <div class="col-sm-4  {{ $errors->has('titulo') ? 'has-error' : '' }}">
@@ -137,8 +138,9 @@
                         </div>
                                      
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-info btn-block">Enviar</button>
+                            <button type="submit" target="_blank" class="btn btn-info btn-block">Enviar</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
