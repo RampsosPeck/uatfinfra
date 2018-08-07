@@ -141,3 +141,7 @@ Route::get('login/{socialNetwork}/callback', 'SocialLoginController@handleSocial
 Route::get('perfil', function () {
 	return view('automotives.admin.perfil');
 })->name('perfil.view');
+
+Route::post('info_vvehiculo', 'ReporteController@getInformevehiculo')->name('informe.vehiculo');
+
+

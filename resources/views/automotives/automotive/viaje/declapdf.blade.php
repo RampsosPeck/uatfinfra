@@ -55,7 +55,7 @@
                   </div>
                 </div> 
                 <div class="box-body" style="background-color: #bce8f1;">
-                    
+                <form class="form-horizontal" method="POST" action="{{ route('informe.vehiculo') }}"  accept-charset="utf-8"> {{ csrf_field() }}    
                     <div class="form-group">
                         <label for="titulo" class="col-md-1 control-label">Título:</label>
                         <div class="col-md-3 {{ $errors->has('titulo') ? 'has-error' : '' }}">
@@ -111,7 +111,8 @@
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-info btn-block">Enviar</button>
                         </div>
-                    </div> 
+                    </div>
+                </form> 
                 </div>
             </div>
 

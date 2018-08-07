@@ -87,14 +87,14 @@
     
           <tr> 
               <td class="km" colspan="1"></td> 
-              <td class="km" colspan="3"><br><br><br>__________________________<br>{{ $supervisor->name }}<br><b>Encargado de Autotransportes</b>
+              <td class="km" colspan="3"><br><br><br>__________________________<br>{{ $admin->name }}<br><b>Admr. del Sistema Web de Infraestructura</b>
               </td>
               
           </tr> 
           <tr> 
               <td class="km" colspan="4"></td> 
 
-              <td class="km" colspan="2">VoBo</td> 
+              <td class="km" colspan="2">V.º B.º</td> 
               <br />
               <td class="km" colspan="2"><br><br>__________________________<br>{{ $jefe->name }}<br><b>JEFE DE INFRAESTRUCTURA</b>
               </td>
@@ -102,7 +102,7 @@
       </table> 
     </header> 
     <footer>
-      <center>Nuevo Sistema Web © 2018 Depto. INFRAESTRUCTURA</center>
+      <center>Nuevo Sistema Web © {{ date('Y') }} Depto. INFRAESTRUCTURA</center>
     </footer>
   </body>
 </html>

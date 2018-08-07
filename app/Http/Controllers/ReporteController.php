@@ -71,7 +71,7 @@ class ReporteController extends Controller
              
         }
 
-        $supervisor = User::where('type','Supervisor')->where('position','AUTOMOTORES')->first();
+        $admin = User::where('type','Administrator')->where('position','WEB SITE')->first();
         $jefe = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
 
         $titulo = $request->titulo;
@@ -80,7 +80,7 @@ class ReporteController extends Controller
 
         $date = date('d-m-Y');
 
-        $view =  \View::make('automotives.automotive.viaje.pdfDeclaratorias', compact('date','viajes','fecha1','fecha2','titulo','supervisor','jefe'))->render();
+        $view =  \View::make('automotives.automotive.viaje.pdfDeclaratorias', compact('date','viajes','fecha1','fecha2','titulo','admin','jefe'))->render();
         $pdf  = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('carta', 'landscape');
         return $pdf->stream('Declaratorias'.$viajes[0]->fecha_inicial.'.pdf');
@@ -141,14 +141,66 @@ class ReporteController extends Controller
 
     public function getInformeviajes(Request $request)
     {
+        //dd($request);
         $viajes = Viaje::whereBetween('fecha_inicial', [date('Y').'-01-01', date('Y').'-12-01'])->get();
+        $informes = Informe::whereBetween('fecha_inicial', [date('Y').'-01-01', date('Y').'-12-01'])->get();
+        $date = date('d-m-Y');
+        $vehiculos = Vehiculo::all();
+        $vehis = Vehiculo::where('valor','Ciudad')->get();
+        $titulo = $request->titulo;
 
-        $vehiculos = Vehiculo::where('estado','ÓPTIMO')->get();
+        $admin = User::where('type','Administrator')->where('position','WEB SITE')->first();
+        $jefe = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
 
-        $view =  \View::make('automotives.automotive.viaje.pdfDeclaratorias', compact('date','viajes','fecha1','fecha2','titulo'))->render();
+        $view =  \View::make('automotives.automotive.viaje.pdfInfoAnual', compact('date','viajes','vehiculos','vehis','admin','jefe','titulo','informes'))->render();
         $pdf  = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('carta', 'landscape');
-        return $pdf->stream('Declaratorias'.$viajes[0]->fecha_inicial.'.pdf');
+        return $pdf->stream('Informe'.date('Y').'.pdf');
+
+    }
+
+    public function getInformevehiculo(Request $request)
+    {
+        if($request->fecha1 > $request->fecha2)
+        {
+            return redirect()->route('declaratorias')->with('warning','La fecha inicial no debe ser mayor a la fecha final.');
+        }
+        
+        if($request->titulo == null OR  $request->fecha1 == null OR  $request->fecha2 == null)
+        {
+            return redirect()->route('declaratorias')->with('warning','Inserte el título, vehículo y las dos fechas...!'); 
+        }
+        // dd($request);
+        $titulo = $request->titulo;
+
+        $viajes = \DB::table('viajes')
+                    ->where('vehiculo_id',$request->vehiculo)
+                    ->whereBetween('fecha_inicial', [$request->fecha1, $request->fecha2])->get();
+        //dd($viajes);
+         if(($viajes)->isEmpty())
+        {
+            return redirect()->route('declaratorias')->with('warning','No hay viajes desde el '. $request->fecha1.' hasta el '. $request->fecha2. ' para el vehículo');            
+        }
+        //dd($viajes);
+        //dd(Informe::where('viaje_id',3)->get());
+        foreach($viajes as $viaje)
+        { 
+            if( (Informe::where('viaje_id',$viaje->id)->get())->isEmpty()) 
+            {
+                return redirect()->route('declaratorias')->with('warning','Existe informes de viajes sin realizar...!');
+            }
+             
+        }
+
+        $admin = User::where('type','Administrator')->where('position','WEB SITE')->first();
+        $jefe = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
+        $date = date('d-m-Y');
+        $vehiculo = Vehiculo::where('id',$request->vehiculo)->first();
+
+        $view =  \View::make('automotives.automotive.viaje.pdfInfoVehi', compact('date','viajes','admin','jefe','titulo','vehiculo'))->render();
+        $pdf  = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('carta', 'portrait');
+        return $pdf->stream('Informe'.$vehiculo->placa.'.pdf'); 
 
     }
 

@@ -143,7 +143,7 @@
       </div>
     </main>
     <footer>
-        <center>Nuevo Sistema Web © 2018 Depto. INFRAESTRUCTURA</center>
+        <center>Nuevo Sistema Web © {{ date('Y') }} Depto. INFRAESTRUCTURA</center>
     </footer>
   </body>
 </html>
