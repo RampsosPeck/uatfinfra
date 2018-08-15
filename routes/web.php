@@ -144,4 +144,23 @@ Route::get('perfil', function () {
 
 Route::post('info_vvehiculo', 'ReporteController@getInformevehiculo')->name('informe.vehiculo');
 
+/*Route::get('error', function(){ 
+    abort(500);
+});*/
+
+Route::get('policy', function(){
+	return view('policy');
+})->name('politicas');
+
+Route::middleware('role:Administrator')
+	->put('users/{user}/roles', 'UsersRolesController@update')
+	->name('admin.users.roles.update');
+
+Route::middleware('role:Administrator')
+	->put('users/{user}/permissions', 'UsersPermissionsController@update')
+	->name('admin.users.permissions.update');
+
+Route::resource('roless', 'RolesController');
+Route::resource('permissions', 'PermissionsController');
+
 

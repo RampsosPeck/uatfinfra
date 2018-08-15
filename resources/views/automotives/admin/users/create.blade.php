@@ -114,9 +114,19 @@
                     </div>
                 	</div>
               	</div>
+              	
               	<!-- /.box-body -->
               	<div class="box-footer">
-
+					<div class="row col-md-12">
+						<div class="form-group col-md-6">
+		              		<label>Roles</label>
+		              		@include('automotives.admin.users.roles.checkboxes')
+		              	</div>
+		              	<div class="form-group col-md-6">
+		              		<label>Permisos</label>
+		              		@include('automotives.admin.users.permissions.checkboxes', ['model' => $user ])
+	              		</div> 
+					</div>
               	@if (Auth::user()->type == "Administrator" && Auth::user()->position == "WEB SITE")
               		<div class="col-sm-3 {{ $errors->has('type') ? 'has-error' : '' }}">
 	                	{!! Form::select('type', config('tipo.type'), null, ['class' => 'form-control  select2','placeholder'=>'Types Users','style'=>'width: 100%;']) !!}

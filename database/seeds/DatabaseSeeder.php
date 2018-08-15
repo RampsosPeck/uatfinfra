@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Seeder; 
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+       
+        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         $this->call(UsersTableSeeder::class);
         $this->call(ReservationTableSeeder::class);
         $this->call(DestinoTableSeeder::class);
@@ -19,5 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiciosTableSeeder::class);
         $this->call(CombustibleTableSeeder::class);
 
+        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
+    
 }

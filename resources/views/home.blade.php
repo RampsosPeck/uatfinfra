@@ -109,8 +109,8 @@ desired effect
                 <img src="{{ Auth::user()->avatar }}" class="img-circle" alt="User Image">
 
                 <p>
-                  <font color="yellow"> {{ Auth::user()->name }}</font> <br> <strong>{{ Auth::user()->position }}</strong>
-                  <small> <font color="yellow"><b>Potosí 26 de Dic. 2017</b></font> </small>
+                  <font color="yellow"> {{ Auth::user()->name }}</font> <br> <strong>{{ Auth::user()->getRoleDisplayNames() }}</strong>
+                  <small> <font color="yellow"><b>Desde: {{ auth()->user()->created_at->format('d/M/Y') }} </b></font> </small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -218,7 +218,7 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        <strong> &copy; {{ date('Y') }}. Created by <a href="https://www.facebook.com/jorge.peralta.3576224"><font color="#f39c12">Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong>
+        <strong> <a href="{{ route('politicas') }}">&copy;</a> {{ date('Y') }}. Created by <a href="https://www.facebook.com/jorge.peralta.3576224"><font color="#f39c12">Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong>
     </div>
     <!-- Default to the left -->
     <strong>U.A.T.F.</strong> 
@@ -228,7 +228,7 @@ desired effect
   <aside class="control-sidebar control-sidebar-dark">
       @yield('content-sidebar')
   </aside>
-  <!-- /.control-sidebar -->
+  <!-- /.control-sidebar-->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>

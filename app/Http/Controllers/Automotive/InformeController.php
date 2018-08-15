@@ -23,7 +23,9 @@ class InformeController extends Controller
      */
     public function index()
     {
-        $informes =  Informe::all();
+        //$informes =  Informe::all();
+        
+        $informes = Informe::allowed()->get();
         return view('automotives.automotive.informes.index',compact('informes'));
     }
 
@@ -63,6 +65,8 @@ class InformeController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('create',new Informe);
+
         $viaje = Viaje::where('id',$id)->first();
         //return $viaje;
         $vehiculos  = Vehiculo::all();
@@ -77,11 +81,14 @@ class InformeController extends Controller
      * @param  \Uatfinfra\Informe  $informe
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Informe $informe)
     {
-        $informe = Informe::where('id',$id)->first();
+        //dd( $informe);
+        $this->authorize('update',$informe);
+
+        $informes = Informe::where('id',$informe->id)->first();
         $vehiculos  = Vehiculo::all();
-        $viajeCodigo = Viaje::where('id',$informe->viaje_id)->pluck('codigo');
+        $viajeCodigo = Viaje::where('id',$informes->viaje_id)->pluck('codigo');
         $conductores= User::where('type','Conductor')->where('active',true)->get();
         return view('automotives.automotive.informes.edit',compact('informe','conductores','vehiculos','viajeCodigo'));
 
@@ -94,9 +101,12 @@ class InformeController extends Controller
      * @param  \Uatfinfra\Informe  $informe
      * @return \Illuminate\Http\Response
      */
-    public function update(InfoSaveRequest  $request, $id)
+    public function update(InfoSaveRequest  $request, Informe $informe)
     {
-        $informe = Informe::find($id);
+       
+        $this->authorize('update',$informe);
+
+        $informe = Informe::find($informe->id);
         $informe->fill($request->all());
         $informe->save();
 
@@ -113,9 +123,13 @@ class InformeController extends Controller
      * @param  \Uatfinfra\Informe  $informe
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Informe $informe)
     {
-        Informe::destroy($id);
+
+        $this->authorize('delete',$informe);
+
+
+        Informe::destroy($informe->id);
 
         //Session::flash('message','Informe de viaje Eliminado correctamente...');
 

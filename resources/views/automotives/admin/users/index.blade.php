@@ -9,6 +9,10 @@
         	<center>
         		<h3 class="box-title"><font color="#17a2b8" ><b>LISTA DE USUARIOS</b></font></h3>
         	</center>
+          @can('create',$users->first())
+            <a href="{{ route('users.create') }}" class="btn btn-info pull-right">
+            <i class="fa fa-plus"></i> Crear Uusuario </a>
+          @endcan
 		</div>
         <div class="box-body">
         <div class="table-responsive">
@@ -20,7 +24,7 @@
 						<th>Cédula</th>
 						<th>Celular</th>
 						<th>Email</th>
-						<th>Tipo</th>
+						<th>Rol</th>
 						<th>Entidad</th>
 						<th>Activo</th>
 						<th>Acciones</th>
@@ -34,7 +38,7 @@
 						<td>{{ $user->cedula }}</td>
 						<td>{{ $user->celular }}</td>
 						<td>{{ $user->email }}</td>
-						<td>{{ $user->type }}</td>
+						<td>{{ $user->getRoleNames()->implode(', ') }}</td>
 						<td>{{ $user->entidad }}</td>
 						@if($user->active === true)
 							<td class="text-center"><font color="green"><b>{{ "SI" }}</b></font></td>
@@ -42,7 +46,7 @@
 							<td class="text-center"><font color="red"><b>{{ "NO" }}</b></font></td>
 						@endif
 						<td>
-
+            
 							@canImpersonate($user->id)			
 								<form action="{{ route('impersonations.store') }}" method="POST" accept-charset="utf-8">
 									{{ csrf_field() }}
@@ -52,9 +56,14 @@
 
 								</form>
 							@endcanImpersonate
-							
-							{!!link_to_route('users.edit', $title = 'Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary btn-xs btn-block fa fa-pencil-square-o'])!!}
-
+							<center>
+              @can('update', $user)
+							   {!!link_to_route('users.edit', $title = ' ', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary btn-xs fa fa-pencil-square-o'])!!}
+              @endcan
+              @can('view', $user)
+                  {!!link_to_route('users.show', $title = ' ', $parameters = $user->id, $attributes = ['class'=>'btn btn-info btn-xs  fa fa-eye'])!!}
+              @endcan
+              </center>
 						</td>
 					</tr>
 					@endforeach

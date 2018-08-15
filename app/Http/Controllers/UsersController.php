@@ -5,6 +5,9 @@ namespace Uatfinfra\Http\Controllers;
 use Uatfinfra\User;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Requests\UserSaveRequest;
+use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Session;
 use Auth;
 use Alert;
@@ -18,7 +21,8 @@ class UsersController extends Controller
 	
     public function index()
     {
-    	$users = User::all();
+        //$users = User::all();
+    	$users = User::allowed()->get();
     	return view('automotives.admin.users.index',compact('users'));
     }
     /**
@@ -28,7 +32,16 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('automotives.admin.users.create');
+
+        //return view('automotives.admin.users.create');
+        $user = new User;
+
+        $this->authorize('create',$user);
+        
+        $roles = Role::with('permissions')->get();
+        $permissions = Permission::pluck('name','id');
+        return view('automotives.admin.users.create',compact('user','roles','permissions'));
+
     }
 
     /**
@@ -40,7 +53,7 @@ class UsersController extends Controller
     public function store(UserSaveRequest $request)
     {
         //return $request;
-
+        $this->authorize('create', new User);
 
         if($request->get('password') === null ){
             $pass =  bcrypt($request->get('cedula'));  
@@ -61,6 +74,18 @@ class UsersController extends Controller
         $user->insertador   = Auth::user()->id;
         $user->save();
 
+        //Asignamos los roles
+        if($request->filled('roles'))//Si el usuario lleno el campo roles
+        {
+            $user->assignRole($request->roles);
+        }
+            
+        //Asignamos los permisos
+        if($request->filled('permissions'))//Si el usuario lleno el campo ermissions
+        {
+            $user->givePermissionTo($request->permissions);
+        }
+        
         //Session::flash('message','Usuario creado correctamente');
         Alert::success('Usuario creado correctamente...!!!');
 
@@ -82,9 +107,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $this->authorize('view',$user);
+        //dd($user);
+        return view('automotives.admin.users.show',compact('user'));
     }
 
     /**
@@ -93,12 +120,16 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
+        $this->authorize('update',$user);
         //dd($id);
-        $user = User::find($id);
-        //dd($user);
-        return view('automotives.admin.users.edit',compact('user'));
+        //$user = User::find($id);
+         
+        //$roles = Role::pluck('name','id');
+        $roles = Role::with('permissions')->get();
+        $permissions = Permission::pluck('name','id');
+        return view('automotives.admin.users.edit',compact('user','roles','permissions'));
 
     }
 
@@ -109,14 +140,16 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserSaveRequest $request, $id)
+    public function update(UserSaveRequest $request, User $user)
     {
+
+        $this->authorize('update',$user);
 
         //Verificamos si el usuario esta modificando el password 
         if($request->get('password') === null )
         {
             //En el caso de que no mande ningun password se mantiene 
-            $user = User::find($id);
+            $user = User::find($user->id);
             $user->name         = $request->get('name');
             $user->cedula       = $request->get('cedula');
             $user->celular      = $request->get('celular');
@@ -129,7 +162,7 @@ class UsersController extends Controller
             $user->save();
         }else{
             //En el caso de que mande el password
-            $user = User::find($id);
+            $user = User::find($user->id);
             $user->name         = $request->get('name');
             $user->cedula       = $request->get('cedula');
             $user->celular      = $request->get('celular');
@@ -157,9 +190,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        User::destroy($id);
+        $this->authorize('delete',$user);
+
+        User::destroy($user->id);
         Session::flash('info','Usuario eliminado correctamente...');
         return redirect('users');
     }

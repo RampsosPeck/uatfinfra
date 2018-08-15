@@ -49,7 +49,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <span class="copyright"><font color="#fff"><b>COPYRIGHT&copy; </b></font><a href="https://www.facebook.com/jorge.peralta.3576224" target="_blank"><font color="#fec503"><b>ING. JORGE PERALTA</b></font></a></span>
+            <span class="copyright"><font color="#fff"><b><a href="{{ route('politicas') }}">&copy;</a> {{ date('Y') }}. Created by </b></font><a href="https://www.facebook.com/jorge.peralta.3576224" target="_blank"><font color="#fec503"><b>ING. JORGE PERALTA</b></font></a></span>
           </div>
           <div class="col-md-4">
             <font color="#fff"><b>U.A.T.F. - 2018</b></font>

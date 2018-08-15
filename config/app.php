@@ -179,7 +179,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Kamaln7\Toastr\ToastrServiceProvider::class,
-
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*

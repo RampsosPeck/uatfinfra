@@ -62,7 +62,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <span class="copyright"><font color="#fff"><b>&copy; {{ date('Y') }}. Created by </b></font><a href="https://www.facebook.com/jorge.peralta.3576224" target="_blank"><b>ING. JORGE PERALTA</b></a></span>
+            <span class="copyright"><font color="#fff"><b><a href="{{ route('politicas') }}" style="background-color: yellow;">&copy;</a> {{ date('Y') }}. Created by </b></font><a href="https://www.facebook.com/jorge.peralta.3576224" target="_blank"><b>ING. JORGE PERALTA</b></a></span>
  
           </div>
           <div class="col-md-4">

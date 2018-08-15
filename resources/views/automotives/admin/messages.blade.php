@@ -11,7 +11,7 @@
     <!-- inner menu: contains the messages -->
     <ul class="menu">
       <li><!-- start message -->
-        <a href="#">
+        <a href="{{ route('notifications.index') }}">
           <div class="pull-left">
             <!-- User Image -->
             <img src="/img/conductor.png" class="img-circle" alt="User Image">

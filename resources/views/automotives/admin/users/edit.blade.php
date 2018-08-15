@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-	<div class="col-md-11">
+	<div class="col-md-8">
     <!-- Horizontal Form -->
         <div class="box box-info">
         	<font color="#00c0ef"><span class="fa fa-user-circle-o fa-2x form-control-feedback"></span></font>
@@ -146,16 +146,67 @@
               	</div>
               	<!-- /.box-footer -->
             {!! Form::close() !!}
+			@can('delete', $user->id)
+	            {!! Form::open(['route'=>['users.destroy',$user->id],'method'=>'DELETE']) !!}
+	                
+	                <center>
+		                <button type="submit" class="btn btn-danger btn-sm">
+		                    <span class="glyphicon glyphicon-trash">   Eliminar</span> 
+		                </button>
+	                </center>
+	                
+	       		{!! Form::close() !!}
+       		@endcan
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<h3 class="box-title">Roles</h3>
+			</div>
+			<div class="box-body">
+			@role('Administrator')
+				<form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
+					{{ csrf_field() }} {{ method_field('PUT') }}
+					
+					@include('automotives.admin.users.roles.checkboxes')
 
-            {!! Form::open(['route'=>['users.destroy',$user->id],'method'=>'DELETE']) !!}
-                
-                <center>
-	                <button type="submit" class="btn btn-danger btn-sm">
-	                    <span class="glyphicon glyphicon-trash">   Eliminar</span> 
-	                </button>
-                </center>
-                
-       		{!! Form::close() !!}
+					<button class="btn btn-info btn-block">Actualizar roles</button>
+				</form>
+			@else 
+				<ul class="list-group">
+					@forelse($user->roles as $role)
+						<li class="list-group-item">{{ $role->name }} </li>
+					@empty
+						<li class="list-group-item">No tiene roles</li>
+					@endforelse
+				</ul>
+			@endrole
+			</div>
+		</div>
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<h3 class="box-title">Permisos</h3>
+			</div>
+			<div class="box-body">
+			@role('Administrator')
+				<form method="POST" action="{{ route('admin.users.permissions.update', $user) }}">
+					{{ csrf_field() }} {{ method_field('PUT') }}
+					
+					@include('automotives.admin.users.permissions.checkboxes', ['model' => $user ])
+
+					<button class="btn btn-info btn-block">Actualizar permisos</button>
+				</form>
+			@else 
+				<ul class="list-group">
+					@forelse($user->permissions as $permission)
+						<li class="list-group-item">{{ $permission->name }} </li>
+					@empty
+						<li class="list-group-item">No tiene permisos</li>
+					@endforelse
+				</ul>
+			@endrole
+			</div>
 		</div>
 	</div>
 </div>

@@ -3,7 +3,7 @@
 namespace Uatfinfra\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Uatfinfra\User;
 use Alert;
 use Toastr;
 
@@ -28,9 +28,11 @@ class ImpersonationsController extends Controller
     		auth()->loginUsingId( request('user_id') );
 
     		//retornamos al home con sus valores que le corresponden
-            Toastr::success('Estas personificando al usuario con el id...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+            Toastr::success('Estas personificando a un usuario!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
 
-    		return redirect('/home')->with('success', 'Estas personificando al usuario con el id '. request('user_id') );	
+            $username = User::where('id',request('user_id'))->first();
+
+    		return redirect('/home')->with('success', 'Estas personificando al usuario: '. $username->name );	
     	}
 
     	return back()->with('warning','Acción no permitida');

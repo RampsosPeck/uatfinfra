@@ -13,6 +13,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "oriceon/toastr-5-laravel": "dev-master",
+        "spatie/laravel-permission": "^2.13",
         "uxweb/sweet-alert": "^1.4"
     },
     "require-dev": {

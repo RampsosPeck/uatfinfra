@@ -11,10 +11,11 @@ use Uatfinfra\ModelAutomotores\Role;
 use Uatfinfra\Notifications\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     protected $table = 'users';
 
@@ -48,13 +49,10 @@ class User extends Authenticatable
         return $this->hasMany(Vehiculo::class);
     }
 
-    public function roles()
+    public function roless()
     {
         return $this->hasMany(Role::class);
     }
-
-    
-
 
     //Con esta funcion aseguramos que solo algunos usuarios pueden impersonar
     public function canImpersonate($userId = null)
@@ -115,6 +113,20 @@ class User extends Authenticatable
     public function getAvatarAttribute()
     {
         return optional($this->profiles->last())->avatar ?? url('dashboard/img/user.png');
+    }
+
+    public function scopeAllowed($query)
+    {
+        if(auth()->user()->can('view', $this))
+        {
+            return $query;
+        }
+        return $query->where('id', auth()->id());
+    }
+
+    public function getRoleDisplayNames()
+    {
+        return $this->roles->pluck('display_name')->implode(', ');
     }
 
 }
