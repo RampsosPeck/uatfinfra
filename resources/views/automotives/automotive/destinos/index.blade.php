@@ -13,10 +13,8 @@
  				<thead>
  					<tr>
 						<th>ID</th>
-						<th>Depto. de partida</th>
-                        <th>Lugar de partida</th>
-						<th>Depto. de llegada</th>
-                        <th>Lugar de llegada</th>
+						<th>Partida</th>
+						<th>Retorno</th>
                         <th>Ruta</th>
                         <th>Kilometraje</th>
                         <th>Tiempo</th>
@@ -28,10 +26,8 @@
                     @foreach($destinos as $destino)
                     <tr>
                     	<td>{{ $destino->id }}</td>
-                        <td>{{ $destino->dep_inicio }}</td>
-                        <td>{{ $destino->origen }}</td>
-                        <td>{{ $destino->dep_final }}</td>
-                        <td>{{ $destino->destino }}</td>
+                        <td><b>{{ $destino->dep_inicio }}: </b> {{ $destino->origen }}</td>
+                        <td><b>{{ $destino->dep_final }}: </b> {{ $destino->destino }}</td>
                         <td>{{ $destino->ruta }}</td>
                         <td>{{ $destino->kilometraje }}</td>
                         <td>{{ $destino->tiempo }}</td>

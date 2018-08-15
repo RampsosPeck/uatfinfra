@@ -71,13 +71,20 @@
     <li class="treeview {{ request()->is('informes*') ? 'active' : '' }}"">
         <a href="{!! URL::to('/informes') !!}"><i class="fa fa-file-text-o"></i> <span>Informes</span></a>
     </li>
-    <li class="treeview {{ request()->is('/calendario/create') ? 'active' : '' }}">
-       <!-- <a href="{!! URL::to('/reservas') !!}"><i class="fa fa-calendar-check-o"></i> <span>Reserva de Viajes </span>
-        </a> -->
-
-        <a href="{!! URL::to('/calendario/create') !!}"> <i class="fa fa-calendar-check-o"></i> <span> Reservas </span></a>
-
+    
+    <li class="treeview {{ request()->is('reservas*') ? 'active' : '' }}">
+        <a href="#"><i class="fa fa-calendar-check-o"></i> <span>Reservas</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ request()->is('reservas') ? 'class=active' : '' }}><a href="{!! URL::to('/reservas') !!}"><i class="fa fa-bars"></i> <b>Listar </b>
+            </a></li>
+          <li {{ request()->is('calendario/create') ? 'class=active' : '' }}><a href="{!! URL::to('/calendario/create') !!}"> <i class="fa fa-calendar"></i> <b> Calendario </b></a></li>
+        </ul>
     </li>
+
     <li class="treeview {{ request()->is('solicitudes*') ? 'active' : '' }}">
         <a href="{!! URL::to('/solicitudes') !!}"><i class="fa fa-sitemap"></i> <span>Solicitud de Trabajo</span></a>
     </li>

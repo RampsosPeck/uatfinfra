@@ -60,7 +60,7 @@ class ReservationController extends Controller
             return Redirect::to('/calendario/create');          
         }else{
 
-            $fi = $request->get('enddate');
+            $fi = $request->get('enddate'); 
             $fi = $fi.' 23:59:59';
             
             $reserva = new Reservation;
@@ -126,12 +126,41 @@ class ReservationController extends Controller
     public function update(ReserSaveRequest $request, $id)
     {
         //return $request;
-        $reserva = Reservation::find($id);
+        /*$reserva = Reservation::find($id);
         $reserva->fill($request->all());
-        $reserva->save();
+        $reserva->save();*/
+
+        $a = strtotime($request['startdate']);
+        $b = strtotime($request['enddate']);
+        if($a > $b)
+        {
+            Alert::error('La fecha final no debe ser mayor a la inicial...!!!');   
+            Toastr::error('No se creó la reserva de viaje correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+            return Redirect::to('/calendario/create');          
+        }else{
+
+            $fi = $request->get('enddate'); 
+            $fi = $fi.' 23:59:59';
+            
+            $reserva = Reservation::find($id);
+            $reserva->entity = $request->get('entity');
+            $reserva->objetive = $request->get('objetive');
+            $reserva->passengers = $request->get('passengers');
+            $reserva->startdate = $request->get('startdate');
+            $reserva->enddate = $fi;
+            $reserva->user_id = $request->get('user_id');
+            $reserva->save();
+
+            //Session::flash('message','La reserva fue CREADA correctamente...');
+            Alert::success('La reserva de viaje fue ACTUALIZADA correctamente...!!!');
+
+            Toastr::success('La reserva fue actualizada correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
+            return redirect('reservas');
+
+        }
 
         //Session::flash('message','La reserva fue EDITADA correctamente...');
-         Alert::info('La reserva fue EDITADA correctamente...!!!');
+        Alert::info('La reserva fue EDITADA correctamente...!!!');
 
         Toastr::success('La reserva fue EDITADA correctamente...!!!', $title = null, $options = ["positionClass"=> "toast-bottom-right", "progressBar"=> true, "timeOut"=> "9000"]);
 
