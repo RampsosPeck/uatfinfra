@@ -22,6 +22,7 @@
 						<th>Nro.</th>
                         <th>Cod. Sol.</th>
                         <th>Responsable</th>
+                        <th>Tipo</th>
                         <th>Vehículo</th>
                         <th>Descripción</th>
                         <th>Fecha</th>
@@ -37,6 +38,7 @@
                         <td class="text-center">{{ ++$key }}</td>
                     	<td class="text-center">{{ $solicitud->solmecodi }}</td>
                         <td>{{ $solicitud->user->name }}</td>
+                        <td>@foreach($solicitud->tags as $tag){{ $tag->name }} @endforeach</td>
                         <td>{{ $solicitud->vehiculo->placa }}</td>
                         <td>{{ $solicitud->descripcion }}</td>
                         <td>{{ $solicitud->fecha }}</td>

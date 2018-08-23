@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Solicitud Nro.{{ $solicitud->id }}</title>
-    <link rel="stylesheet" href="css/solicitud.css" media="all" />
+    <link rel="stylesheet" href="css/solicitudes.css" media="all" />
   </head>
   <body>
     <header class="clearfix">
@@ -24,15 +24,15 @@
           </tr>
           <tr>
               <td class="ks" colspan="2">
-                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  </div>
+                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  {{ $solicitud->vehiculo->placa }}</div>
               </td>
-              <td class="ks" colspan="1">
-                  <div><b>Placa:</b> {{ $solicitud->vehiculo->placa }} </div>
+              <td class="ks" colspan="2">
+                  <div><b>Tipo:</b> @foreach($solicitud->tags as $tag){{ $tag->name }} @endforeach  </div>
               </td>
-              <td class="ks" colspan="3">
+              <td class="ks" colspan="2">
                   <div><b>Recepción: P/......../......../........ Hora: ......:......</b> </div>
               </td>
-          </tr>
+          </tr> 
           <tr>
               <td class="ks" colspan="6"><b>Descripción del Trabajo:</b> {{ $solicitud->descripcion }} </td>
           </tr>
@@ -59,20 +59,20 @@
                   <div><b>Solicitante: Sr.</b> {{ $solicitud->user->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha:</b> {{ $solicitud->fecha }} </div>
               </td>
               <td class="ks" colspan="2">
-                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi  }} </div>
+                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi }} </div>
               </td>
           </tr>
           <tr>
               <td class="ks" colspan="2">
-                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  </div>
+                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  {{ $solicitud->vehiculo->placa }}</div>
               </td>
-              <td class="ks" colspan="1">
-                  <div><b>Placa:</b> {{ $solicitud->vehiculo->placa }} </div>
+              <td class="ks" colspan="2">
+                  <div><b>Tipo:</b> @foreach($solicitud->tags as $tag){{ $tag->name }} @endforeach  </div>
               </td>
-              <td class="ks" colspan="3">
+              <td class="ks" colspan="2">
                   <div><b>Recepción: P/......../......../........ Hora: ......:......</b> </div>
               </td>
-          </tr>
+          </tr> 
           <tr>
               <td class="ks" colspan="6"><b>Descripción del Trabajo:</b> {{ $solicitud->descripcion }} </td>
           </tr>
@@ -101,20 +101,20 @@
                   <div><b>Solicitante: Sr.</b> {{ $solicitud->user->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha:</b> {{ $solicitud->fecha }} </div>
               </td>
               <td class="ks" colspan="2">
-                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi  }} </div>
+                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi }} </div>
               </td>
           </tr>
           <tr>
               <td class="ks" colspan="2">
-                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  </div>
+                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  {{ $solicitud->vehiculo->placa }}</div>
               </td>
-              <td class="ks" colspan="1">
-                  <div><b>Placa:</b> {{ $solicitud->vehiculo->placa }} </div>
+              <td class="ks" colspan="2">
+                  <div><b>Tipo:</b> @foreach($solicitud->tags as $tag){{ $tag->name }} @endforeach  </div>
               </td>
-              <td class="ks" colspan="3">
+              <td class="ks" colspan="2">
                   <div><b>Recepción: P/......../......../........ Hora: ......:......</b> </div>
               </td>
-          </tr>
+          </tr> 
           <tr>
               <td class="ks" colspan="6"><b>Descripción del Trabajo:</b> {{ $solicitud->descripcion }} </td>
           </tr>
@@ -142,20 +142,20 @@
                   <div><b>Solicitante: Sr.</b> {{ $solicitud->user->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fecha:</b> {{ $solicitud->fecha }} </div>
               </td>
               <td class="ks" colspan="2">
-                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi  }} </div>
+                  <div><b>Kilometraje:</b> {{ $solicitud->vehiculo->kilometraje }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sol. M.#:</b> {{ $solicitud->solmecodi }} </div>
               </td>
           </tr>
           <tr>
               <td class="ks" colspan="2">
-                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  </div>
+                  <div><b>Mobilidad:</b> {{ $solicitud->vehiculo->tipo }}  {{ $solicitud->vehiculo->placa }}</div>
               </td>
-              <td class="ks" colspan="1">
-                  <div><b>Placa:</b> {{ $solicitud->vehiculo->placa }} </div>
+              <td class="ks" colspan="2">
+                  <div><b>Tipo:</b> @foreach($solicitud->tags as $tag){{ $tag->name }} @endforeach  </div>
               </td>
-              <td class="ks" colspan="3">
+              <td class="ks" colspan="2">
                   <div><b>Recepción: P/......../......../........ Hora: ......:......</b> </div>
               </td>
-          </tr>
+          </tr> 
           <tr>
               <td class="ks" colspan="6"><b>Descripción del Trabajo:</b> {{ $solicitud->descripcion }} </td>
           </tr>

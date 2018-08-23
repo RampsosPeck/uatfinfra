@@ -2,6 +2,7 @@
 
 namespace Uatfinfra\Http\Controllers\Solicitud;
 use Uatfinfra\ModelSolicitudes\Solicitud;
+use Uatfinfra\ModelSolicitudes\Tag;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Illuminate\Http\Request;
 use Uatfinfra\Http\Controllers\Controller;
@@ -25,7 +26,8 @@ class SolicitudController extends Controller
     {
         $solicitudes =  Solicitud::all();
         $vehiculos = Vehiculo::all();
-        return view('solicitudes.mecanico.solicitud.index',compact('solicitudes','vehiculos'));
+        $tags = Tag::all();
+        return view('solicitudes.mecanico.solicitud.index',compact('solicitudes','vehiculos','tags'));
     }
 
     /**
@@ -46,6 +48,7 @@ class SolicitudController extends Controller
      */
     public function store(SolMeSaveRequest $request)
     {
+        //dd($request);
         $año = intval(date("Y"));
         $desde = $año."-01-01";
         $hasta = $año."-12-31";
@@ -65,6 +68,8 @@ class SolicitudController extends Controller
         $solicitud->descripcion =  $request['descripcion'];
         $solicitud->fecha       =  $date->toFormattedDateString();
         $solicitud->save();
+
+        $solicitud->tags()->attach($request->get('tags'));
 
         //Session::flash('message','La solicitud de trabajo para el mecanico se creo correctamente...');
         Alert::success('Solicitud de trabajo para el mecánico se creo correctamente...!!!');
@@ -101,10 +106,32 @@ class SolicitudController extends Controller
      */
     public function edit($id)
     {
-        //return Solicitud::find($id);
+        //dd($id);
         $solicitud = Solicitud::find($id);
-        $vehiculos = Vehiculo::all();
-        return view('solicitudes.mecanico.solicitud.edit',compact('solicitud','vehiculos'));
+        $vehiculos = Vehiculo::all(); 
+        $tag       = \DB::table('solicitud_tag')->where('solicitud_id', $id )->get();
+        $a=0;$b=0;$c=0;$d=0;
+        foreach($tag as $ta)
+        {
+            if($ta->tag_id == 1)
+            {
+                $a = $ta->tag_id;
+            }
+            if($ta->tag_id == 2)
+            {
+                $b = $ta->tag_id;
+            }
+            if($ta->tag_id == 3)
+            {
+                $c = $ta->tag_id;
+            }
+            if($ta->tag_id == 4)
+            {
+                $d = $ta->tag_id;
+            } 
+        }
+        //dd($tag[0]->tag_id); 
+        return view('solicitudes.mecanico.solicitud.edit',compact('solicitud','vehiculos','a','b','c','d'));
 
     }
 
@@ -125,6 +152,8 @@ class SolicitudController extends Controller
         $solicitud->descripcion =  $request['descripcion'];
         $solicitud->fecha       =  $date->toFormattedDateString();
         $solicitud->save();
+
+        $solicitud->tags()->sync($request->get('tags'));
 
         //Session::flash('message','La solicitud fue EDITADA correctamente...');
         Alert::info('La solicitud fue EDITADA correctamente...!!!');

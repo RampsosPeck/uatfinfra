@@ -218,10 +218,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        <strong> <a href="{{ route('politicas') }}">&copy;</a> {{ date('Y') }}. Created by <a href="https://www.facebook.com/jorge.peralta.3576224"><font color="#f39c12">Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong>
+        <strong> <a href="{{ route('politicas') }}">&copy;</a> Created by <a href="https://www.facebook.com/jorge.peralta.3576224"><font color="#f39c12">Ing. Jorge Peralta</font><i class="fa fa-android fa-spin fa-1x fa-fw"></i> </a></strong>
     </div>
     <!-- Default to the left -->
-    <strong>U.A.T.F.</strong> 
+    <strong>U.A.T.F. - {{ date('Y') }}</strong> 
   </footer>
 
   <!-- Control Sidebar -->

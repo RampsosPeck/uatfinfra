@@ -15,6 +15,24 @@
 <div class="container panelcontrol">
   <div class="titulo" id="titulo">SERVICIOS GENERALES</div>
     <div class="row">
+
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8 col-xs-6 text-center">
+            <!-- small box -->
+            <div class="small-box bg-greencontrol">
+              <div class="inner">
+                <h3><i class="fa fa-line-chart"></i></h3>
+                <strong>
+                  <p>{!!link_to_action('Servicio\GeneralController@getGraficas', $title = 'REPORTE DE TRABAJOS REALIZADOS', $parameters = '', $attributes = ['style'=>'color:yellow'])!!}</p>
+                </strong>
+              </div>
+              <div class="icon">
+                <i class="fa fa-bar-chart"></i>
+              </div>
+              <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" >SOLICITUDES DE TRABAJO <i class="fa fa-hand-o-left fa-1x" aria-hidden="true"></i></a>
+            </div>
+          </div>
+         
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aquacontrol">
@@ -139,6 +157,7 @@
             <a class="small-box-footer" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalServe">Crear Solicitud de trabajo <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+        
     <!-- ./col -->
     </div>
 </div>

@@ -307,4 +307,8 @@ class GeneralController extends Controller
         return view('servicios.mantegeneral.index',compact('solicitantes','generales'));
     }
 
+    public function getGraficas()
+    {
+        return view('servicios.grafica');
+    }
 }

@@ -30,6 +30,21 @@
                    {!! $errors->first('vehiculo_id', '<span class="help-block">:message</span>') !!}
             </div>
 
+            <br>
+          <div class="form-group text-center {{ $errors->has('tags') ? 'has-error' : '' }}"> <hr>  <labelclass="control-label" >Tipo de trabajo:</label>
+            <label>
+                <strong>Revisión</strong> 
+                <input type="checkbox" value="1" name="tags[]" {{ old('tags',$a) == 1 ? 'checked' : '' }}>
+                <strong>Reparación</strong>
+                <input type="checkbox" value="2" name="tags[]" {{ old('tags',$b) == 2 ? 'checked' : '' }}> 
+                <strong>Compra</strong>
+                <input type="checkbox" value="3" name="tags[]" {{ old('tags',$c) == 3 ? 'checked' : '' }}> 
+                <strong>Cambio</strong>
+                <input type="checkbox" value="4" name="tags[]" {{ old('tags',$d) == 4 ? 'checked' : '' }}> 
+            </label> 
+          </div> <hr>
+
+
 			<div class="text-center">
 	            <label for="message-text" class="control-label">Descripcion del trabajo a realizar:</label>
 	            {!! Form::textarea('descripcion',old('descripcion',$solicitud->descripcion),['class'=>'form-control', 'rows'=>'2','placeholder'=>'Ingrese el trabajo que realizara el mecánico','required']) !!}
@@ -59,6 +74,7 @@
 
 @push('styles')
   <link rel="stylesheet" href="/dashboard/plugins/select2/select2.min.css">
+  {!! Html::style('/dashboard/plugins/iCheck/all.css') !!} 
   <style>
       .container{
             font-family: "Times New Roman", Times, serif;
@@ -69,7 +85,16 @@
 @push('scripts') 
     <script src="/dashboard/plugins/select2/select2.full.min.js"></script>
    <script src="/dashboard/plugins/select2/es.js"></script>
+{!! Html::script('/entrar/icheck.min.js') !!}
+ 
 <script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  }); 
 
     $("#vehiculo_id").select2({
         placeholder: "Selecione un vehículo",

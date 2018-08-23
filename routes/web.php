@@ -122,6 +122,8 @@ Route::get('solicitudAlbanileria', 'Servicio\GeneralController@getAlbanileria');
 Route::get('solicitudPlomeria', 'Servicio\GeneralController@getPlomeria');
 Route::get('solicitudSergeneral', 'Servicio\GeneralController@getSergene');
 Route::get('solicitudMantegene', 'Servicio\GeneralController@getMantegene');
+
+Route::get('ServGeneral', 'Servicio\GeneralController@getGraficas');
  
 
 Route::post('/vehiculos/{request}/photosupdate', 'Automotive\PhotoController@update');

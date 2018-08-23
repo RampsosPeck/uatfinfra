@@ -25,6 +25,7 @@ class SolMeSaveRequest extends FormRequest
     {
         $rules = [
             'vehiculo_id' => 'required',
+            'tags' => 'required',
             'descripcion' => 'required|regex:/^[a-z 0-9 ñáéíóú -_ . ]+$/i|max:200'
         ];
 
@@ -32,6 +33,7 @@ class SolMeSaveRequest extends FormRequest
         {
             $rules = [
             'vehiculo_id' => 'required',
+            'tags' => 'required',
             'descripcion' => 'required|regex:/^[a-z 0-9 ñáéíóú -_ . ]+$/i|max:200'
             ];
         }
@@ -42,6 +44,7 @@ class SolMeSaveRequest extends FormRequest
     {
         return [
                 'vehiculo_id.required'   => 'Seleccione un vehículo, por que es obligatorio.',
+                'tags.required'              => 'Seleccione un tipo de trabajo, por que es obligatorio.',
                 'descripción.regex'      => 'En este campo solo se aceptan letras números.'
 
         ];

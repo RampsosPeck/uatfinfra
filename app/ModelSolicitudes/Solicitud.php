@@ -4,6 +4,7 @@ namespace Uatfinfra\ModelSolicitudes;
 use Illuminate\Database\Eloquent\Model;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\ModelMecanico\Pedido;
+use Uatfinfra\ModelSolicitudes\Tag;
 use Uatfinfra\User;
 
 class Solicitud extends Model {
@@ -22,5 +23,9 @@ class Solicitud extends Model {
 	public function mecanicos() {
 		return $this->hasMany('Uatfinfra\ModelMecanico\Mecanico');
 	}
-	 
+	
+	public function tags()
+	{
+		return $this->belongsToMany(Tag::class);	
+	}
 }
