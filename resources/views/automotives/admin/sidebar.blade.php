@@ -88,10 +88,22 @@
     <li class="treeview {{ request()->is('solicitudes*') ? 'active' : '' }}">
         <a href="{!! URL::to('/solicitudes') !!}"><i class="fa fa-sitemap"></i> <span>Solicitud de Trabajo</span></a>
     </li>
+
+
     <li class="treeview {{ request()->is('mecanicos*') ? 'active' : '' }}">
-        <a href="{!! URL::to('/mecanicos') !!}"><i class="fa fa-briefcase"></i> <span>Mecánico </span>
+        <a href="#"><i class="fa fa-bus"></i> <span>Mecánico de Buses</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
         </a>
-    </li> 
+        <ul class="treeview-menu">
+          <li {{ request()->is('mecanicos') ? 'class=active' : '' }}><a href="{!! URL::to('/mecanicos') !!}"><i class="fa fa-sitemap"></i> <b> Trabajos </b>
+            </a></li>
+          <li {{ request()->is('mecanicos/create') ? 'class=active' : '' }}><a href="{!! URL::to('/mecanicos/create') !!}"> <i class="fa fa-file-pdf-o"></i> <b> Reportes </b></a></li>
+        </ul>
+    </li>
+
+     
     <li class="treeview {{ request()->is('pedidos*') ? 'active' : '' }}">
         <a href="{!! URL::to('/pedidos') !!}"><i class="fa fa-cogs"></i> <span>Pedido M. </span>
         </a>

@@ -7,7 +7,7 @@
   <div class=" col-md-12">
     
     <div class="box box-primary" style="background-color:#CBE5FF;">  
-        <center><h1><font color="#00c0ef"><b>CALENDARIO DE VIAVES</b></font></h1> </center>       
+        <center><h1><font color="#00c0ef"><b>CALENDARIO DE VIAJES</b></font></h1> </center>       
         <div id="calendar"></div>
     </div>
 

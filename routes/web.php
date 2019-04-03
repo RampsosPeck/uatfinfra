@@ -105,6 +105,8 @@ Route::get('informes/{id}/aprobar', 'Automotive\InformeController@getAprobar');
 Route::get('informes/{id}/observar', 'Automotive\InformeController@getObservar');
 
 Route::resource('mecanicos', 'Mecanico\MecanicoController');
+Route::post('reporte_trabajo', 'Mecanico\MecanicoController@getReporte')->name('reporte.trabajo');
+Route::post('reporte_general', 'Mecanico\MecanicoController@getReportegeneral')->name('reporte.general');
 
 Route::resource('pedidos', 'Mecanico\PedidoController');
 Route::get('informes/{id}/pdf', 'Mecanico\PedidoController@getImprimir');

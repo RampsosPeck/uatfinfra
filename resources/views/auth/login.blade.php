@@ -13,7 +13,7 @@
     </div>
   </div>
 @endif
-<div class="login-box">
+<div class=" col-md-12 login-box">
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg"><strong>INGRESE SUS DATOS PERSONALES</strong></p>
@@ -21,8 +21,8 @@
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
 
-      <div class="form-group has-feedback{{ $errors->has('cedula') ? ' has-error' : '' }}">
-        <label for="name" class="col-md-4 control-label">Cédula de Identidad:</label>
+      <div class="form-group row has-feedback{{ $errors->has('cedula') ? ' has-error' : '' }}">
+        <label for="name" class="col-md-4 cozl-form-label text-md-right">Cédula de Identidad:</label>
             <div class="col-md-6">
                 <input id="cedula" type="number" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus placeholder="Ingrese su Cédula de Identidad">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -36,8 +36,8 @@
             
         </div>
 
-        <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-          <label for="name" class="col-md-4 control-label">Clave / Contraseña:</label>
+        <div class="form-group row has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+          <label for="name" class="col-md-4 cozl-form-label text-md-right">Clave / Contraseña:</label>
             <div class="col-md-6">  
                 <input id="password" type="password" class="form-control" name="password" required placeholder="Ingrese su Clave o Contraseña">
                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -50,34 +50,34 @@
         </div>
 
 
-        <div class="form-group has-feedback">
-            <label for="name" class="col-md-7 control-label">
+        <div class="form-group row has-feedback">
+             <!--<label for="name" class="col-md-7 control-label">
               <div class="checkbox icheck">
                   <label>
-                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> <strong>Recuérdame</strong>
+                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> <strong class="col-md-4 cozl-form-label text-md-right">Recuérdame</strong>
                   </label>
               </div>
-            </label>
-            <div class="col-md-3">
+            </label>-->
+            <div class="col-md-4 mx-auto">
                 <button type="submit" class="btn btn-info btn-block">
                     INGRESAR
                 </button>
             </div>
         </div>
     </form>
-
-    <div class="form-group">
-      <div class="social-auth-links text-center">
+ <!-- /.social-auth-links 
+    <div class="form-group ">
+      <div class="social-auth-links text-center col-md-12">
         <p>- OH también! -</p>
-      <div class="col-md-6">
+      <div class="col-md-6 ">
         <a href="{{ route('login.social','facebook') }}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Ingresa con tu cuenta de facebook</a>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 ">
         <a href="{{ route('login.social','google') }}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Ingresa con tu cuenta de Google+</a>
       </div>
       </div>
-    </div>
-    <!-- /.social-auth-links -->
+    </div>-->
+   
 
     <center><a class="btn btn-link" href="{{ route('password.request') }}"><font color="#fed136"><b><br />Olvidaste tu contraseña?</b></font></a></center>
 

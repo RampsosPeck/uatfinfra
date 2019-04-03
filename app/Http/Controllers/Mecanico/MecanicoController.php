@@ -7,6 +7,7 @@ use Uatfinfra\Http\Controllers\Controller;
 use Uatfinfra\ModelAutomotores\Vehiculo;
 use Uatfinfra\ModelMecanico\Mecanico;
 use Uatfinfra\ModelSolicitudes\Solicitud;
+use Uatfinfra\ModelSolicitudes\Tag;
 use Uatfinfra\Http\Requests\MecaConcreRequest;
 use Session;
 use Uatfinfra\User;
@@ -32,6 +33,9 @@ class MecanicoController extends Controller {
 	 */
 	public function create() {
 
+		$vehiculos = Vehiculo::all();
+		$tags = Tag::all();
+		return view('solicitudes.mecanico.index',compact('vehiculos','tags')); 	
 	}
 
 	/**
@@ -137,5 +141,79 @@ class MecanicoController extends Controller {
         return Redirect::back();
 
 
+	}
+
+	public function getReporte(Request $request)
+	{
+		if($request->fecha1 > $request->fecha2)
+        {
+            return redirect()->route('mecanicos.create')->with('warning','La fecha inicial no debe ser mayor a la fecha final.');
+        }
+        
+        if($request->vehiculo_id == null OR  $request->fecha1 == null OR  $request->fecha2 == null)
+        {
+            return redirect()->route('mecanicos.create')->with('warning','Inserte el vehículo y las dos fechas...!'); 
+        }
+        
+
+		//dd($request);
+		$vehiculo = Vehiculo::where('id',$request->vehiculo_id)->first();
+
+		$solicitudes = Solicitud::whereBetween('created_at',[$request->fecha1,$request->fecha2])->where('vehiculo_id',$vehiculo->id)->get();
+
+		if(($solicitudes)->isEmpty())
+        {
+            return redirect()->route('mecanicos.create')->with('warning','No hay trabajos del '. $request->fecha1.' hasta el '. $request->fecha2);            
+        }
+
+		//dd($solicitudes);
+
+		$admin = User::where('type','Administrator')->where('position','WEB SITE')->first();
+        $jefe = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
+        $date = date('d-m-Y'); 
+
+        $view =  \View::make('solicitudes.mecanico.pdfReporte', compact('date','admin','jefe','vehiculo','solicitudes'))->render();
+        $pdf  = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('carta', 'portrait');
+        return $pdf->stream('Reporte'.$vehiculo->placa.'.pdf'); 
+	}
+
+	public function getReportegeneral(Request $request)
+	{
+		if($request->fecha1 > $request->fecha2)
+        {
+            return redirect()->route('mecanicos.create')->with('warning','La fecha inicial no debe ser mayor a la fecha final.');
+        }
+        
+        if($request->titulo == null OR  $request->fecha1 == null OR  $request->fecha2 == null)
+        {
+            return redirect()->route('mecanicos.create')->with('warning','Inserte el vehículo y las dos fechas...!'); 
+        }
+        
+
+		//dd($request);
+		$vehiculos = Vehiculo::orderBy('id','ASC')->get();
+		//dd($vehiculos);
+		$desde = $request->fecha1; 
+		$hasta = $request->fecha2;
+
+		$titulo = $request->titulo;
+/*	
+		if(($mecanicos)->isEmpty())
+        {
+            return redirect()->route('mecanicos.create')->with('warning','No hay trabajos del '. $request->fecha1.' hasta el '. $request->fecha2);            
+        }
+*/
+
+		//dd($mecanicos);
+
+		$admin = User::where('type','Administrator')->where('position','WEB SITE')->first();
+        $jefe = User::where('type','Jefatura')->where('position','INFRAESTRUCTURA')->first();
+        $date = date('d-m-Y'); 
+
+        $view =  \View::make('solicitudes.mecanico.pdfReportegeneral', compact('date','admin','jefe','vehiculos','desde','hasta','titulo'))->render();
+        $pdf  = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('carta', 'portrait');
+        return $pdf->stream('ReporteGeneral'.$date.'.pdf'); 
 	}
 }

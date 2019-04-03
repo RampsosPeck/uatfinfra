@@ -30,7 +30,7 @@
                     </div>
                 </div> 
 
-                <label for="fecha2" class="col-sm-1 control-label">Desde:</label> 
+                <label for="fecha2" class="col-sm-1 control-label">Hasta:</label> 
                 <div class="col-sm-3  {{ $errors->has('fecha2') ? 'has-error' : '' }}">
                     <div class="input-group date">
                         <input type="date" name="fecha2" class="form-control" id="datepickere" />
